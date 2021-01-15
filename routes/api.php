@@ -17,3 +17,79 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::name('api.')
+    ->group(function (){
+
+        Route::prefix('/print-service')
+            ->name('print-service.')
+            ->group(function (){
+
+                Route::middleware(['signed'])
+                    ->group(function (){
+
+                        Route::name('jobs')->apiResource(
+                            '/jobs/{job}/content',
+                            \App\Http\Controllers\PrintServiceApi\PrintJobContentController::class,
+                            [
+                                'only' => ['index'],
+                            ],
+                        );
+
+                    }); // Route::middleware(['signed'])
+
+                Route::middleware(['auth:print_service_api'])
+                    ->group(function (){
+
+                        Route::apiResource(
+                            '/jobs',
+                            \App\Http\Controllers\PrintServiceApi\PrintJobsController::class,
+                            [
+                                'only' => ['update', 'show', 'index'],
+                            ],
+                        );
+
+                    }); // Route::middleware(['auth:print_service_api'])
+
+            }); // Route::prefix('/print-service')->name('print-service.')
+
+        Route::middleware(['auth:web_print_api'])
+            ->prefix('/web-print')
+            ->name('web-print.')
+            ->group(function (){
+
+                Route::apiResource(
+                    '/printers',
+                    \App\Http\Controllers\WebPrintApi\PrintersController::class,
+                    [
+                        'only' => ['show', 'index'],
+                    ],
+                );
+
+                Route::name('promises')->apiResource(
+                    '/promises/{promise}/content',
+                    \App\Http\Controllers\WebPrintApi\PrintJobPromisesContentController::class,
+                    [
+                        'only' => ['index', 'store'],
+                    ],
+                );
+
+                Route::apiResource(
+                    '/promises',
+                    \App\Http\Controllers\WebPrintApi\PrintJobPromisesController::class,
+                    [
+                        'only' => ['destroy', 'update', 'show', 'store', 'index'],
+                    ],
+                );
+
+                Route::apiResource(
+                    '/jobs',
+                    \App\Http\Controllers\WebPrintApi\PrintJobsController::class,
+                    [
+                        'only' => ['store'],
+                    ],
+                );
+
+            }); // Route::middleware(['auth:web_print_api'])->prefix('/web-print')->name('web-print.')
+
+    }); // Route::name('api.')

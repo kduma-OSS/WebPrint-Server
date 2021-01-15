@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Printer;
+use App\Models\PrintJob;
+use App\Models\PrintJobPromise;
+use App\Models\PrintServer;
+use App\Policies\PrintersPolicy;
+use App\Policies\PrintJobPromisesPolicy;
+use App\Policies\PrintJobsPolicy;
+use App\Policies\PrintServerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +21,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        PrintJob::class        => PrintJobsPolicy::class,
+        Printer::class         => PrintersPolicy::class,
+        PrintServer::class     => PrintServerPolicy::class,
+        PrintJobPromise::class => PrintJobPromisesPolicy::class,
     ];
 
     /**

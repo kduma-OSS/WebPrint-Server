@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'print_service_api' => [
+            'driver' => 'sanctum',
+            'provider' => 'print_servers',
+        ],
+
+        'web_print_api' => [
+            'driver' => 'sanctum',
+            'provider' => 'client_applications',
+        ],
     ],
 
     /*
@@ -69,6 +79,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'print_servers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PrintServer::class,
+        ],
+
+        'client_applications' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ClientApplication::class,
         ],
 
         // 'users' => [
