@@ -89,7 +89,12 @@ class PrintJobPromise extends Model
 
     public function isReadyToPrint(): bool
     {
-        return $this->status == 'ready' && ($this->content || $this->content_file) && $this->printer_id;
+        return $this->status == 'ready' && $this->isPossibleToPrint();
+    }
+
+    public function isPossibleToPrint()
+    {
+        return in_array($this->status, ['ready', 'new']) && ($this->content || $this->content_file) && $this->printer_id;
     }
 
     public function sendForPrinting(): ?PrintJob

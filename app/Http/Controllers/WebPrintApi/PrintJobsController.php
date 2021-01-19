@@ -41,7 +41,12 @@ class PrintJobsController extends Controller
 
         $promise = PrintJobPromise::where('uuid', $validated['promise'])->firstOrFail();
 
-        abort_unless($promise->isReadyToPrint(), 412);
+        abort_unless($promise->isPossibleToPrint(), 412);
+        if($promise->status != 'ready') {
+            $promise->status = 'ready';
+            $promise->save();
+        }
+
         $job = $promise->sendForPrinting();
 
         dd($promise, $job);
