@@ -139,6 +139,7 @@ class PrintJobPromisesController extends Controller
     {
         $available_printers = $promise->AvailablePrinters()->pluck('uuid');
         $validated = $request->validate([
+            'status' => ['nullable', 'in:ready'],
             'name' => ['nullable', 'string'],
             'printer' => ['nullable', Rule::in($available_printers)],
             'ppd_options' => ['nullable', 'array'],
@@ -147,6 +148,7 @@ class PrintJobPromisesController extends Controller
             'meta.*' => ['required', 'string'],
         ]);
 
+        $promise->status = $validated['status'] ?? $promise->status;
         $promise->name = $validated['name'] ?? $promise->name;
         $promise->ppd_options = $validated['ppd_options'] ?? $promise->ppd_options;
         $promise->meta = $validated['meta'] ?? $promise->meta;
