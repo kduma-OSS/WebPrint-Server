@@ -76,6 +76,7 @@ class PrintJobPromisesController extends Controller
         $promise->type = $validated['type'];
         $promise->ppd_options = $validated['ppd_options'] ?? null;
         $promise->meta = $validated['meta'] ?? null;
+        $promise->file_name = $validated['file_name'] ?? null;
 
         $promise->save();
 
@@ -86,7 +87,6 @@ class PrintJobPromisesController extends Controller
                 Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
             }
             $promise->size = strlen($validated['content']);
-            $promise->file_name = $validated['file_name'];
             $promise->save();
         }
 
