@@ -52,6 +52,8 @@ class PrintersController extends Controller
      */
     public function show(Printer $printer)
     {
+        $printer->load('Server');
+        
         return new PrinterResource($printer);
     }
 }
