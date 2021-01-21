@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\ClientApplication;
 use App\Models\Printer;
+use App\Models\PrintServer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ClientApplicationSeeder extends Seeder
 {
@@ -19,36 +21,41 @@ class ClientApplicationSeeder extends Seeder
         $client = new ClientApplication;
         $client->name = 'Test Debug Client';
         $client->save();
-
-        $client->tokens()->create([
-            'name' => 'Test Debug Client',
+        $token = $client->tokens()->create([
+            'name' => sprintf("%s Access Token", $client->name),
             'token' => hash('sha256', $plainTextToken = 'TEST_DEBUG_CLIENT'),
             'abilities' => ['*'],
         ]);
-
-        /** @var Printer $printer */
-        $printer = Printer::query()->firstWhere([
-            'name' => 'DEBUG',
+        echo sprintf("\n\n\n%s=\"%s|%s\"\n\n\n", strtoupper(Str::slug(sprintf("%s Access Token", $client->name), '_')), $token->id, $plainTextToken);
+        $print_server = PrintServer::query()->firstWhere([
+            'name' => 'Debug Print Server',
         ]);
-
-        $client->Printers()->attach($printer);
+        $client->Printers()->attach($print_server->Printers);
 
 
 
 
         $client = new ClientApplication;
-        $client->name = 'Test Working Client';
+        $client->name = 'Test Local Client';
         $client->save();
-
-        $client->tokens()->create([
-            'name' => 'Test Working Client',
-            'token' => hash('sha256', $plainTextToken = 'TEST_WORKING_CLIENT'),
-            'abilities' => ['*'],
+        $token = $client->createToken(sprintf("%s Access Token", $client->name));
+        echo sprintf("\n\n\n%s=\"%s\"\n\n\n", strtoupper(Str::slug($token->accessToken->name, '_')), $token->plainTextToken);
+        $print_server = PrintServer::query()->firstWhere([
+            'name' => 'Local Print Server',
         ]);
+        $client->Printers()->attach($print_server->Printers);
 
-        /** @var Collection $printers */
-        $printers = Printer::query()->where('name', '!=', 'DEBUG')->get();
 
-        $client->Printers()->attach($printers);
+
+
+        $client = new ClientApplication;
+        $client->name = 'Test LAN Client';
+        $client->save();
+        $token = $client->createToken(sprintf("%s Access Token", $client->name));
+        echo sprintf("\n\n\n%s=\"%s\"\n\n\n", strtoupper(Str::slug($token->accessToken->name, '_')), $token->plainTextToken);
+        $print_server = PrintServer::query()->firstWhere([
+            'name' => 'LAN Print Server',
+        ]);
+        $client->Printers()->attach($print_server->Printers);
     }
 }

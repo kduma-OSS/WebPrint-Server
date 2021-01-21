@@ -14,10 +14,10 @@ class CreatePrintersTable extends Migration
 
             $table->foreignId('print_server_id')->constrained('print_servers');
             $table->string('name');
+            $table->boolean('enabled')->default(1);
 
             $table->boolean('ppd_support')->default(0);
             $table->jsonb('ppd_options')->nullable();
-            $table->jsonb('ppd_options_layout')->nullable();
 
             $table->jsonb('raw_languages_supported');
 
