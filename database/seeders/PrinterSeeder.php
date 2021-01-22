@@ -65,6 +65,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'lpd://192.168.9.20/OKI-ML3320?timeout=10&tries=10';
         $printer->name = 'OKI-ML3320 (LPD)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $server->Printers()->save($printer);
@@ -72,6 +73,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'socket://192.168.9.20:9101?timeout=10';
         $printer->name = 'OKI-ML3320 (RAW)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $server->Printers()->save($printer);
@@ -79,6 +81,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://OKI_ML3320';
         $printer->name = 'OKI-ML3320 (CUPS)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -88,6 +91,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://TM_T88V';
         $printer->name = 'Epson TM-T88V (CUPS)';
+        $printer->location = 'Hol-Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['escpos'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -97,6 +101,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://HP_LaserJet_400';
         $printer->name = 'HP LaserJet 400 (CUPS)';
+        $printer->location = 'Agnieszka - Pierwsze Piętro';
         $printer->raw_languages_supported = ['pcl', 'postscript'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -109,6 +114,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://CLJ400';
         $printer->name = 'HP Color LaserJet 400 (M452dn)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['pcl', 'postscript'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -118,6 +124,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://LJ400';
         $printer->name = 'HP LaserJet 400 (M401dn)';
+        $printer->location = 'Agnieszka - Pierwsze Piętro';
         $printer->raw_languages_supported = ['pcl', 'postscript'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -127,6 +134,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://OJP8500';
         $printer->name = 'HP Officejet Pro 8500 (A910)';
+        $printer->location = 'Salon - Drugie Piętro';
         $printer->raw_languages_supported = ['pcl', 'postscript'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -136,6 +144,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ML320T';
         $printer->name = 'OKI MicroLine 320 Turbo';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -145,6 +154,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ML3320';
         $printer->name = 'OKI MicroLine 3320';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -154,6 +164,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ML3321';
         $printer->name = 'OKI MicroLine 3321';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['microline'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -163,6 +174,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://TM-T88V';
         $printer->name = 'Epson TM-T88V';
+        $printer->location = 'Hol-Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['escpos'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -172,6 +184,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ZD410';
         $printer->name = 'Zebra ZD410';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['zpl'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -181,6 +194,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ZD420C';
         $printer->name = 'Zebra ZD420C (Cartridge)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['zpl'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -190,6 +204,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ZD420T';
         $printer->name = 'Zebra ZD420T (Ribbon)';
+        $printer->location = 'Serwerownia - Pierwsze Piętro';
         $printer->raw_languages_supported = ['zpl'];
         $printer->enabled = true;
         $printer->ppd_support = true;
@@ -199,6 +214,7 @@ class PrinterSeeder extends Seeder
         $printer = new Printer;
         $printer->uri = 'cups://ZQ520';
         $printer->name = 'Zebra ZQ520 (WiFi)';
+        $printer->location = 'Urządzenie Przenośne';
         $printer->raw_languages_supported = ['zpl'];
         $printer->enabled = true;
         $printer->ppd_support = true;

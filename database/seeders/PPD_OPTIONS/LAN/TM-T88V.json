@@ -7,7 +7,7 @@
                 "key": "RP82.5x297",
                 "name": "Roll paper 82.5 x 297 mm",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "RP80x297": {
                 "key": "RP80x297",
@@ -19,19 +19,19 @@
                 "key": "RP60x297",
                 "name": "Roll paper 60 x 297 mm",
                 "order": 3,
-                "enabled": true
+                "enabled": false
             },
             "RP58x297": {
                 "key": "RP58x297",
                 "name": "Roll paper 58 x 297 mm",
                 "order": 4,
-                "enabled": true
+                "enabled": false
             },
             "RP82.5x2000": {
                 "key": "RP82.5x2000",
                 "name": "Roll paper 82.5 x 2000 mm",
                 "order": 5,
-                "enabled": true
+                "enabled": false
             },
             "RP80x2000": {
                 "key": "RP80x2000",
@@ -43,13 +43,13 @@
                 "key": "RP60x2000",
                 "name": "Roll paper 60 x 2000 mm",
                 "order": 7,
-                "enabled": true
+                "enabled": false
             },
             "RP58x2000": {
                 "key": "RP58x2000",
                 "name": "Roll paper 58 x 2000 mm",
                 "order": 8,
-                "enabled": true
+                "enabled": false
             },
             "A4": {
                 "key": "A4",
@@ -61,7 +61,7 @@
                 "key": "LT",
                 "name": "LT",
                 "order": 10,
-                "enabled": true
+                "enabled": false
             }
         },
         "default": "RP80x297",
