@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use KDuma\Eloquent\Uuidable;
 
 /**
@@ -29,6 +30,7 @@ use KDuma\Eloquent\Uuidable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Printer[] $AvailablePrinters
  * @property-read int|null $available_printers_count
  * @property-read \App\Models\ClientApplication $ClientApplication
+ * @property-read \App\Models\PrintDialog|null $PrintDialog
  * @property-read \App\Models\PrintJob|null $PrintJob
  * @property-read \App\Models\Printer|null $Printer
  * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise newModelQuery()
@@ -80,6 +82,11 @@ class PrintJobPromise extends Model
     public function ClientApplication(): BelongsTo
     {
         return $this->belongsTo(ClientApplication::class, 'client_application_id');
+    }
+
+    public function PrintDialog(): HasOne
+    {
+        return $this->hasOne(PrintDialog::class, 'print_job_promise_id');
     }
 
     public function AvailablePrinters(): BelongsToMany

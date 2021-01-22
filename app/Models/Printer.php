@@ -16,9 +16,9 @@ use KDuma\Eloquent\Uuidable;
  * @property string $uuid
  * @property int $print_server_id
  * @property string $name
+ * @property int $enabled
  * @property bool $ppd_support
  * @property array|null $ppd_options
- * @property array|null $ppd_options_layout
  * @property array $raw_languages_supported
  * @property string $uri
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -37,11 +37,11 @@ use KDuma\Eloquent\Uuidable;
  * @method static Builder|Printer newQuery()
  * @method static Builder|Printer query()
  * @method static Builder|Printer whereCreatedAt($value)
+ * @method static Builder|Printer whereEnabled($value)
  * @method static Builder|Printer whereGuid($guid)
  * @method static Builder|Printer whereId($value)
  * @method static Builder|Printer whereName($value)
  * @method static Builder|Printer wherePpdOptions($value)
- * @method static Builder|Printer wherePpdOptionsLayout($value)
  * @method static Builder|Printer wherePpdSupport($value)
  * @method static Builder|Printer wherePrintServerId($value)
  * @method static Builder|Printer whereRawLanguagesSupported($value)
