@@ -1,0 +1,402 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 1,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 2,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive",
+                "order": 3,
+                "enabled": true
+            },
+            "FanFoldGermanLegal": {
+                "key": "FanFoldGermanLegal",
+                "name": "8.5x13",
+                "order": 4,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 5,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5",
+                "order": 6,
+                "enabled": true
+            },
+            "A6": {
+                "key": "A6",
+                "name": "A6",
+                "order": 7,
+                "enabled": true
+            },
+            "B5": {
+                "key": "B5",
+                "name": "JIS B5",
+                "order": 8,
+                "enabled": true
+            },
+            "195x270mm": {
+                "key": "195x270mm",
+                "name": "16K 195x270 mm",
+                "order": 9,
+                "enabled": true
+            },
+            "7.25x10.2361": {
+                "key": "7.25x10.2361",
+                "name": "16K 184x260 mm",
+                "order": 10,
+                "enabled": true
+            },
+            "7.75x10.75": {
+                "key": "7.75x10.75",
+                "name": "16K 197x273 mm",
+                "order": 11,
+                "enabled": true
+            },
+            "Postcard": {
+                "key": "Postcard",
+                "name": "Postcard",
+                "order": 12,
+                "enabled": true
+            },
+            "DoublePostcardRotated": {
+                "key": "DoublePostcardRotated",
+                "name": "Postcard Double Long Edge",
+                "order": 13,
+                "enabled": true
+            },
+            "Env10": {
+                "key": "Env10",
+                "name": "Envelope #10",
+                "order": 14,
+                "enabled": true
+            },
+            "EnvMonarch": {
+                "key": "EnvMonarch",
+                "name": "Envelope Monarch",
+                "order": 15,
+                "enabled": true
+            },
+            "EnvISOB5": {
+                "key": "EnvISOB5",
+                "name": "Envelope B5",
+                "order": 16,
+                "enabled": true
+            },
+            "EnvC5": {
+                "key": "EnvC5",
+                "name": "Envelope C5",
+                "order": 17,
+                "enabled": true
+            },
+            "EnvDL": {
+                "key": "EnvDL",
+                "name": "Envelope DL",
+                "order": 18,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "InputSlot": {
+        "key": "InputSlot",
+        "name": "Paper Source",
+        "values": {
+            "Auto": {
+                "key": "Auto",
+                "name": "Automatic",
+                "order": 1,
+                "enabled": true
+            },
+            "Tray1": {
+                "key": "Tray1",
+                "name": "Tray 1",
+                "order": 2,
+                "enabled": true
+            },
+            "Tray2": {
+                "key": "Tray2",
+                "name": "Tray 2",
+                "order": 3,
+                "enabled": true
+            },
+            "Tray3": {
+                "key": "Tray3",
+                "name": "Tray 3",
+                "order": 4,
+                "enabled": true
+            },
+            "Tray1_Man": {
+                "key": "Tray1_Man",
+                "name": "Tray 1 (Manual)",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "Auto",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Duplex": {
+        "key": "Duplex",
+        "name": "Two-Sided",
+        "values": {
+            "None": {
+                "key": "None",
+                "name": "Off",
+                "order": 1,
+                "enabled": true
+            },
+            "DuplexNoTumble": {
+                "key": "DuplexNoTumble",
+                "name": "Long-Edge Binding",
+                "order": 2,
+                "enabled": true
+            },
+            "DuplexTumble": {
+                "key": "DuplexTumble",
+                "name": "Short-Edge Binding",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "None",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "MediaType": {
+        "key": "MediaType",
+        "name": "Media Type",
+        "values": {
+            "Unspecified": {
+                "key": "Unspecified",
+                "name": "Unspecified",
+                "order": 1,
+                "enabled": true
+            },
+            "Plain": {
+                "key": "Plain",
+                "name": "Plain",
+                "order": 2,
+                "enabled": true
+            },
+            "HPEcoSMARTLite": {
+                "key": "HPEcoSMARTLite",
+                "name": "HP EcoSMART Lite",
+                "order": 3,
+                "enabled": true
+            },
+            "Light6074": {
+                "key": "Light6074",
+                "name": "Light 60-74g",
+                "order": 4,
+                "enabled": true
+            },
+            "MidWeight96110": {
+                "key": "MidWeight96110",
+                "name": "Mid-Weight 96-110g",
+                "order": 5,
+                "enabled": true
+            },
+            "Heavy111130": {
+                "key": "Heavy111130",
+                "name": "Heavy 111-130g",
+                "order": 6,
+                "enabled": true
+            },
+            "ExtraHeavy131175": {
+                "key": "ExtraHeavy131175",
+                "name": "Extra Heavy 131-175g",
+                "order": 7,
+                "enabled": true
+            },
+            "MonochromeLaserTransparency": {
+                "key": "MonochromeLaserTransparency",
+                "name": "Monochrome Laser Transparency",
+                "order": 8,
+                "enabled": true
+            },
+            "Labels": {
+                "key": "Labels",
+                "name": "Labels",
+                "order": 9,
+                "enabled": true
+            },
+            "Letterhead": {
+                "key": "Letterhead",
+                "name": "Letterhead",
+                "order": 10,
+                "enabled": true
+            },
+            "Envelope": {
+                "key": "Envelope",
+                "name": "Envelope",
+                "order": 11,
+                "enabled": true
+            },
+            "Preprinted": {
+                "key": "Preprinted",
+                "name": "Preprinted",
+                "order": 12,
+                "enabled": true
+            },
+            "Prepunched": {
+                "key": "Prepunched",
+                "name": "Prepunched",
+                "order": 13,
+                "enabled": true
+            },
+            "Colored": {
+                "key": "Colored",
+                "name": "Colored",
+                "order": 14,
+                "enabled": true
+            },
+            "Bond": {
+                "key": "Bond",
+                "name": "Bond",
+                "order": 15,
+                "enabled": true
+            },
+            "Recycled": {
+                "key": "Recycled",
+                "name": "Recycled",
+                "order": 16,
+                "enabled": true
+            },
+            "Rough": {
+                "key": "Rough",
+                "name": "Rough",
+                "order": 17,
+                "enabled": true
+            }
+        },
+        "default": "Unspecified",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "HPPrintQuality": {
+        "key": "HPPrintQuality",
+        "name": "Print Quality",
+        "values": {
+            "FastRes1200": {
+                "key": "FastRes1200",
+                "name": "FastRes 1200",
+                "order": 1,
+                "enabled": true
+            },
+            "600dpi": {
+                "key": "600dpi",
+                "name": "600 dpi",
+                "order": 2,
+                "enabled": true
+            },
+            "ProRes1200": {
+                "key": "ProRes1200",
+                "name": "ProRes 1200",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "FastRes1200",
+        "enabled": true,
+        "order": 5,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "HPOption_Duplexer": {
+        "key": "HPOption_Duplexer",
+        "name": "Duplex Unit",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": false,
+        "order": 6,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "HPOption_Tray3": {
+        "key": "HPOption_Tray3",
+        "name": "Tray 3",
+        "values": {
+            "False": {
+                "key": "False",
+                "name": "False",
+                "order": 1,
+                "enabled": true
+            },
+            "True": {
+                "key": "True",
+                "name": "True",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": false,
+        "order": 7,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "HPEconoMode": {
+        "key": "HPEconoMode",
+        "name": "EconoMode",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 8,
+        "group_key": "HPPaperQualityPanel",
+        "group_name": "Paper\/Quality"
+    }
+}

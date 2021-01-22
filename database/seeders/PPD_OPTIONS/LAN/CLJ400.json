@@ -1,0 +1,725 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 1,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 2,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive",
+                "order": 3,
+                "enabled": true
+            },
+            "FanFoldGermanLegal": {
+                "key": "FanFoldGermanLegal",
+                "name": "Oficio 8.5 x 13",
+                "order": 4,
+                "enabled": true
+            },
+            "4x6": {
+                "key": "4x6",
+                "name": "4 x 6",
+                "order": 5,
+                "enabled": true
+            },
+            "5x8": {
+                "key": "5x8",
+                "name": "5 x 8",
+                "order": 6,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 7,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5",
+                "order": 8,
+                "enabled": true
+            },
+            "A6": {
+                "key": "A6",
+                "name": "A6",
+                "order": 9,
+                "enabled": true
+            },
+            "B5": {
+                "key": "B5",
+                "name": "JIS B5",
+                "order": 10,
+                "enabled": true
+            },
+            "B6": {
+                "key": "B6",
+                "name": "JIS B6",
+                "order": 11,
+                "enabled": true
+            },
+            "Env4x6": {
+                "key": "Env4x6",
+                "name": "10 x 15 cm",
+                "order": 12,
+                "enabled": true
+            },
+            "Oficio": {
+                "key": "Oficio",
+                "name": "Oficio 216 x 340 mm",
+                "order": 13,
+                "enabled": true
+            },
+            "195x270mm": {
+                "key": "195x270mm",
+                "name": "16K 195 x 270 mm",
+                "order": 14,
+                "enabled": true
+            },
+            "184x260mm": {
+                "key": "184x260mm",
+                "name": "16K 184 x 260 mm",
+                "order": 15,
+                "enabled": true
+            },
+            "7.75x10.75": {
+                "key": "7.75x10.75",
+                "name": "16K 197 x 273 mm",
+                "order": 16,
+                "enabled": true
+            },
+            "Postcard": {
+                "key": "Postcard",
+                "name": "Postcard",
+                "order": 17,
+                "enabled": true
+            },
+            "DoublePostcardRotated": {
+                "key": "DoublePostcardRotated",
+                "name": "Postcard Double Long Edge",
+                "order": 18,
+                "enabled": true
+            },
+            "Env10": {
+                "key": "Env10",
+                "name": "Envelope #10",
+                "order": 19,
+                "enabled": true
+            },
+            "EnvMonarch": {
+                "key": "EnvMonarch",
+                "name": "Envelope Monarch",
+                "order": 20,
+                "enabled": true
+            },
+            "EnvISOB5": {
+                "key": "EnvISOB5",
+                "name": "Envelope B5",
+                "order": 21,
+                "enabled": true
+            },
+            "EnvC5": {
+                "key": "EnvC5",
+                "name": "Envelope C5",
+                "order": 22,
+                "enabled": true
+            },
+            "EnvDL": {
+                "key": "EnvDL",
+                "name": "Envelope DL",
+                "order": 23,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Duplex": {
+        "key": "Duplex",
+        "name": "Two-Sided",
+        "values": {
+            "None": {
+                "key": "None",
+                "name": "Off",
+                "order": 1,
+                "enabled": true
+            },
+            "DuplexNoTumble": {
+                "key": "DuplexNoTumble",
+                "name": "Long-Edge Binding",
+                "order": 2,
+                "enabled": true
+            },
+            "DuplexTumble": {
+                "key": "DuplexTumble",
+                "name": "Short-Edge Binding",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "None",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Collate": {
+        "key": "Collate",
+        "name": "Collate",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "InputSlot": {
+        "key": "InputSlot",
+        "name": "Paper Feed",
+        "values": {
+            "Auto": {
+                "key": "Auto",
+                "name": "Automatic",
+                "order": 1,
+                "enabled": true
+            },
+            "Tray1": {
+                "key": "Tray1",
+                "name": "Tray 1",
+                "order": 2,
+                "enabled": true
+            },
+            "Tray2": {
+                "key": "Tray2",
+                "name": "Tray 2",
+                "order": 3,
+                "enabled": true
+            },
+            "Tray3": {
+                "key": "Tray3",
+                "name": "Tray 3",
+                "order": 4,
+                "enabled": true
+            },
+            "ManualFeed": {
+                "key": "ManualFeed",
+                "name": "Manual Feed",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "Auto",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "HPOption_Duplexer": {
+        "key": "HPOption_Duplexer",
+        "name": "Duplex Unit",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": false,
+        "order": 5,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "HPOption_Tray3": {
+        "key": "HPOption_Tray3",
+        "name": "Tray 3",
+        "values": {
+            "False": {
+                "key": "False",
+                "name": "False",
+                "order": 1,
+                "enabled": true
+            },
+            "True": {
+                "key": "True",
+                "name": "True",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": false,
+        "order": 6,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "MediaType": {
+        "key": "MediaType",
+        "name": "Media Type",
+        "values": {
+            "Unspecified": {
+                "key": "Unspecified",
+                "name": "Unspecified",
+                "order": 1,
+                "enabled": true
+            },
+            "Plain": {
+                "key": "Plain",
+                "name": "Plain",
+                "order": 2,
+                "enabled": true
+            },
+            "HPEcoFFICIENT": {
+                "key": "HPEcoFFICIENT",
+                "name": "HP EcoFFICIENT",
+                "order": 3,
+                "enabled": true
+            },
+            "HPLaserJet90": {
+                "key": "HPLaserJet90",
+                "name": "HP LaserJet 90g",
+                "order": 4,
+                "enabled": true
+            },
+            "HPColorLaserMatte105": {
+                "key": "HPColorLaserMatte105",
+                "name": "HP Color Laser Matte 105g",
+                "order": 5,
+                "enabled": true
+            },
+            "HPPremiumChoiceMatte120": {
+                "key": "HPPremiumChoiceMatte120",
+                "name": "HP Premium Choice Matte 120g",
+                "order": 6,
+                "enabled": true
+            },
+            "HPBrochureMatte150": {
+                "key": "HPBrochureMatte150",
+                "name": "HP Brochure Matte 150g",
+                "order": 7,
+                "enabled": true
+            },
+            "HPCoverMatte200": {
+                "key": "HPCoverMatte200",
+                "name": "HP Cover Matte 200g",
+                "order": 8,
+                "enabled": true
+            },
+            "HPMattePhoto200": {
+                "key": "HPMattePhoto200",
+                "name": "HP Matte Photo 200g",
+                "order": 9,
+                "enabled": true
+            },
+            "HPPremiumPresentationGlossy120": {
+                "key": "HPPremiumPresentationGlossy120",
+                "name": "HP Premium Presentation Glossy 120g",
+                "order": 10,
+                "enabled": true
+            },
+            "HPBrochureGlossy150": {
+                "key": "HPBrochureGlossy150",
+                "name": "HP Brochure Glossy 150g",
+                "order": 11,
+                "enabled": true
+            },
+            "HPTrifoldBrochureGlossy150": {
+                "key": "HPTrifoldBrochureGlossy150",
+                "name": "HP Tri-fold Brochure Glossy 150g",
+                "order": 12,
+                "enabled": true
+            },
+            "HPBrochureGlossy200": {
+                "key": "HPBrochureGlossy200",
+                "name": "HP Brochure Glossy 200g",
+                "order": 13,
+                "enabled": true
+            },
+            "Light6074": {
+                "key": "Light6074",
+                "name": "Light 60-74g",
+                "order": 14,
+                "enabled": true
+            },
+            "Intermediate8595": {
+                "key": "Intermediate8595",
+                "name": "Intermediate 85-95g",
+                "order": 15,
+                "enabled": true
+            },
+            "MidWeight96110": {
+                "key": "MidWeight96110",
+                "name": "Mid-Weight 96-110g",
+                "order": 16,
+                "enabled": true
+            },
+            "Heavy111130": {
+                "key": "Heavy111130",
+                "name": "Heavy 111-130g",
+                "order": 17,
+                "enabled": true
+            },
+            "ExtraHeavy131175": {
+                "key": "ExtraHeavy131175",
+                "name": "Extra Heavy 131-175g",
+                "order": 18,
+                "enabled": true
+            },
+            "Cardstock176220": {
+                "key": "Cardstock176220",
+                "name": "Cardstock 176-220g",
+                "order": 19,
+                "enabled": true
+            },
+            "HeavyGlossy111130": {
+                "key": "HeavyGlossy111130",
+                "name": "Heavy Glossy 111-130g",
+                "order": 20,
+                "enabled": true
+            },
+            "ExtraHeavyGlossy131175": {
+                "key": "ExtraHeavyGlossy131175",
+                "name": "Extra Heavy Glossy 131-175g",
+                "order": 21,
+                "enabled": true
+            },
+            "CardGlossy176220": {
+                "key": "CardGlossy176220",
+                "name": "Card Glossy 176-220g",
+                "order": 22,
+                "enabled": true
+            },
+            "ColorLaserTransparency": {
+                "key": "ColorLaserTransparency",
+                "name": "Color Laser Transparency",
+                "order": 23,
+                "enabled": true
+            },
+            "Labels": {
+                "key": "Labels",
+                "name": "Labels",
+                "order": 24,
+                "enabled": true
+            },
+            "Letterhead": {
+                "key": "Letterhead",
+                "name": "Letterhead",
+                "order": 25,
+                "enabled": true
+            },
+            "Envelope": {
+                "key": "Envelope",
+                "name": "Envelope",
+                "order": 26,
+                "enabled": true
+            },
+            "HeavyEnvelope": {
+                "key": "HeavyEnvelope",
+                "name": "Heavy Envelope",
+                "order": 27,
+                "enabled": true
+            },
+            "Preprinted": {
+                "key": "Preprinted",
+                "name": "Preprinted",
+                "order": 28,
+                "enabled": true
+            },
+            "Prepunched": {
+                "key": "Prepunched",
+                "name": "Prepunched",
+                "order": 29,
+                "enabled": true
+            },
+            "Colored": {
+                "key": "Colored",
+                "name": "Colored",
+                "order": 30,
+                "enabled": true
+            },
+            "Bond": {
+                "key": "Bond",
+                "name": "Bond",
+                "order": 31,
+                "enabled": true
+            },
+            "Recycled": {
+                "key": "Recycled",
+                "name": "Recycled",
+                "order": 32,
+                "enabled": true
+            },
+            "Rough": {
+                "key": "Rough",
+                "name": "Rough",
+                "order": 33,
+                "enabled": true
+            },
+            "HeavyRough": {
+                "key": "HeavyRough",
+                "name": "Heavy Rough",
+                "order": 34,
+                "enabled": true
+            },
+            "OpaqueFilm": {
+                "key": "OpaqueFilm",
+                "name": "Opaque Film",
+                "order": 35,
+                "enabled": true
+            }
+        },
+        "default": "Unspecified",
+        "enabled": true,
+        "order": 7,
+        "group_key": "HPPaperQualityPanel",
+        "group_name": "Paper\/Quality"
+    },
+    "HPPJLEconoMode2": {
+        "key": "HPPJLEconoMode2",
+        "name": "EconoMode",
+        "values": {
+            "yes": {
+                "key": "yes",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "no": {
+                "key": "no",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "no",
+        "enabled": true,
+        "order": 8,
+        "group_key": "HPPaperQualityPanel",
+        "group_name": "Paper\/Quality"
+    },
+    "HPEdgeControl": {
+        "key": "HPEdgeControl",
+        "name": "Edge Control",
+        "values": {
+            "HPEdgeControlOff": {
+                "key": "HPEdgeControlOff",
+                "name": "Off",
+                "order": 1,
+                "enabled": true
+            },
+            "Light": {
+                "key": "Light",
+                "name": "Light",
+                "order": 2,
+                "enabled": true
+            },
+            "Normal": {
+                "key": "Normal",
+                "name": "Normal",
+                "order": 3,
+                "enabled": true
+            },
+            "Max": {
+                "key": "Max",
+                "name": "Maximum",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "Normal",
+        "enabled": true,
+        "order": 9,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPGeneralHalftone": {
+        "key": "HPGeneralHalftone",
+        "name": "Halftone",
+        "values": {
+            "Smooth": {
+                "key": "Smooth",
+                "name": "Smooth",
+                "order": 1,
+                "enabled": true
+            },
+            "Detail": {
+                "key": "Detail",
+                "name": "Detail",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "Smooth",
+        "enabled": true,
+        "order": 10,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPTextNeutralGrays": {
+        "key": "HPTextNeutralGrays",
+        "name": "Text Neutral Grays",
+        "values": {
+            "Black": {
+                "key": "Black",
+                "name": "Black Only",
+                "order": 1,
+                "enabled": true
+            },
+            "ProcessBlack": {
+                "key": "ProcessBlack",
+                "name": "4-Color",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "Black",
+        "enabled": true,
+        "order": 11,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPGraphicsNeutralGrays": {
+        "key": "HPGraphicsNeutralGrays",
+        "name": "Graphics Neutral Grays",
+        "values": {
+            "Black": {
+                "key": "Black",
+                "name": "Black Only",
+                "order": 1,
+                "enabled": true
+            },
+            "ProcessBlack": {
+                "key": "ProcessBlack",
+                "name": "4-Color",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "Black",
+        "enabled": true,
+        "order": 12,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPPhotoNeutralGrays": {
+        "key": "HPPhotoNeutralGrays",
+        "name": "Photo Neutral Grays",
+        "values": {
+            "Black": {
+                "key": "Black",
+                "name": "Black Only",
+                "order": 1,
+                "enabled": true
+            },
+            "ProcessBlack": {
+                "key": "ProcessBlack",
+                "name": "4-Color",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "ProcessBlack",
+        "enabled": true,
+        "order": 13,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPPJLColorAsGray": {
+        "key": "HPPJLColorAsGray",
+        "name": "Print Color as Gray",
+        "values": {
+            "on": {
+                "key": "on",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "off": {
+                "key": "off",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "off",
+        "enabled": true,
+        "order": 14,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    },
+    "HPRGBEmulation": {
+        "key": "HPRGBEmulation",
+        "name": "RGB Color",
+        "values": {
+            "DefaultSRGB": {
+                "key": "DefaultSRGB",
+                "name": "Default (sRGB)",
+                "order": 1,
+                "enabled": true
+            },
+            "PhotoSRGB": {
+                "key": "PhotoSRGB",
+                "name": "Photo (sRGB)",
+                "order": 2,
+                "enabled": true
+            },
+            "Adobe": {
+                "key": "Adobe",
+                "name": "Photo (Adobe RGB 1998)",
+                "order": 3,
+                "enabled": true
+            },
+            "VividSRGB": {
+                "key": "VividSRGB",
+                "name": "Vivid (sRGB)",
+                "order": 4,
+                "enabled": true
+            },
+            "HPRGBEmulationNone": {
+                "key": "HPRGBEmulationNone",
+                "name": "None",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "DefaultSRGB",
+        "enabled": true,
+        "order": 15,
+        "group_key": "HPColorOptionsPanel",
+        "group_name": "Color"
+    }
+}

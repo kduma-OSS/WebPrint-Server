@@ -1,0 +1,695 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "RP82.5x297": {
+                "key": "RP82.5x297",
+                "name": "Roll paper 82.5 x 297 mm",
+                "order": 1,
+                "enabled": true
+            },
+            "RP80x297": {
+                "key": "RP80x297",
+                "name": "Roll paper 80 x 297 mm",
+                "order": 2,
+                "enabled": true
+            },
+            "RP60x297": {
+                "key": "RP60x297",
+                "name": "Roll paper 60 x 297 mm",
+                "order": 3,
+                "enabled": true
+            },
+            "RP58x297": {
+                "key": "RP58x297",
+                "name": "Roll paper 58 x 297 mm",
+                "order": 4,
+                "enabled": true
+            },
+            "RP82.5x2000": {
+                "key": "RP82.5x2000",
+                "name": "Roll paper 82.5 x 2000 mm",
+                "order": 5,
+                "enabled": true
+            },
+            "RP80x2000": {
+                "key": "RP80x2000",
+                "name": "Roll paper 80 x 2000 mm",
+                "order": 6,
+                "enabled": true
+            },
+            "RP60x2000": {
+                "key": "RP60x2000",
+                "name": "Roll paper 60 x 2000 mm",
+                "order": 7,
+                "enabled": true
+            },
+            "RP58x2000": {
+                "key": "RP58x2000",
+                "name": "Roll paper 58 x 2000 mm",
+                "order": 8,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 9,
+                "enabled": true
+            },
+            "LT": {
+                "key": "LT",
+                "name": "LT",
+                "order": 10,
+                "enabled": true
+            }
+        },
+        "default": "RP80x297",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmxPrintSpeed": {
+        "key": "TmxPrintSpeed",
+        "name": "Print Speed",
+        "values": {
+            "Auto": {
+                "key": "Auto",
+                "name": "Use the printer settings",
+                "order": 1,
+                "enabled": true
+            },
+            "1": {
+                "key": 1,
+                "name": "1st (Fast)",
+                "order": 2,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2nd",
+                "order": 3,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3rd",
+                "order": 4,
+                "enabled": true
+            },
+            "4": {
+                "key": 4,
+                "name": "4th (Slow)",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "4",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmxPaperReduction": {
+        "key": "TmxPaperReduction",
+        "name": "Paper Reduction",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "None",
+                "order": 1,
+                "enabled": true
+            },
+            "Top": {
+                "key": "Top",
+                "name": "Top margin",
+                "order": 2,
+                "enabled": true
+            },
+            "Bottom": {
+                "key": "Bottom",
+                "name": "Bottom margin",
+                "order": 3,
+                "enabled": true
+            },
+            "Both": {
+                "key": "Both",
+                "name": "Top & Bottom margins",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "Both",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmxPaperSource": {
+        "key": "TmxPaperSource",
+        "name": "Paper Source",
+        "values": {
+            "DocFeedCut": {
+                "key": "DocFeedCut",
+                "name": "Document [Feed, Cut]",
+                "order": 1,
+                "enabled": true
+            },
+            "DocFeedNoCut": {
+                "key": "DocFeedNoCut",
+                "name": "Document [Feed, NoCut]",
+                "order": 2,
+                "enabled": true
+            },
+            "DocNoFeedCut": {
+                "key": "DocNoFeedCut",
+                "name": "Document [NoFeed, Cut]",
+                "order": 3,
+                "enabled": true
+            },
+            "DocNoFeedNoCut": {
+                "key": "DocNoFeedNoCut",
+                "name": "Document [NoFeed, NoCut]",
+                "order": 4,
+                "enabled": true
+            },
+            "PageFeedCut": {
+                "key": "PageFeedCut",
+                "name": "Page [Feed, Cut]",
+                "order": 5,
+                "enabled": true
+            },
+            "PageFeedNoCut": {
+                "key": "PageFeedNoCut",
+                "name": "Page [Feed, NoCut]",
+                "order": 6,
+                "enabled": true
+            },
+            "PageNoFeedCut": {
+                "key": "PageNoFeedCut",
+                "name": "Page [NoFeed, Cut]",
+                "order": 7,
+                "enabled": true
+            }
+        },
+        "default": "DocFeedCut",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmxPrinterType": {
+        "key": "TmxPrinterType",
+        "name": "Printer Type",
+        "values": {
+            "ThermalReceipt": {
+                "key": "ThermalReceipt",
+                "name": "Thermal receipt",
+                "order": 1,
+                "enabled": true
+            }
+        },
+        "default": "ThermalReceipt",
+        "enabled": false,
+        "order": 5,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "Resolution": {
+        "key": "Resolution",
+        "name": "Resolution",
+        "values": {
+            "180x180dpi": {
+                "key": "180x180dpi",
+                "name": "180 x 180 dpi",
+                "order": 1,
+                "enabled": true
+            },
+            "203x203dpi": {
+                "key": "203x203dpi",
+                "name": "203 x 203 dpi",
+                "order": 2,
+                "enabled": false
+            },
+            "162x162dpi": {
+                "key": "162x162dpi",
+                "name": "[90%\/180dpi]",
+                "order": 3,
+                "enabled": true
+            },
+            "144x144dpi": {
+                "key": "144x144dpi",
+                "name": "[80%\/180dpi]",
+                "order": 4,
+                "enabled": true
+            },
+            "126x126dpi": {
+                "key": "126x126dpi",
+                "name": "[70%\/180dpi]",
+                "order": 5,
+                "enabled": true
+            },
+            "108x108dpi": {
+                "key": "108x108dpi",
+                "name": "[60%\/180dpi]",
+                "order": 6,
+                "enabled": true
+            },
+            "90x90dpi": {
+                "key": "90x90dpi",
+                "name": "[50%\/180dpi]",
+                "order": 7,
+                "enabled": true
+            },
+            "72x72dpi": {
+                "key": "72x72dpi",
+                "name": "[40%\/180dpi]",
+                "order": 8,
+                "enabled": true
+            },
+            "68x68dpi": {
+                "key": "68x68dpi",
+                "name": "[38%(A4 to 80mm)\/180dpi]",
+                "order": 9,
+                "enabled": true
+            },
+            "48x48dpi": {
+                "key": "48x48dpi",
+                "name": "[27%(A4 to 58mm)\/180dpi]",
+                "order": 10,
+                "enabled": true
+            },
+            "0182x182dpi": {
+                "key": "0182x182dpi",
+                "name": "[90%\/203dpi]",
+                "order": 11,
+                "enabled": false
+            },
+            "0162x162dpi": {
+                "key": "0162x162dpi",
+                "name": "[80%\/203dpi]",
+                "order": 12,
+                "enabled": false
+            },
+            "0142x142dpi": {
+                "key": "0142x142dpi",
+                "name": "[70%\/203dpi]",
+                "order": 13,
+                "enabled": false
+            },
+            "0121x121dpi": {
+                "key": "0121x121dpi",
+                "name": "[60%\/203dpi]",
+                "order": 14,
+                "enabled": false
+            },
+            "0102x102dpi": {
+                "key": "0102x102dpi",
+                "name": "[50%\/203dpi]",
+                "order": 15,
+                "enabled": false
+            },
+            "081x81dpi": {
+                "key": "081x81dpi",
+                "name": "[40%\/203dpi]",
+                "order": 16,
+                "enabled": false
+            },
+            "077x77dpi": {
+                "key": "077x77dpi",
+                "name": "[38%(A4 to 80mm)\/203dpi]",
+                "order": 17,
+                "enabled": false
+            },
+            "056x56dpi": {
+                "key": "056x56dpi",
+                "name": "[28%(A4 to 58mm)\/203dpi]",
+                "order": 18,
+                "enabled": false
+            }
+        },
+        "default": "180x180dpi",
+        "enabled": true,
+        "order": 6,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "TmxFeedPitch": {
+        "key": "TmxFeedPitch",
+        "name": "Pitch of Feed",
+        "values": {
+            "180.0": {
+                "key": "180.0",
+                "name": "180 dpi",
+                "order": 1,
+                "enabled": true
+            },
+            "203.2": {
+                "key": "203.2",
+                "name": "203 dpi",
+                "order": 2,
+                "enabled": true
+            },
+            "360.0": {
+                "key": "360.0",
+                "name": "360 dpi",
+                "order": 3,
+                "enabled": true
+            },
+            "406.4": {
+                "key": "406.4",
+                "name": "406 dpi",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "360.0",
+        "enabled": false,
+        "order": 7,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "TmxMaxBandWidth": {
+        "key": "TmxMaxBandWidth",
+        "name": "Maximum Band Width",
+        "values": {
+            "360": {
+                "key": 360,
+                "name": "360",
+                "order": 1,
+                "enabled": true
+            },
+            "384": {
+                "key": 384,
+                "name": "384",
+                "order": 2,
+                "enabled": true
+            },
+            "416": {
+                "key": 416,
+                "name": "416",
+                "order": 3,
+                "enabled": true
+            },
+            "420": {
+                "key": 420,
+                "name": "420",
+                "order": 4,
+                "enabled": true
+            },
+            "436": {
+                "key": 436,
+                "name": "436",
+                "order": 5,
+                "enabled": true
+            },
+            "512": {
+                "key": 512,
+                "name": "512",
+                "order": 6,
+                "enabled": true
+            },
+            "576": {
+                "key": 576,
+                "name": "576",
+                "order": 7,
+                "enabled": true
+            },
+            "640": {
+                "key": 640,
+                "name": "640",
+                "order": 8,
+                "enabled": true
+            }
+        },
+        "default": "512",
+        "enabled": false,
+        "order": 8,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "TmxBandLines": {
+        "key": "TmxBandLines",
+        "name": "Band Lines",
+        "values": {
+            "256": {
+                "key": 256,
+                "name": "256",
+                "order": 1,
+                "enabled": true
+            }
+        },
+        "default": "256",
+        "enabled": false,
+        "order": 9,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "TmxSpeedControl": {
+        "key": "TmxSpeedControl",
+        "name": "Speed Control",
+        "values": {
+            "0,0,0,0": {
+                "key": "0,0,0,0",
+                "name": "None",
+                "order": 1,
+                "enabled": true
+            },
+            "-1,-1,-1,-1": {
+                "key": "-1,-1,-1,-1",
+                "name": "BA-T series",
+                "order": 2,
+                "enabled": true
+            },
+            "9,7,4,1": {
+                "key": "9,7,4,1",
+                "name": "Max. level 9",
+                "order": 3,
+                "enabled": true
+            },
+            "10,7,4,1": {
+                "key": "10,7,4,1",
+                "name": "Max. level 10",
+                "order": 4,
+                "enabled": true
+            },
+            "11,8,4,1": {
+                "key": "11,8,4,1",
+                "name": "Max. level 11",
+                "order": 5,
+                "enabled": true
+            },
+            "13,9,5,1": {
+                "key": "13,9,5,1",
+                "name": "Max. level 13",
+                "order": 6,
+                "enabled": true
+            }
+        },
+        "default": "13,9,5,1",
+        "enabled": false,
+        "order": 10,
+        "group_key": "PrinterSetting",
+        "group_name": "Printer Setting"
+    },
+    "TmxBuzzerControl": {
+        "key": "TmxBuzzerControl",
+        "name": "Buzzer",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "Not used",
+                "order": 1,
+                "enabled": true
+            },
+            "Before": {
+                "key": "Before",
+                "name": "Sounds before printing",
+                "order": 2,
+                "enabled": true
+            },
+            "After": {
+                "key": "After",
+                "name": "Sounds after printing",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Off",
+        "enabled": false,
+        "order": 11,
+        "group_key": "BuzzerControl",
+        "group_name": "Buzzer Control"
+    },
+    "TmxSoundPattern": {
+        "key": "TmxSoundPattern",
+        "name": "Sound Pattern",
+        "values": {
+            "Internal": {
+                "key": "Internal",
+                "name": "Internal buzzer",
+                "order": 1,
+                "enabled": true
+            },
+            "A": {
+                "key": "A",
+                "name": "Option buzzer (Pattern A)",
+                "order": 2,
+                "enabled": true
+            },
+            "B": {
+                "key": "B",
+                "name": "Option buzzer (Pattern B)",
+                "order": 3,
+                "enabled": true
+            },
+            "C": {
+                "key": "C",
+                "name": "Option buzzer (Pattern C)",
+                "order": 4,
+                "enabled": true
+            },
+            "D": {
+                "key": "D",
+                "name": "Option buzzer (Pattern D)",
+                "order": 5,
+                "enabled": true
+            },
+            "E": {
+                "key": "E",
+                "name": "Option buzzer (Pattern E)",
+                "order": 6,
+                "enabled": true
+            }
+        },
+        "default": "Internal",
+        "enabled": false,
+        "order": 12,
+        "group_key": "BuzzerControl",
+        "group_name": "Buzzer Control"
+    },
+    "TmxBuzzerRepeat": {
+        "key": "TmxBuzzerRepeat",
+        "name": "Buzzer Repeat",
+        "values": {
+            "1": {
+                "key": 1,
+                "name": "1",
+                "order": 1,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2",
+                "order": 2,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3",
+                "order": 3,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "1",
+        "enabled": false,
+        "order": 13,
+        "group_key": "BuzzerControl",
+        "group_name": "Buzzer Control"
+    },
+    "TmxDrawerControl": {
+        "key": "TmxDrawerControl",
+        "name": "Cash Drawer",
+        "values": {
+            "None": {
+                "key": "None",
+                "name": "Don't open drawers",
+                "order": 1,
+                "enabled": true
+            },
+            "Drawer#1,Before": {
+                "key": "Drawer#1,Before",
+                "name": "Open drawer #1 BEFORE printing",
+                "order": 2,
+                "enabled": true
+            },
+            "Drawer#1,After": {
+                "key": "Drawer#1,After",
+                "name": "Open drawer #1 AFTER printing",
+                "order": 3,
+                "enabled": true
+            },
+            "Drawer#2,Before": {
+                "key": "Drawer#2,Before",
+                "name": "Open drawer #2 BEFORE printing",
+                "order": 4,
+                "enabled": true
+            },
+            "Drawer#2,After": {
+                "key": "Drawer#2,After",
+                "name": "Open drawer #2 AFTER printing",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "None",
+        "enabled": false,
+        "order": 14,
+        "group_key": "CashDrawerControl",
+        "group_name": "Cash Drawer Control"
+    },
+    "TmxPulseOnTime": {
+        "key": "TmxPulseOnTime",
+        "name": "Pulse On Time",
+        "values": {
+            "20,10,100": {
+                "key": "20,10,100",
+                "name": "20 msec",
+                "order": 1,
+                "enabled": true
+            },
+            "40,20,100": {
+                "key": "40,20,100",
+                "name": "40 msec",
+                "order": 2,
+                "enabled": true
+            },
+            "60,30,120": {
+                "key": "60,30,120",
+                "name": "60 msec",
+                "order": 3,
+                "enabled": true
+            },
+            "80,40,160": {
+                "key": "80,40,160",
+                "name": "80 msec",
+                "order": 4,
+                "enabled": true
+            },
+            "100,50,200": {
+                "key": "100,50,200",
+                "name": "100 msec",
+                "order": 5,
+                "enabled": true
+            },
+            "120,60,240": {
+                "key": "120,60,240",
+                "name": "120 msec",
+                "order": 6,
+                "enabled": true
+            }
+        },
+        "default": "20,10,100",
+        "enabled": false,
+        "order": 15,
+        "group_key": "CashDrawerControl",
+        "group_name": "Cash Drawer Control"
+    }
+}

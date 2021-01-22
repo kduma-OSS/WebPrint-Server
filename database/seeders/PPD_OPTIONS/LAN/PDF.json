@@ -1,0 +1,549 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Page Size",
+        "values": {
+            "11x14": {
+                "key": "11x14",
+                "name": "11x14",
+                "order": 1,
+                "enabled": true
+            },
+            "11x17": {
+                "key": "11x17",
+                "name": "11x17",
+                "order": 2,
+                "enabled": true
+            },
+            "13x19": {
+                "key": "13x19",
+                "name": "13x19",
+                "order": 3,
+                "enabled": true
+            },
+            "16x20": {
+                "key": "16x20",
+                "name": "16x20",
+                "order": 4,
+                "enabled": true
+            },
+            "16x24": {
+                "key": "16x24",
+                "name": "16x24",
+                "order": 5,
+                "enabled": true
+            },
+            "2A": {
+                "key": "2A",
+                "name": "2A",
+                "order": 6,
+                "enabled": true
+            },
+            "4A": {
+                "key": "4A",
+                "name": "4A",
+                "order": 7,
+                "enabled": true
+            },
+            "8x10": {
+                "key": "8x10",
+                "name": "8x10",
+                "order": 8,
+                "enabled": true
+            },
+            "8x12": {
+                "key": "8x12",
+                "name": "8x12",
+                "order": 9,
+                "enabled": true
+            },
+            "A0": {
+                "key": "A0",
+                "name": "A0",
+                "order": 10,
+                "enabled": true
+            },
+            "A1": {
+                "key": "A1",
+                "name": "A1",
+                "order": 11,
+                "enabled": true
+            },
+            "A2": {
+                "key": "A2",
+                "name": "A2",
+                "order": 12,
+                "enabled": true
+            },
+            "A3": {
+                "key": "A3",
+                "name": "A3",
+                "order": 13,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 14,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5",
+                "order": 15,
+                "enabled": true
+            },
+            "AnsiA": {
+                "key": "AnsiA",
+                "name": "ANSI A",
+                "order": 16,
+                "enabled": true
+            },
+            "AnsiB": {
+                "key": "AnsiB",
+                "name": "ANSI B",
+                "order": 17,
+                "enabled": true
+            },
+            "AnsiC": {
+                "key": "AnsiC",
+                "name": "ANSI C",
+                "order": 18,
+                "enabled": true
+            },
+            "AnsiD": {
+                "key": "AnsiD",
+                "name": "ANSI D",
+                "order": 19,
+                "enabled": true
+            },
+            "AnsiE": {
+                "key": "AnsiE",
+                "name": "ANSI E",
+                "order": 20,
+                "enabled": true
+            },
+            "ArchA": {
+                "key": "ArchA",
+                "name": "Arch A",
+                "order": 21,
+                "enabled": true
+            },
+            "ArchB": {
+                "key": "ArchB",
+                "name": "Arch B",
+                "order": 22,
+                "enabled": true
+            },
+            "ArchC": {
+                "key": "ArchC",
+                "name": "Arch C",
+                "order": 23,
+                "enabled": true
+            },
+            "ArchD": {
+                "key": "ArchD",
+                "name": "Arch D",
+                "order": 24,
+                "enabled": true
+            },
+            "ArchE": {
+                "key": "ArchE",
+                "name": "Arch E",
+                "order": 25,
+                "enabled": true
+            },
+            "C0": {
+                "key": "C0",
+                "name": "C0",
+                "order": 26,
+                "enabled": true
+            },
+            "C1": {
+                "key": "C1",
+                "name": "C1",
+                "order": 27,
+                "enabled": true
+            },
+            "C2": {
+                "key": "C2",
+                "name": "C2",
+                "order": 28,
+                "enabled": true
+            },
+            "C3": {
+                "key": "C3",
+                "name": "C3",
+                "order": 29,
+                "enabled": true
+            },
+            "C4": {
+                "key": "C4",
+                "name": "C4",
+                "order": 30,
+                "enabled": true
+            },
+            "C5": {
+                "key": "C5",
+                "name": "C5",
+                "order": 31,
+                "enabled": true
+            },
+            "Env10": {
+                "key": "Env10",
+                "name": "Envelope #10",
+                "order": 32,
+                "enabled": true
+            },
+            "EnvC5": {
+                "key": "EnvC5",
+                "name": "Envelope C5",
+                "order": 33,
+                "enabled": true
+            },
+            "EnvDL": {
+                "key": "EnvDL",
+                "name": "Envelope DL",
+                "order": 34,
+                "enabled": true
+            },
+            "EnvMonarch": {
+                "key": "EnvMonarch",
+                "name": "Envelope Monarch",
+                "order": 35,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive",
+                "order": 36,
+                "enabled": true
+            },
+            "ISOB0": {
+                "key": "ISOB0",
+                "name": "B0 (ISO)",
+                "order": 37,
+                "enabled": true
+            },
+            "ISOB1": {
+                "key": "ISOB1",
+                "name": "B1 (ISO)",
+                "order": 38,
+                "enabled": true
+            },
+            "ISOB2": {
+                "key": "ISOB2",
+                "name": "B2 (ISO)",
+                "order": 39,
+                "enabled": true
+            },
+            "ISOB3": {
+                "key": "ISOB3",
+                "name": "B3 (ISO)",
+                "order": 40,
+                "enabled": true
+            },
+            "ISOB4": {
+                "key": "ISOB4",
+                "name": "B4 (ISO)",
+                "order": 41,
+                "enabled": true
+            },
+            "ISOB5": {
+                "key": "ISOB5",
+                "name": "B5 (ISO)",
+                "order": 42,
+                "enabled": true
+            },
+            "JISB0": {
+                "key": "JISB0",
+                "name": "B0 (JIS)",
+                "order": 43,
+                "enabled": true
+            },
+            "JISB1": {
+                "key": "JISB1",
+                "name": "B1 (JIS)",
+                "order": 44,
+                "enabled": true
+            },
+            "JISB2": {
+                "key": "JISB2",
+                "name": "B2 (JIS)",
+                "order": 45,
+                "enabled": true
+            },
+            "JISB3": {
+                "key": "JISB3",
+                "name": "B3 (JIS)",
+                "order": 46,
+                "enabled": true
+            },
+            "JISB4": {
+                "key": "JISB4",
+                "name": "B4 (JIS)",
+                "order": 47,
+                "enabled": true
+            },
+            "JISB5": {
+                "key": "JISB5",
+                "name": "B5 (JIS)",
+                "order": 48,
+                "enabled": true
+            },
+            "Ledger": {
+                "key": "Ledger",
+                "name": "Ledger",
+                "order": 49,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 50,
+                "enabled": true
+            },
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 51,
+                "enabled": true
+            },
+            "RA0": {
+                "key": "RA0",
+                "name": "RA0",
+                "order": 52,
+                "enabled": true
+            },
+            "RA1": {
+                "key": "RA1",
+                "name": "RA1",
+                "order": 53,
+                "enabled": true
+            },
+            "RA2": {
+                "key": "RA2",
+                "name": "RA2",
+                "order": 54,
+                "enabled": true
+            },
+            "RA3": {
+                "key": "RA3",
+                "name": "RA3",
+                "order": 55,
+                "enabled": true
+            },
+            "RA4": {
+                "key": "RA4",
+                "name": "RA4",
+                "order": 56,
+                "enabled": true
+            },
+            "SRA0": {
+                "key": "SRA0",
+                "name": "SRA0",
+                "order": 57,
+                "enabled": true
+            },
+            "SRA1": {
+                "key": "SRA1",
+                "name": "SRA1",
+                "order": 58,
+                "enabled": true
+            },
+            "SRA2": {
+                "key": "SRA2",
+                "name": "SRA2",
+                "order": 59,
+                "enabled": true
+            },
+            "SRA3": {
+                "key": "SRA3",
+                "name": "SRA3",
+                "order": 60,
+                "enabled": true
+            },
+            "SRA4": {
+                "key": "SRA4",
+                "name": "SRA4",
+                "order": 61,
+                "enabled": true
+            },
+            "SuperA": {
+                "key": "SuperA",
+                "name": "Super A",
+                "order": 62,
+                "enabled": true
+            },
+            "SuperB": {
+                "key": "SuperB",
+                "name": "Super B",
+                "order": 63,
+                "enabled": true
+            },
+            "TabloidExtra": {
+                "key": "TabloidExtra",
+                "name": "Tabloid Extra",
+                "order": 64,
+                "enabled": true
+            },
+            "Tabloid": {
+                "key": "Tabloid",
+                "name": "Tabloid",
+                "order": 65,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Resolution": {
+        "key": "Resolution",
+        "name": "Output Resolution",
+        "values": {
+            "150dpi": {
+                "key": "150dpi",
+                "name": "150 DPI",
+                "order": 1,
+                "enabled": true
+            },
+            "300dpi": {
+                "key": "300dpi",
+                "name": "300 DPI",
+                "order": 2,
+                "enabled": true
+            },
+            "600dpi": {
+                "key": "600dpi",
+                "name": "600 DPI",
+                "order": 3,
+                "enabled": true
+            },
+            "1200dpi": {
+                "key": "1200dpi",
+                "name": "1200 DPI",
+                "order": 4,
+                "enabled": true
+            },
+            "2400dpi": {
+                "key": "2400dpi",
+                "name": "2400 DPI",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "300dpi",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "PDFVer": {
+        "key": "PDFVer",
+        "name": "PDF version",
+        "values": {
+            "1.1": {
+                "key": "1.1",
+                "name": "1.1",
+                "order": 1,
+                "enabled": true
+            },
+            "1.2": {
+                "key": "1.2",
+                "name": "1.2",
+                "order": 2,
+                "enabled": true
+            },
+            "1.3": {
+                "key": "1.3",
+                "name": "1.3",
+                "order": 3,
+                "enabled": true
+            },
+            "1.4": {
+                "key": "1.4",
+                "name": "1.4",
+                "order": 4,
+                "enabled": true
+            },
+            "1.5": {
+                "key": "1.5",
+                "name": "1.5",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "1.2",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Truncate": {
+        "key": "Truncate",
+        "name": "Truncate output filename to",
+        "values": {
+            "8": {
+                "key": 8,
+                "name": "8 Characters",
+                "order": 1,
+                "enabled": true
+            },
+            "16": {
+                "key": 16,
+                "name": "16 Characters",
+                "order": 2,
+                "enabled": true
+            },
+            "32": {
+                "key": 32,
+                "name": "32 Characters",
+                "order": 3,
+                "enabled": true
+            },
+            "64": {
+                "key": 64,
+                "name": "64 Characters",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "64",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "LogType": {
+        "key": "LogType",
+        "name": "Log level",
+        "values": {
+            "1": {
+                "key": 1,
+                "name": "Only errors",
+                "order": 1,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "Error and status messages",
+                "order": 2,
+                "enabled": true
+            },
+            "7": {
+                "key": 7,
+                "name": "Debug, error and status messages",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "7",
+        "enabled": true,
+        "order": 5,
+        "group_key": "General",
+        "group_name": "General"
+    }
+}

@@ -1,0 +1,358 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "RP80x297": {
+                "key": "RP80x297",
+                "name": "Roll Paper 80 x 297 mm",
+                "order": 1,
+                "enabled": true
+            },
+            "RP58x297": {
+                "key": "RP58x297",
+                "name": "Roll Paper 58 x 297 mm",
+                "order": 2,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 3,
+                "enabled": true
+            },
+            "Letter": {
+                "key": "Letter",
+                "name": "Letter",
+                "order": 4,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "Legal",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "RP80x297",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Resolution": {
+        "key": "Resolution",
+        "name": "Resolution",
+        "values": {
+            "180x180dpi": {
+                "key": "180x180dpi",
+                "name": "180 x 180 dpi",
+                "order": 1,
+                "enabled": true
+            }
+        },
+        "default": "180x180dpi",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmtSpeed": {
+        "key": "TmtSpeed",
+        "name": "Printing Speed",
+        "values": {
+            "Auto": {
+                "key": "Auto",
+                "name": "Use the printer settings ",
+                "order": 1,
+                "enabled": true
+            },
+            "1": {
+                "key": 1,
+                "name": "1st (Fast)",
+                "order": 2,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2nd",
+                "order": 3,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3rd",
+                "order": 4,
+                "enabled": true
+            },
+            "4": {
+                "key": 4,
+                "name": "4th (Slow)",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "4",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmtPaperReduction": {
+        "key": "TmtPaperReduction",
+        "name": "Paper Reduction",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "None",
+                "order": 1,
+                "enabled": true
+            },
+            "Top": {
+                "key": "Top",
+                "name": "Top margin",
+                "order": 2,
+                "enabled": true
+            },
+            "Bottom": {
+                "key": "Bottom",
+                "name": "Bottom margin",
+                "order": 3,
+                "enabled": true
+            },
+            "Both": {
+                "key": "Both",
+                "name": "Top & Bottom margins",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "Both",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmtPaperSource": {
+        "key": "TmtPaperSource",
+        "name": "Paper Source",
+        "values": {
+            "DocFeedCut": {
+                "key": "DocFeedCut",
+                "name": "Document [Feed, Cut]",
+                "order": 1,
+                "enabled": true
+            },
+            "DocFeedNoCut": {
+                "key": "DocFeedNoCut",
+                "name": "Document [Feed, NoCut]",
+                "order": 2,
+                "enabled": true
+            },
+            "DocNoFeedCut": {
+                "key": "DocNoFeedCut",
+                "name": "Document [NoFeed, Cut]",
+                "order": 3,
+                "enabled": true
+            },
+            "DocNoFeedNoCut": {
+                "key": "DocNoFeedNoCut",
+                "name": "Document [NoFeed, NoCut]",
+                "order": 4,
+                "enabled": true
+            },
+            "PageFeedCut": {
+                "key": "PageFeedCut",
+                "name": "Page [Feed, Cut]",
+                "order": 5,
+                "enabled": true
+            },
+            "PageFeedNoCut": {
+                "key": "PageFeedNoCut",
+                "name": "Page [Feed, NoCut]",
+                "order": 6,
+                "enabled": true
+            },
+            "PageNoFeedCut": {
+                "key": "PageNoFeedCut",
+                "name": "Page [NoFeed, Cut]",
+                "order": 7,
+                "enabled": true
+            }
+        },
+        "default": "DocFeedCut",
+        "enabled": true,
+        "order": 5,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "TmtBuzzerControl": {
+        "key": "TmtBuzzerControl",
+        "name": "Buzzer",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "Not used",
+                "order": 1,
+                "enabled": true
+            },
+            "Before": {
+                "key": "Before",
+                "name": "Sounds before printing",
+                "order": 2,
+                "enabled": true
+            },
+            "After": {
+                "key": "After",
+                "name": "Sounds after printing",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Off",
+        "enabled": true,
+        "order": 6,
+        "group_key": "Buzzer Control",
+        "group_name": "Buzzer Control"
+    },
+    "TmtSoundPattern": {
+        "key": "TmtSoundPattern",
+        "name": "Sound Pattern",
+        "values": {
+            "Internal": {
+                "key": "Internal",
+                "name": "Internal buzzer",
+                "order": 1,
+                "enabled": true
+            },
+            "A": {
+                "key": "A",
+                "name": "Option buzzer (Pattern A)",
+                "order": 2,
+                "enabled": true
+            },
+            "B": {
+                "key": "B",
+                "name": "Option buzzer (Pattern B)",
+                "order": 3,
+                "enabled": true
+            },
+            "C": {
+                "key": "C",
+                "name": "Option buzzer (Pattern C)",
+                "order": 4,
+                "enabled": true
+            },
+            "D": {
+                "key": "D",
+                "name": "Option buzzer (Pattern D)",
+                "order": 5,
+                "enabled": true
+            },
+            "E": {
+                "key": "E",
+                "name": "Option buzzer (Pattern E)",
+                "order": 6,
+                "enabled": true
+            }
+        },
+        "default": "Internal",
+        "enabled": true,
+        "order": 7,
+        "group_key": "Buzzer Control",
+        "group_name": "Buzzer Control"
+    },
+    "TmtBuzzerRepeat": {
+        "key": "TmtBuzzerRepeat",
+        "name": "Buzzer Repeat",
+        "values": {
+            "1": {
+                "key": 1,
+                "name": "1",
+                "order": 1,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2",
+                "order": 2,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3",
+                "order": 3,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "1",
+        "enabled": true,
+        "order": 8,
+        "group_key": "Buzzer Control",
+        "group_name": "Buzzer Control"
+    },
+    "TmtDrawer1": {
+        "key": "TmtDrawer1",
+        "name": "Cash Drawer #1",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "Does not open",
+                "order": 1,
+                "enabled": true
+            },
+            "Before": {
+                "key": "Before",
+                "name": "Open before printing",
+                "order": 2,
+                "enabled": true
+            },
+            "After": {
+                "key": "After",
+                "name": "Open after printing",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Off",
+        "enabled": true,
+        "order": 9,
+        "group_key": "Cash Drawer Control",
+        "group_name": "Cash Drawer Control"
+    },
+    "TmtDrawer2": {
+        "key": "TmtDrawer2",
+        "name": "Cash Drawer #2",
+        "values": {
+            "Off": {
+                "key": "Off",
+                "name": "Does not open",
+                "order": 1,
+                "enabled": true
+            },
+            "Before": {
+                "key": "Before",
+                "name": "Open before printing",
+                "order": 2,
+                "enabled": true
+            },
+            "After": {
+                "key": "After",
+                "name": "Open after printing",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Off",
+        "enabled": true,
+        "order": 10,
+        "group_key": "Cash Drawer Control",
+        "group_name": "Cash Drawer Control"
+    }
+}

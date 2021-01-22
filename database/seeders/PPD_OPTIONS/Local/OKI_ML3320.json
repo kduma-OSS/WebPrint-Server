@@ -1,0 +1,66 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 1,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 2,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 3,
+                "enabled": true
+            },
+            "FanFoldUS": {
+                "key": "FanFoldUS",
+                "name": "US Fanfold",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Resolution": {
+        "key": "Resolution",
+        "name": "Resolution",
+        "values": {
+            "60x72dpi": {
+                "key": "60x72dpi",
+                "name": "60x72dpi",
+                "order": 1,
+                "enabled": true
+            },
+            "120x72dpi": {
+                "key": "120x72dpi",
+                "name": "120x72dpi",
+                "order": 2,
+                "enabled": true
+            },
+            "240x72dpi": {
+                "key": "240x72dpi",
+                "name": "240x72dpi",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "240x72dpi",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    }
+}

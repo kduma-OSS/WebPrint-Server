@@ -1,0 +1,1408 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "w90h18": {
+                "key": "w90h18",
+                "name": "1.25x0.25\"",
+                "order": 1,
+                "enabled": true
+            },
+            "w90h162": {
+                "key": "w90h162",
+                "name": "1.25x2.25\"",
+                "order": 2,
+                "enabled": true
+            },
+            "w108h18": {
+                "key": "w108h18",
+                "name": "1.50x0.25\"",
+                "order": 3,
+                "enabled": true
+            },
+            "w108h36": {
+                "key": "w108h36",
+                "name": "1.50x0.50\"",
+                "order": 4,
+                "enabled": true
+            },
+            "w108h72": {
+                "key": "w108h72",
+                "name": "1.50x1.00\"",
+                "order": 5,
+                "enabled": true
+            },
+            "w108h144": {
+                "key": "w108h144",
+                "name": "1.50x2.00\"",
+                "order": 6,
+                "enabled": true
+            },
+            "w144h26": {
+                "key": "w144h26",
+                "name": "2.00x0.37\"",
+                "order": 7,
+                "enabled": true
+            },
+            "w144h36": {
+                "key": "w144h36",
+                "name": "2.00x0.50\"",
+                "order": 8,
+                "enabled": true
+            },
+            "w144h72": {
+                "key": "w144h72",
+                "name": "2.00x1.00\"",
+                "order": 9,
+                "enabled": true
+            },
+            "w144h90": {
+                "key": "w144h90",
+                "name": "2.00x1.25\"",
+                "order": 10,
+                "enabled": true
+            },
+            "w144h288": {
+                "key": "w144h288",
+                "name": "2.00x4.00\"",
+                "order": 11,
+                "enabled": true
+            },
+            "w144h396": {
+                "key": "w144h396",
+                "name": "2.00x5.50\"",
+                "order": 12,
+                "enabled": true
+            },
+            "w162h36": {
+                "key": "w162h36",
+                "name": "2.25x0.50\"",
+                "order": 13,
+                "enabled": true
+            },
+            "w162h90": {
+                "key": "w162h90",
+                "name": "2.25x1.25\"",
+                "order": 14,
+                "enabled": true
+            },
+            "w162h288": {
+                "key": "w162h288",
+                "name": "2.25x4.00\"",
+                "order": 15,
+                "enabled": true
+            },
+            "w162h396": {
+                "key": "w162h396",
+                "name": "2.25x5.50\"",
+                "order": 16,
+                "enabled": true
+            },
+            "w171h396": {
+                "key": "w171h396",
+                "name": "2.38x5.50\"",
+                "order": 17,
+                "enabled": true
+            },
+            "w180h72": {
+                "key": "w180h72",
+                "name": "2.50x1.00\"",
+                "order": 18,
+                "enabled": true
+            },
+            "w180h144": {
+                "key": "w180h144",
+                "name": "2.50x2.00\"",
+                "order": 19,
+                "enabled": true
+            },
+            "w198h90": {
+                "key": "w198h90",
+                "name": "2.75x1.25\"",
+                "order": 20,
+                "enabled": true
+            },
+            "w216h72": {
+                "key": "w216h72",
+                "name": "3.00x1.00\"",
+                "order": 21,
+                "enabled": true
+            },
+            "w216h90": {
+                "key": "w216h90",
+                "name": "3.00x1.25\"",
+                "order": 22,
+                "enabled": true
+            },
+            "w216h144": {
+                "key": "w216h144",
+                "name": "3.00x2.00\"",
+                "order": 23,
+                "enabled": true
+            },
+            "w216h216": {
+                "key": "w216h216",
+                "name": "3.00x3.00\"",
+                "order": 24,
+                "enabled": true
+            },
+            "w216h360": {
+                "key": "w216h360",
+                "name": "3.00x5.00\"",
+                "order": 25,
+                "enabled": true
+            },
+            "w234h144": {
+                "key": "w234h144",
+                "name": "3.25x2.00\"",
+                "order": 26,
+                "enabled": true
+            },
+            "w234h360": {
+                "key": "w234h360",
+                "name": "3.25x5.00\"",
+                "order": 27,
+                "enabled": true
+            },
+            "w234h396": {
+                "key": "w234h396",
+                "name": "3.25x5.50\"",
+                "order": 28,
+                "enabled": true
+            },
+            "w234h419": {
+                "key": "w234h419",
+                "name": "3.25x5.83\"",
+                "order": 29,
+                "enabled": true
+            },
+            "w234h563": {
+                "key": "w234h563",
+                "name": "3.25x7.83\"",
+                "order": 30,
+                "enabled": true
+            },
+            "w252h72": {
+                "key": "w252h72",
+                "name": "3.50x1.00\"",
+                "order": 31,
+                "enabled": true
+            },
+            "w288h72": {
+                "key": "w288h72",
+                "name": "4.00x1.00\"",
+                "order": 32,
+                "enabled": true
+            },
+            "w288h144": {
+                "key": "w288h144",
+                "name": "4.00x2.00\"",
+                "order": 33,
+                "enabled": true
+            },
+            "w288h180": {
+                "key": "w288h180",
+                "name": "4.00x2.50\"",
+                "order": 34,
+                "enabled": true
+            },
+            "w288h216": {
+                "key": "w288h216",
+                "name": "4.00x3.00\"",
+                "order": 35,
+                "enabled": true
+            },
+            "w288h288": {
+                "key": "w288h288",
+                "name": "4.00x4.00\"",
+                "order": 36,
+                "enabled": true
+            },
+            "w288h360": {
+                "key": "w288h360",
+                "name": "4.00x5.00\"",
+                "order": 37,
+                "enabled": true
+            },
+            "w288h432": {
+                "key": "w288h432",
+                "name": "4.00x6.00\"",
+                "order": 38,
+                "enabled": true
+            },
+            "w288h468": {
+                "key": "w288h468",
+                "name": "4.00x6.50\"",
+                "order": 39,
+                "enabled": true
+            },
+            "w288h936": {
+                "key": "w288h936",
+                "name": "4.00x13.00\"",
+                "order": 40,
+                "enabled": true
+            },
+            "w432h72": {
+                "key": "w432h72",
+                "name": "6.00x1.00\"",
+                "order": 41,
+                "enabled": false
+            },
+            "w432h144": {
+                "key": "w432h144",
+                "name": "6.00x2.00\"",
+                "order": 42,
+                "enabled": false
+            },
+            "w432h216": {
+                "key": "w432h216",
+                "name": "6.00x3.00\"",
+                "order": 43,
+                "enabled": false
+            },
+            "w432h288": {
+                "key": "w432h288",
+                "name": "6.00x4.00\"",
+                "order": 44,
+                "enabled": false
+            },
+            "w432h360": {
+                "key": "w432h360",
+                "name": "6.00x5.00\"",
+                "order": 45,
+                "enabled": false
+            },
+            "w432h432": {
+                "key": "w432h432",
+                "name": "6.00x6.00\"",
+                "order": 46,
+                "enabled": false
+            },
+            "w432h468": {
+                "key": "w432h468",
+                "name": "6.00x6.50\"",
+                "order": 47,
+                "enabled": false
+            },
+            "w576h72": {
+                "key": "w576h72",
+                "name": "8.00x1.00\"",
+                "order": 48,
+                "enabled": false
+            },
+            "w576h144": {
+                "key": "w576h144",
+                "name": "8.00x2.00\"",
+                "order": 49,
+                "enabled": false
+            },
+            "w576h216": {
+                "key": "w576h216",
+                "name": "8.00x3.00\"",
+                "order": 50,
+                "enabled": false
+            },
+            "w576h288": {
+                "key": "w576h288",
+                "name": "8.00x4.00\"",
+                "order": 51,
+                "enabled": false
+            },
+            "w576h360": {
+                "key": "w576h360",
+                "name": "8.00x5.00\"",
+                "order": 52,
+                "enabled": false
+            },
+            "w576h432": {
+                "key": "w576h432",
+                "name": "8.00x6.00\"",
+                "order": 53,
+                "enabled": false
+            },
+            "w576h468": {
+                "key": "w576h468",
+                "name": "8.00x6.50\"",
+                "order": 54,
+                "enabled": false
+            }
+        },
+        "default": "w144h72",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Resolution": {
+        "key": "Resolution",
+        "name": "Resolution",
+        "values": {
+            "203dpi": {
+                "key": "203dpi",
+                "name": "203dpi",
+                "order": 1,
+                "enabled": true
+            },
+            "300dpi": {
+                "key": "300dpi",
+                "name": "300dpi",
+                "order": 2,
+                "enabled": false
+            },
+            "600dpi": {
+                "key": "600dpi",
+                "name": "600dpi",
+                "order": 3,
+                "enabled": false
+            }
+        },
+        "default": "203dpi",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "zeMediaTracking": {
+        "key": "zeMediaTracking",
+        "name": "Media Tracking",
+        "values": {
+            "Continuous": {
+                "key": "Continuous",
+                "name": "Continuous",
+                "order": 1,
+                "enabled": true
+            },
+            "Web": {
+                "key": "Web",
+                "name": "Non-continuous (Web sensing)",
+                "order": 2,
+                "enabled": true
+            },
+            "Mark": {
+                "key": "Mark",
+                "name": "Non-continuous (Mark sensing)",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Web",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "MediaType": {
+        "key": "MediaType",
+        "name": "Media Type",
+        "values": {
+            "Saved": {
+                "key": "Saved",
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "Thermal": {
+                "key": "Thermal",
+                "name": "Thermal Transfer Media",
+                "order": 2,
+                "enabled": false
+            },
+            "Direct": {
+                "key": "Direct",
+                "name": "Direct Thermal Media",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Direct",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Darkness": {
+        "key": "Darkness",
+        "name": "Darkness",
+        "values": {
+            "-1": {
+                "key": -1,
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "1": {
+                "key": 1,
+                "name": "1",
+                "order": 2,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2",
+                "order": 3,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3",
+                "order": 4,
+                "enabled": true
+            },
+            "4": {
+                "key": 4,
+                "name": "4",
+                "order": 5,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5",
+                "order": 6,
+                "enabled": true
+            },
+            "6": {
+                "key": 6,
+                "name": "6",
+                "order": 7,
+                "enabled": true
+            },
+            "7": {
+                "key": 7,
+                "name": "7",
+                "order": 8,
+                "enabled": true
+            },
+            "8": {
+                "key": 8,
+                "name": "8",
+                "order": 9,
+                "enabled": true
+            },
+            "9": {
+                "key": 9,
+                "name": "9",
+                "order": 10,
+                "enabled": true
+            },
+            "10": {
+                "key": 10,
+                "name": "10",
+                "order": 11,
+                "enabled": true
+            },
+            "11": {
+                "key": 11,
+                "name": "11",
+                "order": 12,
+                "enabled": true
+            },
+            "12": {
+                "key": 12,
+                "name": "12",
+                "order": 13,
+                "enabled": true
+            },
+            "13": {
+                "key": 13,
+                "name": "13",
+                "order": 14,
+                "enabled": true
+            },
+            "14": {
+                "key": 14,
+                "name": "14",
+                "order": 15,
+                "enabled": true
+            },
+            "15": {
+                "key": 15,
+                "name": "15",
+                "order": 16,
+                "enabled": true
+            },
+            "16": {
+                "key": 16,
+                "name": "16",
+                "order": 17,
+                "enabled": true
+            },
+            "17": {
+                "key": 17,
+                "name": "17",
+                "order": 18,
+                "enabled": true
+            },
+            "18": {
+                "key": 18,
+                "name": "18",
+                "order": 19,
+                "enabled": true
+            },
+            "19": {
+                "key": 19,
+                "name": "19",
+                "order": 20,
+                "enabled": true
+            },
+            "20": {
+                "key": 20,
+                "name": "20",
+                "order": 21,
+                "enabled": true
+            },
+            "21": {
+                "key": 21,
+                "name": "21",
+                "order": 22,
+                "enabled": true
+            },
+            "22": {
+                "key": 22,
+                "name": "22",
+                "order": 23,
+                "enabled": true
+            },
+            "23": {
+                "key": 23,
+                "name": "23",
+                "order": 24,
+                "enabled": true
+            },
+            "24": {
+                "key": 24,
+                "name": "24",
+                "order": 25,
+                "enabled": true
+            },
+            "25": {
+                "key": 25,
+                "name": "25",
+                "order": 26,
+                "enabled": true
+            },
+            "26": {
+                "key": 26,
+                "name": "26",
+                "order": 27,
+                "enabled": true
+            },
+            "27": {
+                "key": 27,
+                "name": "27",
+                "order": 28,
+                "enabled": true
+            },
+            "28": {
+                "key": 28,
+                "name": "28",
+                "order": 29,
+                "enabled": true
+            },
+            "29": {
+                "key": 29,
+                "name": "29",
+                "order": 30,
+                "enabled": true
+            },
+            "30": {
+                "key": 30,
+                "name": "30",
+                "order": 31,
+                "enabled": true
+            }
+        },
+        "default": "-1",
+        "enabled": true,
+        "order": 5,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    },
+    "zePrintRate": {
+        "key": "zePrintRate",
+        "name": "Print Rate",
+        "values": {
+            "Default": {
+                "key": "Default",
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "1": {
+                "key": 1,
+                "name": "1 inch\/sec.",
+                "order": 2,
+                "enabled": true
+            },
+            "2": {
+                "key": 2,
+                "name": "2 inches\/sec.",
+                "order": 3,
+                "enabled": true
+            },
+            "3": {
+                "key": 3,
+                "name": "3 inches\/sec.",
+                "order": 4,
+                "enabled": true
+            },
+            "4": {
+                "key": 4,
+                "name": "4 inches\/sec.",
+                "order": 5,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5 inches\/sec.",
+                "order": 6,
+                "enabled": false
+            },
+            "6": {
+                "key": 6,
+                "name": "6 inches\/sec.",
+                "order": 7,
+                "enabled": false
+            },
+            "7": {
+                "key": 7,
+                "name": "7 inches\/sec.",
+                "order": 8,
+                "enabled": false
+            },
+            "8": {
+                "key": 8,
+                "name": "8 inches\/sec.",
+                "order": 9,
+                "enabled": false
+            },
+            "9": {
+                "key": 9,
+                "name": "9 inches\/sec.",
+                "order": 10,
+                "enabled": false
+            },
+            "10": {
+                "key": 10,
+                "name": "10 inches\/sec.",
+                "order": 11,
+                "enabled": false
+            },
+            "11": {
+                "key": 11,
+                "name": "11 inches\/sec.",
+                "order": 12,
+                "enabled": false
+            },
+            "12": {
+                "key": 12,
+                "name": "12 inches\/sec.",
+                "order": 13,
+                "enabled": false
+            }
+        },
+        "default": "Default",
+        "enabled": true,
+        "order": 6,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    },
+    "zeLabelTop": {
+        "key": "zeLabelTop",
+        "name": "Label Top",
+        "values": {
+            "200": {
+                "key": 200,
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "-120": {
+                "key": -120,
+                "name": "-120",
+                "order": 2,
+                "enabled": true
+            },
+            "-115": {
+                "key": -115,
+                "name": "-115",
+                "order": 3,
+                "enabled": true
+            },
+            "-110": {
+                "key": -110,
+                "name": "-110",
+                "order": 4,
+                "enabled": true
+            },
+            "-105": {
+                "key": -105,
+                "name": "-105",
+                "order": 5,
+                "enabled": true
+            },
+            "-100": {
+                "key": -100,
+                "name": "-100",
+                "order": 6,
+                "enabled": true
+            },
+            "-95": {
+                "key": -95,
+                "name": "-95",
+                "order": 7,
+                "enabled": true
+            },
+            "-90": {
+                "key": -90,
+                "name": "-90",
+                "order": 8,
+                "enabled": true
+            },
+            "-85": {
+                "key": -85,
+                "name": "-85",
+                "order": 9,
+                "enabled": true
+            },
+            "-80": {
+                "key": -80,
+                "name": "-80",
+                "order": 10,
+                "enabled": true
+            },
+            "-75": {
+                "key": -75,
+                "name": "-75",
+                "order": 11,
+                "enabled": true
+            },
+            "-70": {
+                "key": -70,
+                "name": "-70",
+                "order": 12,
+                "enabled": true
+            },
+            "-65": {
+                "key": -65,
+                "name": "-65",
+                "order": 13,
+                "enabled": true
+            },
+            "-60": {
+                "key": -60,
+                "name": "-60",
+                "order": 14,
+                "enabled": true
+            },
+            "-55": {
+                "key": -55,
+                "name": "-55",
+                "order": 15,
+                "enabled": true
+            },
+            "-50": {
+                "key": -50,
+                "name": "-50",
+                "order": 16,
+                "enabled": true
+            },
+            "-45": {
+                "key": -45,
+                "name": "-45",
+                "order": 17,
+                "enabled": true
+            },
+            "-40": {
+                "key": -40,
+                "name": "-40",
+                "order": 18,
+                "enabled": true
+            },
+            "-35": {
+                "key": -35,
+                "name": "-35",
+                "order": 19,
+                "enabled": true
+            },
+            "-30": {
+                "key": -30,
+                "name": "-30",
+                "order": 20,
+                "enabled": true
+            },
+            "-25": {
+                "key": -25,
+                "name": "-25",
+                "order": 21,
+                "enabled": true
+            },
+            "-20": {
+                "key": -20,
+                "name": "-20",
+                "order": 22,
+                "enabled": true
+            },
+            "-15": {
+                "key": -15,
+                "name": "-15",
+                "order": 23,
+                "enabled": true
+            },
+            "-10": {
+                "key": -10,
+                "name": "-10",
+                "order": 24,
+                "enabled": true
+            },
+            "-5": {
+                "key": -5,
+                "name": "-5",
+                "order": 25,
+                "enabled": true
+            },
+            "0": {
+                "key": 0,
+                "name": "0",
+                "order": 26,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5",
+                "order": 27,
+                "enabled": true
+            },
+            "10": {
+                "key": 10,
+                "name": "10",
+                "order": 28,
+                "enabled": true
+            },
+            "15": {
+                "key": 15,
+                "name": "15",
+                "order": 29,
+                "enabled": true
+            },
+            "20": {
+                "key": 20,
+                "name": "20",
+                "order": 30,
+                "enabled": true
+            },
+            "25": {
+                "key": 25,
+                "name": "25",
+                "order": 31,
+                "enabled": true
+            },
+            "30": {
+                "key": 30,
+                "name": "30",
+                "order": 32,
+                "enabled": true
+            },
+            "35": {
+                "key": 35,
+                "name": "35",
+                "order": 33,
+                "enabled": true
+            },
+            "40": {
+                "key": 40,
+                "name": "40",
+                "order": 34,
+                "enabled": true
+            },
+            "45": {
+                "key": 45,
+                "name": "45",
+                "order": 35,
+                "enabled": true
+            },
+            "50": {
+                "key": 50,
+                "name": "50",
+                "order": 36,
+                "enabled": true
+            },
+            "55": {
+                "key": 55,
+                "name": "55",
+                "order": 37,
+                "enabled": true
+            },
+            "60": {
+                "key": 60,
+                "name": "60",
+                "order": 38,
+                "enabled": true
+            },
+            "65": {
+                "key": 65,
+                "name": "65",
+                "order": 39,
+                "enabled": true
+            },
+            "70": {
+                "key": 70,
+                "name": "70",
+                "order": 40,
+                "enabled": true
+            },
+            "75": {
+                "key": 75,
+                "name": "75",
+                "order": 41,
+                "enabled": true
+            },
+            "80": {
+                "key": 80,
+                "name": "80",
+                "order": 42,
+                "enabled": true
+            },
+            "85": {
+                "key": 85,
+                "name": "85",
+                "order": 43,
+                "enabled": true
+            },
+            "90": {
+                "key": 90,
+                "name": "90",
+                "order": 44,
+                "enabled": true
+            },
+            "95": {
+                "key": 95,
+                "name": "95",
+                "order": 45,
+                "enabled": true
+            },
+            "100": {
+                "key": 100,
+                "name": "100",
+                "order": 46,
+                "enabled": true
+            },
+            "105": {
+                "key": 105,
+                "name": "105",
+                "order": 47,
+                "enabled": true
+            },
+            "110": {
+                "key": 110,
+                "name": "110",
+                "order": 48,
+                "enabled": true
+            },
+            "115": {
+                "key": 115,
+                "name": "115",
+                "order": 49,
+                "enabled": true
+            },
+            "120": {
+                "key": 120,
+                "name": "120",
+                "order": 50,
+                "enabled": true
+            }
+        },
+        "default": "200",
+        "enabled": true,
+        "order": 7,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    },
+    "zePrintMode": {
+        "key": "zePrintMode",
+        "name": "Print Mode",
+        "values": {
+            "Saved": {
+                "key": "Saved",
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "Tear": {
+                "key": "Tear",
+                "name": "Tear-Off",
+                "order": 2,
+                "enabled": true
+            },
+            "Peel": {
+                "key": "Peel",
+                "name": "Peel-Off",
+                "order": 3,
+                "enabled": false
+            },
+            "Rewind": {
+                "key": "Rewind",
+                "name": "Rewind",
+                "order": 4,
+                "enabled": false
+            },
+            "Applicator": {
+                "key": "Applicator",
+                "name": "Applicator",
+                "order": 5,
+                "enabled": false
+            },
+            "Cutter": {
+                "key": "Cutter",
+                "name": "Cutter",
+                "order": 6,
+                "enabled": false
+            }
+        },
+        "default": "Saved",
+        "enabled": true,
+        "order": 8,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    },
+    "zeTearOffPosition": {
+        "key": "zeTearOffPosition",
+        "name": "Tear-Off Adjust Position",
+        "values": {
+            "1000": {
+                "key": 1000,
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "-120": {
+                "key": -120,
+                "name": "-120",
+                "order": 2,
+                "enabled": true
+            },
+            "-115": {
+                "key": -115,
+                "name": "-115",
+                "order": 3,
+                "enabled": true
+            },
+            "-110": {
+                "key": -110,
+                "name": "-110",
+                "order": 4,
+                "enabled": true
+            },
+            "-105": {
+                "key": -105,
+                "name": "-105",
+                "order": 5,
+                "enabled": true
+            },
+            "-100": {
+                "key": -100,
+                "name": "-100",
+                "order": 6,
+                "enabled": true
+            },
+            "-95": {
+                "key": -95,
+                "name": "-95",
+                "order": 7,
+                "enabled": true
+            },
+            "-90": {
+                "key": -90,
+                "name": "-90",
+                "order": 8,
+                "enabled": true
+            },
+            "-85": {
+                "key": -85,
+                "name": "-85",
+                "order": 9,
+                "enabled": true
+            },
+            "-80": {
+                "key": -80,
+                "name": "-80",
+                "order": 10,
+                "enabled": true
+            },
+            "-75": {
+                "key": -75,
+                "name": "-75",
+                "order": 11,
+                "enabled": true
+            },
+            "-70": {
+                "key": -70,
+                "name": "-70",
+                "order": 12,
+                "enabled": true
+            },
+            "-65": {
+                "key": -65,
+                "name": "-65",
+                "order": 13,
+                "enabled": true
+            },
+            "-60": {
+                "key": -60,
+                "name": "-60",
+                "order": 14,
+                "enabled": true
+            },
+            "-55": {
+                "key": -55,
+                "name": "-55",
+                "order": 15,
+                "enabled": true
+            },
+            "-50": {
+                "key": -50,
+                "name": "-50",
+                "order": 16,
+                "enabled": true
+            },
+            "-45": {
+                "key": -45,
+                "name": "-45",
+                "order": 17,
+                "enabled": true
+            },
+            "-40": {
+                "key": -40,
+                "name": "-40",
+                "order": 18,
+                "enabled": true
+            },
+            "-35": {
+                "key": -35,
+                "name": "-35",
+                "order": 19,
+                "enabled": true
+            },
+            "-30": {
+                "key": -30,
+                "name": "-30",
+                "order": 20,
+                "enabled": true
+            },
+            "-25": {
+                "key": -25,
+                "name": "-25",
+                "order": 21,
+                "enabled": true
+            },
+            "-20": {
+                "key": -20,
+                "name": "-20",
+                "order": 22,
+                "enabled": true
+            },
+            "-15": {
+                "key": -15,
+                "name": "-15",
+                "order": 23,
+                "enabled": true
+            },
+            "-10": {
+                "key": -10,
+                "name": "-10",
+                "order": 24,
+                "enabled": true
+            },
+            "-5": {
+                "key": -5,
+                "name": "-5",
+                "order": 25,
+                "enabled": true
+            },
+            "0": {
+                "key": 0,
+                "name": "0",
+                "order": 26,
+                "enabled": true
+            },
+            "5": {
+                "key": 5,
+                "name": "5",
+                "order": 27,
+                "enabled": true
+            },
+            "10": {
+                "key": 10,
+                "name": "10",
+                "order": 28,
+                "enabled": true
+            },
+            "15": {
+                "key": 15,
+                "name": "15",
+                "order": 29,
+                "enabled": true
+            },
+            "20": {
+                "key": 20,
+                "name": "20",
+                "order": 30,
+                "enabled": true
+            },
+            "25": {
+                "key": 25,
+                "name": "25",
+                "order": 31,
+                "enabled": true
+            },
+            "30": {
+                "key": 30,
+                "name": "30",
+                "order": 32,
+                "enabled": true
+            },
+            "35": {
+                "key": 35,
+                "name": "35",
+                "order": 33,
+                "enabled": true
+            },
+            "40": {
+                "key": 40,
+                "name": "40",
+                "order": 34,
+                "enabled": true
+            },
+            "45": {
+                "key": 45,
+                "name": "45",
+                "order": 35,
+                "enabled": true
+            },
+            "50": {
+                "key": 50,
+                "name": "50",
+                "order": 36,
+                "enabled": true
+            },
+            "55": {
+                "key": 55,
+                "name": "55",
+                "order": 37,
+                "enabled": true
+            },
+            "60": {
+                "key": 60,
+                "name": "60",
+                "order": 38,
+                "enabled": true
+            },
+            "65": {
+                "key": 65,
+                "name": "65",
+                "order": 39,
+                "enabled": true
+            },
+            "70": {
+                "key": 70,
+                "name": "70",
+                "order": 40,
+                "enabled": true
+            },
+            "75": {
+                "key": 75,
+                "name": "75",
+                "order": 41,
+                "enabled": true
+            },
+            "80": {
+                "key": 80,
+                "name": "80",
+                "order": 42,
+                "enabled": true
+            },
+            "85": {
+                "key": 85,
+                "name": "85",
+                "order": 43,
+                "enabled": true
+            },
+            "90": {
+                "key": 90,
+                "name": "90",
+                "order": 44,
+                "enabled": true
+            },
+            "95": {
+                "key": 95,
+                "name": "95",
+                "order": 45,
+                "enabled": true
+            },
+            "100": {
+                "key": 100,
+                "name": "100",
+                "order": 46,
+                "enabled": true
+            },
+            "105": {
+                "key": 105,
+                "name": "105",
+                "order": 47,
+                "enabled": true
+            },
+            "110": {
+                "key": 110,
+                "name": "110",
+                "order": 48,
+                "enabled": true
+            },
+            "115": {
+                "key": 115,
+                "name": "115",
+                "order": 49,
+                "enabled": true
+            },
+            "120": {
+                "key": 120,
+                "name": "120",
+                "order": 50,
+                "enabled": true
+            }
+        },
+        "default": "1000",
+        "enabled": true,
+        "order": 9,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    },
+    "zeErrorReprint": {
+        "key": "zeErrorReprint",
+        "name": "Reprint After Error",
+        "values": {
+            "Saved": {
+                "key": "Saved",
+                "name": "Printer Default",
+                "order": 1,
+                "enabled": true
+            },
+            "Always": {
+                "key": "Always",
+                "name": "Always",
+                "order": 2,
+                "enabled": true
+            },
+            "Never": {
+                "key": "Never",
+                "name": "Never",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Saved",
+        "enabled": true,
+        "order": 10,
+        "group_key": "PrinterSettings",
+        "group_name": "Printer Settings"
+    }
+}

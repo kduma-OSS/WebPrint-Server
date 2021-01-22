@@ -1,0 +1,481 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "Card3x5": {
+                "key": "Card3x5",
+                "name": "Index Card 3x5in",
+                "order": 1,
+                "enabled": true
+            },
+            "L": {
+                "key": "L",
+                "name": "L 89x127mm",
+                "order": 2,
+                "enabled": true
+            },
+            "L.FB": {
+                "key": "L.FB",
+                "name": "L Borderless 89x127mm",
+                "order": 3,
+                "enabled": true
+            },
+            "Hagaki": {
+                "key": "Hagaki",
+                "name": "Hagaki 100x148mm",
+                "order": 4,
+                "enabled": true
+            },
+            "Hagaki.FB": {
+                "key": "Hagaki.FB",
+                "name": "Hagaki Borderless 100x148mm",
+                "order": 5,
+                "enabled": true
+            },
+            "Card4x6": {
+                "key": "Card4x6",
+                "name": "Index Card 4x6in",
+                "order": 6,
+                "enabled": true
+            },
+            "Card4x6.Duplex": {
+                "key": "Card4x6.Duplex",
+                "name": "Index Card AutoDuplex 4x6in",
+                "order": 7,
+                "enabled": true
+            },
+            "Photo4x6": {
+                "key": "Photo4x6",
+                "name": "Photo 4x6in",
+                "order": 8,
+                "enabled": true
+            },
+            "Photo4x6.FB": {
+                "key": "Photo4x6.FB",
+                "name": "Photo Borderless 4x6in",
+                "order": 9,
+                "enabled": true
+            },
+            "A6": {
+                "key": "A6",
+                "name": "A6 105x148mm",
+                "order": 10,
+                "enabled": true
+            },
+            "A6.FB": {
+                "key": "A6.FB",
+                "name": "A6 Borderless 105x148mm",
+                "order": 11,
+                "enabled": true
+            },
+            "A6.Duplex": {
+                "key": "A6.Duplex",
+                "name": "A6 AutoDuplex 105x148mm",
+                "order": 12,
+                "enabled": true
+            },
+            "Photo5x7": {
+                "key": "Photo5x7",
+                "name": "Photo 5x7in",
+                "order": 13,
+                "enabled": true
+            },
+            "Photo5x7.FB": {
+                "key": "Photo5x7.FB",
+                "name": "Photo Borderless 5x7in",
+                "order": 14,
+                "enabled": true
+            },
+            "Photo2L": {
+                "key": "Photo2L",
+                "name": "Photo 2L 127x178mm",
+                "order": 15,
+                "enabled": true
+            },
+            "Photo2L.FB": {
+                "key": "Photo2L.FB",
+                "name": "Photo 2L Borderless 127x178mm",
+                "order": 16,
+                "enabled": true
+            },
+            "Oufuku": {
+                "key": "Oufuku",
+                "name": "Oufuku-Hagaki 200x148mm",
+                "order": 17,
+                "enabled": true
+            },
+            "Card5x8": {
+                "key": "Card5x8",
+                "name": "Index Card 5x8in",
+                "order": 18,
+                "enabled": true
+            },
+            "Card5x8.Duplex": {
+                "key": "Card5x8.Duplex",
+                "name": "Index Card AutoDuplex 5x8in",
+                "order": 19,
+                "enabled": true
+            },
+            "Statement": {
+                "key": "Statement",
+                "name": "Statement 5.5x8.5in",
+                "order": 20,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5 148x210mm",
+                "order": 21,
+                "enabled": true
+            },
+            "A5.FB": {
+                "key": "A5.FB",
+                "name": "A5 Borderless 148x210mm",
+                "order": 22,
+                "enabled": true
+            },
+            "A5.Duplex": {
+                "key": "A5.Duplex",
+                "name": "A5 AutoDuplex 148x210mm",
+                "order": 23,
+                "enabled": true
+            },
+            "6x8": {
+                "key": "6x8",
+                "name": "6x8in",
+                "order": 24,
+                "enabled": true
+            },
+            "6x8.Duplex": {
+                "key": "6x8.Duplex",
+                "name": "AutoDuplex 6x8in",
+                "order": 25,
+                "enabled": true
+            },
+            "JB5": {
+                "key": "JB5",
+                "name": "JB5 182x257mm",
+                "order": 26,
+                "enabled": true
+            },
+            "JB5.FB": {
+                "key": "JB5.FB",
+                "name": "JB5 Borderless 182x257mm",
+                "order": 27,
+                "enabled": true
+            },
+            "JB5.Duplex": {
+                "key": "JB5.Duplex",
+                "name": "JB5 AutoDuplex 182x257mm",
+                "order": 28,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive 7.25x10.5in",
+                "order": 29,
+                "enabled": true
+            },
+            "Executive.Duplex": {
+                "key": "Executive.Duplex",
+                "name": "Executive AutoDuplex 7.25x10.5in",
+                "order": 30,
+                "enabled": true
+            },
+            "8x10": {
+                "key": "8x10",
+                "name": "8x10in",
+                "order": 31,
+                "enabled": true
+            },
+            "8x10.FB": {
+                "key": "8x10.FB",
+                "name": "Borderless 8x10in",
+                "order": 32,
+                "enabled": true
+            },
+            "Letter": {
+                "key": "Letter",
+                "name": "Letter 8.5x11in",
+                "order": 33,
+                "enabled": true
+            },
+            "Letter.FB": {
+                "key": "Letter.FB",
+                "name": "Letter Borderless 8.5x11in",
+                "order": 34,
+                "enabled": true
+            },
+            "Letter.Duplex": {
+                "key": "Letter.Duplex",
+                "name": "Letter AutoDuplex 8.5x11in",
+                "order": 35,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4 210x297mm",
+                "order": 36,
+                "enabled": true
+            },
+            "A4.FB": {
+                "key": "A4.FB",
+                "name": "A4 Borderless 210x297mm",
+                "order": 37,
+                "enabled": true
+            },
+            "A4.Duplex": {
+                "key": "A4.Duplex",
+                "name": "A4 AutoDuplex 210x297mm",
+                "order": 38,
+                "enabled": true
+            },
+            "8.5x13": {
+                "key": "8.5x13",
+                "name": "8.5x13in",
+                "order": 39,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "Legal 8.5x14in",
+                "order": 40,
+                "enabled": true
+            },
+            "EnvA2": {
+                "key": "EnvA2",
+                "name": "A2 Envelope 4.37x5.75in",
+                "order": 41,
+                "enabled": true
+            },
+            "EnvCard": {
+                "key": "EnvCard",
+                "name": "Card Envelope 4.4x6in",
+                "order": 42,
+                "enabled": true
+            },
+            "EnvC6": {
+                "key": "EnvC6",
+                "name": "C6 Envelope 114x162mm",
+                "order": 43,
+                "enabled": true
+            },
+            "EnvChou4": {
+                "key": "EnvChou4",
+                "name": "#4 Japanese Envelope 90x205mm",
+                "order": 44,
+                "enabled": true
+            },
+            "EnvMonarch": {
+                "key": "EnvMonarch",
+                "name": "Monarch Envelope 3.875x7.5in",
+                "order": 45,
+                "enabled": true
+            },
+            "EnvDL": {
+                "key": "EnvDL",
+                "name": "DL Envelope 110x220mm",
+                "order": 46,
+                "enabled": true
+            },
+            "Env10": {
+                "key": "Env10",
+                "name": "#10 Envelope 4.125x9.5in",
+                "order": 47,
+                "enabled": true
+            },
+            "EnvChou3": {
+                "key": "EnvChou3",
+                "name": "#3 Japanese Envelope 120x235mm",
+                "order": 48,
+                "enabled": true
+            },
+            "EnvC5": {
+                "key": "EnvC5",
+                "name": "C5 Envelope 162x229mm",
+                "order": 49,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Duplex": {
+        "key": "Duplex",
+        "name": "Double-Sided Printing",
+        "values": {
+            "DuplexNoTumble": {
+                "key": "DuplexNoTumble",
+                "name": "Long Edge (Standard)",
+                "order": 1,
+                "enabled": true
+            },
+            "DuplexTumble": {
+                "key": "DuplexTumble",
+                "name": "Short Edge (Flip)",
+                "order": 2,
+                "enabled": true
+            },
+            "None": {
+                "key": "None",
+                "name": "Off",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "None",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "InputSlot": {
+        "key": "InputSlot",
+        "name": "Media Source",
+        "values": {
+            "Auto": {
+                "key": "Auto",
+                "name": "Auto-Select",
+                "order": 1,
+                "enabled": true
+            },
+            "Tray1": {
+                "key": "Tray1",
+                "name": "Tray 1",
+                "order": 2,
+                "enabled": true
+            },
+            "Tray2": {
+                "key": "Tray2",
+                "name": "Tray 2",
+                "order": 3,
+                "enabled": false
+            }
+        },
+        "default": "Auto",
+        "enabled": false,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "ColorModel": {
+        "key": "ColorModel",
+        "name": "Output Mode",
+        "values": {
+            "RGB": {
+                "key": "RGB",
+                "name": "Color",
+                "order": 1,
+                "enabled": true
+            },
+            "CMYGray": {
+                "key": "CMYGray",
+                "name": "High Quality Grayscale",
+                "order": 2,
+                "enabled": true
+            },
+            "KGray": {
+                "key": "KGray",
+                "name": "Black Only Grayscale",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "RGB",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "MediaType": {
+        "key": "MediaType",
+        "name": "Media Type",
+        "values": {
+            "Plain": {
+                "key": "Plain",
+                "name": "Plain Paper",
+                "order": 1,
+                "enabled": true
+            },
+            "Glossy": {
+                "key": "Glossy",
+                "name": "Photo Paper",
+                "order": 2,
+                "enabled": true
+            },
+            "TransparencyFilm": {
+                "key": "TransparencyFilm",
+                "name": "Transparency Film",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "Plain",
+        "enabled": true,
+        "order": 5,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "OutputMode": {
+        "key": "OutputMode",
+        "name": "Print Quality",
+        "values": {
+            "Normal": {
+                "key": "Normal",
+                "name": "Normal",
+                "order": 1,
+                "enabled": true
+            },
+            "Draft": {
+                "key": "Draft",
+                "name": "Draft",
+                "order": 2,
+                "enabled": true
+            },
+            "Best": {
+                "key": "Best",
+                "name": "Best",
+                "order": 3,
+                "enabled": true
+            },
+            "Photo": {
+                "key": "Photo",
+                "name": "High-Resolution Photo",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "Normal",
+        "enabled": true,
+        "order": 6,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "OptionDuplex": {
+        "key": "OptionDuplex",
+        "name": "Duplexer Installed",
+        "values": {
+            "False": {
+                "key": "False",
+                "name": "Not Installed",
+                "order": 1,
+                "enabled": true
+            },
+            "True": {
+                "key": "True",
+                "name": "Installed",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": false,
+        "order": 7,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    }
+}

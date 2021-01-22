@@ -1,0 +1,1112 @@
+{
+    "PageSize": {
+        "key": "PageSize",
+        "name": "Media Size",
+        "values": {
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 1,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 2,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive",
+                "order": 3,
+                "enabled": true
+            },
+            "FanFoldGermanLegal": {
+                "key": "FanFoldGermanLegal",
+                "name": "8.5x13",
+                "order": 4,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 5,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5",
+                "order": 6,
+                "enabled": true
+            },
+            "A6": {
+                "key": "A6",
+                "name": "A6",
+                "order": 7,
+                "enabled": true
+            },
+            "B5": {
+                "key": "B5",
+                "name": "JIS B5",
+                "order": 8,
+                "enabled": true
+            },
+            "195x270mm": {
+                "key": "195x270mm",
+                "name": "16K 195x270 mm",
+                "order": 9,
+                "enabled": true
+            },
+            "184x260mm": {
+                "key": "184x260mm",
+                "name": "16K 184x260 mm",
+                "order": 10,
+                "enabled": true
+            },
+            "7.75x10.75": {
+                "key": "7.75x10.75",
+                "name": "16K 197x273 mm",
+                "order": 11,
+                "enabled": true
+            },
+            "Postcard": {
+                "key": "Postcard",
+                "name": "Postcard",
+                "order": 12,
+                "enabled": true
+            },
+            "DoublePostcardRotated": {
+                "key": "DoublePostcardRotated",
+                "name": "Postcard Double Long Edge",
+                "order": 13,
+                "enabled": true
+            },
+            "Env10": {
+                "key": "Env10",
+                "name": "Envelope #10",
+                "order": 14,
+                "enabled": true
+            },
+            "EnvMonarch": {
+                "key": "EnvMonarch",
+                "name": "Envelope Monarch",
+                "order": 15,
+                "enabled": true
+            },
+            "EnvISOB5": {
+                "key": "EnvISOB5",
+                "name": "Envelope B5",
+                "order": 16,
+                "enabled": true
+            },
+            "EnvC5": {
+                "key": "EnvC5",
+                "name": "Envelope C5",
+                "order": 17,
+                "enabled": true
+            },
+            "EnvDL": {
+                "key": "EnvDL",
+                "name": "Envelope DL",
+                "order": 18,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 1,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "InputSlot": {
+        "key": "InputSlot",
+        "name": "Paper Source",
+        "values": {
+            "Tray1": {
+                "key": "Tray1",
+                "name": "Tray 1",
+                "order": 1,
+                "enabled": true
+            },
+            "Tray2": {
+                "key": "Tray2",
+                "name": "Tray 2",
+                "order": 2,
+                "enabled": true
+            },
+            "Tray3": {
+                "key": "Tray3",
+                "name": "Tray 3",
+                "order": 3,
+                "enabled": true
+            },
+            "Tray1_Man": {
+                "key": "Tray1_Man",
+                "name": "Tray 1 (Manual)",
+                "order": 4,
+                "enabled": true
+            }
+        },
+        "default": "Tray1",
+        "enabled": true,
+        "order": 2,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "Duplex": {
+        "key": "Duplex",
+        "name": "Two-Sided",
+        "values": {
+            "None": {
+                "key": "None",
+                "name": "Off",
+                "order": 1,
+                "enabled": true
+            },
+            "DuplexNoTumble": {
+                "key": "DuplexNoTumble",
+                "name": "Long-Edge Binding",
+                "order": 2,
+                "enabled": true
+            },
+            "DuplexTumble": {
+                "key": "DuplexTumble",
+                "name": "Short-Edge Binding",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "None",
+        "enabled": true,
+        "order": 3,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "MediaType": {
+        "key": "MediaType",
+        "name": "Media Type",
+        "values": {
+            "Unspecified": {
+                "key": "Unspecified",
+                "name": "Unspecified",
+                "order": 1,
+                "enabled": true
+            },
+            "Plain": {
+                "key": "Plain",
+                "name": "Plain",
+                "order": 2,
+                "enabled": true
+            },
+            "HPEcoSMARTLite": {
+                "key": "HPEcoSMARTLite",
+                "name": "HP EcoSMART Lite",
+                "order": 3,
+                "enabled": true
+            },
+            "Light6074": {
+                "key": "Light6074",
+                "name": "Light 60-74g",
+                "order": 4,
+                "enabled": true
+            },
+            "MidWeight96110": {
+                "key": "MidWeight96110",
+                "name": "Mid-Weight 96-110g",
+                "order": 5,
+                "enabled": true
+            },
+            "Heavy111130": {
+                "key": "Heavy111130",
+                "name": "Heavy 111-130g",
+                "order": 6,
+                "enabled": true
+            },
+            "ExtraHeavy131175": {
+                "key": "ExtraHeavy131175",
+                "name": "Extra Heavy 131-175g",
+                "order": 7,
+                "enabled": true
+            },
+            "MonochromeLaserTransparency": {
+                "key": "MonochromeLaserTransparency",
+                "name": "Monochrome Laser Transparency",
+                "order": 8,
+                "enabled": true
+            },
+            "Labels": {
+                "key": "Labels",
+                "name": "Labels",
+                "order": 9,
+                "enabled": true
+            },
+            "Letterhead": {
+                "key": "Letterhead",
+                "name": "Letterhead",
+                "order": 10,
+                "enabled": true
+            },
+            "Envelope": {
+                "key": "Envelope",
+                "name": "Envelope",
+                "order": 11,
+                "enabled": true
+            },
+            "Preprinted": {
+                "key": "Preprinted",
+                "name": "Preprinted",
+                "order": 12,
+                "enabled": true
+            },
+            "Prepunched": {
+                "key": "Prepunched",
+                "name": "Prepunched",
+                "order": 13,
+                "enabled": true
+            },
+            "Colored": {
+                "key": "Colored",
+                "name": "Colored",
+                "order": 14,
+                "enabled": true
+            },
+            "Bond": {
+                "key": "Bond",
+                "name": "Bond",
+                "order": 15,
+                "enabled": true
+            },
+            "Recycled": {
+                "key": "Recycled",
+                "name": "Recycled",
+                "order": 16,
+                "enabled": true
+            },
+            "Rough": {
+                "key": "Rough",
+                "name": "Rough",
+                "order": 17,
+                "enabled": true
+            }
+        },
+        "default": "Unspecified",
+        "enabled": true,
+        "order": 4,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "HPPrintQuality": {
+        "key": "HPPrintQuality",
+        "name": "Print Quality",
+        "values": {
+            "FastRes1200": {
+                "key": "FastRes1200",
+                "name": "FastRes 1200",
+                "order": 1,
+                "enabled": true
+            },
+            "600dpi": {
+                "key": "600dpi",
+                "name": "600 dpi",
+                "order": 2,
+                "enabled": true
+            },
+            "ProRes1200": {
+                "key": "ProRes1200",
+                "name": "ProRes 1200",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "FastRes1200",
+        "enabled": true,
+        "order": 5,
+        "group_key": "General",
+        "group_name": "General"
+    },
+    "HPOption_Duplexer": {
+        "key": "HPOption_Duplexer",
+        "name": "Duplex Unit",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": null,
+        "enabled": true,
+        "order": 6,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "HPOption_Tray3": {
+        "key": "HPOption_Tray3",
+        "name": "Tray 3",
+        "values": {
+            "False": {
+                "key": "False",
+                "name": "False",
+                "order": 1,
+                "enabled": true
+            },
+            "True": {
+                "key": "True",
+                "name": "True",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": null,
+        "enabled": true,
+        "order": 7,
+        "group_key": "InstallableOptions",
+        "group_name": "Installable Options"
+    },
+    "HPManualDuplexSwitch": {
+        "key": "HPManualDuplexSwitch",
+        "name": "Manual Duplex",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 8,
+        "group_key": "HPManualDuplexPanel",
+        "group_name": "Manual Duplex"
+    },
+    "HPManualDuplexPrintGuide": {
+        "key": "HPManualDuplexPrintGuide",
+        "name": "Print Reinsertion Guide",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 9,
+        "group_key": "HPManualDuplexPanel",
+        "group_name": "Manual Duplex"
+    },
+    "HPManualDuplexOrientation": {
+        "key": "HPManualDuplexOrientation",
+        "name": "Binding",
+        "values": {
+            "DuplexNoTumble": {
+                "key": "DuplexNoTumble",
+                "name": "Long-Edge Binding",
+                "order": 1,
+                "enabled": true
+            },
+            "DuplexTumble": {
+                "key": "DuplexTumble",
+                "name": "Short-Edge Binding",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "DuplexNoTumble",
+        "enabled": true,
+        "order": 10,
+        "group_key": "HPManualDuplexPanel",
+        "group_name": "Manual Duplex"
+    },
+    "HPEconoMode": {
+        "key": "HPEconoMode",
+        "name": "EconoMode",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 11,
+        "group_key": "HPPaperQualityPanel",
+        "group_name": "Paper\/Quality"
+    },
+    "HPBookletPageSize": {
+        "key": "HPBookletPageSize",
+        "name": "Paper for Booklet",
+        "values": {
+            "184x260mm": {
+                "key": "184x260mm",
+                "name": "16K 184x260 mm",
+                "order": 1,
+                "enabled": true
+            },
+            "195x270mm": {
+                "key": "195x270mm",
+                "name": "16K 195x270 mm",
+                "order": 2,
+                "enabled": true
+            },
+            "7.75x10.75": {
+                "key": "7.75x10.75",
+                "name": "16K 197x273 mm",
+                "order": 3,
+                "enabled": true
+            },
+            "A4": {
+                "key": "A4",
+                "name": "A4",
+                "order": 4,
+                "enabled": true
+            },
+            "A5": {
+                "key": "A5",
+                "name": "A5",
+                "order": 5,
+                "enabled": true
+            },
+            "A6": {
+                "key": "A6",
+                "name": "A6",
+                "order": 6,
+                "enabled": true
+            },
+            "B5": {
+                "key": "B5",
+                "name": "B5 (JIS)",
+                "order": 7,
+                "enabled": true
+            },
+            "DoublePostcardRotated": {
+                "key": "DoublePostcardRotated",
+                "name": "Double Postcard (JIS)",
+                "order": 8,
+                "enabled": true
+            },
+            "Executive": {
+                "key": "Executive",
+                "name": "Executive",
+                "order": 9,
+                "enabled": true
+            },
+            "FanFoldGermanLegal": {
+                "key": "FanFoldGermanLegal",
+                "name": "8.5x13",
+                "order": 10,
+                "enabled": true
+            },
+            "Legal": {
+                "key": "Legal",
+                "name": "US Legal",
+                "order": 11,
+                "enabled": true
+            },
+            "Letter": {
+                "key": "Letter",
+                "name": "US Letter",
+                "order": 12,
+                "enabled": true
+            },
+            "Postcard": {
+                "key": "Postcard",
+                "name": "Postcard (JIS)",
+                "order": 13,
+                "enabled": true
+            }
+        },
+        "default": "A4",
+        "enabled": true,
+        "order": 12,
+        "group_key": "HPPaperQualityPanel",
+        "group_name": "Paper\/Quality"
+    },
+    "HPwmSwitch": {
+        "key": "HPwmSwitch",
+        "name": "Watermark",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 13,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmPages": {
+        "key": "HPwmPages",
+        "name": "Pages",
+        "values": {
+            "AllPages": {
+                "key": "AllPages",
+                "name": "All Pages",
+                "order": 1,
+                "enabled": true
+            },
+            "FirstPage": {
+                "key": "FirstPage",
+                "name": "First Only",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "AllPages",
+        "enabled": true,
+        "order": 14,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmTextMessage": {
+        "key": "HPwmTextMessage",
+        "name": "Text",
+        "values": {
+            "Draft": {
+                "key": "Draft",
+                "name": "Draft",
+                "order": 1,
+                "enabled": true
+            },
+            "CompanyConfidential": {
+                "key": "CompanyConfidential",
+                "name": "Company Confidential",
+                "order": 2,
+                "enabled": true
+            },
+            "CompanyProprietary": {
+                "key": "CompanyProprietary",
+                "name": "Company Proprietary",
+                "order": 3,
+                "enabled": true
+            },
+            "CompanyPrivate": {
+                "key": "CompanyPrivate",
+                "name": "Company Private",
+                "order": 4,
+                "enabled": true
+            },
+            "Confidential": {
+                "key": "Confidential",
+                "name": "Confidential",
+                "order": 5,
+                "enabled": true
+            },
+            "Copy": {
+                "key": "Copy",
+                "name": "Copy",
+                "order": 6,
+                "enabled": true
+            },
+            "Copyright": {
+                "key": "Copyright",
+                "name": "Copyright",
+                "order": 7,
+                "enabled": true
+            },
+            "FileCopy": {
+                "key": "FileCopy",
+                "name": "File Copy",
+                "order": 8,
+                "enabled": true
+            },
+            "Final": {
+                "key": "Final",
+                "name": "Final",
+                "order": 9,
+                "enabled": true
+            },
+            "ForInternalUse": {
+                "key": "ForInternalUse",
+                "name": "For Internal Use Only",
+                "order": 10,
+                "enabled": true
+            },
+            "Preliminary": {
+                "key": "Preliminary",
+                "name": "Preliminary",
+                "order": 11,
+                "enabled": true
+            },
+            "Proof": {
+                "key": "Proof",
+                "name": "Proof",
+                "order": 12,
+                "enabled": true
+            },
+            "ReviewCopy": {
+                "key": "ReviewCopy",
+                "name": "Review Copy",
+                "order": 13,
+                "enabled": true
+            },
+            "Sample": {
+                "key": "Sample",
+                "name": "Sample",
+                "order": 14,
+                "enabled": true
+            },
+            "TopSecret": {
+                "key": "TopSecret",
+                "name": "Top Secret",
+                "order": 15,
+                "enabled": true
+            },
+            "Urgent": {
+                "key": "Urgent",
+                "name": "Urgent",
+                "order": 16,
+                "enabled": true
+            },
+            "Set": {
+                "key": "Set",
+                "name": "Custom",
+                "order": 17,
+                "enabled": true
+            }
+        },
+        "default": "Draft",
+        "enabled": true,
+        "order": 15,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmFontName": {
+        "key": "HPwmFontName",
+        "name": "Font",
+        "values": {
+            "CourierB": {
+                "key": "CourierB",
+                "name": "Courier Bold",
+                "order": 1,
+                "enabled": true
+            },
+            "HelveticaB": {
+                "key": "HelveticaB",
+                "name": "Helvetica Bold",
+                "order": 2,
+                "enabled": true
+            },
+            "TimesB": {
+                "key": "TimesB",
+                "name": "Times Bold",
+                "order": 3,
+                "enabled": true
+            }
+        },
+        "default": "HelveticaB",
+        "enabled": true,
+        "order": 16,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmFontSize": {
+        "key": "HPwmFontSize",
+        "name": "Size",
+        "values": {
+            "pt24": {
+                "key": "pt24",
+                "name": "24",
+                "order": 1,
+                "enabled": true
+            },
+            "pt30": {
+                "key": "pt30",
+                "name": "30",
+                "order": 2,
+                "enabled": true
+            },
+            "pt36": {
+                "key": "pt36",
+                "name": "36",
+                "order": 3,
+                "enabled": true
+            },
+            "pt42": {
+                "key": "pt42",
+                "name": "42",
+                "order": 4,
+                "enabled": true
+            },
+            "pt48": {
+                "key": "pt48",
+                "name": "48",
+                "order": 5,
+                "enabled": true
+            },
+            "pt54": {
+                "key": "pt54",
+                "name": "54",
+                "order": 6,
+                "enabled": true
+            },
+            "pt60": {
+                "key": "pt60",
+                "name": "60",
+                "order": 7,
+                "enabled": true
+            },
+            "pt66": {
+                "key": "pt66",
+                "name": "66",
+                "order": 8,
+                "enabled": true
+            },
+            "pt72": {
+                "key": "pt72",
+                "name": "72",
+                "order": 9,
+                "enabled": true
+            },
+            "pt78": {
+                "key": "pt78",
+                "name": "78",
+                "order": 10,
+                "enabled": true
+            },
+            "pt84": {
+                "key": "pt84",
+                "name": "84",
+                "order": 11,
+                "enabled": true
+            },
+            "pt90": {
+                "key": "pt90",
+                "name": "90",
+                "order": 12,
+                "enabled": true
+            }
+        },
+        "default": "pt48",
+        "enabled": true,
+        "order": 17,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmTextAngle": {
+        "key": "HPwmTextAngle",
+        "name": "Angle",
+        "values": {
+            "Deg90": {
+                "key": "Deg90",
+                "name": "90 degrees",
+                "order": 1,
+                "enabled": true
+            },
+            "Deg75": {
+                "key": "Deg75",
+                "name": "75 degrees",
+                "order": 2,
+                "enabled": true
+            },
+            "Deg60": {
+                "key": "Deg60",
+                "name": "60 degrees",
+                "order": 3,
+                "enabled": true
+            },
+            "Deg45": {
+                "key": "Deg45",
+                "name": "45 degrees",
+                "order": 4,
+                "enabled": true
+            },
+            "Deg30": {
+                "key": "Deg30",
+                "name": "30 degrees",
+                "order": 5,
+                "enabled": true
+            },
+            "Deg15": {
+                "key": "Deg15",
+                "name": "15 degrees",
+                "order": 6,
+                "enabled": true
+            },
+            "Deg0": {
+                "key": "Deg0",
+                "name": "0 degrees",
+                "order": 7,
+                "enabled": true
+            },
+            "DegN15": {
+                "key": "DegN15",
+                "name": "-15 degrees",
+                "order": 8,
+                "enabled": true
+            },
+            "DegN30": {
+                "key": "DegN30",
+                "name": "-30 degrees",
+                "order": 9,
+                "enabled": true
+            },
+            "DegN45": {
+                "key": "DegN45",
+                "name": "-45 degrees",
+                "order": 10,
+                "enabled": true
+            },
+            "DegN60": {
+                "key": "DegN60",
+                "name": "-60 degrees",
+                "order": 11,
+                "enabled": true
+            },
+            "DegN75": {
+                "key": "DegN75",
+                "name": "-75 degrees",
+                "order": 12,
+                "enabled": true
+            },
+            "DegN90": {
+                "key": "DegN90",
+                "name": "-90 degrees",
+                "order": 13,
+                "enabled": true
+            }
+        },
+        "default": "Deg45",
+        "enabled": true,
+        "order": 18,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmTextStyle": {
+        "key": "HPwmTextStyle",
+        "name": "Style",
+        "values": {
+            "Thin": {
+                "key": "Thin",
+                "name": "Thin Outline",
+                "order": 1,
+                "enabled": true
+            },
+            "Medium": {
+                "key": "Medium",
+                "name": "Medium Outline",
+                "order": 2,
+                "enabled": true
+            },
+            "Thick": {
+                "key": "Thick",
+                "name": "Thick Outline",
+                "order": 3,
+                "enabled": true
+            },
+            "Halo": {
+                "key": "Halo",
+                "name": "Thick Outline with Halo",
+                "order": 4,
+                "enabled": true
+            },
+            "Fill": {
+                "key": "Fill",
+                "name": "Filled",
+                "order": 5,
+                "enabled": true
+            }
+        },
+        "default": "Medium",
+        "enabled": true,
+        "order": 19,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPwmBrightness": {
+        "key": "HPwmBrightness",
+        "name": "Intensity",
+        "values": {
+            "Darkest": {
+                "key": "Darkest",
+                "name": "Darkest",
+                "order": 1,
+                "enabled": true
+            },
+            "Darker": {
+                "key": "Darker",
+                "name": "Very Dark",
+                "order": 2,
+                "enabled": true
+            },
+            "Dark": {
+                "key": "Dark",
+                "name": "Dark",
+                "order": 3,
+                "enabled": true
+            },
+            "MediumDark": {
+                "key": "MediumDark",
+                "name": "Medium Dark",
+                "order": 4,
+                "enabled": true
+            },
+            "Medium": {
+                "key": "Medium",
+                "name": "Medium",
+                "order": 5,
+                "enabled": true
+            },
+            "MediumLight": {
+                "key": "MediumLight",
+                "name": "Medium Light",
+                "order": 6,
+                "enabled": true
+            },
+            "Light": {
+                "key": "Light",
+                "name": "Light",
+                "order": 7,
+                "enabled": true
+            },
+            "Lighter": {
+                "key": "Lighter",
+                "name": "Very Light",
+                "order": 8,
+                "enabled": true
+            },
+            "Lightest": {
+                "key": "Lightest",
+                "name": "Lightest",
+                "order": 9,
+                "enabled": true
+            }
+        },
+        "default": "Medium",
+        "enabled": true,
+        "order": 20,
+        "group_key": "HPWatermarksPanel",
+        "group_name": "Watermarks"
+    },
+    "HPBookletFilter": {
+        "key": "HPBookletFilter",
+        "name": "Format Output as Booklet",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 21,
+        "group_key": "HPBookletPanel",
+        "group_name": "Booklet Printing"
+    },
+    "HPBookletPageOrder": {
+        "key": "HPBookletPageOrder",
+        "name": "Bind Pages on the Right",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 22,
+        "group_key": "HPBookletPanel",
+        "group_name": "Booklet Printing"
+    },
+    "HPBookletBackCover": {
+        "key": "HPBookletBackCover",
+        "name": "Last Page Is Back Cover",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "On",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "Off",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "False",
+        "enabled": true,
+        "order": 23,
+        "group_key": "HPBookletPanel",
+        "group_name": "Booklet Printing"
+    },
+    "HPBookletScaling": {
+        "key": "HPBookletScaling",
+        "name": "Scaling",
+        "values": {
+            "Proportional": {
+                "key": "Proportional",
+                "name": "Proportional",
+                "order": 1,
+                "enabled": true
+            },
+            "FitPage": {
+                "key": "FitPage",
+                "name": "To Fit Page Size",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "Proportional",
+        "enabled": true,
+        "order": 24,
+        "group_key": "HPBookletPanel",
+        "group_name": "Booklet Printing"
+    }
+}
