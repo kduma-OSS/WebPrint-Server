@@ -21,4 +21,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
+Route::middleware(['signed'])
+    ->prefix('/api/web-print')
+    ->name('api.web-print.')
+    ->group(function (){
+
+        Route::name('print-dialog')->get(
+            '/print-dialog/{dialog}',
+            \App\Http\Controllers\WebPrintApi\UserPrintDialogController::class,
+        );
+
+    }); // Route::middleware(['signed'])->prefix('/api/web-print')->name('api.web-print.')
+
 require __DIR__.'/auth.php';

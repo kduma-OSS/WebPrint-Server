@@ -21,6 +21,7 @@ use KDuma\Eloquent\Uuidable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\PrintJobPromise $JobPromise
+ * @property-read mixed $is_active
  * @property-read string $link
  * @method static \Illuminate\Database\Eloquent\Builder|PrintDialog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PrintDialog newQuery()
@@ -58,5 +59,10 @@ class PrintDialog extends Model
     public function getLinkAttribute(): string
     {
         return URL::temporarySignedRoute('api.web-print.print-dialog', $this->created_at->clone()->addHours(6), $this);
+    }
+
+    public function getIsActiveAttribute()
+    {
+        return $this->status == 'new' && $this->JobPromise->status == 'new' && now()->isBefore($this->created_at->clone()->addHours(6));
     }
 }

@@ -107,6 +107,11 @@ class PrintJobPromisesController extends Controller
 
         $promise->AvailablePrinters()->sync($available_printers);
 
+        if(!$promise->printer_id && $available_printers->count() == 1) {
+            $promise->printer_id = $available_printers->first()->id;
+            $promise->save();
+        }
+
         if($promise->isReadyToPrint())
             $promise->sendForPrinting();
 

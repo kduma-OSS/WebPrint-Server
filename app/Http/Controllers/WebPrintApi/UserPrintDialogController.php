@@ -6,19 +6,17 @@ namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\PrintDialog;
+use Illuminate\Http\Request;
 
 class UserPrintDialogController extends Controller
 {
-    public function __invoke(PrintDialog $dialog)
+    public function __invoke(PrintDialog $dialog, Request $request)
     {
-        $dialog->load([
-            'JobPromise',
-            'JobPromise.Printer',
-            'JobPromise.PrintJob',
-            'JobPromise.ClientApplication',
-            'JobPromise.AvailablePrinters',
-        ]);
+        if(!$dialog->restricted_ip || $request->ip() == $dialog->restricted_ip) {
+            return view('webprint-api.print-dialog', ['dialog' => $dialog]);
+        }
 
-        ddd($dialog->toArray());
+
+        return response()->view('webprint-api.ip-error', ['dialog' => $dialog], 451);
     }
 }

@@ -16,6 +16,7 @@ use KDuma\Eloquent\Uuidable;
  * @property string $uuid
  * @property int $print_server_id
  * @property string $name
+ * @property string|null $location
  * @property int $enabled
  * @property bool $ppd_support
  * @property array|null $ppd_options
@@ -40,6 +41,7 @@ use KDuma\Eloquent\Uuidable;
  * @method static Builder|Printer whereEnabled($value)
  * @method static Builder|Printer whereGuid($guid)
  * @method static Builder|Printer whereId($value)
+ * @method static Builder|Printer whereLocation($value)
  * @method static Builder|Printer whereName($value)
  * @method static Builder|Printer wherePpdOptions($value)
  * @method static Builder|Printer wherePpdSupport($value)

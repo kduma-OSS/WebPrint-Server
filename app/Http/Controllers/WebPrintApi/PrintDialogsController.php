@@ -53,7 +53,7 @@ class PrintDialogsController extends Controller
             $promise->PrintDialog->delete();
 
         $dialog = new PrintDialog();
-        $dialog->auto_print = $validated['auto_print'] ?? null;
+        $dialog->auto_print = $validated['auto_print'] ?? true;
         $dialog->redirect_url = $validated['redirect_url'] ?? null;
         $dialog->restricted_ip = $validated['restricted_ip'] ?? null;
         $promise->PrintDialog()->save($dialog);

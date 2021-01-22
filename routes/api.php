@@ -57,16 +57,6 @@ Route::name('api.')
             ->name('web-print.')
             ->group(function (){
 
-                Route::middleware(['signed'])
-                    ->group(function (){
-
-                        Route::name('print-dialog')->get(
-                            '/print-dialog/{dialog}',
-                            \App\Http\Controllers\WebPrintApi\UserPrintDialogController::class,
-                        );
-
-                    }); // Route::middleware(['signed'])
-
                 Route::middleware(['auth:web_print_api'])
                     ->group(function (){
 

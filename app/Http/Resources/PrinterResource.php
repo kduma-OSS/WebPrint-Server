@@ -30,6 +30,9 @@ class PrinterResource extends JsonResource
                 'server' => new PrintServerResource($this->whenLoaded('Server')),
             ]),
             'name' => $this->name,
+            $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'location']), [
+                'location' => $this->location,
+            ]),
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'ppd']), [
                 'ppd_support' => $this->ppd_support,
             ]),

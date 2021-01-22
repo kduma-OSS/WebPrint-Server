@@ -54,11 +54,11 @@ class PrintersPolicy
      */
     public function viewField(mixed $user, Printer $printer, string $field)
     {
-        // fields = 'server', 'raw_languages_supported', 'ppd', 'uri', 'timestamps'
+        // fields = 'server', 'raw_languages_supported', 'ppd', 'uri', 'timestamps', 'location'
 
         if($user instanceof ClientApplication)
             return $this->view($user, $printer)
-                && in_array($field, ['server', 'raw_languages_supported', 'ppd']);
+                && in_array($field, ['server', 'raw_languages_supported', 'ppd', 'location']);
     }
 
     /**

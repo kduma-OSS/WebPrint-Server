@@ -78,7 +78,7 @@ class PrintJobsController extends Controller
         $options = $job->ppd_options;
         if($job->ppd){
             $options = collect($job->Printer->ppd_options)
-                ->mapWithKeys(fn($option, $key) => [$key => $option['default']])
+                ->mapWithKeys(fn($option, $key) => [$option['key'] => $option['default']])
                 ->merge($options)
                 ->toArray();
         }
