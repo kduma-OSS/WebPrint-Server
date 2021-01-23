@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $schedule->command('cloudflare:reload')->daily();
+        $schedule->command('print_jobs:cleanup')->hourly();
     }
 
     /**
