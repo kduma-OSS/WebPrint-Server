@@ -1,4 +1,28 @@
 {
+    "fit-to-page": {
+        "key": "fit-to-page",
+        "name": "Fit to page",
+        "values": {
+            "True": {
+                "key": "True",
+                "name": "Yes",
+                "order": 1,
+                "enabled": true
+            },
+            "False": {
+                "key": "False",
+                "name": "No",
+                "order": 2,
+                "enabled": true
+            }
+        },
+        "default": "True",
+        "enabled": true,
+        "order": 0,
+        "group_key": "General",
+        "group_name": "General",
+        "type": "Boolean"
+    },
     "PageSize": {
         "key": "PageSize",
         "name": "Page Size",
