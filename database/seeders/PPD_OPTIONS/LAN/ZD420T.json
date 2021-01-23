@@ -328,7 +328,7 @@
                 "enabled": false
             }
         },
-        "default": "w144h72",
+        "default": "w288h144",
         "enabled": true,
         "order": 1,
         "group_key": "General",
@@ -358,7 +358,7 @@
             }
         },
         "default": "300dpi",
-        "enabled": true,
+        "enabled": false,
         "order": 2,
         "group_key": "General",
         "group_name": "General"
@@ -1060,7 +1060,7 @@
             }
         },
         "default": "Saved",
-        "enabled": true,
+        "enabled": false,
         "order": 8,
         "group_key": "PrinterSettings",
         "group_name": "Printer Settings"

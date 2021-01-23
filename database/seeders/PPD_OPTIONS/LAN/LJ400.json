@@ -7,25 +7,25 @@
                 "key": "Letter",
                 "name": "US Letter",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "Legal": {
                 "key": "Legal",
                 "name": "US Legal",
                 "order": 2,
-                "enabled": true
+                "enabled": false
             },
             "Executive": {
                 "key": "Executive",
                 "name": "Executive",
                 "order": 3,
-                "enabled": true
+                "enabled": false
             },
             "FanFoldGermanLegal": {
                 "key": "FanFoldGermanLegal",
                 "name": "8.5x13",
                 "order": 4,
-                "enabled": true
+                "enabled": false
             },
             "A4": {
                 "key": "A4",
@@ -55,19 +55,19 @@
                 "key": "195x270mm",
                 "name": "16K 195x270 mm",
                 "order": 9,
-                "enabled": true
+                "enabled": false
             },
             "7.25x10.2361": {
                 "key": "7.25x10.2361",
                 "name": "16K 184x260 mm",
                 "order": 10,
-                "enabled": true
+                "enabled": false
             },
             "7.75x10.75": {
                 "key": "7.75x10.75",
                 "name": "16K 197x273 mm",
                 "order": 11,
-                "enabled": true
+                "enabled": false
             },
             "Postcard": {
                 "key": "Postcard",

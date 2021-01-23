@@ -7,79 +7,79 @@
                 "key": "11x14",
                 "name": "11x14",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "11x17": {
                 "key": "11x17",
                 "name": "11x17",
                 "order": 2,
-                "enabled": true
+                "enabled": false
             },
             "13x19": {
                 "key": "13x19",
                 "name": "13x19",
                 "order": 3,
-                "enabled": true
+                "enabled": false
             },
             "16x20": {
                 "key": "16x20",
                 "name": "16x20",
                 "order": 4,
-                "enabled": true
+                "enabled": false
             },
             "16x24": {
                 "key": "16x24",
                 "name": "16x24",
                 "order": 5,
-                "enabled": true
+                "enabled": false
             },
             "2A": {
                 "key": "2A",
                 "name": "2A",
                 "order": 6,
-                "enabled": true
+                "enabled": false
             },
             "4A": {
                 "key": "4A",
                 "name": "4A",
                 "order": 7,
-                "enabled": true
+                "enabled": false
             },
             "8x10": {
                 "key": "8x10",
                 "name": "8x10",
                 "order": 8,
-                "enabled": true
+                "enabled": false
             },
             "8x12": {
                 "key": "8x12",
                 "name": "8x12",
                 "order": 9,
-                "enabled": true
+                "enabled": false
             },
             "A0": {
                 "key": "A0",
                 "name": "A0",
                 "order": 10,
-                "enabled": true
+                "enabled": false
             },
             "A1": {
                 "key": "A1",
                 "name": "A1",
                 "order": 11,
-                "enabled": true
+                "enabled": false
             },
             "A2": {
                 "key": "A2",
                 "name": "A2",
                 "order": 12,
-                "enabled": true
+                "enabled": false
             },
             "A3": {
                 "key": "A3",
                 "name": "A3",
                 "order": 13,
-                "enabled": true
+                "enabled": false
             },
             "A4": {
                 "key": "A4",
@@ -97,301 +97,301 @@
                 "key": "AnsiA",
                 "name": "ANSI A",
                 "order": 16,
-                "enabled": true
+                "enabled": false
             },
             "AnsiB": {
                 "key": "AnsiB",
                 "name": "ANSI B",
                 "order": 17,
-                "enabled": true
+                "enabled": false
             },
             "AnsiC": {
                 "key": "AnsiC",
                 "name": "ANSI C",
                 "order": 18,
-                "enabled": true
+                "enabled": false
             },
             "AnsiD": {
                 "key": "AnsiD",
                 "name": "ANSI D",
                 "order": 19,
-                "enabled": true
+                "enabled": false
             },
             "AnsiE": {
                 "key": "AnsiE",
                 "name": "ANSI E",
                 "order": 20,
-                "enabled": true
+                "enabled": false
             },
             "ArchA": {
                 "key": "ArchA",
                 "name": "Arch A",
                 "order": 21,
-                "enabled": true
+                "enabled": false
             },
             "ArchB": {
                 "key": "ArchB",
                 "name": "Arch B",
                 "order": 22,
-                "enabled": true
+                "enabled": false
             },
             "ArchC": {
                 "key": "ArchC",
                 "name": "Arch C",
                 "order": 23,
-                "enabled": true
+                "enabled": false
             },
             "ArchD": {
                 "key": "ArchD",
                 "name": "Arch D",
                 "order": 24,
-                "enabled": true
+                "enabled": false
             },
             "ArchE": {
                 "key": "ArchE",
                 "name": "Arch E",
                 "order": 25,
-                "enabled": true
+                "enabled": false
             },
             "C0": {
                 "key": "C0",
                 "name": "C0",
                 "order": 26,
-                "enabled": true
+                "enabled": false
             },
             "C1": {
                 "key": "C1",
                 "name": "C1",
                 "order": 27,
-                "enabled": true
+                "enabled": false
             },
             "C2": {
                 "key": "C2",
                 "name": "C2",
                 "order": 28,
-                "enabled": true
+                "enabled": false
             },
             "C3": {
                 "key": "C3",
                 "name": "C3",
                 "order": 29,
-                "enabled": true
+                "enabled": false
             },
             "C4": {
                 "key": "C4",
                 "name": "C4",
                 "order": 30,
-                "enabled": true
+                "enabled": false
             },
             "C5": {
                 "key": "C5",
                 "name": "C5",
                 "order": 31,
-                "enabled": true
+                "enabled": false
             },
             "Env10": {
                 "key": "Env10",
                 "name": "Envelope #10",
                 "order": 32,
-                "enabled": true
+                "enabled": false
             },
             "EnvC5": {
                 "key": "EnvC5",
                 "name": "Envelope C5",
                 "order": 33,
-                "enabled": true
+                "enabled": false
             },
             "EnvDL": {
                 "key": "EnvDL",
                 "name": "Envelope DL",
                 "order": 34,
-                "enabled": true
+                "enabled": false
             },
             "EnvMonarch": {
                 "key": "EnvMonarch",
                 "name": "Envelope Monarch",
                 "order": 35,
-                "enabled": true
+                "enabled": false
             },
             "Executive": {
                 "key": "Executive",
                 "name": "Executive",
                 "order": 36,
-                "enabled": true
+                "enabled": false
             },
             "ISOB0": {
                 "key": "ISOB0",
                 "name": "B0 (ISO)",
                 "order": 37,
-                "enabled": true
+                "enabled": false
             },
             "ISOB1": {
                 "key": "ISOB1",
                 "name": "B1 (ISO)",
                 "order": 38,
-                "enabled": true
+                "enabled": false
             },
             "ISOB2": {
                 "key": "ISOB2",
                 "name": "B2 (ISO)",
                 "order": 39,
-                "enabled": true
+                "enabled": false
             },
             "ISOB3": {
                 "key": "ISOB3",
                 "name": "B3 (ISO)",
                 "order": 40,
-                "enabled": true
+                "enabled": false
             },
             "ISOB4": {
                 "key": "ISOB4",
                 "name": "B4 (ISO)",
                 "order": 41,
-                "enabled": true
+                "enabled": false
             },
             "ISOB5": {
                 "key": "ISOB5",
                 "name": "B5 (ISO)",
                 "order": 42,
-                "enabled": true
+                "enabled": false
             },
             "JISB0": {
                 "key": "JISB0",
                 "name": "B0 (JIS)",
                 "order": 43,
-                "enabled": true
+                "enabled": false
             },
             "JISB1": {
                 "key": "JISB1",
                 "name": "B1 (JIS)",
                 "order": 44,
-                "enabled": true
+                "enabled": false
             },
             "JISB2": {
                 "key": "JISB2",
                 "name": "B2 (JIS)",
                 "order": 45,
-                "enabled": true
+                "enabled": false
             },
             "JISB3": {
                 "key": "JISB3",
                 "name": "B3 (JIS)",
                 "order": 46,
-                "enabled": true
+                "enabled": false
             },
             "JISB4": {
                 "key": "JISB4",
                 "name": "B4 (JIS)",
                 "order": 47,
-                "enabled": true
+                "enabled": false
             },
             "JISB5": {
                 "key": "JISB5",
                 "name": "B5 (JIS)",
                 "order": 48,
-                "enabled": true
+                "enabled": false
             },
             "Ledger": {
                 "key": "Ledger",
                 "name": "Ledger",
                 "order": 49,
-                "enabled": true
+                "enabled": false
             },
             "Legal": {
                 "key": "Legal",
                 "name": "US Legal",
                 "order": 50,
-                "enabled": true
+                "enabled": false
             },
             "Letter": {
                 "key": "Letter",
                 "name": "US Letter",
                 "order": 51,
-                "enabled": true
+                "enabled": false
             },
             "RA0": {
                 "key": "RA0",
                 "name": "RA0",
                 "order": 52,
-                "enabled": true
+                "enabled": false
             },
             "RA1": {
                 "key": "RA1",
                 "name": "RA1",
                 "order": 53,
-                "enabled": true
+                "enabled": false
             },
             "RA2": {
                 "key": "RA2",
                 "name": "RA2",
                 "order": 54,
-                "enabled": true
+                "enabled": false
             },
             "RA3": {
                 "key": "RA3",
                 "name": "RA3",
                 "order": 55,
-                "enabled": true
+                "enabled": false
             },
             "RA4": {
                 "key": "RA4",
                 "name": "RA4",
                 "order": 56,
-                "enabled": true
+                "enabled": false
             },
             "SRA0": {
                 "key": "SRA0",
                 "name": "SRA0",
                 "order": 57,
-                "enabled": true
+                "enabled": false
             },
             "SRA1": {
                 "key": "SRA1",
                 "name": "SRA1",
                 "order": 58,
-                "enabled": true
+                "enabled": false
             },
             "SRA2": {
                 "key": "SRA2",
                 "name": "SRA2",
                 "order": 59,
-                "enabled": true
+                "enabled": false
             },
             "SRA3": {
                 "key": "SRA3",
                 "name": "SRA3",
                 "order": 60,
-                "enabled": true
+                "enabled": false
             },
             "SRA4": {
                 "key": "SRA4",
                 "name": "SRA4",
                 "order": 61,
-                "enabled": true
+                "enabled": false
             },
             "SuperA": {
                 "key": "SuperA",
                 "name": "Super A",
                 "order": 62,
-                "enabled": true
+                "enabled": false
             },
             "SuperB": {
                 "key": "SuperB",
                 "name": "Super B",
                 "order": 63,
-                "enabled": true
+                "enabled": false
             },
             "TabloidExtra": {
                 "key": "TabloidExtra",
                 "name": "Tabloid Extra",
                 "order": 64,
-                "enabled": true
+                "enabled": false
             },
             "Tabloid": {
                 "key": "Tabloid",
                 "name": "Tabloid",
                 "order": 65,
-                "enabled": true
+                "enabled": false
             }
         },
         "default": "A4",

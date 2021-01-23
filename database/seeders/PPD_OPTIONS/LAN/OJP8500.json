@@ -7,55 +7,55 @@
                 "key": "Card3x5",
                 "name": "Index Card 3x5in",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "L": {
                 "key": "L",
                 "name": "L 89x127mm",
                 "order": 2,
-                "enabled": true
+                "enabled": false
             },
             "L.FB": {
                 "key": "L.FB",
                 "name": "L Borderless 89x127mm",
                 "order": 3,
-                "enabled": true
+                "enabled": false
             },
             "Hagaki": {
                 "key": "Hagaki",
                 "name": "Hagaki 100x148mm",
                 "order": 4,
-                "enabled": true
+                "enabled": false
             },
             "Hagaki.FB": {
                 "key": "Hagaki.FB",
                 "name": "Hagaki Borderless 100x148mm",
                 "order": 5,
-                "enabled": true
+                "enabled": false
             },
             "Card4x6": {
                 "key": "Card4x6",
                 "name": "Index Card 4x6in",
                 "order": 6,
-                "enabled": true
+                "enabled": false
             },
             "Card4x6.Duplex": {
                 "key": "Card4x6.Duplex",
                 "name": "Index Card AutoDuplex 4x6in",
                 "order": 7,
-                "enabled": true
+                "enabled": false
             },
             "Photo4x6": {
                 "key": "Photo4x6",
                 "name": "Photo 4x6in",
                 "order": 8,
-                "enabled": true
+                "enabled": false
             },
             "Photo4x6.FB": {
                 "key": "Photo4x6.FB",
                 "name": "Photo Borderless 4x6in",
                 "order": 9,
-                "enabled": true
+                "enabled": false
             },
             "A6": {
                 "key": "A6",
@@ -79,49 +79,49 @@
                 "key": "Photo5x7",
                 "name": "Photo 5x7in",
                 "order": 13,
-                "enabled": true
+                "enabled": false
             },
             "Photo5x7.FB": {
                 "key": "Photo5x7.FB",
                 "name": "Photo Borderless 5x7in",
                 "order": 14,
-                "enabled": true
+                "enabled": false
             },
             "Photo2L": {
                 "key": "Photo2L",
                 "name": "Photo 2L 127x178mm",
                 "order": 15,
-                "enabled": true
+                "enabled": false
             },
             "Photo2L.FB": {
                 "key": "Photo2L.FB",
                 "name": "Photo 2L Borderless 127x178mm",
                 "order": 16,
-                "enabled": true
+                "enabled": false
             },
             "Oufuku": {
                 "key": "Oufuku",
                 "name": "Oufuku-Hagaki 200x148mm",
                 "order": 17,
-                "enabled": true
+                "enabled": false
             },
             "Card5x8": {
                 "key": "Card5x8",
                 "name": "Index Card 5x8in",
                 "order": 18,
-                "enabled": true
+                "enabled": false
             },
             "Card5x8.Duplex": {
                 "key": "Card5x8.Duplex",
                 "name": "Index Card AutoDuplex 5x8in",
                 "order": 19,
-                "enabled": true
+                "enabled": false
             },
             "Statement": {
                 "key": "Statement",
                 "name": "Statement 5.5x8.5in",
                 "order": 20,
-                "enabled": true
+                "enabled": false
             },
             "A5": {
                 "key": "A5",
@@ -145,73 +145,73 @@
                 "key": "6x8",
                 "name": "6x8in",
                 "order": 24,
-                "enabled": true
+                "enabled": false
             },
             "6x8.Duplex": {
                 "key": "6x8.Duplex",
                 "name": "AutoDuplex 6x8in",
                 "order": 25,
-                "enabled": true
+                "enabled": false
             },
             "JB5": {
                 "key": "JB5",
                 "name": "JB5 182x257mm",
                 "order": 26,
-                "enabled": true
+                "enabled": false
             },
             "JB5.FB": {
                 "key": "JB5.FB",
                 "name": "JB5 Borderless 182x257mm",
                 "order": 27,
-                "enabled": true
+                "enabled": false
             },
             "JB5.Duplex": {
                 "key": "JB5.Duplex",
                 "name": "JB5 AutoDuplex 182x257mm",
                 "order": 28,
-                "enabled": true
+                "enabled": false
             },
             "Executive": {
                 "key": "Executive",
                 "name": "Executive 7.25x10.5in",
                 "order": 29,
-                "enabled": true
+                "enabled": false
             },
             "Executive.Duplex": {
                 "key": "Executive.Duplex",
                 "name": "Executive AutoDuplex 7.25x10.5in",
                 "order": 30,
-                "enabled": true
+                "enabled": false
             },
             "8x10": {
                 "key": "8x10",
                 "name": "8x10in",
                 "order": 31,
-                "enabled": true
+                "enabled": false
             },
             "8x10.FB": {
                 "key": "8x10.FB",
                 "name": "Borderless 8x10in",
                 "order": 32,
-                "enabled": true
+                "enabled": false
             },
             "Letter": {
                 "key": "Letter",
                 "name": "Letter 8.5x11in",
                 "order": 33,
-                "enabled": true
+                "enabled": false
             },
             "Letter.FB": {
                 "key": "Letter.FB",
                 "name": "Letter Borderless 8.5x11in",
                 "order": 34,
-                "enabled": true
+                "enabled": false
             },
             "Letter.Duplex": {
                 "key": "Letter.Duplex",
                 "name": "Letter AutoDuplex 8.5x11in",
                 "order": 35,
-                "enabled": true
+                "enabled": false
             },
             "A4": {
                 "key": "A4",
@@ -235,67 +235,67 @@
                 "key": "8.5x13",
                 "name": "8.5x13in",
                 "order": 39,
-                "enabled": true
+                "enabled": false
             },
             "Legal": {
                 "key": "Legal",
                 "name": "Legal 8.5x14in",
                 "order": 40,
-                "enabled": true
+                "enabled": false
             },
             "EnvA2": {
                 "key": "EnvA2",
                 "name": "A2 Envelope 4.37x5.75in",
                 "order": 41,
-                "enabled": true
+                "enabled": false
             },
             "EnvCard": {
                 "key": "EnvCard",
                 "name": "Card Envelope 4.4x6in",
                 "order": 42,
-                "enabled": true
+                "enabled": false
             },
             "EnvC6": {
                 "key": "EnvC6",
                 "name": "C6 Envelope 114x162mm",
                 "order": 43,
-                "enabled": true
+                "enabled": false
             },
             "EnvChou4": {
                 "key": "EnvChou4",
                 "name": "#4 Japanese Envelope 90x205mm",
                 "order": 44,
-                "enabled": true
+                "enabled": false
             },
             "EnvMonarch": {
                 "key": "EnvMonarch",
                 "name": "Monarch Envelope 3.875x7.5in",
                 "order": 45,
-                "enabled": true
+                "enabled": false
             },
             "EnvDL": {
                 "key": "EnvDL",
                 "name": "DL Envelope 110x220mm",
                 "order": 46,
-                "enabled": true
+                "enabled": false
             },
             "Env10": {
                 "key": "Env10",
                 "name": "#10 Envelope 4.125x9.5in",
                 "order": 47,
-                "enabled": true
+                "enabled": false
             },
             "EnvChou3": {
                 "key": "EnvChou3",
                 "name": "#3 Japanese Envelope 120x235mm",
                 "order": 48,
-                "enabled": true
+                "enabled": false
             },
             "EnvC5": {
                 "key": "EnvC5",
                 "name": "C5 Envelope 162x229mm",
                 "order": 49,
-                "enabled": true
+                "enabled": false
             }
         },
         "default": "A4",

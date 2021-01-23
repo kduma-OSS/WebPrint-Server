@@ -42,7 +42,7 @@
                 "key": "60x72dpi",
                 "name": "60x72dpi",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "120x72dpi": {
                 "key": "120x72dpi",

@@ -7,25 +7,25 @@
                 "key": "Letter",
                 "name": "US Letter",
                 "order": 1,
-                "enabled": true
+                "enabled": false
             },
             "Legal": {
                 "key": "Legal",
                 "name": "US Legal",
                 "order": 2,
-                "enabled": true
+                "enabled": false
             },
             "Executive": {
                 "key": "Executive",
                 "name": "Executive",
                 "order": 3,
-                "enabled": true
+                "enabled": false
             },
             "FanFoldGermanLegal": {
                 "key": "FanFoldGermanLegal",
                 "name": "Oficio 8.5 x 13",
                 "order": 4,
-                "enabled": true
+                "enabled": false
             },
             "4x6": {
                 "key": "4x6",
@@ -79,25 +79,25 @@
                 "key": "Oficio",
                 "name": "Oficio 216 x 340 mm",
                 "order": 13,
-                "enabled": true
+                "enabled": false
             },
             "195x270mm": {
                 "key": "195x270mm",
                 "name": "16K 195 x 270 mm",
                 "order": 14,
-                "enabled": true
+                "enabled": false
             },
             "184x260mm": {
                 "key": "184x260mm",
                 "name": "16K 184 x 260 mm",
                 "order": 15,
-                "enabled": true
+                "enabled": false
             },
             "7.75x10.75": {
                 "key": "7.75x10.75",
                 "name": "16K 197 x 273 mm",
                 "order": 16,
-                "enabled": true
+                "enabled": false
             },
             "Postcard": {
                 "key": "Postcard",
