@@ -54,6 +54,24 @@ class PrintJobsPolicy
             return optional($printJob->ClientApplication)->is($user);
     }
 
+
+    /**
+     * @param mixed    $user
+     * @param PrintJob $printJob
+     * @param string   $field
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function viewField(mixed $user, PrintJob $printJob, string $field)
+    {
+        // fields = 'timestamps'
+
+        if($user instanceof ClientApplication)
+            return $this->view($user, $printJob)
+                && in_array($field, ['timestamps']);
+    }
+
     /**
      * Determine whether the user can create print jobs.
      *

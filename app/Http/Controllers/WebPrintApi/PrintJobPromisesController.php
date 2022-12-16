@@ -115,7 +115,7 @@ class PrintJobPromisesController extends Controller
         if($promise->isReadyToPrint())
             $promise->sendForPrinting();
 
-        $promise->load(['AvailablePrinters','Printer']);
+        $promise->load(['AvailablePrinters','Printer','PrintJob']);
         return new PrintJobPromiseResource($promise);
     }
 
@@ -128,7 +128,7 @@ class PrintJobPromisesController extends Controller
      */
     public function show(PrintJobPromise $promise)
     {
-        $promise->load(['AvailablePrinters','Printer']);
+        $promise->load(['AvailablePrinters','Printer','PrintJob']);
         return new PrintJobPromiseResource($promise);
     }
 
