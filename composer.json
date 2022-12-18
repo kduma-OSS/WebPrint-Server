@@ -7,21 +7,21 @@
     "require": {
         "ext-zlib": "*",
         "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
         "kduma/eloquent-uuidable": "^1.0",
         "league/uri": "^6.4",
-        "livewire/livewire": "^2.3",
         "monicahq/laravel-cloudflare": "^1.7"
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
+        "laravel/jetstream": "^2.13",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.9",
         "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.0",
+        "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

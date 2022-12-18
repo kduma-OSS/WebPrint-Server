@@ -11,6 +11,8 @@ use App\Policies\PrintJobPromisesPolicy;
 use App\Policies\PrintJobsPolicy;
 use App\Policies\PrintServerPolicy;
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Team;
+use App\Policies\TeamPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Printer::class         => PrintersPolicy::class,
         PrintServer::class     => PrintServerPolicy::class,
         PrintJobPromise::class => PrintJobPromisesPolicy::class,
+        Team::class => TeamPolicy::class,
     ];
 
     /**
