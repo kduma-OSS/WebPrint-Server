@@ -4,12 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePivotPrintJobPrinterTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
         Schema::create('pivot_print_job_printer', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             $table->foreignId('print_job_promise_id')->constrained('print_job_promises');
             $table->foreignId('printer_id')->constrained('printers');
@@ -20,4 +20,4 @@ class CreatePivotPrintJobPrinterTable extends Migration
     {
         Schema::dropIfExists('pivot_print_job_printer');
     }
-}
+};

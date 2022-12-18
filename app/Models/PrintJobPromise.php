@@ -2,72 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use KDuma\Eloquent\Uuidable;
 
-/**
- * App\Models\PrintJobPromise
- *
- * @property int $id
- * @property string $uuid
- * @property string $status
- * @property int $client_application_id
- * @property int|null $print_job_id
- * @property int|null $printer_id
- * @property string $name
- * @property string $type
- * @property array|null $ppd_options
- * @property string|null $content
- * @property string|null $content_file
- * @property string|null $file_name
- * @property int|null $size
- * @property array|null $meta
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Printer[] $AvailablePrinters
- * @property-read int|null $available_printers_count
- * @property-read \App\Models\ClientApplication $ClientApplication
- * @property-read \App\Models\PrintDialog|null $PrintDialog
- * @property-read \App\Models\PrintJob|null $PrintJob
- * @property-read \App\Models\Printer|null $Printer
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise query()
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereClientApplicationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereContentFile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereFileName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereGuid($guid)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereMeta($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise wherePpdOptions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise wherePrintJobId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise wherePrinterId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PrintJobPromise whereUuid($value)
- * @mixin \Eloquent
- */
 class PrintJobPromise extends Model
 {
-    use Uuidable;
+    use HasUlidField;
 
     protected $casts = [
         'ppd_options' => 'json',
         'meta' => 'json',
+        'status' => PrintJobPromiseStatusEnum::class,
     ];
-
-    public function getRouteKeyName()
-    {
-        return 'uuid';
-    }
 
     public function Printer(): BelongsTo
     {

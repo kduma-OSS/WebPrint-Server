@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrintServersTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
         Schema::create('print_servers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->unique();
+            $table->id();
+            $table->ulid('ulid')->unique();
 
             $table->string('name');
 
@@ -22,4 +22,4 @@ class CreatePrintServersTable extends Migration
     {
         Schema::dropIfExists('print_servers');
     }
-}
+};

@@ -10,7 +10,6 @@ use App\Policies\PrintersPolicy;
 use App\Policies\PrintJobPromisesPolicy;
 use App\Policies\PrintJobsPolicy;
 use App\Policies\PrintServerPolicy;
-// use Illuminate\Support\Facades\Gate;
 use App\Models\Team;
 use App\Policies\FortifySettingsPolicy;
 use App\Policies\GeneralSettingsPolicy;

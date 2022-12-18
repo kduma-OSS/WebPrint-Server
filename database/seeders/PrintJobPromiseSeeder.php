@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ClientApplication;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
 use Illuminate\Database\Seeder;
 
@@ -15,12 +16,12 @@ class PrintJobPromiseSeeder extends Seeder
      */
     public function run()
     {
-        $client = ClientApplication::firstWhere(['name' => 'Test Debug Client']);
+        $client = ClientApplication::where('name', 'Test Debug Client')->firstOrFail();
 
         $promise = new PrintJobPromise;
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
-        $promise->status = 'new';
+        $promise->status = PrintJobPromiseStatusEnum::New;
         $promise->name = 'Test Promise';
         $promise->type = 'ppd';
 
@@ -28,12 +29,12 @@ class PrintJobPromiseSeeder extends Seeder
 
         $promise->AvailablePrinters()->sync($client->Printers);
 
-        $client = ClientApplication::firstWhere(['name' => 'Test Working Client']);
+        $client = ClientApplication::where('name', 'Test Local Client')->firstOrFail();
 
         $promise = new PrintJobPromise;
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
-        $promise->status = 'new';
+        $promise->status = PrintJobPromiseStatusEnum::New;
         $promise->name = 'Test 2 Promise';
         $promise->type = 'ppd';
 

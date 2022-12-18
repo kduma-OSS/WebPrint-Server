@@ -40,7 +40,7 @@ class PrintJobPromisesPolicy
     public function view(mixed $user, PrintJobPromise $printJobPromise)
     {
         if($user instanceof ClientApplication)
-            return optional($printJobPromise->ClientApplication)->is($user);
+            return $printJobPromise->ClientApplication?->is($user);
     }
 
 
@@ -85,7 +85,7 @@ class PrintJobPromisesPolicy
     public function update(mixed $user, PrintJobPromise $printJobPromise)
     {
         if($user instanceof ClientApplication)
-            return optional($printJobPromise->ClientApplication)->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
+            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
     }
 
     /**
@@ -99,7 +99,7 @@ class PrintJobPromisesPolicy
     public function delete(mixed $user, PrintJobPromise $printJobPromise)
     {
         if($user instanceof ClientApplication)
-            return optional($printJobPromise->ClientApplication)->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
+            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
     }
 
     /**

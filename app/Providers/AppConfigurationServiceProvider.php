@@ -27,8 +27,10 @@ class AppConfigurationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootGeneralSettings();
-        $this->bootFortifySettings();
+        if (!$this->app->runningInConsole()) {
+            $this->bootGeneralSettings();
+            $this->bootFortifySettings();
+        }
     }
 
     protected function bootGeneralSettings(): void

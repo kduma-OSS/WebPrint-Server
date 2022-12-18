@@ -51,7 +51,7 @@ class PrintJobsPolicy
             return $printJob->Printer->Server->is($user);
 
         if($user instanceof ClientApplication)
-            return optional($printJob->ClientApplication)->is($user);
+            return $printJob->ClientApplication?->is($user);
     }
 
 
