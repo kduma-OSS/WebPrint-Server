@@ -29,7 +29,7 @@ class GeneralSettingsPolicy
      */
     public function view(User $user, string $setting)
     {
-        return $user->is_system_admin;
+        return $user->is_system_admin && $setting !== 'active';
     }
 
     /**
@@ -41,6 +41,6 @@ class GeneralSettingsPolicy
      */
     public function update(User $user, string $setting)
     {
-        return $user->is_system_admin;
+        return $user->is_system_admin && $setting !== 'active';
     }
 }

@@ -106,6 +106,15 @@
                                 </x-jet-dropdown-link>
                             @endif
 
+                            @if (
+                                Auth::user()->can('viewAny', \App\Settings\FortifySettings::class)
+                                || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
+                            )
+                                <x-jet-dropdown-link href="{{ route('app.settings') }}">
+                                    {{ __('App Settings') }}
+                                </x-jet-dropdown-link>
+                            @endif
+
                             <div class="border-t border-gray-100"></div>
 
                             <!-- Authentication -->
@@ -166,6 +175,15 @@
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
+                    </x-jet-responsive-nav-link>
+                @endif
+
+                @if (
+                    Auth::user()->can('viewAny', \App\Settings\FortifySettings::class)
+                    || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
+                )
+                    <x-jet-responsive-nav-link href="{{ route('app.settings') }}" :active="request()->routeIs('app.settings')">
+                        {{ __('App Settings') }}
                     </x-jet-responsive-nav-link>
                 @endif
 
