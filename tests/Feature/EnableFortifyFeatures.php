@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Settings\FortifySettings;
 use Laravel\Fortify\Features;
 
 trait EnableFortifyFeatures
@@ -37,5 +38,13 @@ trait EnableFortifyFeatures
                 ]),
             ]);
         }
+
+        app(FortifySettings::class)->fill([
+            'registration_enabled' => true,
+            'password_resets_enabled' => true,
+            'update_passwords_enabled' => true,
+            'update_profile_enabled' => true,
+            'two_factor_authentication_enabled' => true,
+        ])->save();
     }
 }
