@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\URL;
 
+/**
+ * @mixin IdeHelperPrintDialog
+ */
 class PrintDialog extends Model
 {
     use HasUlidField;

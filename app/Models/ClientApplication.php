@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @mixin IdeHelperClientApplication
+ */
 class ClientApplication extends Model implements AuthorizableContract
 {
     use HasApiTokens;

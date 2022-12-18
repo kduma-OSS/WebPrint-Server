@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @mixin IdeHelperPrintServer
+ */
 class PrintServer extends Model implements AuthorizableContract
 {
     use HasApiTokens;
