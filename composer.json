@@ -11,7 +11,9 @@
         "laravel/jetstream": "^2.13",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "league/uri": "^6.8",
         "livewire/livewire": "^2.5",
+        "monicahq/laravel-cloudflare": "^3.3",
         "spatie/laravel-settings": "^2.6"
     },
     "require-dev": {
