@@ -16,7 +16,7 @@ class PrintServerResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid' => $this->uuid,
+            'ulid' => $this->ulid,
             'name' => $this->name,
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'timestamps']), [
                 'created_at' => $this->created_at,

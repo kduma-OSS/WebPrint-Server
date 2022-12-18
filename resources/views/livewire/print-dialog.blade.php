@@ -18,10 +18,10 @@
                     <div class="mt-2 max-w-xl text-sm text-gray-500">
                         <p>
                             @switch($dialog->status)
-                                @case('canceled')
+                                @case(\App\Models\Enums\PrintDialogStatusEnum::Canceled)
                                     This print job was cancelled.
                                     @break
-                                @case('sent')
+                                @case(\App\Models\Enums\PrintDialogStatusEnum::Sent)
                                     This print job has already been sent to printer.
                                     @break
                                 @default
@@ -32,22 +32,22 @@
                             <p class="pt-3" wire:poll>
                                 Status:
                                 @switch($dialog->JobPromise->PrintJob->status)
-                                    @case('new')
+                                    @case(\App\Models\Enums\PrintJobStatusEnum::New)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
                                       Waiting in print queue
                                     </span>
                                     @break
-                                    @case('printing')
+                                    @case(\App\Models\Enums\PrintJobStatusEnum::Printing)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                                       Currently processing
                                     </span>
                                     @break
-                                    @case('finished')
+                                    @case(\App\Models\Enums\PrintJobStatusEnum::Finished)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
                                       Job sent to printer
                                     </span>
                                     @break
-                                    @case('failed')
+                                    @case(\App\Models\Enums\PrintJobStatusEnum::Failed)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
                                       Printing Failed{{ $dialog->JobPromise->PrintJob->status_message ? ': ' : '' }} <i>{{ $dialog->JobPromise->PrintJob->status_message }}</i>
                                     </span>
@@ -96,16 +96,16 @@
 
                                                     <div class="bg-white rounded-md -space-y-px">
                                                         @forelse($dialog->JobPromise->AvailablePrinters as $printer)
-                                                            <div class="relative border {{ $loop->first ? 'rounded-tl-md rounded-tr-md' : '' }} {{ $loop->last ? 'rounded-bl-md rounded-br-md' : '' }} p-4 flex {{ $printer->uuid == $selected_printer_uuid ? 'bg-indigo-50 border-indigo-200 z-10' : 'border-gray-200' }}">
+                                                            <div class="relative border {{ $loop->first ? 'rounded-tl-md rounded-tr-md' : '' }} {{ $loop->last ? 'rounded-bl-md rounded-br-md' : '' }} p-4 flex {{ $printer->ulid == $selected_printer_ulid ? 'bg-indigo-50 border-indigo-200 z-10' : 'border-gray-200' }}">
                                                                 <div class="flex items-center h-5">
-                                                                    <input id="printer-{{ $printer->uuid }}" name="printer" wire:model="selected_printer_uuid" wire:click="goToMainView" value="{{ $printer->uuid }}" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" {{ $printer->uuid == $selected_printer_uuid ? 'checked' : '' }}>
+                                                                    <input id="printer-{{ $printer->ulid }}" name="printer" wire:model="selected_printer_ulid" wire:click="goToMainView" value="{{ $printer->ulid }}" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" {{ $printer->ulid == $selected_printer_ulid ? 'checked' : '' }}>
                                                                 </div>
-                                                                <label for="printer-{{ $printer->uuid }}" class="ml-3 flex flex-col cursor-pointer">
-                                                                    <span class="block text-sm font-medium {{ $printer->uuid == $selected_printer_uuid ? 'text-indigo-900' : 'text-gray-900' }}">
+                                                                <label for="printer-{{ $printer->ulid }}" class="ml-3 flex flex-col cursor-pointer">
+                                                                    <span class="block text-sm font-medium {{ $printer->ulid == $selected_printer_ulid ? 'text-indigo-900' : 'text-gray-900' }}">
                                                                       {{ $printer->name }}
                                                                     </span>
                                                                     @if($printer->location)
-                                                                        <span class="block text-sm {{ $printer->uuid == $selected_printer_uuid ? 'text-indigo-700' : 'text-gray-500' }}">
+                                                                        <span class="block text-sm {{ $printer->ulid == $selected_printer_ulid ? 'text-indigo-700' : 'text-gray-500' }}">
                                                                           {{ $printer->location }}
                                                                         </span>
                                                                     @endif

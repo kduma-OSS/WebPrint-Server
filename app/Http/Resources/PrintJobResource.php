@@ -16,7 +16,7 @@ class PrintJobResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid'           => $this->uuid,
+            'ulid'           => $this->ulid,
             'status'         => $this->status,
             'status_message' => $this->status_message,
             'name'           => $this->name,

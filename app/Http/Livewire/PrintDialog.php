@@ -13,7 +13,7 @@ class PrintDialog extends Component
     public PrintDialogModel $dialog;
 
     public ?Printer $selected_printer = null;
-    public ?string $selected_printer_uuid = null;
+    public ?string $selected_printer_ulid = null;
     public array $ppd_options = [];
 
     public string $view = 'main';
@@ -24,24 +24,24 @@ class PrintDialog extends Component
 
         if($this->dialog->JobPromise->Printer !== null) {
             $this->selected_printer = $this->dialog->JobPromise->Printer;
-            $this->selected_printer_uuid = $this->selected_printer->uuid;
+            $this->selected_printer_ulid = $this->selected_printer->ulid;
             $this->ppd_options = $this->getDefaultForPrinter($this->selected_printer, $this->dialog->JobPromise->ppd_options ?? []);
         }
     }
 
     public function updated($propertyName)
     {
-        if($propertyName == 'selected_printer_uuid') {
-            $printer = $this->dialog->JobPromise->AvailablePrinters()->where('uuid', $this->selected_printer_uuid)->first();
+        if($propertyName == 'selected_printer_ulid') {
+            $printer = $this->dialog->JobPromise->AvailablePrinters()->where('ulid', $this->selected_printer_ulid)->first();
             if ($printer === null) {
-                $this->selected_printer_uuid = null;
+                $this->selected_printer_ulid = null;
                 $this->selected_printer = null;
                 $this->ppd_options = [];
             } else {
-                if ($this->selected_printer_uuid != optional($this->selected_printer)->uuid)
+                if ($this->selected_printer_ulid != optional($this->selected_printer)->ulid)
                     $this->ppd_options = $this->getDefaultForPrinter($printer);
 
-                $this->selected_printer_uuid = $printer->uuid;
+                $this->selected_printer_ulid = $printer->ulid;
                 $this->selected_printer = $printer;
 
                 if ($this->view == 'set_printer')
@@ -92,7 +92,7 @@ class PrintDialog extends Component
             if($uri->getQuery() === null) {
                 $uri = $uri->withQuery(http_build_query([
                     'dialog' => [
-                        'uuid' => $this->dialog->uuid,
+                        'ulid' => $this->dialog->ulid,
                         'reason' => $reason,
                     ],
                 ]));
@@ -131,7 +131,7 @@ class PrintDialog extends Component
             if($uri->getQuery() === null) {
                 $uri = $uri->withQuery(http_build_query([
                     'dialog' => [
-                        'uuid' => $this->dialog->uuid,
+                        'ulid' => $this->dialog->ulid,
                         'reason' => 'success',
                     ],
                 ]));

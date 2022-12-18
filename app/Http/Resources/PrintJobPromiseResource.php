@@ -16,7 +16,7 @@ class PrintJobPromiseResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid'              => $this->uuid,
+            'ulid'              => $this->ulid,
             'status'            => $this->status,
             'name'              => $this->name,
             'type'              => $this->type,
@@ -29,7 +29,7 @@ class PrintJobPromiseResource extends JsonResource
             'meta' => $this->meta,
 
             'available_printers' => PrinterResource::collection($this->whenLoaded('AvailablePrinters')),
-            'selected_printer'   => new PrinterResource($this->whenLoaded('Printer')),
+            'selected_printer'   => new PrinterResource($this->whenLoaded('Printer'), false),
             'job'                => new PrintJobResource($this->whenLoaded('PrintJob')),
 
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'timestamps']), [

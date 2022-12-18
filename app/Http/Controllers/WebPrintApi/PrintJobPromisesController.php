@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PrinterResource;
 use App\Http\Resources\PrintJobPromiseResource;
 use App\Models\ClientApplication;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\Printer;
 use App\Models\PrintJobPromise;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,12 +54,12 @@ class PrintJobPromisesController extends Controller
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
 
-        $client_printers_uuids = $client_application->Printers()->pluck('uuid');
+        $client_printers_ulids = $client_application->Printers()->pluck('ulid');
         $validated = $request->validate([
             'name' => ['required', 'string'],
-            'printer' => ['nullable', Rule::in($client_printers_uuids)],
+            'printer' => ['nullable', Rule::in($client_printers_ulids)],
             'available_printers' => ['nullable', 'array'],
-            'available_printers.*' => ['string', Rule::in($client_printers_uuids)],
+            'available_printers.*' => ['string', Rule::in($client_printers_ulids)],
             'type' => 'required',
             'ppd_options' => ['nullable', 'array'],
             'ppd_options.*' => ['required', 'string'],
@@ -71,7 +72,7 @@ class PrintJobPromisesController extends Controller
 
         $promise = new PrintJobPromise;
         $promise->client_application_id = $client_application->id;
-        $promise->status = $validated['headless'] ?? false ? 'ready' : 'new';
+        $promise->status = $validated['headless'] ?? false ? PrintJobPromiseStatusEnum::Ready : PrintJobPromiseStatusEnum::New;
         $promise->name = $validated['name'];
         $promise->type = $validated['type'];
         $promise->ppd_options = $validated['ppd_options'] ?? null;
@@ -91,19 +92,19 @@ class PrintJobPromisesController extends Controller
         }
 
         if($validated['available_printers'] ?? null){
-            $uuids = $validated['available_printers'];
+            $ulids = $validated['available_printers'];
         } else {
-            $uuids = $client_application->Printers()->forType($promise->type)->pluck('uuid');
+            $ulids = $client_application->Printers()->forType($promise->type)->pluck('ulid');
         }
 
-        $selected_printer = $client_application->Printers()->where('uuid', $validated['printer'] ?? null)->first();
+        $selected_printer = $client_application->Printers()->where('ulid', $validated['printer'] ?? null)->first();
         if($selected_printer) {
             $promise->printer_id = $selected_printer->id;
-            $uuids[] = $selected_printer->uuid;
+            $ulids[] = $selected_printer->ulid;
         }
         $promise->save();
 
-        $available_printers = $client_application->Printers()->whereIn('uuid', $uuids)->get();
+        $available_printers = $client_application->Printers()->whereIn('ulid', $ulids)->get();
 
         $promise->AvailablePrinters()->sync($available_printers);
 
@@ -142,7 +143,7 @@ class PrintJobPromisesController extends Controller
      */
     public function update(Request $request, PrintJobPromise $promise)
     {
-        $available_printers = $promise->AvailablePrinters()->pluck('uuid');
+        $available_printers = $promise->AvailablePrinters()->pluck('ulid');
         $validated = $request->validate([
             'status' => ['nullable', 'in:ready'],
             'name' => ['nullable', 'string'],
@@ -157,7 +158,7 @@ class PrintJobPromisesController extends Controller
         $promise->name = $validated['name'] ?? $promise->name;
         $promise->ppd_options = $validated['ppd_options'] ?? $promise->ppd_options;
         $promise->meta = $validated['meta'] ?? $promise->meta;
-        $promise->printer_id = optional($promise->AvailablePrinters()->where('uuid', $validated['printer'] ?? null)->first())->id ?? $promise->printer_id;
+        $promise->printer_id = optional($promise->AvailablePrinters()->where('ulid', $validated['printer'] ?? null)->first())->id ?? $promise->printer_id;
 
         $promise->save();
 
@@ -176,7 +177,7 @@ class PrintJobPromisesController extends Controller
      */
     public function destroy(PrintJobPromise $promise)
     {
-        $promise->status = 'canceled';
+        $promise->status = PrintJobPromiseStatusEnum::Cancelled;
         $promise->save();
 
         return response()->noContent();

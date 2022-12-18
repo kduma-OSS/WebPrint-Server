@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\ClientApplication;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -85,7 +86,11 @@ class PrintJobPromisesPolicy
     public function update(mixed $user, PrintJobPromise $printJobPromise)
     {
         if($user instanceof ClientApplication)
-            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
+            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, [
+                PrintJobPromiseStatusEnum::Draft,
+                PrintJobPromiseStatusEnum::New,
+                PrintJobPromiseStatusEnum::Ready
+            ]);
     }
 
     /**
@@ -99,7 +104,11 @@ class PrintJobPromisesPolicy
     public function delete(mixed $user, PrintJobPromise $printJobPromise)
     {
         if($user instanceof ClientApplication)
-            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, ['draft', 'new', 'ready']);
+            return $printJobPromise->ClientApplication?->is($user) && in_array($printJobPromise->status, [
+                PrintJobPromiseStatusEnum::Draft,
+                PrintJobPromiseStatusEnum::New,
+                PrintJobPromiseStatusEnum::Ready
+            ]);
     }
 
     /**

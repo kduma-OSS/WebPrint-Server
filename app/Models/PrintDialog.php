@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Enums\PrintDialogStatusEnum;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,11 +25,17 @@ class PrintDialog extends Model
 
     public function getLinkAttribute(): string
     {
-        return URL::temporarySignedRoute('api.web-print.print-dialog', $this->created_at->clone()->addHours(6), $this);
+        return URL::temporarySignedRoute(
+            'api.web-print.print-dialog',
+            $this->created_at->clone()->addHours(6),
+            $this
+        );
     }
 
     public function getIsActiveAttribute()
     {
-        return $this->status == 'new' && $this->JobPromise->status == 'new' && now()->isBefore($this->created_at->clone()->addHours(6));
+        return $this->status == PrintDialogStatusEnum::New
+            && $this->JobPromise->status == PrintJobPromiseStatusEnum::New
+            && now()->isBefore($this->created_at->clone()->addHours(6));
     }
 }

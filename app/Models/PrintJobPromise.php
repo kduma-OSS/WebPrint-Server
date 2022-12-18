@@ -45,12 +45,14 @@ class PrintJobPromise extends Model
 
     public function isReadyToPrint(): bool
     {
-        return $this->status == 'ready' && $this->isPossibleToPrint();
+        return $this->status == PrintJobPromiseStatusEnum::Ready && $this->isPossibleToPrint();
     }
 
     public function isPossibleToPrint()
     {
-        return in_array($this->status, ['ready', 'new']) && ($this->content || $this->content_file) && $this->printer_id;
+        return in_array($this->status, [
+            PrintJobPromiseStatusEnum::Ready, PrintJobPromiseStatusEnum::New
+            ]) && ($this->content || $this->content_file) && $this->printer_id;
     }
 
     public function sendForPrinting(): ?PrintJob
@@ -72,7 +74,7 @@ class PrintJobPromise extends Model
         $job->save();
 
         $this->print_job_id = $job->id;
-        $this->status = 'sent_to_printer';
+        $this->status = PrintJobPromiseStatusEnum::SentToPrinter;
         $this->save();
 
         return $job;

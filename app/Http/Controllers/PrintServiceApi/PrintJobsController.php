@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PrintServiceApi;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class PrintJobsController extends Controller
 
             $jobs_list = $print_server->Jobs()->where('status', 'new')
                 ->oldest('print_jobs.created_at')
-                ->pluck('print_jobs.uuid');
+                ->pluck('print_jobs.ulid');
 
         } while(!count($jobs_list) && $attempts <= 10);
 
@@ -55,7 +56,7 @@ class PrintJobsController extends Controller
      */
     public function show(PrintJob $job)
     {
-        if($job->status != 'new') {
+        if($job->status != PrintJobStatusEnum::New) {
             return response(status: 410);
         }
 
@@ -91,7 +92,7 @@ class PrintJobsController extends Controller
 
 
         return [
-            'uuid' => $job->uuid,
+            'ulid' => $job->ulid,
             'name' => $job->name,
             'ppd' => $job->ppd,
             'file_name' => $job->file_name,

@@ -15,7 +15,7 @@ class PrintDialogResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid'          => $this->uuid,
+            'ulid'          => $this->ulid,
             'status'        => $this->status,
             'auto_print'    => $this->auto_print,
             'redirect_url'  => $this->redirect_url,
