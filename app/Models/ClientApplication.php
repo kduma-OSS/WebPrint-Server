@@ -18,11 +18,6 @@ class ClientApplication extends Model implements AuthorizableContract
     use Authorizable;
     use HasUlidField;
 
-    public function getRouteKeyName()
-    {
-        return 'uuid';
-    }
-
     public function Printers(): BelongsToMany
     {
         return $this->belongsToMany(Printer::class, 'pivot_client_application_printer');

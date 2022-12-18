@@ -57,16 +57,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'ulid';
-    }
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array

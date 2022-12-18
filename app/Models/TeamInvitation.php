@@ -23,16 +23,6 @@ class TeamInvitation extends JetstreamTeamInvitation
     ];
 
     /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'ulid';
-    }
-
-    /**
      * Get the team that the invitation belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
