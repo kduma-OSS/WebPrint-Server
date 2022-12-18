@@ -12,7 +12,11 @@ use App\Policies\PrintJobsPolicy;
 use App\Policies\PrintServerPolicy;
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Team;
+use App\Policies\FortifySettingsPolicy;
+use App\Policies\GeneralSettingsPolicy;
 use App\Policies\TeamPolicy;
+use App\Settings\FortifySettings;
+use App\Settings\GeneralSettings;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -28,6 +32,8 @@ class AuthServiceProvider extends ServiceProvider
         PrintServer::class     => PrintServerPolicy::class,
         PrintJobPromise::class => PrintJobPromisesPolicy::class,
         Team::class => TeamPolicy::class,
+        GeneralSettings::class => GeneralSettingsPolicy::class,
+        FortifySettings::class => FortifySettingsPolicy::class,
     ];
 
     /**

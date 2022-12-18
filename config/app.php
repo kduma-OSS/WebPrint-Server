@@ -183,8 +183,14 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Early Application Service Providers...
+         */
+        App\Providers\AppConfigurationServiceProvider::class,
+
+        /*
          * Package Service Providers...
          */
+        Laravel\Fortify\FortifyServiceProvider::class,
 
         /*
          * Application Service Providers...

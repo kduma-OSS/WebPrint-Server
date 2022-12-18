@@ -30,11 +30,16 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
+            $has_users = User::query()->count() > 0;
+
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) {
+            ]), function (User $user) use ($has_users) {
+                $user->is_system_admin = !$has_users;
+                $user->save();
+
                 $this->createTeam($user);
             });
         });
