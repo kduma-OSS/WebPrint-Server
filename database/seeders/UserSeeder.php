@@ -15,10 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User;
-        $user->name = 'Administrator';
-        $user->email = 'admin@localhost';
-        $user->password = Hash::make('P@ssw0rd');
-        $user->save();
+        $user = \App\Models\User::factory()->withPersonalTeam()->create([
+            'name' => 'Administrator',
+            'email' => 'admin@localhost',
+            'password' => Hash::make('P@ssw0rd'),
+        ]);
     }
 }

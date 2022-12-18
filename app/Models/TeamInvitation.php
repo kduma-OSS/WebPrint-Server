@@ -7,6 +7,8 @@ use Laravel\Jetstream\TeamInvitation as JetstreamTeamInvitation;
 
 class TeamInvitation extends JetstreamTeamInvitation
 {
+    use HasUlidField;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +18,16 @@ class TeamInvitation extends JetstreamTeamInvitation
         'email',
         'role',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'ulid';
+    }
 
     /**
      * Get the team that the invitation belongs to.
