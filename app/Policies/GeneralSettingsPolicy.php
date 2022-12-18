@@ -23,8 +23,8 @@ class GeneralSettingsPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User $user
-     * @param  string           $setting
+     * @param  \App\Models\User  $user
+     * @param  string  $setting
      * @return mixed
      */
     public function view(User $user, string $setting)
@@ -35,8 +35,8 @@ class GeneralSettingsPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User $user
-     * @param  string           $setting
+     * @param  \App\Models\User  $user
+     * @param  string  $setting
      * @return mixed
      */
     public function update(User $user, string $setting)

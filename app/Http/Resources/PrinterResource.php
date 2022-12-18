@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 /** @mixin \App\Models\Printer */
 class PrinterResource extends JsonResource
 {
-
     protected ?bool $with_ppd_options = null;
 
     public function __construct($resource, ?bool $with_ppd_options = null)
@@ -18,8 +17,7 @@ class PrinterResource extends JsonResource
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)

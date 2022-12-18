@@ -10,6 +10,7 @@ use Laravel\Jetstream\Membership as JetstreamMembership;
 class Membership extends JetstreamMembership
 {
     use HasUlidField;
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *

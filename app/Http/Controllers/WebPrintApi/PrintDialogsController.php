@@ -15,17 +15,18 @@ class PrintDialogsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param PrintJobPromise $promise
-     *
+     * @param  PrintJobPromise  $promise
      * @return PrintDialogResource|Response
+     *
      * @throws AuthorizationException
      */
     public function index(PrintJobPromise $promise)
     {
         $this->authorize('view', $promise);
 
-        if($promise->PrintDialog === null)
+        if ($promise->PrintDialog === null) {
             return response(status: 404);
+        }
 
         return new PrintDialogResource($promise->PrintDialog);
     }
@@ -33,10 +34,10 @@ class PrintDialogsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request         $request
-     * @param PrintJobPromise $promise
-     *
+     * @param  Request  $request
+     * @param  PrintJobPromise  $promise
      * @return PrintDialogResource
+     *
      * @throws AuthorizationException
      */
     public function store(Request $request, PrintJobPromise $promise)
@@ -49,8 +50,9 @@ class PrintDialogsController extends Controller
             'auto_print' => ['nullable', 'boolean'],
         ]);
 
-        if($promise->PrintDialog !== null)
+        if ($promise->PrintDialog !== null) {
             $promise->PrintDialog->delete();
+        }
 
         $dialog = new PrintDialog();
         $dialog->auto_print = $validated['auto_print'] ?? true;
@@ -64,8 +66,7 @@ class PrintDialogsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param PrintDialog $printDialog
-     *
+     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function show(PrintDialog $printDialog)
@@ -76,9 +77,8 @@ class PrintDialogsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request     $request
-     * @param PrintDialog $printDialog
-     *
+     * @param  Request  $request
+     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function update(Request $request, PrintDialog $printDialog)
@@ -89,8 +89,7 @@ class PrintDialogsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintDialog $printDialog
-     *
+     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function destroy(PrintDialog $printDialog)

@@ -12,8 +12,8 @@ class SettingsController extends Controller
     public function __invoke(Request $request, FortifySettings $fortifySettings, GeneralSettings $generalSettings)
     {
         if (
-            !$request->user()->can('viewAny', FortifySettings::class)
-            && !$request->user()->can('viewAny', GeneralSettings::class)
+            ! $request->user()->can('viewAny', FortifySettings::class)
+            && ! $request->user()->can('viewAny', GeneralSettings::class)
         ) {
             abort(403);
         }

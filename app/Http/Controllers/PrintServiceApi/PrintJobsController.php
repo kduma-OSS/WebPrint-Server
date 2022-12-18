@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Http\Controllers\PrintServiceApi;
-
 
 use App\Http\Controllers\Controller;
 use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
 
@@ -23,8 +20,7 @@ class PrintJobsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return \Illuminate\Http\Response|\Illuminate\Support\Collection
      */
     public function index(Request $request)
@@ -34,15 +30,15 @@ class PrintJobsController extends Controller
 
         $attempts = 0;
 
-        do{
-            if($attempts++)
+        do {
+            if ($attempts++) {
                 sleep(4);
+            }
 
             $jobs_list = $print_server->Jobs()->where('status', 'new')
                 ->oldest('print_jobs.created_at')
                 ->pluck('print_jobs.ulid');
-
-        } while(!count($jobs_list) && $attempts <= 10);
+        } while (! count($jobs_list) && $attempts <= 10);
 
         return $jobs_list;
     }
@@ -50,22 +46,21 @@ class PrintJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param PrintJob $job
-     *
+     * @param  PrintJob  $job
      * @return array|\Illuminate\Http\Response
      */
     public function show(PrintJob $job)
     {
-        if($job->status != PrintJobStatusEnum::New) {
+        if ($job->status != PrintJobStatusEnum::New) {
             return response(status: 410);
         }
 
-        if(is_null($job->content) || $job->size > 1024*1024){
+        if (is_null($job->content) || $job->size > 1024 * 1024) {
             $content = [
                 'content_type' => 'file',
                 'content' => URL::temporarySignedRoute('api.print-service.jobs.content.index', now()->addHour(), $job),
             ];
-        }else if(preg_match('/[^\x20-\x7e\n]/', $job->content)) {
+        } elseif (preg_match('/[^\x20-\x7e\n]/', $job->content)) {
             $content = [
                 'content_type' => 'base64',
                 'content' => base64_encode(gzcompress($job->content)),
@@ -77,19 +72,19 @@ class PrintJobsController extends Controller
             ];
         }
         $options = $job->ppd_options;
-        if($job->ppd){
+        if ($job->ppd) {
             $options = collect($job->Printer->ppd_options)
                 ->mapWithKeys(function ($option, $key) use ($options) {
                     $value = isset($options[$option['key']]) ? ($options[$option['key']] ?? $option['default']) : $option['default'];
 
-                    if($option['type'] ?? 'select' == 'Boolean')
+                    if ($option['type'] ?? 'select' == 'Boolean') {
                         return [$option['key'] => $value == 'True'];
+                    }
 
                     return [$option['key'] => $value];
                 })
                 ->toArray();
         }
-
 
         return [
             'ulid' => $job->ulid,
@@ -103,15 +98,14 @@ class PrintJobsController extends Controller
                 'uri' => $job->Printer->uri,
             ],
             'created_at' => $job->created_at,
-        ]+$content;
+        ] + $content;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
-     * @param PrintJob $job
-     *
+     * @param  Request  $request
+     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJob $job)

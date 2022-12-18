@@ -7,7 +7,6 @@ use App\Http\Resources\PrinterResource;
 use App\Models\ClientApplication;
 use App\Models\Printer;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class PrintersController extends Controller
@@ -20,8 +19,7 @@ class PrintersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -46,14 +44,13 @@ class PrintersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Printer $printer
-     *
+     * @param  Printer  $printer
      * @return PrinterResource
      */
     public function show(Printer $printer)
     {
         $printer->load('Server');
-        
+
         return new PrinterResource($printer);
     }
 }

@@ -19,15 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.')
-    ->group(function (){
-
+    ->group(function () {
         Route::prefix('/print-service')
             ->name('print-service.')
-            ->group(function (){
-
+            ->group(function () {
                 Route::middleware(['signed'])
-                    ->group(function (){
-
+                    ->group(function () {
                         Route::name('jobs')->apiResource(
                             '/jobs/{job}/content',
                             \App\Http\Controllers\PrintServiceApi\PrintJobContentController::class,
@@ -35,12 +32,10 @@ Route::name('api.')
                                 'only' => ['index'],
                             ],
                         );
-
                     }); // Route::middleware(['signed'])
 
                 Route::middleware(['auth:print_service_api'])
-                    ->group(function (){
-
+                    ->group(function () {
                         Route::apiResource(
                             '/jobs',
                             \App\Http\Controllers\PrintServiceApi\PrintJobsController::class,
@@ -48,18 +43,14 @@ Route::name('api.')
                                 'only' => ['update', 'show', 'index'],
                             ],
                         );
-
                     }); // Route::middleware(['auth:print_service_api'])
-
             }); // Route::prefix('/print-service')->name('print-service.')
 
         Route::prefix('/web-print')
             ->name('web-print.')
-            ->group(function (){
-
+            ->group(function () {
                 Route::middleware(['auth:web_print_api'])
-                    ->group(function (){
-
+                    ->group(function () {
                         Route::apiResource(
                             '/printers',
                             \App\Http\Controllers\WebPrintApi\PrintersController::class,
@@ -99,9 +90,6 @@ Route::name('api.')
                                 'only' => ['store'],
                             ],
                         );
-
                     }); // Route::middleware(['auth:web_print_api'])
-
             }); // Route::middleware(['auth:web_print_api'])->prefix('/web-print')->name('web-print.')
-
     }); // Route::name('api.')

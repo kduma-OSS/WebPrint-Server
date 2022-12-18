@@ -20,32 +20,27 @@ class PrinterSeeder extends Seeder
         $server->name = 'Debug Print Server';
         $server->save();
         $token = $server->tokens()->create([
-            'name' => sprintf("%s Access Token", $server->name),
+            'name' => sprintf('%s Access Token', $server->name),
             'token' => hash('sha256', $plainTextToken = 'DEBUG_WEBPRINT_SERVICE_KEY'),
             'abilities' => ['*'],
         ]);
-        echo sprintf("\n\n\n%s=\"%s|%s\"\n\n\n", strtoupper(Str::slug(sprintf("%s Access Token", $server->name), '_')), $token->id, $plainTextToken);
+        echo sprintf("\n\n\n%s=\"%s|%s\"\n\n\n", strtoupper(Str::slug(sprintf('%s Access Token', $server->name), '_')), $token->id, $plainTextToken);
         $this->AddDebugPrinters($server);
-
-
 
         $server = new PrintServer;
         $server->name = 'Local Print Server';
         $server->save();
-        $token = $server->createToken(sprintf("%s Access Token", $server->name));
+        $token = $server->createToken(sprintf('%s Access Token', $server->name));
         echo sprintf("\n\n\n%s=\"%s\"\n\n\n", strtoupper(Str::slug($token->accessToken->name, '_')), $token->plainTextToken);
         $this->AddLocalPrinters($server);
-
-
 
         $server = new PrintServer;
         $server->name = 'LAN Print Server';
         $server->save();
-        $token = $server->createToken(sprintf("%s Access Token", $server->name));
+        $token = $server->createToken(sprintf('%s Access Token', $server->name));
         echo sprintf("\n\n\n%s=\"%s\"\n\n\n", strtoupper(Str::slug($token->accessToken->name, '_')), $token->plainTextToken);
         $this->AddLanPrinters($server);
     }
-
 
     protected function AddDebugPrinters(PrintServer $server)
     {
@@ -230,9 +225,9 @@ class PrinterSeeder extends Seeder
         $server->Printers()->save($printer);
     }
 
-    protected function readPpdJsonFile(string $name):array
+    protected function readPpdJsonFile(string $name): array
     {
-        $json = file_get_contents(sprintf("%s/PPD_OPTIONS/%s.json", __DIR__, $name));
+        $json = file_get_contents(sprintf('%s/PPD_OPTIONS/%s.json', __DIR__, $name));
 
         return json_decode($json, true);
     }

@@ -20,26 +20,22 @@ Route::get('/', function () {
 Route::middleware(['signed'])
     ->prefix('/api/web-print')
     ->name('api.web-print.')
-    ->group(function (){
-
+    ->group(function () {
         Route::name('print-dialog')->get(
             '/print-dialog/{dialog}',
             \App\Http\Controllers\WebPrintApi\UserPrintDialogController::class,
         );
-
     }); // Route::middleware(['signed'])->prefix('/api/web-print')->name('api.web-print.')
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
-
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
     Route::get('/app/settings', \App\Http\Controllers\App\SettingsController::class)
         ->name('app.settings');
-
 });

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PrinterResource;
 use App\Http\Resources\PrintJobPromiseResource;
 use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -45,8 +42,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -81,8 +77,8 @@ class PrintJobPromisesController extends Controller
 
         $promise->save();
 
-        if ($validated['content'] ?? null){
-            if(strlen($validated['content']) < 1024 && !preg_match('/[^\x20-\x7e\n]/', $validated['content'])){
+        if ($validated['content'] ?? null) {
+            if (strlen($validated['content']) < 1024 && ! preg_match('/[^\x20-\x7e\n]/', $validated['content'])) {
                 $promise->content = $validated['content'];
             } else {
                 Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
@@ -91,14 +87,14 @@ class PrintJobPromisesController extends Controller
             $promise->save();
         }
 
-        if($validated['available_printers'] ?? null){
+        if ($validated['available_printers'] ?? null) {
             $ulids = $validated['available_printers'];
         } else {
             $ulids = $client_application->Printers()->forType($promise->type)->pluck('ulid');
         }
 
         $selected_printer = $client_application->Printers()->where('ulid', $validated['printer'] ?? null)->first();
-        if($selected_printer) {
+        if ($selected_printer) {
             $promise->printer_id = $selected_printer->id;
             $ulids[] = $selected_printer->ulid;
         }
@@ -108,37 +104,38 @@ class PrintJobPromisesController extends Controller
 
         $promise->AvailablePrinters()->sync($available_printers);
 
-        if(!$promise->printer_id && $available_printers->count() == 1) {
+        if (! $promise->printer_id && $available_printers->count() == 1) {
             $promise->printer_id = $available_printers->first()->id;
             $promise->save();
         }
 
-        if($promise->isReadyToPrint())
+        if ($promise->isReadyToPrint()) {
             $promise->sendForPrinting();
+        }
 
-        $promise->load(['AvailablePrinters','Printer','PrintJob']);
+        $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
+
         return new PrintJobPromiseResource($promise);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param PrintJobPromise $promise
-     *
+     * @param  PrintJobPromise  $promise
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
     public function show(PrintJobPromise $promise)
     {
-        $promise->load(['AvailablePrinters','Printer','PrintJob']);
+        $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
+
         return new PrintJobPromiseResource($promise);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request         $request
-     * @param PrintJobPromise $promise
-     *
+     * @param  Request  $request
+     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJobPromise $promise)
@@ -162,8 +159,9 @@ class PrintJobPromisesController extends Controller
 
         $promise->save();
 
-        if($promise->isReadyToPrint())
+        if ($promise->isReadyToPrint()) {
             $promise->sendForPrinting();
+        }
 
         return response()->noContent();
     }
@@ -171,8 +169,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintJobPromise $promise
-     *
+     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response
      */
     public function destroy(PrintJobPromise $promise)

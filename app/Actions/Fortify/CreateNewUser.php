@@ -37,7 +37,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) use ($has_users) {
-                $user->is_system_admin = !$has_users;
+                $user->is_system_admin = ! $has_users;
                 $user->save();
 
                 $this->createTeam($user);

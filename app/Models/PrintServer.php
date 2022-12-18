@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 class PrintServer extends Model implements AuthorizableContract
 {
     use HasApiTokens;
-    Use Authorizable;
+    use Authorizable;
     use HasUlidField;
 
     public function Printers(): HasMany

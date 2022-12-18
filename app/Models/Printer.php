@@ -49,12 +49,13 @@ class Printer extends Model
 
     public function scopeForType(Builder $query, string $type)
     {
-        if($type == 'ppd')
+        if ($type == 'ppd') {
             return $query->where('ppd_support', 1);
-        else
+        } else {
             return $query->where(function (Builder $query) use ($type) {
                 $query->whereJsonContains('raw_languages_supported', $type)
                     ->orWhereJsonContains('raw_languages_supported', '*');
             });
+        }
     }
 }

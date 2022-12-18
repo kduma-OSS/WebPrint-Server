@@ -15,7 +15,7 @@ class PrintJobSeeder extends Seeder
      */
     public function run()
     {
-        $content = "To jest test!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
@@ -31,8 +31,7 @@ class PrintJobSeeder extends Seeder
         $job->size = strlen($content);
         $printer->Jobs()->save($job);
 
-
-        $content = "To jest test CUPS PPD!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test CUPS PPD!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
@@ -48,8 +47,7 @@ class PrintJobSeeder extends Seeder
         $job->size = strlen($content);
         $printer->Jobs()->save($job);
 
-
-        $content = "To jest test Epson TM-T88V!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test Epson TM-T88V!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
@@ -72,6 +70,5 @@ class PrintJobSeeder extends Seeder
         $printer->Jobs()->save($job);
 
         PrintJob::query()->update(['printer_id' => 1]);
-
     }
 }

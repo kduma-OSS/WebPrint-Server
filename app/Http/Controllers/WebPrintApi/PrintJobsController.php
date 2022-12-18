@@ -29,21 +29,20 @@ class PrintJobsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'promise' => ['required', Rule::exists('print_job_promises', 'ulid')
-                ->where('client_application_id', $request->user()->id)]
+                ->where('client_application_id', $request->user()->id), ],
         ]);
 
         $promise = PrintJobPromise::where('ulid', $validated['promise'])->firstOrFail();
 
         abort_unless($promise->isPossibleToPrint(), 412);
-        if($promise->status != PrintJobPromiseStatusEnum::Ready) {
+        if ($promise->status != PrintJobPromiseStatusEnum::Ready) {
             $promise->status = PrintJobPromiseStatusEnum::Ready;
             $promise->save();
         }
@@ -56,8 +55,7 @@ class PrintJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param PrintJob $job
-     *
+     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function show(PrintJob $job)
@@ -68,9 +66,8 @@ class PrintJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
-     * @param PrintJob $job
-     *
+     * @param  Request  $request
+     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJob $job)
@@ -81,8 +78,7 @@ class PrintJobsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintJob $job
-     *
+     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function destroy(PrintJob $job)

@@ -54,15 +54,15 @@ class PrintJobPromise extends Model
     public function isPossibleToPrint()
     {
         return in_array($this->status, [
-            PrintJobPromiseStatusEnum::Ready, PrintJobPromiseStatusEnum::New
-            ]) && ($this->content || $this->content_file) && $this->printer_id;
+            PrintJobPromiseStatusEnum::Ready, PrintJobPromiseStatusEnum::New,
+        ]) && ($this->content || $this->content_file) && $this->printer_id;
     }
 
     public function sendForPrinting(): ?PrintJob
     {
-        if(!$this->isReadyToPrint())
+        if (! $this->isReadyToPrint()) {
             return null;
-
+        }
 
         $job = new PrintJob;
         $job->client_application_id = $this->client_application_id;
