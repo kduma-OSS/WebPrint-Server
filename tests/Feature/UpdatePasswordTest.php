@@ -12,6 +12,7 @@ use Tests\TestCase;
 class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
+    use EnableFortifyFeatures;
 
     public function test_password_can_be_updated()
     {

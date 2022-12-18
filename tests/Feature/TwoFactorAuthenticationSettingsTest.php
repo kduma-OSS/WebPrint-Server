@@ -12,6 +12,7 @@ use Tests\TestCase;
 class TwoFactorAuthenticationSettingsTest extends TestCase
 {
     use RefreshDatabase;
+    use EnableFortifyFeatures;
 
     public function test_two_factor_authentication_can_be_enabled()
     {
