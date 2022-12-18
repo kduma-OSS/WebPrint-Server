@@ -16,12 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
 Route::middleware(['signed'])
     ->prefix('/api/web-print')
     ->name('api.web-print.')
@@ -33,5 +27,3 @@ Route::middleware(['signed'])
         );
 
     }); // Route::middleware(['signed'])->prefix('/api/web-print')->name('api.web-print.')
-
-require __DIR__.'/auth.php';
