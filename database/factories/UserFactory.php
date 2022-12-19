@@ -66,4 +66,26 @@ class UserFactory extends Factory
             'ownedTeams'
         );
     }
+
+    /**
+     * Indicate that the user should have a non-personal team.
+     *
+     * @return $this
+     */
+    public function withNonPersonalTeam()
+    {
+        if (! Features::hasTeamFeatures()) {
+            return $this->state([]);
+        }
+
+        return $this->has(
+            Team::factory()
+                ->state(function (array $attributes, User $user) {
+                    return ['name' => 'Test Team', 'user_id' => $user->id, 'personal_team' => false];
+                }),
+            'ownedTeams'
+        )->afterCreating(function (User $user) {
+            $user->switchTeam($user->ownedTeams->first());
+        });
+    }
 }
