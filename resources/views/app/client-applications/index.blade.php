@@ -2,6 +2,13 @@
     <x-slot name="header">
         <x-layout.header>
             {{ __('Client Apps') }}
+            <x-slot:buttons>
+                @can('create', \App\Models\ClientApplication::class)
+                    <x-layout.header.button href="{{ route('web-print.apps.create') }}">
+                        {{ __('New') }}
+                    </x-layout.header.button>
+                @endcan
+            </x-slot>
         </x-layout.header>
     </x-slot>
 
