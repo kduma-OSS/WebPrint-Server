@@ -42,11 +42,11 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: vendor/bin/phpunit --log-junit test/results/test-results.xml
+        run: vendor/bin/phpunit --log-junit tests/results/test-results.xml
 
       - name: Test Summary
         uses: test-summary/action@v2
         with:
-          paths: test/results/test-results.xml
+          paths: tests/results/*.xml
           output: ${{ env.GITHUB_STEP_SUMMARY }}
         if:   always()
