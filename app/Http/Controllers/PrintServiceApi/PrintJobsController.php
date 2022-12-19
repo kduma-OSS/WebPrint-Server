@@ -60,7 +60,7 @@ class PrintJobsController extends Controller
             return response(status: 410);
         }
 
-        if (is_null($job->content) || $job->size > 1024 * 1024) {
+        if (is_null($job->content) || $job->size > 1024) {
             $content = [
                 'content_type' => 'file',
                 'content' => URL::temporarySignedRoute('api.print-service.jobs.content.index', now()->addHour(), $job),

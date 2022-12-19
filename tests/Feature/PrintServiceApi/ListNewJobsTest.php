@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\PrintServiceApi;
 
+use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\Printer;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
@@ -91,6 +92,41 @@ class ListNewJobsTest extends TestCase
             ->assertOk()
             ->assertExactJson(
                 $my_jobs->pluck('ulid')->toArray()
+            )->assertJsonMissing(
+                $others_jobs->pluck('ulid')->toArray()
+            );
+    }
+
+    public function test_cannot_lists_non_new_jobs()
+    {
+        Sanctum::actingAs(
+            $server = PrintServer::factory()->create(),
+            guard: 'print_service_api'
+        );
+
+        $printer = Printer::factory()
+            ->for($server, 'Server')
+            ->create();
+
+        $new_jobs = PrintJob::factory()
+            ->recycle($printer)
+            ->count(3)
+            ->create();
+
+        $others_jobs = PrintJob::factory()
+            ->sequence(
+                ['status' => PrintJobStatusEnum::Printing],
+                ['status' => PrintJobStatusEnum::Finished],
+                ['status' => PrintJobStatusEnum::Failed],
+            )
+            ->recycle($printer)
+            ->count(3)
+            ->create();
+
+        $this->getJson('/api/print-service/jobs')
+            ->assertOk()
+            ->assertExactJson(
+                $new_jobs->pluck('ulid')->toArray()
             )->assertJsonMissing(
                 $others_jobs->pluck('ulid')->toArray()
             );
