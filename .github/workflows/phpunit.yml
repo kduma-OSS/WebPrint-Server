@@ -42,12 +42,4 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: vendor/bin/phpunit --log-junit tests/results/test-results.xml
-
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          name: PHPUnit Tests
-          path: tests/results/*.xml
-          reporter: java-junit
+        run: composer test
