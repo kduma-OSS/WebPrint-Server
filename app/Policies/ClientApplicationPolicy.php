@@ -37,7 +37,6 @@ class ClientApplicationPolicy
      */
     public function view(mixed $user, ClientApplication $client)
     {
-
     }
 
     /**
@@ -50,7 +49,6 @@ class ClientApplicationPolicy
      */
     public function viewField(mixed $user, ClientApplication $client, string $field)
     {
-
     }
 
     /**
@@ -61,7 +59,6 @@ class ClientApplicationPolicy
      */
     public function create(mixed $user)
     {
-
     }
 
     /**
@@ -73,7 +70,6 @@ class ClientApplicationPolicy
      */
     public function update(mixed $user, ClientApplication $client)
     {
-
     }
 
     /**

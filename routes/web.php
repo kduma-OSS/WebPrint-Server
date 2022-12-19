@@ -38,4 +38,14 @@ Route::middleware([
 
     Route::get('/app/settings', \App\Http\Controllers\App\SettingsController::class)
         ->name('app.settings');
+
+    Route::prefix('web-print')
+        ->name('web-print.')
+        ->group(function () {
+            Route::resource('servers', \App\Http\Controllers\App\PrintServersController::class);
+            Route::resource('servers.printers', \App\Http\Controllers\App\PrintServerPrintersController::class);
+            Route::resource('promises', \App\Http\Controllers\App\PrintJobPromisesController::class);
+            Route::resource('jobs', \App\Http\Controllers\App\PrintJobsController::class);
+            Route::resource('apps', \App\Http\Controllers\App\ClientApplicationsController::class);
+        });
 });
