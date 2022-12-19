@@ -25,7 +25,9 @@ class PrintServerPolicy
     public function viewAny(mixed $user)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team;
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'server:read')
+                && $user->tokenCan('server:read');
         }
     }
 
@@ -40,6 +42,12 @@ class PrintServerPolicy
     {
         if ($user instanceof ClientApplication) {
             return $user->Printers->pluck('print_server_id')->contains($printServer->id);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:read')
+                && $user->tokenCan('server:read');
         }
     }
 
@@ -59,6 +67,10 @@ class PrintServerPolicy
             return $this->view($user, $printServer)
                 && in_array($field, []);
         }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
@@ -69,7 +81,11 @@ class PrintServerPolicy
      */
     public function create(mixed $user)
     {
-        //
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'server:create')
+                && $user->tokenCan('server:create');
+        }
     }
 
     /**
@@ -81,7 +97,11 @@ class PrintServerPolicy
      */
     public function update(mixed $user, PrintServer $printServer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:update')
+                && $user->tokenCan('server:update');
+        }
     }
 
     /**
@@ -93,7 +113,11 @@ class PrintServerPolicy
      */
     public function delete(mixed $user, PrintServer $printServer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:delete')
+                && $user->tokenCan('server:delete');
+        }
     }
 
     /**

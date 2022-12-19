@@ -30,7 +30,9 @@ class PrintJobPromisesPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team;
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'promise:read')
+                && $user->tokenCan('promise:read');
         }
     }
 
@@ -45,6 +47,12 @@ class PrintJobPromisesPolicy
     {
         if ($user instanceof ClientApplication) {
             return $printJobPromise->ClientApplication?->is($user);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJobPromise->ClientApplication->Team)
+                && $user->hasTeamPermission($printJobPromise->ClientApplication->Team, 'promise:read')
+                && $user->tokenCan('promise:read');
         }
     }
 
@@ -64,6 +72,10 @@ class PrintJobPromisesPolicy
             return $this->view($user, $printJobPromise)
                 && in_array($field, ['timestamps']);
         }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
@@ -76,6 +88,12 @@ class PrintJobPromisesPolicy
     {
         if ($user instanceof ClientApplication) {
             return true;
+        }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'promise:read')
+                && $user->tokenCan('promise:read');
         }
     }
 
@@ -95,6 +113,17 @@ class PrintJobPromisesPolicy
                 PrintJobPromiseStatusEnum::Ready,
             ]);
         }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJobPromise->ClientApplication->Team)
+                && $user->hasTeamPermission($printJobPromise->ClientApplication->Team, 'promise:update')
+                && $user->tokenCan('promise:update')
+                && in_array($printJobPromise->status, [
+                    PrintJobPromiseStatusEnum::Draft,
+                    PrintJobPromiseStatusEnum::New,
+                    PrintJobPromiseStatusEnum::Ready,
+                ]);
+        }
     }
 
     /**
@@ -112,6 +141,17 @@ class PrintJobPromisesPolicy
                 PrintJobPromiseStatusEnum::New,
                 PrintJobPromiseStatusEnum::Ready,
             ]);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJobPromise->ClientApplication->Team)
+                && $user->hasTeamPermission($printJobPromise->ClientApplication->Team, 'promise:delete')
+                && $user->tokenCan('promise:delete')
+                && in_array($printJobPromise->status, [
+                    PrintJobPromiseStatusEnum::Draft,
+                    PrintJobPromiseStatusEnum::New,
+                    PrintJobPromiseStatusEnum::Ready,
+                ]);
         }
     }
 

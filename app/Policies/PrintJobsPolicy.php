@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\ClientApplication;
+use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
 use App\Models\User;
@@ -30,7 +31,9 @@ class PrintJobsPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team;
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'job:read')
+                && $user->tokenCan('job:read');
         }
 
         if ($user instanceof ClientApplication) {
@@ -54,6 +57,12 @@ class PrintJobsPolicy
         if ($user instanceof ClientApplication) {
             return $printJob->ClientApplication?->is($user);
         }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:read')
+                && $user->tokenCan('job:read');
+        }
     }
 
     /**
@@ -72,6 +81,10 @@ class PrintJobsPolicy
             return $this->view($user, $printJob)
                 && in_array($field, ['timestamps']);
         }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
@@ -84,6 +97,12 @@ class PrintJobsPolicy
     {
         if ($user instanceof ClientApplication) {
             return true;
+        }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'job:read')
+                && $user->tokenCan('job:read');
         }
     }
 
@@ -99,6 +118,15 @@ class PrintJobsPolicy
         if ($user instanceof PrintServer) {
             return $printJob->Printer->Server->is($user);
         }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:update')
+                && $user->tokenCan('job:update')
+                && in_array($printJob->status, [
+                    PrintJobStatusEnum::New,
+                ]);
+        }
     }
 
     /**
@@ -110,7 +138,14 @@ class PrintJobsPolicy
      */
     public function delete(mixed $user, PrintJob $printJob)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:delete')
+                && $user->tokenCan('job:delete')
+                && in_array($printJob->status, [
+                    PrintJobStatusEnum::New,
+                ]);
+        }
     }
 
     /**

@@ -29,7 +29,9 @@ class PrintersPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team;
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'printers:read')
+                && $user->tokenCan('printers:read');
         }
     }
 
@@ -44,6 +46,12 @@ class PrintersPolicy
     {
         if ($user instanceof ClientApplication) {
             return $user->Printers->contains($printer);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printer->Server->Team)
+                && $user->hasTeamPermission($printer->Server->Team, 'printers:read')
+                && $user->tokenCan('printers:read');
         }
     }
 
@@ -63,6 +71,10 @@ class PrintersPolicy
             return $this->view($user, $printer)
                 && in_array($field, ['server', 'raw_languages_supported', 'ppd', 'location']);
         }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
@@ -73,7 +85,11 @@ class PrintersPolicy
      */
     public function create(mixed $user)
     {
-        //
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'printers:read')
+                && $user->tokenCan('printers:read');
+        }
     }
 
     /**
@@ -85,7 +101,11 @@ class PrintersPolicy
      */
     public function update(mixed $user, Printer $printer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printer->Server->Team)
+                && $user->hasTeamPermission($printer->Server->Team, 'printers:update')
+                && $user->tokenCan('printers:update');
+        }
     }
 
     /**
@@ -97,7 +117,11 @@ class PrintersPolicy
      */
     public function delete(mixed $user, Printer $printer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printer->Server->Team)
+                && $user->hasTeamPermission($printer->Server->Team, 'printers:delete')
+                && $user->tokenCan('printers:delete');
+        }
     }
 
     /**

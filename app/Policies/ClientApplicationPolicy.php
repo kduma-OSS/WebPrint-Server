@@ -24,7 +24,9 @@ class ClientApplicationPolicy
     public function viewAny(mixed $user)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team;
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'server:read')
+                && $user->tokenCan('server:read');
         }
     }
 
@@ -37,6 +39,11 @@ class ClientApplicationPolicy
      */
     public function view(mixed $user, ClientApplication $client)
     {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($client->Team)
+                && $user->hasTeamPermission($client->Team, 'client:read')
+                && $user->tokenCan('client:read');
+        }
     }
 
     /**
@@ -49,6 +56,9 @@ class ClientApplicationPolicy
      */
     public function viewField(mixed $user, ClientApplication $client, string $field)
     {
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
@@ -59,6 +69,11 @@ class ClientApplicationPolicy
      */
     public function create(mixed $user)
     {
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team
+                && $user->hasTeamPermission($user->currentTeam, 'client:create')
+                && $user->tokenCan('client:create');
+        }
     }
 
     /**
@@ -70,6 +85,11 @@ class ClientApplicationPolicy
      */
     public function update(mixed $user, ClientApplication $client)
     {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($client->Team)
+                && $user->hasTeamPermission($client->Team, 'client:update')
+                && $user->tokenCan('client:update');
+        }
     }
 
     /**
@@ -81,7 +101,11 @@ class ClientApplicationPolicy
      */
     public function delete(mixed $user, ClientApplication $client)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($client->Team)
+                && $user->hasTeamPermission($client->Team, 'client:delete')
+                && $user->tokenCan('client:delete');
+        }
     }
 
     /**
