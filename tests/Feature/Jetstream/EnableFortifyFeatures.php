@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Jetstream;
 
 use App\Settings\FortifySettings;
 use Laravel\Fortify\Features;
