@@ -19,6 +19,10 @@ class PrintServer extends Model implements AuthorizableContract
     use Authorizable;
     use HasUlidField;
 
+    protected $casts = [
+        'last_active_at' => 'datetime',
+    ];
+
     public function Printers(): HasMany
     {
         return $this->hasMany(Printer::class, 'print_server_id');
