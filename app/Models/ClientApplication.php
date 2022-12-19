@@ -19,6 +19,10 @@ class ClientApplication extends Model implements AuthorizableContract
     use Authorizable;
     use HasUlidField;
 
+    protected $casts = [
+        'last_active_at' => 'datetime',
+    ];
+
     public function Printers(): BelongsToMany
     {
         return $this->belongsToMany(Printer::class, 'pivot_client_application_printer');

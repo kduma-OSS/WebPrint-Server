@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
@@ -14,6 +15,18 @@ class PrintJobsController extends Controller
     public function __construct()
     {
         $this->authorizeResource(PrintJob::class, 'job');
+
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
     }
 
     /**

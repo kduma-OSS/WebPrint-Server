@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClientApplication;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,21 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 
 class PrintJobPromisesContentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
+    }
+
     /**
      * Display the specified resource.
      *

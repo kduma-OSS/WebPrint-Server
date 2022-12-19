@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrintDialogResource;
+use App\Models\ClientApplication;
 use App\Models\PrintDialog;
 use App\Models\PrintJobPromise;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -12,6 +13,21 @@ use Illuminate\Http\Response;
 
 class PrintDialogsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *

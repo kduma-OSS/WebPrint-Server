@@ -14,6 +14,18 @@ class PrintersController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Printer::class, 'printer');
+
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
     }
 
     /**
