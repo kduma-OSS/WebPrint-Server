@@ -139,7 +139,7 @@
                         </table>
                     </div>
                     <div class="mt-8">
-                        {{ $jobs->onEachSide(1)->links() }}
+                        {{ $jobs->onEachSide(1)->withQueryString()->links() }}
                     </div>
                 </div>
             @else

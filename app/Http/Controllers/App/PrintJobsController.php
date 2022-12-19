@@ -20,6 +20,9 @@ class PrintJobsController extends Controller
             ->Printers()
             ->pluck('printers.id');
 
+        $app = null;
+        $printer = null;
+
         $jobs = PrintJob::whereIn('printer_id', $printers)
             ->with([
                 'Printer',
@@ -28,6 +31,12 @@ class PrintJobsController extends Controller
             ])
             ->orderBy('created_at', 'desc')
             ->orderBy('id', 'desc')
+            ->when($request->has('app') && ($app = $request->user()->currentTeam->ClientApplications()->where('ulid', $request->has('app'))->first()), function ($query) use ($app) {
+                $query->where('client_application_id', $app->id);
+            })
+            ->when($request->has('printer') && ($printer = $request->user()->currentTeam->Printers()->where('printers.ulid', $request->has('printer'))->first()), function ($query) use ($printer) {
+                $query->where('printer_id', $printer->id);
+            })
             ->paginate();
 
         return view('app.print-jobs.index', [
