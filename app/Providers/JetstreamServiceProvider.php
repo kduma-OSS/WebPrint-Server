@@ -53,16 +53,16 @@ class JetstreamServiceProvider extends ServiceProvider
             'server:create', 'server:read', 'server:update', 'server:delete',
             'printer:create', 'printer:read', 'printer:update', 'printer:delete',
             'client:create', 'client:read', 'client:update', 'client:delete',
-            'job:create', 'job:read', 'job:update', 'job:delete',
-            'promise:create', 'promise:read', 'promise:update', 'promise:delete',
+            /*'job:create',*/ 'job:read', /*'job:update', 'job:delete',*/
+            /*'promise:create',*/ 'promise:read', /*'promise:update', 'promise:delete',*/
         ])->description('Administrator users can perform any action.');
 
         Jetstream::role('editor', 'Editor', [
             'server:create', 'server:read', 'server:update',
             'printer:create', 'printer:read', 'printer:update',
             'client:create', 'client:read', 'client:update',
-            'job:create', 'job:read', 'job:update',
-            'promise:create', 'promise:read', 'promise:update',
+            /*'job:create',*/ 'job:read', /*'job:update',*/
+            /*'promise:create',*/ 'promise:read', /*'promise:update',*/
         ])->description('Editor users have the ability to read, create, and update.');
 
         Jetstream::role('viewer', 'Viewer', [
