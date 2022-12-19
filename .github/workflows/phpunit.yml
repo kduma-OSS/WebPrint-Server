@@ -48,5 +48,5 @@ jobs:
         uses: test-summary/action@v2
         with:
           paths: test/results/test-results.xml
-          output: $GITHUB_STEP_SUMMARY
+          output: ${{ env.GITHUB_STEP_SUMMARY }}
         if:   always()
