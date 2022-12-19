@@ -22,7 +22,7 @@ class PrintJobSeeder extends Seeder
             'name' => 'OKI-ML3320 (RAW)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test Print';
         $job->ppd = false;
         $job->content = $content;
@@ -38,7 +38,7 @@ class PrintJobSeeder extends Seeder
             'name' => 'OKI-ML3320 (CUPS)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test PPD Print';
         $job->ppd = true;
         $job->content = $content;
@@ -54,7 +54,7 @@ class PrintJobSeeder extends Seeder
             'name' => 'Epson TM-T88V (CUPS)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test PPD 2 Print';
         $job->ppd = true;
         $job->ppd_options = [

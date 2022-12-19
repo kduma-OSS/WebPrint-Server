@@ -82,7 +82,7 @@ class PrintJobPromisesController extends Controller
             'headless' => ['nullable', 'boolean'],
         ]);
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client_application->id;
         $promise->status = $validated['headless'] ?? false ? PrintJobPromiseStatusEnum::Ready : PrintJobPromiseStatusEnum::New;
         $promise->name = $validated['name'];

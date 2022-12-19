@@ -17,7 +17,8 @@ class RemoveTeamMemberTest extends TestCase
         $this->actingAs($user = User::factory()->withNonPersonalTeam()->create());
 
         $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
+            $otherUser = User::factory()->create(),
+            ['role' => 'admin']
         );
 
         $component = Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
@@ -32,7 +33,8 @@ class RemoveTeamMemberTest extends TestCase
         $user = User::factory()->withNonPersonalTeam()->create();
 
         $user->currentTeam->users()->attach(
-            $otherUser = User::factory()->create(), ['role' => 'admin']
+            $otherUser = User::factory()->create(),
+            ['role' => 'admin']
         );
 
         $this->actingAs($otherUser);

@@ -66,7 +66,7 @@ class PrintJobPromise extends Model
             return null;
         }
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->client_application_id = $this->client_application_id;
         $job->printer_id = $this->printer_id;
         $job->name = $this->name;
