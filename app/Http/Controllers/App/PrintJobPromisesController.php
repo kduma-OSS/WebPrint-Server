@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
 
@@ -20,7 +19,6 @@ class PrintJobPromisesController extends Controller
             ->currentTeam
             ->ClientApplications()
             ->pluck('id');
-
 
         $promises = PrintJobPromise::whereIn('client_application_id', $clients)
             ->with([

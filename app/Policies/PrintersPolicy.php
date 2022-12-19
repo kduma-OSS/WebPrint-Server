@@ -102,7 +102,7 @@ class PrintersPolicy
             ) {
                 return false;
             }
-            
+
             return ! $user->currentTeam->personal_team
                 && $user->hasTeamPermission($user->currentTeam, 'printers:read')
                 && $user->tokenCan('printers:read');
