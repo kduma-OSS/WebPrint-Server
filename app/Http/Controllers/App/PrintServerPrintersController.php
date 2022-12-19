@@ -17,6 +17,16 @@ class PrintServerPrintersController extends Controller
     public function index(PrintServer $server)
     {
         $this->authorize('viewAny', [Printer::class, $server]);
+
+        $printers = $server->printers()
+            ->orderBy('name')
+            ->withCount('jobs')
+            ->get();
+
+        return view('app.print-servers.printers.index', [
+            'server' => $server,
+            'printers' => $printers,
+        ]);
     }
 
     public function create(PrintServer $server)
