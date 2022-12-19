@@ -50,7 +50,11 @@ class PrintJobPromisesController extends Controller
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
 
-        $client_printers_ulids = $client_application->Printers()->pluck('ulid');
+        $client_printers_ulids = $client_application
+            ->Printers()
+            ->where('enabled', true)
+            ->pluck('ulid');
+
         $validated = $request->validate([
             'name' => ['required', 'string'],
             'printer' => ['nullable', Rule::in($client_printers_ulids)],
@@ -90,7 +94,11 @@ class PrintJobPromisesController extends Controller
         if ($validated['available_printers'] ?? null) {
             $ulids = $validated['available_printers'];
         } else {
-            $ulids = $client_application->Printers()->forType($promise->type)->pluck('ulid');
+            $ulids = $client_application
+                ->Printers()
+                ->where('enabled', true)
+                ->forType($promise->type)
+                ->pluck('ulid');
         }
 
         $selected_printer = $client_application->Printers()->where('ulid', $validated['printer'] ?? null)->first();

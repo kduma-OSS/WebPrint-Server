@@ -30,6 +30,7 @@ class PrintersController extends Controller
         $printers = $client_application->Printers()
             ->orderBy('name')
             ->with('Server')
+            ->where('enabled', true)
             ->when($request->get('type'), function (Builder $query, $type) {
                 $query->forType($type);
             })

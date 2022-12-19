@@ -20,6 +20,7 @@ class Printer extends Model
         'ppd_options_layout' => 'json',
         'raw_languages_supported' => 'json',
         'ppd_support' => 'boolean',
+        'enabled' => 'boolean',
     ];
 
     public function Server(): BelongsTo
