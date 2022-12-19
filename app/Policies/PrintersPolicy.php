@@ -27,6 +27,10 @@ class PrintersPolicy
         if ($user instanceof ClientApplication) {
             return true;
         }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**

@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\ClientApplication;
 use App\Models\Printer;
 use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
 use App\Models\Team;
+use App\Policies\ClientApplicationPolicy;
 use App\Policies\FortifySettingsPolicy;
 use App\Policies\GeneralSettingsPolicy;
 use App\Policies\PrintersPolicy;
@@ -30,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         Printer::class => PrintersPolicy::class,
         PrintServer::class => PrintServerPolicy::class,
         PrintJobPromise::class => PrintJobPromisesPolicy::class,
+        ClientApplication::class => ClientApplicationPolicy::class,
         Team::class => TeamPolicy::class,
         GeneralSettings::class => GeneralSettingsPolicy::class,
         FortifySettings::class => FortifySettingsPolicy::class,

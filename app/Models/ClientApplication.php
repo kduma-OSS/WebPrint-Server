@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -21,6 +22,11 @@ class ClientApplication extends Model implements AuthorizableContract
     public function Printers(): BelongsToMany
     {
         return $this->belongsToMany(Printer::class, 'pivot_client_application_printer');
+    }
+
+    public function Team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function JobPromises(): HasMany

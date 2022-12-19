@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ClientApplication;
 use App\Models\PrintServer;
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,7 @@ class ClientApplicationSeeder extends Seeder
     public function run()
     {
         $client = new ClientApplication;
+        $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test Debug Client';
         $client->save();
         $token = $client->tokens()->create([
@@ -31,6 +33,7 @@ class ClientApplicationSeeder extends Seeder
         $client->Printers()->attach($print_server->Printers);
 
         $client = new ClientApplication;
+        $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test Local Client';
         $client->save();
         $token = $client->createToken(sprintf('%s Access Token', $client->name));
@@ -41,6 +44,7 @@ class ClientApplicationSeeder extends Seeder
         $client->Printers()->attach($print_server->Printers);
 
         $client = new ClientApplication;
+        $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test LAN Client';
         $client->save();
         $token = $client->createToken(sprintf('%s Access Token', $client->name));

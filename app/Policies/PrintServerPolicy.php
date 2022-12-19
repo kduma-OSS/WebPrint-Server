@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\ClientApplication;
 use App\Models\PrintServer;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PrintServerPolicy
@@ -23,7 +24,9 @@ class PrintServerPolicy
      */
     public function viewAny(mixed $user)
     {
-        //
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**

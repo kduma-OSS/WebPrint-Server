@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('print_servers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->constrained();
             $table->ulid('ulid')->unique();
 
             $table->string('name');

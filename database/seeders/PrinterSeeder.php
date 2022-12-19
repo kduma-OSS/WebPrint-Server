@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Printer;
 use App\Models\PrintServer;
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,7 @@ class PrinterSeeder extends Seeder
     public function run()
     {
         $server = new PrintServer;
+        $server->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $server->name = 'Debug Print Server';
         $server->save();
         $token = $server->tokens()->create([
@@ -28,6 +30,7 @@ class PrinterSeeder extends Seeder
         $this->AddDebugPrinters($server);
 
         $server = new PrintServer;
+        $server->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $server->name = 'Local Print Server';
         $server->save();
         $token = $server->createToken(sprintf('%s Access Token', $server->name));
@@ -35,6 +38,7 @@ class PrinterSeeder extends Seeder
         $this->AddLocalPrinters($server);
 
         $server = new PrintServer;
+        $server->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $server->name = 'LAN Print Server';
         $server->save();
         $token = $server->createToken(sprintf('%s Access Token', $server->name));

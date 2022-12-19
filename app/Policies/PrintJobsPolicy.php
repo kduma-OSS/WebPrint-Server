@@ -30,7 +30,7 @@ class PrintJobsPolicy
         }
 
         if ($user instanceof User) {
-            return true;
+            return ! $user->currentTeam->personal_team;
         }
 
         if ($user instanceof ClientApplication) {

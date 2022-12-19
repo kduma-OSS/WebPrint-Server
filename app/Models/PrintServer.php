@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -21,6 +22,11 @@ class PrintServer extends Model implements AuthorizableContract
     public function Printers(): HasMany
     {
         return $this->hasMany(Printer::class, 'print_server_id');
+    }
+
+    public function Team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function Jobs(): HasManyThrough
