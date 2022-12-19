@@ -25,6 +25,8 @@ class PrintJobsController extends Controller
      */
     public function index(Request $request)
     {
+        $long_polling = $request->boolean('long_poll');
+
         /** @var PrintServer $print_server */
         $print_server = $request->user();
 
@@ -41,7 +43,7 @@ class PrintJobsController extends Controller
             $jobs_list = $print_server->Jobs()->where('status', 'new')
                 ->oldest('print_jobs.created_at')
                 ->pluck('print_jobs.ulid');
-        } while (! count($jobs_list) && $attempts <= 10);
+        } while ($long_polling && ! count($jobs_list) && $attempts <= 10);
 
         return $jobs_list;
     }
