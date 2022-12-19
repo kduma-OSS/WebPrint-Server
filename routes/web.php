@@ -42,10 +42,20 @@ Route::middleware([
     Route::prefix('web-print')
         ->name('web-print.')
         ->group(function () {
-            Route::resource('servers', \App\Http\Controllers\App\PrintServersController::class);
-            Route::resource('servers.printers', \App\Http\Controllers\App\PrintServerPrintersController::class)->shallow();
-            Route::resource('promises', \App\Http\Controllers\App\PrintJobPromisesController::class);
-            Route::resource('jobs', \App\Http\Controllers\App\PrintJobsController::class);
-            Route::resource('apps', \App\Http\Controllers\App\ClientApplicationsController::class);
+            Route::resource('servers', \App\Http\Controllers\App\PrintServersController::class)
+                ->only(['index', 'store', 'show']); //create, update, destroy, edit
+
+            Route::resource('servers.printers', \App\Http\Controllers\App\PrintServerPrintersController::class)
+                ->shallow()
+                ->only(['index', 'store', 'show']); //create, update, destroy, edit
+
+            Route::resource('promises', \App\Http\Controllers\App\PrintJobPromisesController::class)
+                ->only(['index']); //create, update, destroy, edit, store, show
+
+            Route::resource('jobs', \App\Http\Controllers\App\PrintJobsController::class)
+                ->only(['index']); //create, update, destroy, edit, store, show
+
+            Route::resource('apps', \App\Http\Controllers\App\ClientApplicationsController::class)
+                ->only(['index', 'store', 'show']); //create, update, destroy, edit
         });
 });
