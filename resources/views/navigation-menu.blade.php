@@ -17,25 +17,25 @@
                     </x-jet-nav-link>
 
                     @can('viewAny', \App\Models\PrintJob::class)
-                        <x-jet-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.index')">
+                        <x-jet-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
                             {{ __('Print Jobs') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintJobPromise::class)
-                        <x-jet-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.index')">
+                        <x-jet-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
                             {{ __('Print Promises') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintServer::class)
-                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.index')">
+                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
                             {{ __('Print Servers & Printers') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\ClientApplication::class)
-                        <x-jet-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.index')">
+                        <x-jet-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
                             {{ __('Client Apps') }}
                         </x-jet-nav-link>
                     @endcan
@@ -179,25 +179,25 @@
             </x-jet-responsive-nav-link>
 
             @can('viewAny', \App\Models\PrintJob::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.index')">
+                <x-jet-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
                     {{ __('Print Jobs') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintJobPromise::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.index')">
+                <x-jet-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
                     {{ __('Print Promises') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintServer::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.index')">
+                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
                     {{ __('Print Servers & Printers') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\ClientApplication::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.index')">
+                <x-jet-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
                     {{ __('Client Apps') }}
                 </x-jet-responsive-nav-link>
             @endcan
