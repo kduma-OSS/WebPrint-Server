@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\ClientApplication;
 use App\Models\Printer;
+use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,15 +21,23 @@ class PrintersPolicy
      * Determine whether the user can view any printers.
      *
      * @param  mixed  $user
+     * @param  PrintServer|null  $server
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, PrintServer $server = null)
     {
         if ($user instanceof ClientApplication) {
             return true;
         }
 
         if ($user instanceof User) {
+            if (
+                $server !== null
+                && ! $user->belongsToTeam($server->Team)
+            ) {
+                return false;
+            }
+
             return ! $user->currentTeam->personal_team
                 && $user->hasTeamPermission($user->currentTeam, 'printers:read')
                 && $user->tokenCan('printers:read');
@@ -81,11 +90,20 @@ class PrintersPolicy
      * Determine whether the user can create printers.
      *
      * @param  mixed  $user
+     * @param  PrintServer|null  $server
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, PrintServer $server = null)
     {
         if ($user instanceof User) {
+            if (
+                $server !== null
+                && ! $user->belongsToTeam($server->Team)
+            ) {
+                return false;
+            }
+            dump($server);
+
             return ! $user->currentTeam->personal_team
                 && $user->hasTeamPermission($user->currentTeam, 'printers:read')
                 && $user->tokenCan('printers:read');

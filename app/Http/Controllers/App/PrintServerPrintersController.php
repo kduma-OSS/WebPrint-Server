@@ -16,12 +16,12 @@ class PrintServerPrintersController extends Controller
 
     public function index(PrintServer $server)
     {
-        //
+        $this->authorize('viewAny', [Printer::class, $server]);
     }
 
     public function create(PrintServer $server)
     {
-        //
+        $this->authorize('create', [Printer::class, $server]);
     }
 
     public function store(Request $request, PrintServer $server)
