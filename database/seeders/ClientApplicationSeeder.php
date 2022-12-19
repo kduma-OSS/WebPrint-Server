@@ -17,7 +17,7 @@ class ClientApplicationSeeder extends Seeder
      */
     public function run()
     {
-        $client = new ClientApplication;
+        $client = new ClientApplication();
         $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test Debug Client';
         $client->save();
@@ -32,7 +32,7 @@ class ClientApplicationSeeder extends Seeder
         ]);
         $client->Printers()->attach($print_server->Printers);
 
-        $client = new ClientApplication;
+        $client = new ClientApplication();
         $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test Local Client';
         $client->save();
@@ -43,7 +43,7 @@ class ClientApplicationSeeder extends Seeder
         ]);
         $client->Printers()->attach($print_server->Printers);
 
-        $client = new ClientApplication;
+        $client = new ClientApplication();
         $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;
         $client->name = 'Test LAN Client';
         $client->save();

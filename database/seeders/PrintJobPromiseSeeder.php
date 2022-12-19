@@ -18,7 +18,7 @@ class PrintJobPromiseSeeder extends Seeder
     {
         $client = ClientApplication::where('name', 'Test Debug Client')->firstOrFail();
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
         $promise->status = PrintJobPromiseStatusEnum::New;
@@ -31,7 +31,7 @@ class PrintJobPromiseSeeder extends Seeder
 
         $client = ClientApplication::where('name', 'Test Local Client')->firstOrFail();
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
         $promise->status = PrintJobPromiseStatusEnum::New;
