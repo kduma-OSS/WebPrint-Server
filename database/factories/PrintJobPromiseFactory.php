@@ -28,4 +28,28 @@ class PrintJobPromiseFactory extends Factory
             'printer_id' => Printer::factory(),
         ];
     }
+
+    public function withoutContent()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'file_name' => null,
+                'content' => null,
+                'content_file' => false,
+                'size' => null,
+            ];
+        });
+    }
+
+    public function withContent($content = null)
+    {
+        return $this->state(function (array $attributes) use ($content) {
+            return [
+                'content' => $content ?? $this->faker->words(asText: true),
+                'content_file' => false,
+                'file_name' => sprintf('%s.%s', $this->faker->word(), $this->faker->fileExtension()),
+                'size' => $content ? strlen($content) : $this->faker->randomNumber(),
+            ];
+        });
+    }
 }
