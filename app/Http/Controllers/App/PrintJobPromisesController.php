@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,28 @@ class PrintJobPromisesController extends Controller
         $this->authorizeResource(PrintJobPromise::class, 'promise');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clients = $request->user()
+            ->currentTeam
+            ->ClientApplications()
+            ->pluck('id');
+
+
+        $promises = PrintJobPromise::whereIn('client_application_id', $clients)
+            ->with([
+                'Printer',
+                'PrintJob',
+                'ClientApplication',
+                'PrintDialog',
+            ])
+            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
+            ->paginate();
+
+        return view('app.print-job-promises.index', [
+            'promises' => $promises,
+        ]);
     }
 
     public function create()

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
@@ -50,6 +51,11 @@ class Team extends JetstreamTeam
     public function PrintServers(): HasMany
     {
         return $this->hasMany(PrintServer::class, 'team_id');
+    }
+
+    public function Printers(): HasManyThrough
+    {
+        return $this->hasManyThrough(Printer::class, PrintServer::class, 'team_id', 'print_server_id');
     }
 
     public function ClientApplications(): HasMany

@@ -24,7 +24,7 @@
                                     </h3>
                                     @if($printer->enabled)
                                         <span class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 truncate">
-                                            Enabled for {{ strtoupper(implode(', ', array_merge($printer->ppd_support ? ['ppd'] : [],$printer->raw_languages_supported))) }}
+                                            {{ strtoupper(implode(', ', array_merge($printer->ppd_support ? ['ppd'] : [],$printer->raw_languages_supported))) }}
                                         </span>
                                     @elseif($printer->last_active_at->diffInMinutes() > 3)
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">

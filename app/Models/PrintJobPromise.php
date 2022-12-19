@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Enums\PrintJobPromiseStatusEnum;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class PrintJobPromise extends Model
 {
     use HasUlidField;
+    use HasFactory;
 
     protected $casts = [
         'ppd_options' => 'json',

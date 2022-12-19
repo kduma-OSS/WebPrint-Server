@@ -13,8 +13,26 @@ class PrintJobsController extends Controller
         $this->authorizeResource(PrintJob::class, 'job');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $printers = $request->user()
+            ->currentTeam
+            ->Printers()
+            ->pluck('printers.id');
+
+        $jobs = PrintJob::whereIn('printer_id', $printers)
+            ->with([
+                'Printer',
+                'JobPromise',
+                'ClientApplication',
+            ])
+            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
+            ->paginate();
+
+        return view('app.print-jobs.index', [
+            'jobs' => $jobs,
+        ]);
     }
 
     public function create()
