@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use \Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -22,7 +22,6 @@ class PrintServer extends Model implements AuthorizableContract, Authenticatable
     use Authorizable;
     use HasFactory;
     use HasUlidField;
-
     use Authenticatable;
 
     public function getRememberTokenName()

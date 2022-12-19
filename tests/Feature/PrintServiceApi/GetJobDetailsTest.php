@@ -7,7 +7,6 @@ use App\Models\PrintJob;
 use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Laravel\Sanctum\Sanctum;
@@ -50,9 +49,9 @@ class GetJobDetailsTest extends TestCase
             ->create();
 
         $job = PrintJob::factory([
-                'content' => 'Hello World',
-                'size' => strlen('Hello World'),
-            ])
+            'content' => 'Hello World',
+            'size' => strlen('Hello World'),
+        ])
             ->recycle($printer)
             ->create();
 
@@ -87,9 +86,9 @@ class GetJobDetailsTest extends TestCase
             ->create();
 
         $job = PrintJob::factory([
-                'content' => "Hello \x1b World",
-                'size' => strlen("Hello \x1b World"),
-            ])
+            'content' => "Hello \x1b World",
+            'size' => strlen("Hello \x1b World"),
+        ])
             ->recycle($printer)
             ->create();
 
@@ -124,32 +123,32 @@ class GetJobDetailsTest extends TestCase
             ->create();
 
         $job = PrintJob::factory([
-            'size' => 2048
+            'size' => 2048,
         ])
             ->recycle($printer)
             ->create();
 
-        $response = $this->getJson('/api/print-service/jobs/' . $job->ulid)
+        $response = $this->getJson('/api/print-service/jobs/'.$job->ulid)
             ->assertOk();
 
         $response->assertExactJson([
-            'content'      => $response->json('content'),
-            'ulid'         => $job->ulid,
-            'file_name'    => $job->file_name,
-            'name'         => $job->name,
-            'options'      => [],
-            'ppd'          => $job->ppd,
-            'printer'      => [
+            'content' => $response->json('content'),
+            'ulid' => $job->ulid,
+            'file_name' => $job->file_name,
+            'name' => $job->name,
+            'options' => [],
+            'ppd' => $job->ppd,
+            'printer' => [
                 'name' => $job->Printer->name,
-                'uri'  => $job->Printer->uri,
+                'uri' => $job->Printer->uri,
             ],
-            'size'         => $job->size,
+            'size' => $job->size,
             'content_type' => 'file',
-            'created_at'   => $job->created_at,
+            'created_at' => $job->created_at,
         ]);
 
         $this->assertStringContainsString(
-            '/api/print-service/jobs/' . $job->ulid . '/content',
+            '/api/print-service/jobs/'.$job->ulid.'/content',
             $response->json('content')
         );
 

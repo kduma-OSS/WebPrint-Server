@@ -22,7 +22,6 @@ class ClientApplication extends Model implements AuthorizableContract, Authentic
     use HasApiTokens;
     use Authorizable;
     use HasUlidField;
-
     use Authenticatable;
 
     public function getRememberTokenName()
