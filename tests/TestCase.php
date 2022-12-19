@@ -22,8 +22,8 @@ abstract class TestCase extends BaseTestCase
     {
         $default = config('database.default');
 
-        if (config("database.connections.$default.database") === ':memory:') {
-            $this->markTestSkipped('Not compatible with in-memory databases.');
+        if (config("database.connections.$default.driver") === 'sqlite') {
+            $this->markTestSkipped('Not compatible with SQLite database.');
         }
     }
 }
