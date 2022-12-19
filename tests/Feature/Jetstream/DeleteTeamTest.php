@@ -30,6 +30,8 @@ class DeleteTeamTest extends TestCase
 
         $this->assertNull($team->fresh());
         $this->assertCount(0, $otherUser->fresh()->teams);
+
+        $this->addWarning('This test is not checking if it works with apps, printers, etc.');
     }
 
     public function test_personal_teams_cant_be_deleted()
