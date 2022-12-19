@@ -52,7 +52,7 @@
                                             </a>
                                         </div>
                                     @endcan
-                                    @can('viewAny', [\App\Models\Printer::class])
+                                    @can('viewAny', [\App\Models\PrintJob::class])
                                         <div class="-ml-px flex w-0 flex-1">
                                             <a href="{{ route('web-print.jobs.index', ['printer' => $printer]) }}" class="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500">
                                                 <!-- Heroicon name: mini/newspaper -->
