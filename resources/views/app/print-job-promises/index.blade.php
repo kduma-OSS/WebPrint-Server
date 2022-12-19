@@ -20,18 +20,20 @@
                             <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                    Name
+                                    {{ __('Name') }}
                                 </th>
                                 <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
-                                    Status
+                                    {{ __('Status') }}
                                 </th>
                                 <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">
-                                    Client
+                                    {{ __('Client') }}
                                 </th>
                                 <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">
-                                    Printer
+                                    {{ __('Printer') }}
                                 </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Size</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                    {{ __('Size') }}
+                                </th>
                                 {{--                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">--}}
                                 {{--                                <span class="sr-only">Edit</span>--}}
                                 {{--                            </th>--}}
@@ -43,57 +45,57 @@
                                     <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
                                         {{ $promise->name }}
                                         <dl class="font-normal lg:hidden">
-                                            <dt class="sr-only">Status</dt>
+                                            <dt class="sr-only">{{ __('Status') }}</dt>
                                             <dd class="mt-1 truncate text-gray-700">
                                                 @switch($promise->status)
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Draft)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                                          Draft
+                                                          {{ __('Draft') }}
                                                         </span>
                                                         @break
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::New)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                                          New
+                                                          {{ __('New') }}
                                                         </span>
                                                         @break
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Ready)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                                          Ready
+                                                          {{ __('Ready') }}
                                                         </span>
                                                         @break
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::SentToPrinter)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                                          Sent to printer
+                                                          {{ __('Sent to printer') }}
                                                         </span>
                                                         @break
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Cancelled)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                                          Cancelled
+                                                          {{ __('Cancelled') }}
                                                         </span>
                                                         @break
                                                     @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Failed)
                                                         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                                          Printing Failed
+                                                          {{ __('Printing Failed') }}
                                                         </span>
                                                         @break
                                                 @endswitch
                                             </dd>
-                                            <dt class="sr-only">Client</dt>
+                                            <dt class="sr-only">{{ __('Client') }}</dt>
                                             <dd class="mt-1 truncate text-gray-700">
                                                 @if($promise->ClientApplication)
                                                     {{ $promise->ClientApplication->name }}
                                                 @else
-                                                    <span class="text-gray-400">No Client</span>
+                                                    <span class="text-gray-400">{{ __('No Client') }}</span>
                                                 @endif
                                             </dd>
                                             <dt class="sr-only sm:hidden">
-                                                Printer
+                                                {{ __('Printer') }}
                                             </dt>
                                             <dd class="mt-1 truncate text-gray-500 sm:hidden">
                                                 @if($promise->Printer)
                                                     {{ $promise->Printer->name }}
                                                 @else
-                                                    <span class="text-gray-400">No Printer</span>
+                                                    <span class="text-gray-400">{{ __('No Printer') }}</span>
                                                 @endif
                                             </dd>
                                         </dl>
@@ -102,32 +104,32 @@
                                         @switch($promise->status)
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Draft)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                                  Draft
+                                                  {{ __('Draft') }}
                                                 </span>
                                                 @break
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::New)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                                  New
+                                                  {{ __('New') }}
                                                 </span>
                                                 @break
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Ready)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                                  Ready
+                                                  {{ __('Ready') }}
                                                 </span>
                                                 @break
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::SentToPrinter)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                                  Sent to printer
+                                                  {{ __('Sent to printer') }}
                                                 </span>
                                                 @break
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Cancelled)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                                  Cancelled
+                                                  {{ __('Cancelled') }}
                                                 </span>
                                                 @break
                                             @case(\App\Models\Enums\PrintJobPromiseStatusEnum::Failed)
                                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                                  Printing Failed
+                                                  {{ __('Printing Failed') }}
                                                 </span>
                                                 @break
                                         @endswitch
@@ -136,21 +138,21 @@
                                         @if($promise->ClientApplication)
                                             {{ $promise->ClientApplication->name }}
                                         @else
-                                            <span class="text-gray-400">No Client</span>
+                                            <span class="text-gray-400">{{ __('No Client') }}</span>
                                         @endif
                                     </td>
                                     <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
                                         @if($promise->Printer)
                                             {{ $promise->Printer->name }}
                                         @else
-                                            <span class="text-gray-400">No Printer</span>
+                                            <span class="text-gray-400">{{ __('No Printer') }}</span>
                                         @endif
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500">
                                         @if($promise->size)
                                             {{ \Coduo\PHPHumanizer\NumberHumanizer::binarySuffix($promise->size) }}
                                         @else
-                                            <span class="text-gray-400">n/a</span>
+                                            <span class="text-gray-400">{{ __('n/a') }}</span>
                                         @endif
                                     </td>
                                     {{--                                    <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">--}}
@@ -170,8 +172,8 @@
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                     </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">No print promises</h3>
-                    <p class="mt-1 text-sm text-gray-500">Get started by using API to create print promises.</p>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('No print promises') }}</h3>
+                    <p class="mt-1 text-sm text-gray-500">{{ __('Get started by using API to create print promises.') }}</p>
     {{--                <div class="mt-6">--}}
     {{--                    <button type="button" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">--}}
     {{--                        <!-- Heroicon name: mini/plus -->--}}
