@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PrintJobsController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(PrintJob::class, 'job');
+    }
+
     public function index()
     {
     }
@@ -20,19 +25,19 @@ class PrintJobsController extends Controller
     {
     }
 
-    public function show(PrintJob $printJob)
+    public function show(PrintJob $job)
     {
     }
 
-    public function edit(PrintJob $printJob)
+    public function edit(PrintJob $job)
     {
     }
 
-    public function update(Request $request, PrintJob $printJob)
+    public function update(Request $request, PrintJob $job)
     {
     }
 
-    public function destroy(PrintJob $printJob)
+    public function destroy(PrintJob $job)
     {
     }
 }

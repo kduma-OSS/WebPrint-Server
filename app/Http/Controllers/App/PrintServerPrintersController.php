@@ -9,37 +9,42 @@ use Illuminate\Http\Request;
 
 class PrintServerPrintersController extends Controller
 {
-    public function index(PrintServer $printServer)
+    public function __construct()
+    {
+        $this->authorizeResource(Printer::class, 'printer');
+    }
+
+    public function index(PrintServer $server)
     {
         //
     }
 
-    public function create(PrintServer $printServer)
+    public function create(PrintServer $server)
     {
         //
     }
 
-    public function store(Request $request, PrintServer $printServer)
+    public function store(Request $request, PrintServer $server)
     {
         //
     }
 
-    public function show(PrintServer $printServer, Printer $printer)
+    public function show(Printer $printer)
     {
         //
     }
 
-    public function edit(PrintServer $printServer, Printer $printer)
+    public function edit(Printer $printer)
     {
         //
     }
 
-    public function update(Request $request, PrintServer $printServer, Printer $printer)
+    public function update(Request $request, Printer $printer)
     {
         //
     }
 
-    public function destroy(PrintServer $printServer, Printer $printer)
+    public function destroy(Printer $printer)
     {
         //
     }

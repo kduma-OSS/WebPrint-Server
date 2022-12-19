@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class PrintServersController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(PrintServer::class, 'server');
+    }
+
     public function index()
     {
         //
@@ -23,22 +28,22 @@ class PrintServersController extends Controller
         //
     }
 
-    public function show(PrintServer $printServer)
+    public function show(PrintServer $server)
     {
         //
     }
 
-    public function edit(PrintServer $printServer)
+    public function edit(PrintServer $server)
     {
         //
     }
 
-    public function update(Request $request, PrintServer $printServer)
+    public function update(Request $request, PrintServer $server)
     {
         //
     }
 
-    public function destroy(PrintServer $printServer)
+    public function destroy(PrintServer $server)
     {
         //
     }

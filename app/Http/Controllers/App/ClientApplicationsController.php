@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ClientApplicationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(ClientApplication::class, 'app');
+    }
+
     public function index()
     {
         //
@@ -23,22 +28,22 @@ class ClientApplicationsController extends Controller
         //
     }
 
-    public function show(ClientApplication $clientApplication)
+    public function show(ClientApplication $app)
     {
         //
     }
 
-    public function edit(ClientApplication $clientApplication)
+    public function edit(ClientApplication $app)
     {
         //
     }
 
-    public function update(Request $request, ClientApplication $clientApplication)
+    public function update(Request $request, ClientApplication $app)
     {
         //
     }
 
-    public function destroy(ClientApplication $clientApplication)
+    public function destroy(ClientApplication $app)
     {
         //
     }
