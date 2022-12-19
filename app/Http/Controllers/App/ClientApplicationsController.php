@@ -13,9 +13,17 @@ class ClientApplicationsController extends Controller
         $this->authorizeResource(ClientApplication::class, 'app');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $apps = $request->user()
+            ->currentTeam
+            ->ClientApplications()
+            ->withCount('jobs')
+            ->get();
+
+        return view('app.client-applications.index', [
+            'apps' => $apps,
+        ]);
     }
 
     public function create()
