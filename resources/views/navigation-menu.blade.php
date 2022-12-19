@@ -15,6 +15,30 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+
+                    @can('viewAny', \App\Models\PrintJob::class)
+                        <x-jet-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.index')">
+                            {{ __('Print Jobs') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('viewAny', \App\Models\PrintJobPromise::class)
+                        <x-jet-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.index')">
+                            {{ __('Print Promises') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('viewAny', \App\Models\PrintServer::class)
+                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.index')">
+                            {{ __('Print Servers & Printers') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('viewAny', \App\Models\ClientApplication::class)
+                        <x-jet-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.index')">
+                            {{ __('Client Apps') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -153,6 +177,30 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+            @can('viewAny', \App\Models\PrintJob::class)
+                <x-jet-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.index')">
+                    {{ __('Print Jobs') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @can('viewAny', \App\Models\PrintJobPromise::class)
+                <x-jet-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.index')">
+                    {{ __('Print Promises') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @can('viewAny', \App\Models\PrintServer::class)
+                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.index')">
+                    {{ __('Print Servers & Printers') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+
+            @can('viewAny', \App\Models\ClientApplication::class)
+                <x-jet-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.index')">
+                    {{ __('Client Apps') }}
+                </x-jet-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
