@@ -21,4 +21,22 @@ class PrinterFactory extends Factory
             'print_server_id' => PrintServer::factory(),
         ];
     }
+
+    public function active(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'enabled' => true,
+            ];
+        });
+    }
+
+    public function inactive(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'enabled' => false,
+            ];
+        });
+    }
 }
