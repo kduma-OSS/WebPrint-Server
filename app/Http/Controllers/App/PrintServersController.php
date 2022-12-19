@@ -13,9 +13,16 @@ class PrintServersController extends Controller
         $this->authorizeResource(PrintServer::class, 'server');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $servers = $request->user()->currentTeam->PrintServers()
+            ->orderBy('name')
+            ->withCount('printers')
+            ->get();
+
+        return view('app.print-servers.index', [
+            'servers' => $servers,
+        ]);
     }
 
     public function create()
