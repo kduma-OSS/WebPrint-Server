@@ -43,11 +43,11 @@ Route::middleware([
         ->name('web-print.')
         ->group(function () {
             Route::resource('servers', \App\Http\Controllers\App\PrintServersController::class)
-                ->only(['index', 'store', 'show']); //create, update, destroy, edit
+                ->only(['index', 'create', 'store', 'show']); //update, destroy, edit
 
             Route::resource('servers.printers', \App\Http\Controllers\App\PrintServerPrintersController::class)
                 ->shallow()
-                ->only(['index', 'store', 'show']); //create, update, destroy, edit
+                ->only(['index', 'create', 'store', 'show']); //update, destroy, edit
 
             Route::resource('promises', \App\Http\Controllers\App\PrintJobPromisesController::class)
                 ->only(['index']); //create, update, destroy, edit, store, show
@@ -56,6 +56,6 @@ Route::middleware([
                 ->only(['index']); //create, update, destroy, edit, store, show
 
             Route::resource('apps', \App\Http\Controllers\App\ClientApplicationsController::class)
-                ->only(['index', 'store', 'show']); //create, update, destroy, edit
+                ->only(['index', 'create', 'store', 'show']); //update, destroy, edit
         });
 });
