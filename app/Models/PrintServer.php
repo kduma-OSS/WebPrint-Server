@@ -2,22 +2,33 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use \Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @mixin IdeHelperPrintServer
  */
-class PrintServer extends Model implements AuthorizableContract
+class PrintServer extends Model implements AuthorizableContract, AuthenticatableContract
 {
     use HasApiTokens;
     use Authorizable;
+    use HasFactory;
     use HasUlidField;
+
+    use Authenticatable;
+
+    public function getRememberTokenName()
+    {
+        return null;
+    }
 
     protected $casts = [
         'last_active_at' => 'datetime',
