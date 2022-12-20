@@ -3,9 +3,7 @@
 namespace Tests\Feature\WebPrintApi;
 
 use App\Models\ClientApplication;
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
-use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -62,7 +60,7 @@ class GetPromisesListTest extends TestCase
         $response = $this->getJson('/api/web-print/promises')
             ->assertOk();
 
-        $promises->map(fn(PrintJobPromise $promise): array => [
+        $promises->map(fn (PrintJobPromise $promise): array => [
             'ulid' => $promise->ulid,
             'status' => $promise->status,
             'content_available' => true,
@@ -78,7 +76,7 @@ class GetPromisesListTest extends TestCase
             'size' => $promise->size,
             'type' => $promise->type,
             'updated_at' => $promise->updated_at,
-        ])->each(fn(array $expected) => $response->assertJsonFragment($expected));
+        ])->each(fn (array $expected) => $response->assertJsonFragment($expected));
     }
 
     public function test_cannot_lists_others_promises(): void
@@ -96,7 +94,6 @@ class GetPromisesListTest extends TestCase
         $others_promises = PrintJobPromise::factory()
             ->count(3)
             ->create();
-
 
         $response = $this->getJson('/api/web-print/promises')
             ->assertOk();

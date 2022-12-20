@@ -32,6 +32,7 @@ class PrintDialogsController extends Controller
      * Display a listing of the resource.
      *
      * @return PrintDialogResource|Response
+     *
      * @throws AuthorizationException
      */
     public function index(PrintJobPromise $promise)
@@ -51,7 +52,7 @@ class PrintDialogsController extends Controller
      *
      * @throws AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise): \App\Http\Resources\PrintDialogResource
+    public function store(Request $request, PrintJobPromise $promise): PrintDialogResource
     {
         $this->authorize('update', $promise);
 
