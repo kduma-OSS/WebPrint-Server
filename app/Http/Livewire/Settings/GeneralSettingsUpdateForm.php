@@ -37,7 +37,7 @@ class GeneralSettingsUpdateForm extends Component
         $user = Auth::user();
 
         $this->site_name = $user->can('view', [GeneralSettings::class, 'site_name']) ? $settings->site_name : '';
-        $this->active = $user->can('view', [GeneralSettings::class, 'active']) ? $settings->active : false;
+        $this->active = $user->can('view', [GeneralSettings::class, 'active']) && $settings->active;
     }
 
     public function updateGeneralSettings(GeneralSettings $settings)

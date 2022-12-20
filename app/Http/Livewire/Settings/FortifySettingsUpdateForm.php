@@ -54,11 +54,11 @@ class FortifySettingsUpdateForm extends Component
         $this->authorize('viewAny', FortifySettings::class);
         $user = Auth::user();
 
-        $this->registration_enabled = $user->can('view', [FortifySettings::class, 'registration_enabled']) ? $settings->registration_enabled : false;
-        $this->password_resets_enabled = $user->can('view', [FortifySettings::class, 'password_resets_enabled']) ? $settings->password_resets_enabled : false;
-        $this->update_passwords_enabled = $user->can('view', [FortifySettings::class, 'update_passwords_enabled']) ? $settings->update_passwords_enabled : false;
-        $this->update_profile_enabled = $user->can('view', [FortifySettings::class, 'update_profile_enabled']) ? $settings->update_profile_enabled : false;
-        $this->two_factor_authentication_enabled = $user->can('view', [FortifySettings::class, 'two_factor_authentication_enabled']) ? $settings->two_factor_authentication_enabled : false;
+        $this->registration_enabled = $user->can('view', [FortifySettings::class, 'registration_enabled']) && $settings->registration_enabled;
+        $this->password_resets_enabled = $user->can('view', [FortifySettings::class, 'password_resets_enabled']) && $settings->password_resets_enabled;
+        $this->update_passwords_enabled = $user->can('view', [FortifySettings::class, 'update_passwords_enabled']) && $settings->update_passwords_enabled;
+        $this->update_profile_enabled = $user->can('view', [FortifySettings::class, 'update_profile_enabled']) && $settings->update_profile_enabled;
+        $this->two_factor_authentication_enabled = $user->can('view', [FortifySettings::class, 'two_factor_authentication_enabled']) && $settings->two_factor_authentication_enabled;
     }
 
     public function updateFortifySettings(FortifySettings $settings)
