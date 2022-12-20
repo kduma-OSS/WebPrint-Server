@@ -74,6 +74,7 @@ class PrintJobsController extends Controller
                 'content' => $job->content,
             ];
         }
+
         $options = $job->ppd_options;
         if ($job->ppd) {
             $options = collect($job->Printer->ppd_options)

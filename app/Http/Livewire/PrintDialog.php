@@ -70,6 +70,7 @@ class PrintDialog extends Component
                 }
             }
         }
+
 //                $this->validateOnly($propertyName);
     }
 

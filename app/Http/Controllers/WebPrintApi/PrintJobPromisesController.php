@@ -98,6 +98,7 @@ class PrintJobPromisesController extends Controller
             } else {
                 Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
             }
+
             $promise->size = strlen($validated['content']);
             $promise->save();
         }
@@ -117,6 +118,7 @@ class PrintJobPromisesController extends Controller
             $promise->printer_id = $selected_printer->id;
             $ulids[] = $selected_printer->ulid;
         }
+
         $promise->save();
 
         $available_printers = $client_application->Printers()->whereIn('ulid', $ulids)->get();

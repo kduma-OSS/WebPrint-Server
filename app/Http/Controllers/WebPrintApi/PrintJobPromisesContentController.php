@@ -71,6 +71,7 @@ class PrintJobPromisesContentController extends Controller
                 Storage::delete($promise->content_file);
                 $promise->content_file = null;
             }
+
             $promise->save();
             $promise->content_file = $file->store('jobs');
             $promise->file_name ??= $file->getClientOriginalName();
@@ -87,12 +88,14 @@ class PrintJobPromisesContentController extends Controller
                 Storage::delete($promise->content_file);
                 $promise->content_file = null;
             }
+
             $promise->save();
             if (strlen($validated['content']) < 1024) {
                 $promise->content = $validated['content'];
             } else {
                 Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
             }
+
             $promise->file_name = $validated['name'] ?? $promise->file_name;
             $promise->size = strlen($validated['content']);
             $promise->save();
@@ -102,6 +105,7 @@ class PrintJobPromisesContentController extends Controller
                 Storage::delete($promise->content_file);
                 $promise->content_file = null;
             }
+
             $promise->save();
             $name = Str::random(40).'.dat';
             Storage::writeStream($promise->content_file = 'jobs/'.$name, $request->getContent(true));
@@ -110,6 +114,7 @@ class PrintJobPromisesContentController extends Controller
             if ($request->hasHeader('X-File-Name') && $request->header('X-File-Name')) {
                 $promise->file_name = $request->header('X-File-Name');
             }
+
             $promise->size = Storage::size($promise->content_file);
             $promise->save();
         }
