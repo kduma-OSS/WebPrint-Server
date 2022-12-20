@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class PpdOptionsProcessorTest extends TestCase
 {
+    /**
+     * @var array<string, array<string, bool|array<string, array<string, bool|string|int>>|string|int>>
+     */
     final public const NEW_OPTIONS = [
         'Resolution' => [
             'key' => 'Resolution',
@@ -92,6 +95,9 @@ class PpdOptionsProcessorTest extends TestCase
         ],
     ];
 
+    /**
+     * @var array<string, array<string, bool|array<string, array<string, bool|string|int>>|string|int>>
+     */
     final public const OLD_OPTIONS = [
         'Resolution' => [
             'name' => 'Output Resolution',
