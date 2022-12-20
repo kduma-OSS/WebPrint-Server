@@ -20,7 +20,7 @@ class GetJobDetailsTest extends TestCase
     {
         $job = PrintJob::factory()->create();
 
-        $response = $this->getJson('/api/print-service/jobs/'.$job->ulid)
+        $this->getJson('/api/print-service/jobs/'.$job->ulid)
             ->assertUnauthorized();
     }
 

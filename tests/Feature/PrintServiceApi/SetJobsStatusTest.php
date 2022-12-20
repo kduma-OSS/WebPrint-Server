@@ -19,7 +19,7 @@ class SetJobsStatusTest extends TestCase
     {
         $job = PrintJob::factory()->create();
 
-        $response = $this->putJson('/api/print-service/jobs/'.$job->ulid, [
+        $this->putJson('/api/print-service/jobs/'.$job->ulid, [
             'status' => PrintJobStatusEnum::Printing,
         ])
             ->assertUnauthorized();

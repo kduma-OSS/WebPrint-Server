@@ -18,7 +18,7 @@ class GetPromisesTest extends TestCase
     {
         $promise = PrintJobPromise::factory()->create();
 
-        $response = $this->getJson('/api/web-print/promises/'.$promise->ulid)
+        $this->getJson('/api/web-print/promises/'.$promise->ulid)
             ->assertUnauthorized();
     }
 

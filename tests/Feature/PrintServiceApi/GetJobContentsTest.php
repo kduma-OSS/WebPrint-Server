@@ -18,7 +18,7 @@ class GetJobContentsTest extends TestCase
     {
         $job = PrintJob::factory()->create();
 
-        $response = $this->getJson('/api/print-service/jobs/'.$job->ulid.'/content')
+        $this->getJson('/api/print-service/jobs/'.$job->ulid.'/content')
             ->assertForbidden();
     }
 
@@ -53,7 +53,7 @@ class GetJobContentsTest extends TestCase
             ->recycle($printer)
             ->create();
 
-        $response = $this->getJson('/api/print-service/jobs/'.$job->ulid.'/content')
+        $this->getJson('/api/print-service/jobs/'.$job->ulid.'/content')
             ->assertForbidden();
     }
 

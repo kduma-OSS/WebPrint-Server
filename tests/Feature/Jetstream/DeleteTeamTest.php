@@ -26,7 +26,7 @@ class DeleteTeamTest extends TestCase
             ['role' => 'test-role']
         );
 
-        $component = Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
+        Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
                                 ->call('deleteTeam');
 
         $this->assertNull($team->fresh());

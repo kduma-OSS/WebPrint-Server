@@ -59,7 +59,7 @@ class PrintJobsController extends Controller
             $promise->save();
         }
 
-        $job = $promise->sendForPrinting();
+        $promise->sendForPrinting();
 
         return response()->noContent();
     }
