@@ -20,7 +20,6 @@ class InviteTeamMember implements InvitesTeamMembers
      * @param  mixed  $user
      * @param  mixed  $team
      * @param  string|null  $role
-     * @return void
      */
     public function invite($user, $team, string $email, string $role = null): void
     {
@@ -57,8 +56,6 @@ class InviteTeamMember implements InvitesTeamMembers
 
     /**
      * Get the validation rules for inviting a team member.
-     *
-     * @return array
      */
     protected function rules(mixed $team): array
     {

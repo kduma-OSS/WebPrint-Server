@@ -18,7 +18,6 @@ class AddTeamMember implements AddsTeamMembers
      * @param  mixed  $user
      * @param  mixed  $team
      * @param  string|null  $role
-     * @return void
      */
     public function add($user, $team, string $email, string $role = null): void
     {
@@ -57,8 +56,6 @@ class AddTeamMember implements AddsTeamMembers
 
     /**
      * Get the validation rules for adding a team member.
-     *
-     * @return array
      */
     protected function rules(): array
     {

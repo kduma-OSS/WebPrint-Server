@@ -46,8 +46,6 @@ class FortifySettingsUpdateForm extends Component
 
     /**
      * Prepare the component.
-     *
-     * @return void
      */
     public function mount(FortifySettings $settings): void
     {

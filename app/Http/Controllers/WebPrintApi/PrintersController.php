@@ -55,8 +55,6 @@ class PrintersController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return PrinterResource
      */
     public function show(Printer $printer): \App\Http\Resources\PrinterResource
     {

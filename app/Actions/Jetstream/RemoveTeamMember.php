@@ -16,7 +16,6 @@ class RemoveTeamMember implements RemovesTeamMembers
      * @param  mixed  $user
      * @param  mixed  $team
      * @param  mixed  $teamMember
-     * @return void
      */
     public function remove($user, $team, $teamMember): void
     {

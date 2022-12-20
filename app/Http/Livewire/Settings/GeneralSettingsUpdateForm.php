@@ -28,8 +28,6 @@ class GeneralSettingsUpdateForm extends Component
 
     /**
      * Prepare the component.
-     *
-     * @return void
      */
     public function mount(GeneralSettings $settings): void
     {

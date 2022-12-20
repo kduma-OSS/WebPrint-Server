@@ -10,8 +10,6 @@ trait HasUlidField
 
     /**
      * Get the columns that should receive a unique identifier.
-     *
-     * @return array
      */
     public function uniqueIds(): array
     {
