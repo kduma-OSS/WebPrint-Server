@@ -22,7 +22,7 @@ abstract class TestCase extends BaseTestCase
     {
         $default = config('database.default');
 
-        if (config("database.connections.$default.driver") === 'sqlite') {
+        if (config(sprintf('database.connections.%s.driver', $default)) === 'sqlite') {
             $this->markTestSkipped('Not compatible with SQLite database.');
         }
     }

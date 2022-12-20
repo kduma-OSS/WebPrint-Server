@@ -3,9 +3,7 @@
 namespace Tests\Feature\WebPrintApi;
 
 use App\Models\ClientApplication;
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
-use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -15,13 +13,13 @@ class GetPromisesListTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $this->getJson('/api/web-print/promises')
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -32,7 +30,7 @@ class GetPromisesListTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             ClientApplication::factory()->create(),
@@ -46,7 +44,7 @@ class GetPromisesListTest extends TestCase
             ]);
     }
 
-    public function test_lists_promises()
+    public function test_lists_promises(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -62,7 +60,7 @@ class GetPromisesListTest extends TestCase
         $response = $this->getJson('/api/web-print/promises')
             ->assertOk();
 
-        $promises->map(fn(PrintJobPromise $promise) => [
+        $promises->map(fn (PrintJobPromise $promise): array => [
             'ulid' => $promise->ulid,
             'status' => $promise->status,
             'content_available' => true,
@@ -78,10 +76,10 @@ class GetPromisesListTest extends TestCase
             'size' => $promise->size,
             'type' => $promise->type,
             'updated_at' => $promise->updated_at,
-        ])->each(fn(array $expected) => $response->assertJsonFragment($expected));
+        ])->each(fn (array $expected) => $response->assertJsonFragment($expected));
     }
 
-    public function test_cannot_lists_others_promises()
+    public function test_cannot_lists_others_promises(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -97,16 +95,15 @@ class GetPromisesListTest extends TestCase
             ->count(3)
             ->create();
 
-
         $response = $this->getJson('/api/web-print/promises')
             ->assertOk();
 
         $content = $response->content();
 
-        $my_promises->each(function (PrintJobPromise $p) use ($content) {
+        $my_promises->each(function (PrintJobPromise $p) use ($content): void {
             $this->assertStringContainsStringIgnoringCase($p->ulid, $content);
         });
-        $others_promises->each(function (PrintJobPromise $p) use ($content) {
+        $others_promises->each(function (PrintJobPromise $p) use ($content): void {
             $this->assertStringNotContainsStringIgnoringCase($p->ulid, $content);
         });
     }

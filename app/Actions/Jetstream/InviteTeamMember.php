@@ -19,11 +19,9 @@ class InviteTeamMember implements InvitesTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string  $email
      * @param  string|null  $role
-     * @return void
      */
-    public function invite($user, $team, string $email, string $role = null)
+    public function invite($user, $team, string $email, string $role = null): void
     {
         Gate::forUser($user)->authorize('addTeamMember', $team);
 
@@ -42,12 +40,9 @@ class InviteTeamMember implements InvitesTeamMembers
     /**
      * Validate the invite member operation.
      *
-     * @param  mixed  $team
-     * @param  string  $email
-     * @param  string|null  $role
      * @return void
      */
-    protected function validate($team, string $email, ?string $role)
+    protected function validate(mixed $team, string $email, ?string $role)
     {
         Validator::make([
             'email' => $email,
@@ -61,14 +56,11 @@ class InviteTeamMember implements InvitesTeamMembers
 
     /**
      * Get the validation rules for inviting a team member.
-     *
-     * @param  mixed  $team
-     * @return array
      */
-    protected function rules($team)
+    protected function rules(mixed $team): array
     {
         return array_filter([
-            'email' => ['required', 'email', Rule::unique('team_invitations')->where(function ($query) use ($team) {
+            'email' => ['required', 'email', Rule::unique('team_invitations')->where(function ($query) use ($team): void {
                 $query->where('team_id', $team->id);
             })],
             'role' => Jetstream::hasRoles()
@@ -80,13 +72,11 @@ class InviteTeamMember implements InvitesTeamMembers
     /**
      * Ensure that the user is not already on the team.
      *
-     * @param  mixed  $team
-     * @param  string  $email
      * @return \Closure
      */
-    protected function ensureUserIsNotAlreadyOnTeam($team, string $email)
+    protected function ensureUserIsNotAlreadyOnTeam(mixed $team, string $email)
     {
-        return function ($validator) use ($team, $email) {
+        return function ($validator) use ($team, $email): void {
             $validator->errors()->addIf(
                 $team->hasUserWithEmail($email),
                 'email',

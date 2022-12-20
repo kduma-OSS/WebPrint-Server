@@ -16,15 +16,15 @@ class GetJobDetailsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $job = PrintJob::factory()->create();
 
-        $response = $this->getJson('/api/print-service/jobs/'.$job->ulid)
+        $this->getJson('/api/print-service/jobs/'.$job->ulid)
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -37,7 +37,7 @@ class GetJobDetailsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -74,7 +74,7 @@ class GetJobDetailsTest extends TestCase
             ]);
     }
 
-    public function test_short_binary_content_is_served_as_base64()
+    public function test_short_binary_content_is_served_as_base64(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -111,7 +111,7 @@ class GetJobDetailsTest extends TestCase
             ]);
     }
 
-    public function test_long_content_is_served_as_link()
+    public function test_long_content_is_served_as_link(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -161,7 +161,7 @@ class GetJobDetailsTest extends TestCase
         );
     }
 
-    public function test_cannot_access_others_jobs()
+    public function test_cannot_access_others_jobs(): void
     {
         Sanctum::actingAs(
             PrintServer::factory()->create(),

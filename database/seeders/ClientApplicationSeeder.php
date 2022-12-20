@@ -12,10 +12,8 @@ class ClientApplicationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $client = new ClientApplication();
         $client->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;

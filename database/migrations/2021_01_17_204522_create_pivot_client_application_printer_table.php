@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('pivot_client_application_printer', function (Blueprint $table) {
+        Schema::create('pivot_client_application_printer', function (Blueprint $table): void {
             $table->id();
 
             $table->foreignId('client_application_id')->constrained('client_applications');
@@ -16,7 +16,7 @@ return new class() extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('pivot_client_application_printer');
     }

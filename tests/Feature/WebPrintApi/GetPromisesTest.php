@@ -14,15 +14,15 @@ class GetPromisesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $promise = PrintJobPromise::factory()->create();
 
-        $response = $this->getJson('/api/web-print/promises/'.$promise->ulid)
+        $this->getJson('/api/web-print/promises/'.$promise->ulid)
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -35,7 +35,7 @@ class GetPromisesTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -82,7 +82,7 @@ class GetPromisesTest extends TestCase
             ]);
     }
 
-    public function test_cannot_access_others_promises()
+    public function test_cannot_access_others_promises(): void
     {
         Sanctum::actingAs(
             PrintServer::factory()->create(),

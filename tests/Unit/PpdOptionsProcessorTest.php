@@ -7,7 +7,10 @@ use PHPUnit\Framework\TestCase;
 
 class PpdOptionsProcessorTest extends TestCase
 {
-    public const NEW_OPTIONS = [
+    /**
+     * @var array<string, array<string, bool|array<string, array<string, bool|string|int>>|string|int>>
+     */
+    final public const NEW_OPTIONS = [
         'Resolution' => [
             'key' => 'Resolution',
             'name' => 'Output Resolution',
@@ -92,7 +95,10 @@ class PpdOptionsProcessorTest extends TestCase
         ],
     ];
 
-    public const OLD_OPTIONS = [
+    /**
+     * @var array<string, array<string, bool|array<string, array<string, bool|string|int>>|string|int>>
+     */
+    final public const OLD_OPTIONS = [
         'Resolution' => [
             'name' => 'Output Resolution',
             'values' => [
@@ -165,7 +171,7 @@ class PpdOptionsProcessorTest extends TestCase
         ],
     ];
 
-    public function test_validator()
+    public function test_validator(): void
     {
         $sut = new PpdOptionsProcessor();
 
@@ -178,7 +184,7 @@ class PpdOptionsProcessorTest extends TestCase
         $this->assertFalse($result);
     }
 
-    public function test_upgrade()
+    public function test_upgrade(): void
     {
         $sut = new PpdOptionsProcessor();
 

@@ -10,10 +10,8 @@ class PrintJobSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $content = 'To jest test!!! - '.date('Y-m-d H:i:s')."\n";
 

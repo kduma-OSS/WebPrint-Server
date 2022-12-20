@@ -13,7 +13,7 @@ class DeleteTeamTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_teams_can_be_deleted()
+    public function test_teams_can_be_deleted(): void
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
@@ -26,7 +26,7 @@ class DeleteTeamTest extends TestCase
             ['role' => 'test-role']
         );
 
-        $component = Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
+        Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
                                 ->call('deleteTeam');
 
         $this->assertNull($team->fresh());
@@ -35,7 +35,7 @@ class DeleteTeamTest extends TestCase
         $this->addWarning('This test is not checking if it works with apps, printers, etc.');
     }
 
-    public function test_personal_teams_cant_be_deleted()
+    public function test_personal_teams_cant_be_deleted(): void
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 

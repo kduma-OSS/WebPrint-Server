@@ -31,7 +31,6 @@ class PrintersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -43,11 +42,11 @@ class PrintersController extends Controller
             ->orderBy('name')
             ->with('Server')
             ->where('enabled', true)
-            ->when($request->get('type'), function (Builder $query, $type) {
+            ->when($request->get('type'), function (Builder $query, $type): void {
                 $query->forType($type);
             })
             ->get()
-            ->map(fn (Printer $printer) => new PrinterResource($printer, $request->get('ppd_options', false)));
+            ->map(fn (Printer $printer): \App\Http\Resources\PrinterResource => new PrinterResource($printer, $request->get('ppd_options', false)));
 
         return PrinterResource::collection(
             $printers
@@ -56,11 +55,8 @@ class PrintersController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  Printer  $printer
-     * @return PrinterResource
      */
-    public function show(Printer $printer)
+    public function show(Printer $printer): PrinterResource
     {
         $printer->load('Server');
 

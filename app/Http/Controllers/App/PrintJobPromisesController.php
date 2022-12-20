@@ -36,32 +36,32 @@ class PrintJobPromisesController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): void
     {
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
 
-    public function show(PrintJobPromise $promise)
+    public function show(PrintJobPromise $promise): void
     {
         //
     }
 
-    public function edit(PrintJobPromise $promise)
+    public function edit(PrintJobPromise $promise): void
     {
         //
     }
 
-    public function update(Request $request, PrintJobPromise $promise)
+    public function update(Request $request, PrintJobPromise $promise): void
     {
         //
     }
 
-    public function destroy(PrintJobPromise $promise)
+    public function destroy(PrintJobPromise $promise): void
     {
         //
     }

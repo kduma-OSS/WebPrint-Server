@@ -20,7 +20,6 @@ class PrintJobsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Request  $request
      * @return \Illuminate\Http\Response|\Illuminate\Support\Collection
      */
     public function index(Request $request)
@@ -36,7 +35,7 @@ class PrintJobsController extends Controller
         $print_server->save();
 
         do {
-            if ($attempts++) {
+            if ($attempts++ !== 0) {
                 sleep(4);
             }
 
@@ -51,7 +50,6 @@ class PrintJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintJob  $job
      * @return array|\Illuminate\Http\Response
      */
     public function show(PrintJob $job)
@@ -65,7 +63,7 @@ class PrintJobsController extends Controller
                 'content_type' => 'file',
                 'content' => URL::temporarySignedRoute('api.print-service.jobs.content.index', now()->addHour(), $job),
             ];
-        } elseif (preg_match('/[^\x20-\x7e\n]/', $job->content)) {
+        } elseif (preg_match('#[^\x20-\x7e\n]#', $job->content)) {
             $content = [
                 'content_type' => 'base64',
                 'content' => base64_encode(gzcompress($job->content)),
@@ -76,10 +74,11 @@ class PrintJobsController extends Controller
                 'content' => $job->content,
             ];
         }
+
         $options = $job->ppd_options;
         if ($job->ppd) {
             $options = collect($job->Printer->ppd_options)
-                ->mapWithKeys(function ($option, $key) use ($options) {
+                ->mapWithKeys(function ($option, $key) use ($options): array {
                     $value = isset($options[$option['key']]) ? ($options[$option['key']] ?? $option['default']) : $option['default'];
 
                     if ($option['type'] ?? 'select' == 'Boolean') {
@@ -109,8 +108,6 @@ class PrintJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJob $job)

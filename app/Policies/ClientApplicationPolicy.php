@@ -18,7 +18,6 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can view any client applications.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function viewAny(mixed $user)
@@ -33,8 +32,6 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can view the client application.
      *
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
      * @return bool
      */
     public function view(mixed $user, ClientApplication $client)
@@ -47,9 +44,6 @@ class ClientApplicationPolicy
     }
 
     /**
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
-     * @param  string  $field
      * @return bool
      *
      * @throws \Exception
@@ -64,7 +58,6 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can create client applications.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function create(mixed $user)
@@ -79,8 +72,6 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can update the client application.
      *
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
      * @return bool
      */
     public function update(mixed $user, ClientApplication $client)
@@ -95,8 +86,6 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can delete the client application.
      *
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
      * @return bool
      */
     public function delete(mixed $user, ClientApplication $client)
@@ -111,11 +100,9 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can restore the client application.
      *
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
      * @return bool
      */
-    public function restore(mixed $user, ClientApplication $client)
+    public function restore(mixed $user, ClientApplication $client): void
     {
         //
     }
@@ -123,11 +110,9 @@ class ClientApplicationPolicy
     /**
      * Determine whether the user can permanently delete the client application.
      *
-     * @param  mixed  $user
-     * @param  ClientApplication  $client
      * @return bool
      */
-    public function forceDelete(mixed $user, ClientApplication $client)
+    public function forceDelete(mixed $user, ClientApplication $client): void
     {
         //
     }

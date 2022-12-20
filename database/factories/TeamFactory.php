@@ -17,10 +17,8 @@ class TeamFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->unique()->company(),
@@ -36,7 +34,7 @@ class TeamFactory extends Factory
      */
     public function personal()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'personal_team' => true,
             ];

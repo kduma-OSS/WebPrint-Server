@@ -20,7 +20,6 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can view any print job promises.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function viewAny(mixed $user)
@@ -39,8 +38,6 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can view the print job promise.
      *
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
      * @return bool
      */
     public function view(mixed $user, PrintJobPromise $printJobPromise)
@@ -57,9 +54,6 @@ class PrintJobPromisesPolicy
     }
 
     /**
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
-     * @param  string  $field
      * @return bool
      *
      * @throws \Exception
@@ -81,7 +75,6 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can create print job promises.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function create(mixed $user)
@@ -100,8 +93,6 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can update the print job promise.
      *
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
      * @return bool
      */
     public function update(mixed $user, PrintJobPromise $printJobPromise)
@@ -129,8 +120,6 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can delete the print job promise.
      *
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
      * @return bool
      */
     public function delete(mixed $user, PrintJobPromise $printJobPromise)
@@ -158,11 +147,9 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can restore the print job promise.
      *
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
      * @return bool
      */
-    public function restore(mixed $user, PrintJobPromise $printJobPromise)
+    public function restore(mixed $user, PrintJobPromise $printJobPromise): void
     {
         //
     }
@@ -170,11 +157,9 @@ class PrintJobPromisesPolicy
     /**
      * Determine whether the user can permanently delete the print job promise.
      *
-     * @param  mixed  $user
-     * @param  PrintJobPromise  $printJobPromise
      * @return bool
      */
-    public function forceDelete(mixed $user, PrintJobPromise $printJobPromise)
+    public function forceDelete(mixed $user, PrintJobPromise $printJobPromise): void
     {
         //
     }

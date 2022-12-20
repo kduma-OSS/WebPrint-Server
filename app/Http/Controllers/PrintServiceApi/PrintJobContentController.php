@@ -12,7 +12,6 @@ class PrintJobContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\StreamedResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -27,11 +26,11 @@ class PrintJobContentController extends Controller
             return \Storage::download($job->content_file, $job->file_name, [
                 'Content-Type' => 'application/octet-stream',
             ]);
-        } else {
-            return response($job->content, 200, [
-                'Content-Type' => 'application/octet-stream',
-                'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $job->file_name, Str::slug($job->file_name, '.')),
-            ]);
         }
+
+        return response($job->content, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $job->file_name, Str::slug($job->file_name, '.')),
+        ]);
     }
 }

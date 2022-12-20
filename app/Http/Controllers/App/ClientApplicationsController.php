@@ -26,32 +26,32 @@ class ClientApplicationsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): void
     {
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
 
-    public function show(ClientApplication $app)
+    public function show(ClientApplication $app): void
     {
         //
     }
 
-    public function edit(ClientApplication $app)
+    public function edit(ClientApplication $app): void
     {
         //
     }
 
-    public function update(Request $request, ClientApplication $app)
+    public function update(Request $request, ClientApplication $app): void
     {
         //
     }
 
-    public function destroy(ClientApplication $app)
+    public function destroy(ClientApplication $app): void
     {
         //
     }

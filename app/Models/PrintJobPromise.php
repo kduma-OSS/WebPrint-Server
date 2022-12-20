@@ -53,7 +53,7 @@ class PrintJobPromise extends Model
         return $this->status == PrintJobPromiseStatusEnum::Ready && $this->isPossibleToPrint();
     }
 
-    public function isPossibleToPrint()
+    public function isPossibleToPrint(): bool
     {
         return in_array($this->status, [
             PrintJobPromiseStatusEnum::Ready, PrintJobPromiseStatusEnum::New,

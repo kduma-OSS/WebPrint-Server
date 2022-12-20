@@ -20,7 +20,7 @@ class PrintDialog extends Component
 
     public string $view = 'main';
 
-    public function mount($dialog)
+    public function mount(PrintDialogModel $dialog): void
     {
         $this->dialog = $dialog;
 
@@ -31,7 +31,7 @@ class PrintDialog extends Component
         }
     }
 
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         if ($propertyName == 'selected_printer_ulid') {
             $printer = $this->dialog->JobPromise->AvailablePrinters()->where('ulid', $this->selected_printer_ulid)->first();
@@ -70,6 +70,7 @@ class PrintDialog extends Component
                 }
             }
         }
+
 //                $this->validateOnly($propertyName);
     }
 
@@ -109,7 +110,7 @@ class PrintDialog extends Component
             return null;
         }
 
-        if (! $this->selected_printer) {
+        if ($this->selected_printer === null) {
             return null;
         }
 
@@ -147,25 +148,25 @@ class PrintDialog extends Component
     public function getGroupedOptionsProperty()
     {
         return collect($this->selected_printer->ppd_options)
-            ->filter(fn ($element) => $element['enabled'])
+            ->filter(fn ($element): mixed => $element['enabled'])
             ->groupBy('group_key')
-            ->sortBy(fn ($group, $key) => $group->first()['order'])
+            ->sortBy(fn ($group, $key): mixed => $group->first()['order'])
             ->map->sortBy('order')
-            ->mapWithKeys(function ($group, $key) {
+            ->mapWithKeys(function ($group, $key): array {
                 return [
                     $group->first()['group_key'] => [
                         'key' => $group->first()['group_key'],
                         'name' => $group->first()['group_name'],
                         'options' => $group
-                            ->mapWithKeys(function ($element, $key) {
+                            ->mapWithKeys(function ($element, $key): array {
                                 return [
                                     $element['key'] => [
                                         'key' => $element['key'],
                                         'name' => $element['name'],
                                         'values' => collect($element['values'])
-                                            ->filter(fn ($element) => $element['enabled'])
+                                            ->filter(fn ($element): mixed => $element['enabled'])
                                             ->sortBy('order')
-                                            ->mapWithKeys(fn ($option, $key) => [
+                                            ->mapWithKeys(fn ($option, $key): array => [
                                                 $option['key'] => [
                                                     'key' => $option['key'],
                                                     'name' => $option['name'],
@@ -183,22 +184,22 @@ class PrintDialog extends Component
     {
         return collect($this->selected_printer->ppd_options)
             ->sortBy('order')
-            ->filter(fn ($element) => $element['enabled'])
-            ->filter(fn ($option) => ($this->ppd_options[$option['key']] ?? null) != $option['default'])
-            ->mapWithKeys(fn ($option) => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
+            ->filter(fn ($element): mixed => $element['enabled'])
+            ->filter(fn ($option): bool => ($this->ppd_options[$option['key']] ?? null) != $option['default'])
+            ->mapWithKeys(fn ($option): array => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
     }
 
-    public function goToSetPrinterView()
+    public function goToSetPrinterView(): void
     {
         $this->view = 'set_printer';
     }
 
-    public function goToMainView()
+    public function goToMainView(): void
     {
         $this->view = 'main';
     }
 
-    public function goToSetOptionsView()
+    public function goToSetOptionsView(): void
     {
         $this->view = 'set_options';
     }
@@ -206,14 +207,14 @@ class PrintDialog extends Component
     public function getDefaultForPrinter(Printer $printer, array $merge = [])
     {
         return collect($printer->ppd_options)
-            ->mapWithKeys(fn ($option, $key) => [$option['key'] => $option['default']])
+            ->mapWithKeys(fn ($option, $key): array => [$option['key'] => $option['default']])
             ->merge($merge)
             ->toArray();
     }
 
     public int $count = 0;
 
-    public function increment()
+    public function increment(): void
     {
         $this->count++;
     }

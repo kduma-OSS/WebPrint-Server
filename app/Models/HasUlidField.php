@@ -10,20 +10,16 @@ trait HasUlidField
 
     /**
      * Get the columns that should receive a unique identifier.
-     *
-     * @return array
      */
-    public function uniqueIds()
+    public function uniqueIds(): array
     {
         return ['ulid'];
     }
 
     /**
      * Get the route key for the model.
-     *
-     * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'ulid';
     }

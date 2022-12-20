@@ -34,7 +34,7 @@ class PrintDialog extends Model
         );
     }
 
-    public function getIsActiveAttribute()
+    public function getIsActiveAttribute(): bool
     {
         return $this->status == PrintDialogStatusEnum::New
             && $this->JobPromise->status == PrintJobPromiseStatusEnum::New
