@@ -3,8 +3,68 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\CodeQuality\Rector\ClassMethod\ReturnTypeFromStrictScalarReturnExprRector;
+use Rector\CodeQuality\Rector\Empty_\SimplifyEmptyCheckOnEmptyArrayRector;
+use Rector\CodeQuality\Rector\FuncCall\SingleInArrayToCompareRector;
+use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
+use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
+use Rector\CodeQuality\Rector\NotEqual\CommonNotEqualRector;
+use Rector\CodeQuality\Rector\Switch_\SingularSwitchToIfRector;
+use Rector\CodeQuality\Rector\Ternary\SwitchNegatedTernaryRector;
+use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
+use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
+use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
+use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
+use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
+use Rector\CodingStyle\Rector\Property\AddFalseDefaultToBoolPropertyRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
+use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
+use Rector\Core\ValueObject\PhpVersion;
+use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
+use Rector\DeadCode\Rector\Ternary\TernaryToBooleanOrFalseToBooleanAndRector;
+use Rector\DependencyInjection\Rector\Class_\ActionInjectionToConstructorInjectionRector;
+use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
+use Rector\EarlyReturn\Rector\If_\ChangeOrIfReturnToEarlyReturnRector;
+use Rector\EarlyReturn\Rector\If_\RemoveAlwaysElseRector;
+use Rector\EarlyReturn\Rector\Return_\ReturnBinaryAndToEarlyReturnRector;
+use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
+use Rector\Php80\Rector\FunctionLike\MixedTypeRector;
+use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
+use Rector\Php81\Rector\Array_\FirstClassCallableRector;
+use Rector\Php81\Rector\Class_\MyCLabsClassToEnumRector;
+use Rector\Php81\Rector\Class_\SpatieEnumClassToEnumRector;
+use Rector\Php81\Rector\ClassConst\FinalizePublicClassConstantRector;
+use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
+use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
+use Rector\Php81\Rector\FuncCall\Php81ResourceReturnToObjectRector;
+use Rector\Php81\Rector\FunctionLike\IntersectionTypesRector;
+use Rector\Php81\Rector\MethodCall\MyCLabsMethodCallToEnumConstRector;
+use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
+use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
+use Rector\Privatization\Rector\Property\ChangeReadOnlyPropertyWithDefaultValueToConstantRector;
+use Rector\Privatization\Rector\Property\PrivatizeFinalClassPropertyRector;
+use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Set\ValueObject\LevelSetList;
+use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\ArrowFunction\AddArrowFunctionReturnTypeRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddParamTypeFromPropertyTypeRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ArrayShapeFromConstantArrayReturnRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnNeverTypeRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnDirectArrayRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictBoolReturnExprRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictNativeCallRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictTypedCallRector;
+use Rector\TypeDeclaration\Rector\Closure\AddClosureReturnTypeRector;
+use Rector\TypeDeclaration\Rector\FunctionLike\AddParamTypeSplFixedArrayRector;
+use Rector\TypeDeclaration\Rector\Param\ParamTypeFromStrictTypedPropertyRector;
+use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -14,19 +74,73 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/database',
         __DIR__ . '/lang',
         __DIR__ . '/public',
-        __DIR__ . '/resources',
         __DIR__ . '/routes',
-        __DIR__ . '/storage',
         __DIR__ . '/tests',
     ]);
 
     // register a single rule
-    $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+    $rectorConfig->rule(ActionInjectionToConstructorInjectionRector::class);
 
-    $rectorConfig->importNames();
+
+//    $rectorConfig->importNames();
+//    $rectorConfig->importShortClasses(false);
 
     // define sets of rules
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_81,
+        SetList::PSR_4,
+//      SetList::PHP_52,
+//      SetList::PHP_53,
+//      SetList::PHP_54,
+//      SetList::PHP_55,
+//      SetList::PHP_56,
+//      SetList::PHP_70,
+//      SetList::PHP_71,
+//      SetList::PHP_72,
+//      SetList::PHP_73,
+//      SetList::PHP_74,
+//      SetList::PHP_80,
+        SetList::PHP_81,
+        SetList::PHP_80,
+        SetList::DEAD_CODE,
+        SetList::EARLY_RETURN,
+        SetList::CODE_QUALITY,
+        SetList::CODING_STYLE,
+        SetList::MYSQL_TO_MYSQLI,
+        SetList::TYPE_DECLARATION,
+        SetList::GMAGICK_TO_IMAGICK,
+        SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
+
+        // Skipped
+        //  SetList::PRIVATIZATION,
+        //  SetList::NAMING,
     ]);
+
+    $rectorConfig->skip([
+        // To Skip
+        NullToStrictStringFuncCallArgRector::class, // SetList::PHP_81
+        UnionTypesRector::class, // SetList::PHP_80
+        SingleInArrayToCompareRector::class, // SetList::CODE_QUALITY
+        SimplifyBoolIdenticalTrueRector::class, // SetList::CODE_QUALITY
+        AddFalseDefaultToBoolPropertyRector::class, // SetList::CODING_STYLE
+        SymplifyQuoteEscapeRector::class, // SetList::CODING_STYLE
+        UnSpreadOperatorRector::class, // SetList::CODING_STYLE
+        ChangeAndIfToEarlyReturnRector::class, // SetList::EARLY_RETURN
+        ChangeOrIfReturnToEarlyReturnRector::class, // SetList::EARLY_RETURN
+
+        // To Decide Later
+        StaticArrowFunctionRector::class, // SetList::CODING_STYLE
+        StaticClosureRector::class, // SetList::CODING_STYLE
+        ReturnBinaryAndToEarlyReturnRector::class, // SetList::EARLY_RETURN
+        ArrayShapeFromConstantArrayReturnRector::class, // SetList::TYPE_DECLARATION
+
+        // To Decide
+
+
+        // Broken
+        CommonNotEqualRector::class,
+        ConsistentPregDelimiterRector::class,
+        NewInInitializerRector::class,
+    ]);
+
+    $rectorConfig->phpVersion(PhpVersion::PHP_81);
 };
