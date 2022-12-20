@@ -4,10 +4,6 @@ namespace App;
 
 class PpdOptionsProcessor
 {
-    public function __construct()
-    {
-    }
-
     public function isValid(array $options): bool
     {
         foreach ($options as $option) {
