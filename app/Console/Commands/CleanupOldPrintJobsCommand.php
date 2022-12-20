@@ -24,16 +24,6 @@ class CleanupOldPrintJobsCommand extends Command
     protected $description = 'Cleanup Old Print Jobs';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return int
