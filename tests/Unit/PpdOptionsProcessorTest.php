@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PpdOptionsProcessorTest extends TestCase
 {
-    public const NEW_OPTIONS = [
+    final public const NEW_OPTIONS = [
         'Resolution' => [
             'key' => 'Resolution',
             'name' => 'Output Resolution',
@@ -92,7 +92,7 @@ class PpdOptionsProcessorTest extends TestCase
         ],
     ];
 
-    public const OLD_OPTIONS = [
+    final public const OLD_OPTIONS = [
         'Resolution' => [
             'name' => 'Output Resolution',
             'values' => [
