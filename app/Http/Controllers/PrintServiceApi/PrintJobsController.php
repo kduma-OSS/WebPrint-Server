@@ -63,7 +63,7 @@ class PrintJobsController extends Controller
                 'content_type' => 'file',
                 'content' => URL::temporarySignedRoute('api.print-service.jobs.content.index', now()->addHour(), $job),
             ];
-        } elseif (preg_match('/[^\x20-\x7e\n]/', $job->content)) {
+        } elseif (preg_match('#[^\x20-\x7e\n]#', $job->content)) {
             $content = [
                 'content_type' => 'base64',
                 'content' => base64_encode(gzcompress($job->content)),

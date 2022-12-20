@@ -93,7 +93,7 @@ class PrintJobPromisesController extends Controller
         $promise->save();
 
         if ($validated['content'] ?? null) {
-            if (strlen($validated['content']) < 1024 && ! preg_match('/[^\x20-\x7e\n]/', $validated['content'])) {
+            if (strlen($validated['content']) < 1024 && ! preg_match('#[^\x20-\x7e\n]#', $validated['content'])) {
                 $promise->content = $validated['content'];
             } else {
                 Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
