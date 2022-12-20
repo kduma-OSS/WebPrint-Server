@@ -231,6 +231,6 @@ class PrinterSeeder extends Seeder
     {
         $json = file_get_contents(sprintf('%s/PPD_OPTIONS/%s.json', __DIR__, $name));
 
-        return json_decode($json, true);
+        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
     }
 }
