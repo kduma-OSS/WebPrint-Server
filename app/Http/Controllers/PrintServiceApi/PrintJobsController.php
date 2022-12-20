@@ -36,7 +36,7 @@ class PrintJobsController extends Controller
         $print_server->save();
 
         do {
-            if ($attempts++) {
+            if ($attempts++ !== 0) {
                 sleep(4);
             }
 

@@ -109,7 +109,7 @@ class PrintDialog extends Component
             return null;
         }
 
-        if (! $this->selected_printer) {
+        if ($this->selected_printer === null) {
             return null;
         }
 
