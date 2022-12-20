@@ -215,7 +215,7 @@ class PrintDialog extends Component
 
     public function increment()
     {
-        $this->count++;
+        ++$this->count;
     }
 
     public function render()
