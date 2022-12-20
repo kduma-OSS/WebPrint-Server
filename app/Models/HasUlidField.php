@@ -23,7 +23,7 @@ trait HasUlidField
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'ulid';
     }
