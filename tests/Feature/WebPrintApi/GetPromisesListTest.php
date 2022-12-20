@@ -62,7 +62,7 @@ class GetPromisesListTest extends TestCase
         $response = $this->getJson('/api/web-print/promises')
             ->assertOk();
 
-        $promises->map(fn(PrintJobPromise $promise) => [
+        $promises->map(fn(PrintJobPromise $promise): array => [
             'ulid' => $promise->ulid,
             'status' => $promise->status,
             'content_available' => true,

@@ -148,9 +148,9 @@ class PrintDialog extends Component
     public function getGroupedOptionsProperty()
     {
         return collect($this->selected_printer->ppd_options)
-            ->filter(fn ($element) => $element['enabled'])
+            ->filter(fn ($element): mixed => $element['enabled'])
             ->groupBy('group_key')
-            ->sortBy(fn ($group, $key) => $group->first()['order'])
+            ->sortBy(fn ($group, $key): mixed => $group->first()['order'])
             ->map->sortBy('order')
             ->mapWithKeys(function ($group, $key): array {
                 return [
@@ -164,7 +164,7 @@ class PrintDialog extends Component
                                         'key' => $element['key'],
                                         'name' => $element['name'],
                                         'values' => collect($element['values'])
-                                            ->filter(fn ($element) => $element['enabled'])
+                                            ->filter(fn ($element): mixed => $element['enabled'])
                                             ->sortBy('order')
                                             ->mapWithKeys(fn ($option, $key) => [
                                                 $option['key'] => [
@@ -184,8 +184,8 @@ class PrintDialog extends Component
     {
         return collect($this->selected_printer->ppd_options)
             ->sortBy('order')
-            ->filter(fn ($element) => $element['enabled'])
-            ->filter(fn ($option) => ($this->ppd_options[$option['key']] ?? null) != $option['default'])
+            ->filter(fn ($element): mixed => $element['enabled'])
+            ->filter(fn ($option): bool => ($this->ppd_options[$option['key']] ?? null) != $option['default'])
             ->mapWithKeys(fn ($option) => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
     }
 

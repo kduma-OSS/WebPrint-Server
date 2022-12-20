@@ -46,7 +46,7 @@ class PrintersController extends Controller
                 $query->forType($type);
             })
             ->get()
-            ->map(fn (Printer $printer) => new PrinterResource($printer, $request->get('ppd_options', false)));
+            ->map(fn (Printer $printer): \App\Http\Resources\PrinterResource => new PrinterResource($printer, $request->get('ppd_options', false)));
 
         return PrinterResource::collection(
             $printers
