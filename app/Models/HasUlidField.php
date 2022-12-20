@@ -13,7 +13,7 @@ trait HasUlidField
      *
      * @return array
      */
-    public function uniqueIds()
+    public function uniqueIds(): array
     {
         return ['ulid'];
     }

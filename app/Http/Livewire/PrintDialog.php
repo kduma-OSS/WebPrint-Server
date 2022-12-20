@@ -166,7 +166,7 @@ class PrintDialog extends Component
                                         'values' => collect($element['values'])
                                             ->filter(fn ($element): mixed => $element['enabled'])
                                             ->sortBy('order')
-                                            ->mapWithKeys(fn ($option, $key) => [
+                                            ->mapWithKeys(fn ($option, $key): array => [
                                                 $option['key'] => [
                                                     'key' => $option['key'],
                                                     'name' => $option['name'],
@@ -186,7 +186,7 @@ class PrintDialog extends Component
             ->sortBy('order')
             ->filter(fn ($element): mixed => $element['enabled'])
             ->filter(fn ($option): bool => ($this->ppd_options[$option['key']] ?? null) != $option['default'])
-            ->mapWithKeys(fn ($option) => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
+            ->mapWithKeys(fn ($option): array => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
     }
 
     public function goToSetPrinterView()
@@ -207,7 +207,7 @@ class PrintDialog extends Component
     public function getDefaultForPrinter(Printer $printer, array $merge = [])
     {
         return collect($printer->ppd_options)
-            ->mapWithKeys(fn ($option, $key) => [$option['key'] => $option['default']])
+            ->mapWithKeys(fn ($option, $key): array => [$option['key'] => $option['default']])
             ->merge($merge)
             ->toArray();
     }
