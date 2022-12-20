@@ -46,6 +46,7 @@ class PrintJobPromisesContentController extends Controller
                 'Content-Type' => 'application/octet-stream',
             ]);
         }
+
         return response($promise->content, 200, [
             'Content-Type' => 'application/octet-stream',
             'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $promise->file_name, Str::slug($promise->file_name, '.')),

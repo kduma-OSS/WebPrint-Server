@@ -55,6 +55,7 @@ class Printer extends Model
         if ($type == 'ppd') {
             return $query->where('ppd_support', 1);
         }
+
         return $query->where(function (Builder $query) use ($type) {
             $query->whereJsonContains('raw_languages_supported', $type)
                 ->orWhereJsonContains('raw_languages_supported', '*');

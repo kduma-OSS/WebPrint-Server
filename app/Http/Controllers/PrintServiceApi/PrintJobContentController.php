@@ -26,6 +26,7 @@ class PrintJobContentController extends Controller
                 'Content-Type' => 'application/octet-stream',
             ]);
         }
+
         return response($job->content, 200, [
             'Content-Type' => 'application/octet-stream',
             'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $job->file_name, Str::slug($job->file_name, '.')),
