@@ -60,7 +60,7 @@ class AddTeamMember implements AddsTeamMembers
      *
      * @return array
      */
-    protected function rules()
+    protected function rules(): array
     {
         return array_filter([
             'email' => ['required', 'email', 'exists:users'],

@@ -60,7 +60,7 @@ class InviteTeamMember implements InvitesTeamMembers
      *
      * @return array
      */
-    protected function rules(mixed $team)
+    protected function rules(mixed $team): array
     {
         return array_filter([
             'email' => ['required', 'email', Rule::unique('team_invitations')->where(function ($query) use ($team): void {
