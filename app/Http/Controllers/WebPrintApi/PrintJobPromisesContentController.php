@@ -45,12 +45,11 @@ class PrintJobPromisesContentController extends Controller
             return \Storage::download($promise->content_file, $promise->file_name, [
                 'Content-Type' => 'application/octet-stream',
             ]);
-        } else {
-            return response($promise->content, 200, [
-                'Content-Type' => 'application/octet-stream',
-                'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $promise->file_name, Str::slug($promise->file_name, '.')),
-            ]);
         }
+        return response($promise->content, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $promise->file_name, Str::slug($promise->file_name, '.')),
+        ]);
     }
 
     /**
