@@ -9,6 +9,7 @@ use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
 use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
+use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Property\AddFalseDefaultToBoolPropertyRector;
 use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
@@ -26,7 +27,6 @@ use Rector\TypeDeclaration\Rector\ClassMethod\ArrayShapeFromConstantArrayReturnR
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
         __DIR__.'/app',
-        __DIR__.'/bootstrap',
         __DIR__.'/config',
         __DIR__.'/database',
         __DIR__.'/lang',
@@ -44,11 +44,11 @@ return static function (RectorConfig $rectorConfig): void {
     // define sets of rules
     $rectorConfig->sets([
         SetList::PSR_4,
-//      SetList::PHP_52,
-//      SetList::PHP_53,
-//      SetList::PHP_54,
-//      SetList::PHP_55,
-//      SetList::PHP_56,
+        SetList::PHP_52,
+        SetList::PHP_53,
+        SetList::PHP_54,
+        SetList::PHP_55,
+        SetList::PHP_56,
 //      SetList::PHP_70,
 //      SetList::PHP_71,
 //      SetList::PHP_72,
@@ -95,6 +95,9 @@ return static function (RectorConfig $rectorConfig): void {
         CommonNotEqualRector::class,
         ConsistentPregDelimiterRector::class,
         NewInInitializerRector::class,
+
+        // Conflicts with Pint
+        PostIncDecToPreIncDecRector::class,
     ]);
 
     $rectorConfig->phpVersion(PhpVersion::PHP_81);
