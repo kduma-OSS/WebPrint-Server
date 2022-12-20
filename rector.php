@@ -18,9 +18,12 @@ use Rector\DependencyInjection\Rector\Class_\ActionInjectionToConstructorInjecti
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfReturnToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryAndToEarlyReturnRector;
+use Rector\Php71\Rector\FuncCall\CountOnNullRector;
+use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
 use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
 use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
+use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\ArrayShapeFromConstantArrayReturnRector;
 
@@ -44,19 +47,6 @@ return static function (RectorConfig $rectorConfig): void {
     // define sets of rules
     $rectorConfig->sets([
         SetList::PSR_4,
-        SetList::PHP_52,
-        SetList::PHP_53,
-        SetList::PHP_54,
-        SetList::PHP_55,
-        SetList::PHP_56,
-//      SetList::PHP_70,
-//      SetList::PHP_71,
-//      SetList::PHP_72,
-//      SetList::PHP_73,
-//      SetList::PHP_74,
-//      SetList::PHP_80,
-        SetList::PHP_81,
-        SetList::PHP_80,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
         SetList::CODE_QUALITY,
@@ -65,6 +55,8 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION,
         SetList::GMAGICK_TO_IMAGICK,
         SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
+
+        LevelSetList::UP_TO_PHP_81,
 
         // Skipped
         //  SetList::PRIVATIZATION,
@@ -88,6 +80,8 @@ return static function (RectorConfig $rectorConfig): void {
         StaticClosureRector::class, // SetList::CODING_STYLE
         ReturnBinaryAndToEarlyReturnRector::class, // SetList::EARLY_RETURN
         ArrayShapeFromConstantArrayReturnRector::class, // SetList::TYPE_DECLARATION
+        CountOnNullRector::class, // SetList::PHP_71
+        ClosureToArrowFunctionRector::class, // SetList::PHP_74
 
         // To Decide
 
@@ -95,6 +89,7 @@ return static function (RectorConfig $rectorConfig): void {
         CommonNotEqualRector::class,
         ConsistentPregDelimiterRector::class,
         NewInInitializerRector::class,
+        ActionInjectionToConstructorInjectionRector::class,
 
         // Conflicts with Pint
         PostIncDecToPreIncDecRector::class,
