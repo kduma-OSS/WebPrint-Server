@@ -30,9 +30,7 @@ class PrintJobPromisesContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\StreamedResponse
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(PrintJobPromise $promise)
@@ -58,8 +56,6 @@ class PrintJobPromisesContentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException

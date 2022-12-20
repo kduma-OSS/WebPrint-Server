@@ -31,7 +31,6 @@ class PrintersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -57,7 +56,6 @@ class PrintersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Printer  $printer
      * @return PrinterResource
      */
     public function show(Printer $printer)

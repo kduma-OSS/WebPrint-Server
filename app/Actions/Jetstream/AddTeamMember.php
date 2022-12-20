@@ -42,12 +42,9 @@ class AddTeamMember implements AddsTeamMembers
     /**
      * Validate the add member operation.
      *
-     * @param  mixed  $team
-     * @param  string  $email
-     * @param  string|null  $role
      * @return void
      */
-    protected function validate($team, string $email, ?string $role)
+    protected function validate(mixed $team, string $email, ?string $role)
     {
         Validator::make([
             'email' => $email,
@@ -77,11 +74,9 @@ class AddTeamMember implements AddsTeamMembers
     /**
      * Ensure that the user is not already on the team.
      *
-     * @param  mixed  $team
-     * @param  string  $email
      * @return \Closure
      */
-    protected function ensureUserIsNotAlreadyOnTeam($team, string $email)
+    protected function ensureUserIsNotAlreadyOnTeam(mixed $team, string $email)
     {
         return function ($validator) use ($team, $email) {
             $validator->errors()->addIf(

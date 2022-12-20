@@ -21,7 +21,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can view any print jobs.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function viewAny(mixed $user)
@@ -44,8 +43,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can view the print job.
      *
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
      * @return bool
      */
     public function view(mixed $user, PrintJob $printJob)
@@ -66,9 +63,6 @@ class PrintJobsPolicy
     }
 
     /**
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
-     * @param  string  $field
      * @return bool
      *
      * @throws \Exception
@@ -90,7 +84,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can create print jobs.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function create(mixed $user)
@@ -109,8 +102,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can update the print job.
      *
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
      * @return bool
      */
     public function update(mixed $user, PrintJob $printJob)
@@ -132,8 +123,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can delete the print job.
      *
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
      * @return bool
      */
     public function delete(mixed $user, PrintJob $printJob)
@@ -151,8 +140,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can restore the print job.
      *
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
      * @return bool
      */
     public function restore(mixed $user, PrintJob $printJob)
@@ -163,8 +150,6 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can permanently delete the print job.
      *
-     * @param  mixed  $user
-     * @param  PrintJob  $printJob
      * @return bool
      */
     public function forceDelete(mixed $user, PrintJob $printJob)

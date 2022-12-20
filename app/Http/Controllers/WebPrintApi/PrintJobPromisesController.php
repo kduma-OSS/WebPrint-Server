@@ -54,7 +54,6 @@ class PrintJobPromisesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -141,7 +140,6 @@ class PrintJobPromisesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintJobPromise  $promise
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
     public function show(PrintJobPromise $promise)
@@ -154,8 +152,6 @@ class PrintJobPromisesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJobPromise $promise)
@@ -189,7 +185,6 @@ class PrintJobPromisesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  PrintJobPromise  $promise
      * @return \Illuminate\Http\Response
      */
     public function destroy(PrintJobPromise $promise)

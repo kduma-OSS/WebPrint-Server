@@ -19,7 +19,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can view any print servers.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function viewAny(mixed $user)
@@ -34,8 +33,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can view the print server.
      *
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
      * @return bool
      */
     public function view(mixed $user, PrintServer $printServer)
@@ -52,9 +49,6 @@ class PrintServerPolicy
     }
 
     /**
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
-     * @param  string  $field
      * @return bool
      *
      * @throws \Exception
@@ -76,7 +70,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can create print servers.
      *
-     * @param  mixed  $user
      * @return bool
      */
     public function create(mixed $user)
@@ -91,8 +84,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can update the print server.
      *
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
      * @return bool
      */
     public function update(mixed $user, PrintServer $printServer)
@@ -107,8 +98,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can delete the print server.
      *
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
      * @return bool
      */
     public function delete(mixed $user, PrintServer $printServer)
@@ -123,8 +112,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can restore the print server.
      *
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
      * @return bool
      */
     public function restore(mixed $user, PrintServer $printServer)
@@ -135,8 +122,6 @@ class PrintServerPolicy
     /**
      * Determine whether the user can permanently delete the print server.
      *
-     * @param  mixed  $user
-     * @param  PrintServer  $printServer
      * @return bool
      */
     public function forceDelete(mixed $user, PrintServer $printServer)

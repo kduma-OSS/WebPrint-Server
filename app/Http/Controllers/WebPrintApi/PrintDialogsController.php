@@ -31,9 +31,7 @@ class PrintDialogsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  PrintJobPromise  $promise
      * @return PrintDialogResource|Response
-     *
      * @throws AuthorizationException
      */
     public function index(PrintJobPromise $promise)
@@ -50,8 +48,6 @@ class PrintDialogsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintJobPromise  $promise
      * @return PrintDialogResource
      *
      * @throws AuthorizationException
@@ -82,7 +78,6 @@ class PrintDialogsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function show(PrintDialog $printDialog)
@@ -93,8 +88,6 @@ class PrintDialogsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function update(Request $request, PrintDialog $printDialog)
@@ -105,7 +98,6 @@ class PrintDialogsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  PrintDialog  $printDialog
      * @return Response
      */
     public function destroy(PrintDialog $printDialog)

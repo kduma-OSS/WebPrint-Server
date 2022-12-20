@@ -20,7 +20,6 @@ class PrintJobsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  Request  $request
      * @return \Illuminate\Http\Response|\Illuminate\Support\Collection
      */
     public function index(Request $request)
@@ -51,7 +50,6 @@ class PrintJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  PrintJob  $job
      * @return array|\Illuminate\Http\Response
      */
     public function show(PrintJob $job)
@@ -109,8 +107,6 @@ class PrintJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  PrintJob  $job
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PrintJob $job)
