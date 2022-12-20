@@ -8,7 +8,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('printers', function (Blueprint $table) {
+        Schema::create('printers', function (Blueprint $table): void {
             $table->id();
             $table->ulid('ulid')->unique();
 

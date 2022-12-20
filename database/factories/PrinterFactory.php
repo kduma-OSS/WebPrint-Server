@@ -24,7 +24,7 @@ class PrinterFactory extends Factory
 
     public function active(): self
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'enabled' => true,
             ];
@@ -33,7 +33,7 @@ class PrinterFactory extends Factory
 
     public function inactive(): self
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'enabled' => false,
             ];

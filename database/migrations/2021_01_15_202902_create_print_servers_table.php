@@ -8,7 +8,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('print_servers', function (Blueprint $table) {
+        Schema::create('print_servers', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('team_id')->constrained();
             $table->ulid('ulid')->unique();

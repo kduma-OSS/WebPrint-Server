@@ -77,7 +77,7 @@ class AddTeamMember implements AddsTeamMembers
      */
     protected function ensureUserIsNotAlreadyOnTeam(mixed $team, string $email)
     {
-        return function ($validator) use ($team, $email) {
+        return function ($validator) use ($team, $email): void {
             $validator->errors()->addIf(
                 $team->hasUserWithEmail($email),
                 'email',

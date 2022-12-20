@@ -63,7 +63,7 @@ class InviteTeamMember implements InvitesTeamMembers
     protected function rules(mixed $team)
     {
         return array_filter([
-            'email' => ['required', 'email', Rule::unique('team_invitations')->where(function ($query) use ($team) {
+            'email' => ['required', 'email', Rule::unique('team_invitations')->where(function ($query) use ($team): void {
                 $query->where('team_id', $team->id);
             })],
             'role' => Jetstream::hasRoles()
@@ -79,7 +79,7 @@ class InviteTeamMember implements InvitesTeamMembers
      */
     protected function ensureUserIsNotAlreadyOnTeam(mixed $team, string $email)
     {
-        return function ($validator) use ($team, $email) {
+        return function ($validator) use ($team, $email): void {
             $validator->errors()->addIf(
                 $team->hasUserWithEmail($email),
                 'email',

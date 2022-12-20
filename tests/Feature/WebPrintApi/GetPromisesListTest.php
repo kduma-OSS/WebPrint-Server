@@ -103,10 +103,10 @@ class GetPromisesListTest extends TestCase
 
         $content = $response->content();
 
-        $my_promises->each(function (PrintJobPromise $p) use ($content) {
+        $my_promises->each(function (PrintJobPromise $p) use ($content): void {
             $this->assertStringContainsStringIgnoringCase($p->ulid, $content);
         });
-        $others_promises->each(function (PrintJobPromise $p) use ($content) {
+        $others_promises->each(function (PrintJobPromise $p) use ($content): void {
             $this->assertStringNotContainsStringIgnoringCase($p->ulid, $content);
         });
     }

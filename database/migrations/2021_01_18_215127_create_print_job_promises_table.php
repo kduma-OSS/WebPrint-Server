@@ -9,7 +9,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('print_job_promises', function (Blueprint $table) {
+        Schema::create('print_job_promises', function (Blueprint $table): void {
             $table->id();
             $table->ulid('ulid')->unique();
 

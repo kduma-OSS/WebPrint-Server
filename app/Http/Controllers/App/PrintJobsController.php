@@ -31,10 +31,10 @@ class PrintJobsController extends Controller
             ])
             ->orderBy('created_at', 'desc')
             ->orderBy('id', 'desc')
-            ->when($request->has('app') && ($app = $request->user()->currentTeam->ClientApplications()->where('ulid', $request->has('app'))->first()), function ($query) use ($app) {
+            ->when($request->has('app') && ($app = $request->user()->currentTeam->ClientApplications()->where('ulid', $request->has('app'))->first()), function ($query) use ($app): void {
                 $query->where('client_application_id', $app->id);
             })
-            ->when($request->has('printer') && ($printer = $request->user()->currentTeam->Printers()->where('printers.ulid', $request->has('printer'))->first()), function ($query) use ($printer) {
+            ->when($request->has('printer') && ($printer = $request->user()->currentTeam->Printers()->where('printers.ulid', $request->has('printer'))->first()), function ($query) use ($printer): void {
                 $query->where('printer_id', $printer->id);
             })
             ->paginate();

@@ -13,7 +13,7 @@ return new class() extends Migration
      */
     public function up()
     {
-        Schema::create('team_invitations', function (Blueprint $table) {
+        Schema::create('team_invitations', function (Blueprint $table): void {
             $table->id();
             $table->ulid('ulid')->unique();
             $table->foreignId('team_id')->constrained()->cascadeOnDelete();

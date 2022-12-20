@@ -36,7 +36,7 @@ class TeamFactory extends Factory
      */
     public function personal()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'personal_team' => true,
             ];

@@ -117,10 +117,10 @@ class ListsAvailablePrintersTest extends TestCase
 
         $content = $response->content();
 
-        $my_printers->each(function (Printer $p) use ($content) {
+        $my_printers->each(function (Printer $p) use ($content): void {
             $this->assertStringContainsStringIgnoringCase($p->ulid, $content);
         });
-        $others_printers->each(function (Printer $p) use ($content) {
+        $others_printers->each(function (Printer $p) use ($content): void {
             $this->assertStringNotContainsStringIgnoringCase($p->ulid, $content);
         });
     }
@@ -155,10 +155,10 @@ class ListsAvailablePrintersTest extends TestCase
 
         $content = $response->content();
 
-        $associated_printers->each(function (Printer $p) use ($content) {
+        $associated_printers->each(function (Printer $p) use ($content): void {
             $this->assertStringContainsStringIgnoringCase($p->ulid, $content);
         });
-        $others_printers->each(function (Printer $p) use ($content) {
+        $others_printers->each(function (Printer $p) use ($content): void {
             $this->assertStringNotContainsStringIgnoringCase($p->ulid, $content);
         });
     }

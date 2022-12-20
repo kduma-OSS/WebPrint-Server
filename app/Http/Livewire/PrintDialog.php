@@ -152,13 +152,13 @@ class PrintDialog extends Component
             ->groupBy('group_key')
             ->sortBy(fn ($group, $key) => $group->first()['order'])
             ->map->sortBy('order')
-            ->mapWithKeys(function ($group, $key) {
+            ->mapWithKeys(function ($group, $key): array {
                 return [
                     $group->first()['group_key'] => [
                         'key' => $group->first()['group_key'],
                         'name' => $group->first()['group_name'],
                         'options' => $group
-                            ->mapWithKeys(function ($element, $key) {
+                            ->mapWithKeys(function ($element, $key): array {
                                 return [
                                     $element['key'] => [
                                         'key' => $element['key'],

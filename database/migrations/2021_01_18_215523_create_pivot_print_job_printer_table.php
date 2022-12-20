@@ -8,7 +8,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('pivot_print_job_printer', function (Blueprint $table) {
+        Schema::create('pivot_print_job_printer', function (Blueprint $table): void {
             $table->id();
 
             $table->foreignId('print_job_promise_id')->constrained('print_job_promises');

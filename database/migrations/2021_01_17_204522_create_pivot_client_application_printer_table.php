@@ -8,7 +8,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('pivot_client_application_printer', function (Blueprint $table) {
+        Schema::create('pivot_client_application_printer', function (Blueprint $table): void {
             $table->id();
 
             $table->foreignId('client_application_id')->constrained('client_applications');

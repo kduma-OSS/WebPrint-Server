@@ -31,7 +31,7 @@ class PrintJobPromiseFactory extends Factory
 
     public function withoutContent()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'file_name' => null,
                 'content' => null,
@@ -43,7 +43,7 @@ class PrintJobPromiseFactory extends Factory
 
     public function withContent($content = null)
     {
-        return $this->state(function (array $attributes) use ($content) {
+        return $this->state(function (array $attributes) use ($content): array {
             return [
                 'content' => $content ?? $this->faker->words(asText: true),
                 'content_file' => false,

@@ -8,7 +8,7 @@ return new class() extends Migration
 {
     public function up()
     {
-        Schema::create('client_applications', function (Blueprint $table) {
+        Schema::create('client_applications', function (Blueprint $table): void {
             $table->id();
 
             $table->foreignId('team_id')->constrained();

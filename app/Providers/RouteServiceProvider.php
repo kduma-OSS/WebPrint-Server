@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
-        $this->routes(function () {
+        $this->routes(function (): void {
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
@@ -45,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for('api', function (Request $request) {
+        RateLimiter::for('api', function (Request $request): \Illuminate\Cache\RateLimiting\Limit {
             return Limit::perMinute(600)->by($request->user()?->id ?: $request->ip());
         });
     }

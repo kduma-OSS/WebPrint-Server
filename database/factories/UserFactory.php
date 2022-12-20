@@ -40,7 +40,7 @@ class UserFactory extends Factory
      */
     public function unverified()
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes): array {
             return [
                 'email_verified_at' => null,
             ];
@@ -60,7 +60,7 @@ class UserFactory extends Factory
 
         return $this->has(
             Team::factory()
-                ->state(function (array $attributes, User $user) {
+                ->state(function (array $attributes, User $user): array {
                     return ['name' => $user->name.'\'s Personal Account', 'user_id' => $user->id, 'personal_team' => true];
                 }),
             'ownedTeams'
@@ -80,11 +80,11 @@ class UserFactory extends Factory
 
         return $this->has(
             Team::factory()
-                ->state(function (array $attributes, User $user) {
+                ->state(function (array $attributes, User $user): array {
                     return ['name' => 'Test Team', 'user_id' => $user->id, 'personal_team' => false];
                 }),
             'ownedTeams'
-        )->afterCreating(function (User $user) {
+        )->afterCreating(function (User $user): void {
             $user->switchTeam($user->ownedTeams->first());
         });
     }

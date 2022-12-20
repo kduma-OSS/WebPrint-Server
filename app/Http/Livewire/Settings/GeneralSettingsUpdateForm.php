@@ -51,7 +51,7 @@ class GeneralSettingsUpdateForm extends Component
         );
 
         collect($validatedData)
-            ->each(function ($value, $key) use ($settings) {
+            ->each(function ($value, $key) use ($settings): void {
                 $settings->{$key} = $value;
             });
 

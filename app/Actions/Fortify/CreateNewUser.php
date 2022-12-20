@@ -35,7 +35,7 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) use ($has_users) {
+            ]), function (User $user) use ($has_users): void {
                 $user->is_system_admin = ! $has_users;
                 $user->save();
 
