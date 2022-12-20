@@ -17,7 +17,6 @@ class AddTeamMember implements AddsTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string  $email
      * @param  string|null  $role
      * @return void
      */

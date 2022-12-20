@@ -19,7 +19,6 @@ class InviteTeamMember implements InvitesTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string  $email
      * @param  string|null  $role
      * @return void
      */
