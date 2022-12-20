@@ -52,7 +52,7 @@ class PrintDialogsController extends Controller
      *
      * @throws AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise)
+    public function store(Request $request, PrintJobPromise $promise): \App\Http\Resources\PrintDialogResource
     {
         $this->authorize('update', $promise);
 

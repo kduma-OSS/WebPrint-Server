@@ -56,7 +56,7 @@ class PrintJobPromisesController extends Controller
      *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): \App\Http\Resources\PrintJobPromiseResource
     {
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
@@ -144,7 +144,7 @@ class PrintJobPromisesController extends Controller
      *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function show(PrintJobPromise $promise)
+    public function show(PrintJobPromise $promise): \App\Http\Resources\PrintJobPromiseResource
     {
         $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
 
