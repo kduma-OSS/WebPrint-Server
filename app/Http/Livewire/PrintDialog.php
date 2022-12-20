@@ -20,7 +20,7 @@ class PrintDialog extends Component
 
     public string $view = 'main';
 
-    public function mount($dialog)
+    public function mount(PrintDialogModel $dialog)
     {
         $this->dialog = $dialog;
 
