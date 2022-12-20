@@ -25,7 +25,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function view(User $user, Team $team)
+    public function view(User $user, Team $team): bool
     {
         return $user->belongsToTeam($team) && ! $team->personal_team;
     }
@@ -45,7 +45,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function update(User $user, Team $team)
+    public function update(User $user, Team $team): bool
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }
@@ -55,7 +55,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function addTeamMember(User $user, Team $team)
+    public function addTeamMember(User $user, Team $team): bool
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }
@@ -65,7 +65,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function updateTeamMember(User $user, Team $team)
+    public function updateTeamMember(User $user, Team $team): bool
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }
@@ -75,7 +75,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function removeTeamMember(User $user, Team $team)
+    public function removeTeamMember(User $user, Team $team): bool
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }
@@ -85,7 +85,7 @@ class TeamPolicy
      *
      * @return mixed
      */
-    public function delete(User $user, Team $team)
+    public function delete(User $user, Team $team): bool
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }

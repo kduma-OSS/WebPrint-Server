@@ -24,7 +24,7 @@ class GeneralSettingsPolicy
      *
      * @return mixed
      */
-    public function view(User $user, string $setting)
+    public function view(User $user, string $setting): bool
     {
         return $user->is_system_admin && $setting !== 'active';
     }
@@ -34,7 +34,7 @@ class GeneralSettingsPolicy
      *
      * @return mixed
      */
-    public function update(User $user, string $setting)
+    public function update(User $user, string $setting): bool
     {
         return $user->is_system_admin && $setting !== 'active';
     }
