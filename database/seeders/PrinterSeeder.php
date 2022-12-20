@@ -15,7 +15,7 @@ class PrinterSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $server = new PrintServer();
         $server->team_id = Team::where('personal_team', false)->firstOrFail('id')->id;

@@ -14,7 +14,7 @@ class PrintJobPromiseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $client = ClientApplication::where('name', 'Test Debug Client')->firstOrFail();
 

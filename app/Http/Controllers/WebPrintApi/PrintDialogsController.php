@@ -80,7 +80,7 @@ class PrintDialogsController extends Controller
      *
      * @return Response
      */
-    public function show(PrintDialog $printDialog)
+    public function show(PrintDialog $printDialog): void
     {
         //
     }
@@ -90,7 +90,7 @@ class PrintDialogsController extends Controller
      *
      * @return Response
      */
-    public function update(Request $request, PrintDialog $printDialog)
+    public function update(Request $request, PrintDialog $printDialog): void
     {
         //
     }
@@ -100,7 +100,7 @@ class PrintDialogsController extends Controller
      *
      * @return Response
      */
-    public function destroy(PrintDialog $printDialog)
+    public function destroy(PrintDialog $printDialog): void
     {
         //
     }

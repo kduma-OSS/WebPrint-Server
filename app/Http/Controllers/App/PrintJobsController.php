@@ -44,27 +44,27 @@ class PrintJobsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): void
     {
     }
 
-    public function store(Request $request)
+    public function store(Request $request): void
     {
     }
 
-    public function show(PrintJob $job)
+    public function show(PrintJob $job): void
     {
     }
 
-    public function edit(PrintJob $job)
+    public function edit(PrintJob $job): void
     {
     }
 
-    public function update(Request $request, PrintJob $job)
+    public function update(Request $request, PrintJob $job): void
     {
     }
 
-    public function destroy(PrintJob $job)
+    public function destroy(PrintJob $job): void
     {
     }
 }

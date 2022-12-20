@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::middleware(['signed'])
     ->prefix('/api/web-print')
     ->name('api.web-print.')
-    ->group(function () {
+    ->group(function (): void {
         Route::name('print-dialog')->get(
             '/print-dialog/{dialog}',
             \App\Http\Controllers\WebPrintApi\UserPrintDialogController::class,
@@ -31,7 +31,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {
+])->group(function (): void {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -41,7 +41,7 @@ Route::middleware([
 
     Route::prefix('web-print')
         ->name('web-print.')
-        ->group(function () {
+        ->group(function (): void {
             Route::resource('servers', \App\Http\Controllers\App\PrintServersController::class)
                 ->only(['index', 'create', 'store', 'show']); //update, destroy, edit
 

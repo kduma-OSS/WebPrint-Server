@@ -135,7 +135,7 @@ class PrintersPolicy
      *
      * @return bool
      */
-    public function restore(mixed $user, Printer $printer)
+    public function restore(mixed $user, Printer $printer): void
     {
         //
     }
@@ -145,7 +145,7 @@ class PrintersPolicy
      *
      * @return bool
      */
-    public function forceDelete(mixed $user, Printer $printer)
+    public function forceDelete(mixed $user, Printer $printer): void
     {
         //
     }

@@ -149,7 +149,7 @@ class PrintJobPromisesPolicy
      *
      * @return bool
      */
-    public function restore(mixed $user, PrintJobPromise $printJobPromise)
+    public function restore(mixed $user, PrintJobPromise $printJobPromise): void
     {
         //
     }
@@ -159,7 +159,7 @@ class PrintJobPromisesPolicy
      *
      * @return bool
      */
-    public function forceDelete(mixed $user, PrintJobPromise $printJobPromise)
+    public function forceDelete(mixed $user, PrintJobPromise $printJobPromise): void
     {
         //
     }

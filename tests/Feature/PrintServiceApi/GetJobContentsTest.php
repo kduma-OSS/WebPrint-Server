@@ -14,7 +14,7 @@ class GetJobContentsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $job = PrintJob::factory()->create();
 
@@ -22,7 +22,7 @@ class GetJobContentsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -35,7 +35,7 @@ class GetJobContentsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_cant_access_with_correct_token()
+    public function test_cant_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -57,7 +57,7 @@ class GetJobContentsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_signed_url()
+    public function test_can_access_with_signed_url(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),

@@ -19,12 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.')
-    ->group(function () {
+    ->group(function (): void {
         Route::prefix('/print-service')
             ->name('print-service.')
-            ->group(function () {
+            ->group(function (): void {
                 Route::middleware(['signed'])
-                    ->group(function () {
+                    ->group(function (): void {
                         Route::name('jobs')->apiResource(
                             '/jobs/{job}/content',
                             \App\Http\Controllers\PrintServiceApi\PrintJobContentController::class,
@@ -35,7 +35,7 @@ Route::name('api.')
                     }); // Route::middleware(['signed'])
 
                 Route::middleware(['auth:print_service_api'])
-                    ->group(function () {
+                    ->group(function (): void {
                         Route::apiResource(
                             '/jobs',
                             \App\Http\Controllers\PrintServiceApi\PrintJobsController::class,
@@ -48,9 +48,9 @@ Route::name('api.')
 
         Route::prefix('/web-print')
             ->name('web-print.')
-            ->group(function () {
+            ->group(function (): void {
                 Route::middleware(['auth:web_print_api'])
-                    ->group(function () {
+                    ->group(function (): void {
                         Route::apiResource(
                             '/printers',
                             \App\Http\Controllers\WebPrintApi\PrintersController::class,

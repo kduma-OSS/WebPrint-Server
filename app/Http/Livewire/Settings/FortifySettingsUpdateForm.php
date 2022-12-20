@@ -49,7 +49,7 @@ class FortifySettingsUpdateForm extends Component
      *
      * @return void
      */
-    public function mount(FortifySettings $settings)
+    public function mount(FortifySettings $settings): void
     {
         $this->authorize('viewAny', FortifySettings::class);
         $user = Auth::user();
@@ -61,7 +61,7 @@ class FortifySettingsUpdateForm extends Component
         $this->two_factor_authentication_enabled = $user->can('view', [FortifySettings::class, 'two_factor_authentication_enabled']) && $settings->two_factor_authentication_enabled;
     }
 
-    public function updateFortifySettings(FortifySettings $settings)
+    public function updateFortifySettings(FortifySettings $settings): void
     {
         $validatedData = $this->validate(
             collect($this->rules)

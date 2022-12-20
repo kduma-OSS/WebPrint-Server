@@ -15,13 +15,13 @@ class ListNewJobsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $this->getJson('/api/print-service/jobs')
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -32,7 +32,7 @@ class ListNewJobsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             PrintServer::factory()->create(),
@@ -44,7 +44,7 @@ class ListNewJobsTest extends TestCase
             ->assertExactJson([]);
     }
 
-    public function test_lists_new_jobs()
+    public function test_lists_new_jobs(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -67,7 +67,7 @@ class ListNewJobsTest extends TestCase
             );
     }
 
-    public function test_cannot_lists_others_jobs()
+    public function test_cannot_lists_others_jobs(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -96,7 +96,7 @@ class ListNewJobsTest extends TestCase
             );
     }
 
-    public function test_cannot_lists_non_new_jobs()
+    public function test_cannot_lists_non_new_jobs(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),

@@ -15,7 +15,7 @@ class SetJobsStatusTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $job = PrintJob::factory()->create();
 
@@ -25,7 +25,7 @@ class SetJobsStatusTest extends TestCase
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -40,7 +40,7 @@ class SetJobsStatusTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_update_to_printing_with_correct_token()
+    public function test_can_update_to_printing_with_correct_token(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -62,7 +62,7 @@ class SetJobsStatusTest extends TestCase
         $this->assertEquals(PrintJobStatusEnum::Printing, $job->fresh()->status);
     }
 
-    public function test_can_update_to_finished_with_correct_token()
+    public function test_can_update_to_finished_with_correct_token(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -84,7 +84,7 @@ class SetJobsStatusTest extends TestCase
         $this->assertEquals(PrintJobStatusEnum::Finished, $job->fresh()->status);
     }
 
-    public function test_can_update_to_failed_with_correct_token()
+    public function test_can_update_to_failed_with_correct_token(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -108,7 +108,7 @@ class SetJobsStatusTest extends TestCase
         $this->assertEquals('Something went wrong', $job->fresh()->status_message);
     }
 
-    public function test_cannot_be_updated_to_failed_without_message()
+    public function test_cannot_be_updated_to_failed_without_message(): void
     {
         Sanctum::actingAs(
             $server = PrintServer::factory()->create(),
@@ -128,7 +128,7 @@ class SetJobsStatusTest extends TestCase
         ])->assertJsonValidationErrorFor('status_message');
     }
 
-    public function test_cannot_update_others_jobs()
+    public function test_cannot_update_others_jobs(): void
     {
         Sanctum::actingAs(
             PrintServer::factory()->create(),

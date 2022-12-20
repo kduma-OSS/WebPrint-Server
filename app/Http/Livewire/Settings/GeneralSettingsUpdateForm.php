@@ -31,7 +31,7 @@ class GeneralSettingsUpdateForm extends Component
      *
      * @return void
      */
-    public function mount(GeneralSettings $settings)
+    public function mount(GeneralSettings $settings): void
     {
         $this->authorize('viewAny', GeneralSettings::class);
         $user = Auth::user();
@@ -40,7 +40,7 @@ class GeneralSettingsUpdateForm extends Component
         $this->active = $user->can('view', [GeneralSettings::class, 'active']) && $settings->active;
     }
 
-    public function updateGeneralSettings(GeneralSettings $settings)
+    public function updateGeneralSettings(GeneralSettings $settings): void
     {
         $validatedData = $this->validate(
             collect($this->rules)

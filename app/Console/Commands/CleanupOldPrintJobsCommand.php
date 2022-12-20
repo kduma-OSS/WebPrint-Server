@@ -28,7 +28,7 @@ class CleanupOldPrintJobsCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ([
             [['draft', 'new', 'canceled'], now()->subHours(12), now()->subHours(24)],

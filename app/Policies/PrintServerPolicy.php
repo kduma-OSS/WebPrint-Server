@@ -114,7 +114,7 @@ class PrintServerPolicy
      *
      * @return bool
      */
-    public function restore(mixed $user, PrintServer $printServer)
+    public function restore(mixed $user, PrintServer $printServer): void
     {
         //
     }
@@ -124,7 +124,7 @@ class PrintServerPolicy
      *
      * @return bool
      */
-    public function forceDelete(mixed $user, PrintServer $printServer)
+    public function forceDelete(mixed $user, PrintServer $printServer): void
     {
         //
     }

@@ -20,7 +20,7 @@ class PrintDialog extends Component
 
     public string $view = 'main';
 
-    public function mount(PrintDialogModel $dialog)
+    public function mount(PrintDialogModel $dialog): void
     {
         $this->dialog = $dialog;
 
@@ -31,7 +31,7 @@ class PrintDialog extends Component
         }
     }
 
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         if ($propertyName == 'selected_printer_ulid') {
             $printer = $this->dialog->JobPromise->AvailablePrinters()->where('ulid', $this->selected_printer_ulid)->first();
@@ -189,17 +189,17 @@ class PrintDialog extends Component
             ->mapWithKeys(fn ($option): array => [$option['name'] => collect($option['values'])->firstWhere('key', $this->ppd_options[$option['key']])['name']]);
     }
 
-    public function goToSetPrinterView()
+    public function goToSetPrinterView(): void
     {
         $this->view = 'set_printer';
     }
 
-    public function goToMainView()
+    public function goToMainView(): void
     {
         $this->view = 'main';
     }
 
-    public function goToSetOptionsView()
+    public function goToSetOptionsView(): void
     {
         $this->view = 'set_options';
     }
@@ -214,7 +214,7 @@ class PrintDialog extends Component
 
     public int $count = 0;
 
-    public function increment()
+    public function increment(): void
     {
         ++$this->count;
     }

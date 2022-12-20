@@ -15,7 +15,7 @@ class AppConfigurationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
@@ -25,7 +25,7 @@ class AppConfigurationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         if (! $this->app->runningInConsole()) {
             $this->bootGeneralSettings();

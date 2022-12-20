@@ -13,7 +13,7 @@ class PrintJobSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $content = 'To jest test!!! - '.date('Y-m-d H:i:s')."\n";
 

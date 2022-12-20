@@ -14,13 +14,13 @@ class ListsAvailablePrintersTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $this->getJson('/api/web-print/printers')
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -31,7 +31,7 @@ class ListsAvailablePrintersTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             ClientApplication::factory()->create(),
@@ -45,7 +45,7 @@ class ListsAvailablePrintersTest extends TestCase
             ]);
     }
 
-    public function test_lists_printers()
+    public function test_lists_printers(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -84,7 +84,7 @@ class ListsAvailablePrintersTest extends TestCase
             ]);
     }
 
-    public function test_cannot_lists_others_printers()
+    public function test_cannot_lists_others_printers(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -125,7 +125,7 @@ class ListsAvailablePrintersTest extends TestCase
         });
     }
 
-    public function test_cannot_lists_printers_not_attached_to_print_server()
+    public function test_cannot_lists_printers_not_attached_to_print_server(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -163,7 +163,7 @@ class ListsAvailablePrintersTest extends TestCase
         });
     }
 
-    public function test_cant_see_disabled_printers()
+    public function test_cant_see_disabled_printers(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),

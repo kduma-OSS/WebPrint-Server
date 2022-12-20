@@ -18,7 +18,7 @@ class RemoveTeamMember implements RemovesTeamMembers
      * @param  mixed  $teamMember
      * @return void
      */
-    public function remove($user, $team, $teamMember)
+    public function remove($user, $team, $teamMember): void
     {
         $this->authorize($user, $team, $teamMember);
 

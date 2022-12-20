@@ -15,13 +15,13 @@ class GetPromisesListTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_access_without_token()
+    public function test_cannot_access_without_token(): void
     {
         $this->getJson('/api/web-print/promises')
             ->assertUnauthorized();
     }
 
-    public function test_cannot_access_with_different_token()
+    public function test_cannot_access_with_different_token(): void
     {
         Sanctum::actingAs(
             User::factory()->withNonPersonalTeam()->create(),
@@ -32,7 +32,7 @@ class GetPromisesListTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_can_access_with_correct_token()
+    public function test_can_access_with_correct_token(): void
     {
         Sanctum::actingAs(
             ClientApplication::factory()->create(),
@@ -46,7 +46,7 @@ class GetPromisesListTest extends TestCase
             ]);
     }
 
-    public function test_lists_promises()
+    public function test_lists_promises(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -81,7 +81,7 @@ class GetPromisesListTest extends TestCase
         ])->each(fn(array $expected) => $response->assertJsonFragment($expected));
     }
 
-    public function test_cannot_lists_others_promises()
+    public function test_cannot_lists_others_promises(): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),

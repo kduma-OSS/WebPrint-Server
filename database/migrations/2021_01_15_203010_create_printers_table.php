@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('printers', function (Blueprint $table): void {
             $table->id();
@@ -28,7 +28,7 @@ return new class() extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('printers');
     }

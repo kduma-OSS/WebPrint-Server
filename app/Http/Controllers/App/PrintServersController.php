@@ -25,32 +25,32 @@ class PrintServersController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): void
     {
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         //
     }
 
-    public function show(PrintServer $server)
+    public function show(PrintServer $server): void
     {
         //
     }
 
-    public function edit(PrintServer $server)
+    public function edit(PrintServer $server): void
     {
         //
     }
 
-    public function update(Request $request, PrintServer $server)
+    public function update(Request $request, PrintServer $server): void
     {
         //
     }
 
-    public function destroy(PrintServer $server)
+    public function destroy(PrintServer $server): void
     {
         //
     }

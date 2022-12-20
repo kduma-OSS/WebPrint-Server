@@ -171,7 +171,7 @@ class PpdOptionsProcessorTest extends TestCase
         ],
     ];
 
-    public function test_validator()
+    public function test_validator(): void
     {
         $sut = new PpdOptionsProcessor();
 
@@ -184,7 +184,7 @@ class PpdOptionsProcessorTest extends TestCase
         $this->assertFalse($result);
     }
 
-    public function test_upgrade()
+    public function test_upgrade(): void
     {
         $sut = new PpdOptionsProcessor();
 

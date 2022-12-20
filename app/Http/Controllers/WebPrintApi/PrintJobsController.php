@@ -34,7 +34,7 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): void
     {
         //
     }
@@ -69,7 +69,7 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(PrintJob $job)
+    public function show(PrintJob $job): void
     {
         //
     }
@@ -79,7 +79,7 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrintJob $job)
+    public function update(Request $request, PrintJob $job): void
     {
         //
     }
@@ -89,7 +89,7 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrintJob $job)
+    public function destroy(PrintJob $job): void
     {
         //
     }

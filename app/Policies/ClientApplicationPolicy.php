@@ -102,7 +102,7 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function restore(mixed $user, ClientApplication $client)
+    public function restore(mixed $user, ClientApplication $client): void
     {
         //
     }
@@ -112,7 +112,7 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function forceDelete(mixed $user, ClientApplication $client)
+    public function forceDelete(mixed $user, ClientApplication $client): void
     {
         //
     }
