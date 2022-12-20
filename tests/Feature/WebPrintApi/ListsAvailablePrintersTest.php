@@ -45,7 +45,7 @@ class ListsAvailablePrintersTest extends TestCase
             ]);
     }
 
-    public function test_lists_new_printers()
+    public function test_lists_printers()
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
