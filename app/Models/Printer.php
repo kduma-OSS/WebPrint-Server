@@ -2,18 +2,28 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ArnDefaultsTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use RenokiCo\Acl\Concerns\HasArn;
+use RenokiCo\Acl\Concerns\HasStaticArn;
+use RenokiCo\Acl\Contracts\Arnable;
 
 /**
  * @mixin IdeHelperPrinter
  */
-class Printer extends Model
+class Printer extends Model implements Arnable
 {
+    use HasArn, ArnDefaultsTrait {
+        ArnDefaultsTrait::arnPartition insteadof HasArn;
+        ArnDefaultsTrait::arnService insteadof HasArn;
+        ArnDefaultsTrait::arnRegion insteadof HasArn;
+    }
+
     use HasFactory;
     use HasUlidField;
 
@@ -60,5 +70,15 @@ class Printer extends Model
             $query->whereJsonContains('raw_languages_supported', $type)
                 ->orWhereJsonContains('raw_languages_supported', '*');
         });
+    }
+
+    public function arnResourceAccountId()
+    {
+        return $this->Server->Team->ulid;
+    }
+
+    public function arnResourceId()
+    {
+        return $this->ulid;
     }
 }

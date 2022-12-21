@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "edb0145dd1f046d5516ccb6b8fd4bded",
+    "content-hash": "c3f77d68a1fe62a05f5cfb9dd31da5f0",
     "packages": [
         {
             "name": "aeon-php/calendar",
@@ -4300,6 +4300,71 @@
                 }
             ],
             "time": "2022-11-05T23:03:38+00:00"
+        },
+        {
+            "name": "renoki-co/acl",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/renoki-co/acl.git",
+                "reference": "8fa065dc23b6913860535feaa315f054a3a5fbc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/renoki-co/acl/zipball/8fa065dc23b6913860535feaa315f054a3a5fbc8",
+                "reference": "8fa065dc23b6913860535feaa315f054a3a5fbc8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.35",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.14",
+                "orchestra/testbench-core": "^7.14",
+                "phpunit/phpunit": "^9.5.21",
+                "vimeo/psalm": "4.24.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RenokiCo\\Acl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Renoki",
+                    "homepage": "https://github.com/rennokki",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple, JSON-based, AWS IAM-style ACL for PHP applications, leveraging granular permissions in your applications with strong declarations.",
+            "homepage": "https://github.com/renoki-co/acl",
+            "keywords": [
+                "access",
+                "acl",
+                "arn",
+                "aws",
+                "control",
+                "iam",
+                "permissions",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/renoki-co/acl/issues",
+                "source": "https://github.com/renoki-co/acl/tree/0.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/rennokki",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-12-16T07:20:14+00:00"
         },
         {
             "name": "spatie/laravel-settings",
