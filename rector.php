@@ -23,9 +23,26 @@ use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php80\Rector\FunctionLike\UnionTypesRector;
 use Rector\Php81\Rector\ClassMethod\NewInInitializerRector;
 use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
+use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\ArrayShapeFromConstantArrayReturnRector;
+use RectorLaravel\Rector\Class_\AddMockConsoleOutputFalseToConsoleTestsRector;
+use RectorLaravel\Rector\Class_\AnonymousMigrationsRector;
+use RectorLaravel\Rector\Class_\PropertyDeferToDeferrableProviderToRector;
+use RectorLaravel\Rector\Class_\UnifyModelDatesWithCastsRector;
+use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
+use RectorLaravel\Rector\FuncCall\FactoryFuncCallToStaticCallRector;
+use RectorLaravel\Rector\FuncCall\HelperFuncCallToFacadeClassRector;
+use RectorLaravel\Rector\FuncCall\RemoveDumpDataDeadCodeRector;
+use RectorLaravel\Rector\MethodCall\ChangeQueryWhereDateValueWithCarbonRector;
+use RectorLaravel\Rector\MethodCall\FactoryApplyingStatesRector;
+use RectorLaravel\Rector\MethodCall\RedirectBackToBackHelperRector;
+use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
+use RectorLaravel\Rector\New_\AddGuardToLoginEventRector;
+use RectorLaravel\Rector\PropertyFetch\OptionalToNullsafeOperatorRector;
+use RectorLaravel\Rector\StaticCall\MinutesToSecondsInCacheRector;
+use RectorLaravel\Rector\StaticCall\Redirect301ToPermanentRedirectRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -40,6 +57,22 @@ return static function (RectorConfig $rectorConfig): void {
 
     // register a single rule
     $rectorConfig->rule(ActionInjectionToConstructorInjectionRector::class);
+    $rectorConfig->rule(AddGenericReturnTypeToRelationsRector::class);
+    $rectorConfig->rule(AddGuardToLoginEventRector::class);
+    $rectorConfig->rule(AddMockConsoleOutputFalseToConsoleTestsRector::class);
+    $rectorConfig->rule(AnonymousMigrationsRector::class);
+    $rectorConfig->rule(ChangeQueryWhereDateValueWithCarbonRector::class);
+    $rectorConfig->rule(FactoryApplyingStatesRector::class);
+    $rectorConfig->rule(FactoryFuncCallToStaticCallRector::class);
+    $rectorConfig->rule(HelperFuncCallToFacadeClassRector::class);
+    $rectorConfig->rule(MinutesToSecondsInCacheRector::class);
+    $rectorConfig->rule(OptionalToNullsafeOperatorRector::class);
+    $rectorConfig->rule(PropertyDeferToDeferrableProviderToRector::class);
+    $rectorConfig->rule(Redirect301ToPermanentRedirectRector::class);
+    $rectorConfig->rule(RedirectBackToBackHelperRector::class);
+    $rectorConfig->rule(RedirectRouteToToRouteHelperRector::class);
+    $rectorConfig->rule(RemoveDumpDataDeadCodeRector::class);
+    $rectorConfig->rule(UnifyModelDatesWithCastsRector::class);
 
 //    $rectorConfig->importNames();
 //    $rectorConfig->importShortClasses(false);
@@ -57,6 +90,8 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
 
         LevelSetList::UP_TO_PHP_81,
+
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
 
         // Skipped
         //  SetList::PRIVATIZATION,
@@ -90,6 +125,7 @@ return static function (RectorConfig $rectorConfig): void {
         ConsistentPregDelimiterRector::class,
         NewInInitializerRector::class,
         ActionInjectionToConstructorInjectionRector::class,
+        MinutesToSecondsInCacheRector::class,
 
         // Conflicts with Pint
         PostIncDecToPreIncDecRector::class,
