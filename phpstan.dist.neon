@@ -1,0 +1,13 @@
+includes:
+	- phpstan-baseline.neon
+
+parameters:
+    level: 0
+    paths:
+        - app
+        - config
+        - database
+        - tests
+    ignoreErrors:
+        - "#^Call to static method download\\(\\) on an unknown class Storage\\.$#"
+        - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_()]+ should return [a-zA-Z0-9\\_]+ but return statement is missing#'
