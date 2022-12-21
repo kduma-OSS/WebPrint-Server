@@ -36,8 +36,23 @@ parameters:
 			path: app/Http/Controllers/WebPrintApi/PrintDialogsController.php
 
 		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintDialogsController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesContentController.php
+
+		-
 			message: "#^PHPDoc tag @return with type App\\\\Http\\\\Resources\\\\PrintJobPromiseResource\\|Illuminate\\\\Http\\\\Response is not subtype of native type App\\\\Http\\\\Resources\\\\PrintJobPromiseResource\\.$#"
 			count: 2
+			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
 			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesController.php
 
 		-
@@ -46,9 +61,24 @@ parameters:
 			path: app/Http/Controllers/WebPrintApi/PrintJobsController.php
 
 		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintJobsController.php
+
+		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:forType\\(\\)\\.$#"
 			count: 1
 			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/UserPrintDialogController.php
 
 		-
 			message: "#^Property App\\\\Models\\\\PrintDialog\\:\\:\\$status \\(App\\\\Models\\\\Enums\\\\PrintDialogStatusEnum\\) does not accept string\\.$#"
