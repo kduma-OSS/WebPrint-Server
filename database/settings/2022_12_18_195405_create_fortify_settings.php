@@ -3,7 +3,7 @@
 use Spatie\LaravelSettings\Migrations\SettingsBlueprint;
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-class CreateFortifySettings extends SettingsMigration
+return new class extends SettingsMigration
 {
     public function up(): void
     {
@@ -15,4 +15,4 @@ class CreateFortifySettings extends SettingsMigration
             $blueprint->add('two_factor_authentication_enabled', true);
         });
     }
-}
+};
