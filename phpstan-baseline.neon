@@ -1,2 +1,6 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Access to an undefined property App\\\\Http\\\\Resources\\\\PrinterResource\\:\\:\\$ppd_options_layout\\.$#"
+			count: 1
+			path: app/Http/Resources/PrinterResource.php
