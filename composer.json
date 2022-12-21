@@ -28,6 +28,8 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5.10",
         "rector/rector": "^0.15.1",
         "spatie/laravel-ignition": "^1.0"
@@ -62,6 +64,8 @@
         "test-pint": "@php vendor/bin/pint -v --test",
         "test": "@php artisan test",
         "rector": "@php vendor/bin/rector",
+        "phpstan": "@php vendor/bin/phpstan analyse",
+        "phpstan-baseline": "@php vendor/bin/phpstan analyse --generate-baseline --allow-empty-baseline",
         "meta": [
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",

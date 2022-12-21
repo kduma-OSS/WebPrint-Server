@@ -1,0 +1,13 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 6
+
+    paths:
+        - app
+    ignoreErrors:
+        - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_()]+ should return [a-zA-Z0-9\\_]+ but return statement is missing#'
+
+#    checkMissingIterableValueType: false

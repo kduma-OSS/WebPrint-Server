@@ -1,0 +1,231 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^PHPDoc tag @return with type int is incompatible with native type void\\.$#"
+			count: 1
+			path: app/Console/Commands/CleanupOldPrintJobsCommand.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:ClientApplications\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/App/ClientApplicationsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:ClientApplications\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/App/PrintJobPromisesController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:ClientApplications\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/App/PrintJobsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:Printers\\(\\)\\.$#"
+			count: 2
+			path: app/Http/Controllers/App/PrintJobsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:PrintServers\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/App/PrintServersController.php
+
+		-
+			message: "#^Parameter \\#3 \\$parameters of static method Illuminate\\\\Routing\\\\UrlGenerator\\:\\:temporarySignedRoute\\(\\) expects array, App\\\\Models\\\\PrintJob given\\.$#"
+			count: 1
+			path: app/Http/Controllers/PrintServiceApi/PrintJobsController.php
+
+		-
+			message: "#^PHPDoc tag @return with type Illuminate\\\\Http\\\\Response is incompatible with native type void\\.$#"
+			count: 3
+			path: app/Http/Controllers/WebPrintApi/PrintDialogsController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintDialogsController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesContentController.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\Http\\\\Resources\\\\PrintJobPromiseResource\\|Illuminate\\\\Http\\\\Response is not subtype of native type App\\\\Http\\\\Resources\\\\PrintJobPromiseResource\\.$#"
+			count: 2
+			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintJobPromisesController.php
+
+		-
+			message: "#^PHPDoc tag @return with type Illuminate\\\\Http\\\\Response is incompatible with native type void\\.$#"
+			count: 4
+			path: app/Http/Controllers/WebPrintApi/PrintJobsController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintJobsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:forType\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
+			message: "#^Parameter \\#2 \\$callback of method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<App\\\\Models\\\\Printer\\>\\:\\:when\\(\\) expects \\(callable\\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<App\\\\Models\\\\Printer\\>, mixed\\)\\: void\\)\\|null, Closure\\(Illuminate\\\\Database\\\\Eloquent\\\\Builder, mixed\\)\\: void given\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/UserPrintDialogController.php
+
+		-
+			message: "#^Property App\\\\Models\\\\PrintDialog\\:\\:\\$status \\(App\\\\Models\\\\Enums\\\\PrintDialogStatusEnum\\) does not accept string\\.$#"
+			count: 2
+			path: app/Http/Livewire/PrintDialog.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Http\\\\Resources\\\\PrinterResource\\:\\:\\$ppd_options_layout\\.$#"
+			count: 1
+			path: app/Http/Resources/PrinterResource.php
+
+		-
+			message: "#^Method App\\\\Models\\\\ClientApplication\\:\\:getRememberTokenName\\(\\) should return string but returns null\\.$#"
+			count: 1
+			path: app/Models/ClientApplication.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperClientApplication\\.$#"
+			count: 1
+			path: app/Models/ClientApplication.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperMembership\\.$#"
+			count: 1
+			path: app/Models/Membership.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintDialog\\.$#"
+			count: 1
+			path: app/Models/PrintDialog.php
+
+		-
+			message: "#^Parameter \\#3 \\$parameters of static method Illuminate\\\\Routing\\\\UrlGenerator\\:\\:temporarySignedRoute\\(\\) expects array, \\$this\\(App\\\\Models\\\\PrintDialog\\) given\\.$#"
+			count: 1
+			path: app/Models/PrintDialog.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintJob\\.$#"
+			count: 1
+			path: app/Models/PrintJob.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintJobPromise\\.$#"
+			count: 1
+			path: app/Models/PrintJobPromise.php
+
+		-
+			message: "#^Method App\\\\Models\\\\PrintServer\\:\\:getRememberTokenName\\(\\) should return string but returns null\\.$#"
+			count: 1
+			path: app/Models/PrintServer.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintServer\\.$#"
+			count: 1
+			path: app/Models/PrintServer.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrinter\\.$#"
+			count: 1
+			path: app/Models/Printer.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperTeam\\.$#"
+			count: 1
+			path: app/Models/Team.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\Team\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
+			count: 1
+			path: app/Models/Team.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperTeamInvitation\\.$#"
+			count: 1
+			path: app/Models/TeamInvitation.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperUser\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$personal_team\\.$#"
+			count: 3
+			path: app/Policies/ClientApplicationPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type bool is incompatible with native type void\\.$#"
+			count: 2
+			path: app/Policies/ClientApplicationPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type bool\\.$#"
+			count: 2
+			path: app/Policies/GeneralSettingsPolicy.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$personal_team\\.$#"
+			count: 3
+			path: app/Policies/PrintJobPromisesPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type bool is incompatible with native type void\\.$#"
+			count: 2
+			path: app/Policies/PrintJobPromisesPolicy.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$personal_team\\.$#"
+			count: 3
+			path: app/Policies/PrintJobsPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type bool is incompatible with native type void\\.$#"
+			count: 2
+			path: app/Policies/PrintJobsPolicy.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$personal_team\\.$#"
+			count: 3
+			path: app/Policies/PrintServerPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type bool is incompatible with native type void\\.$#"
+			count: 2
+			path: app/Policies/PrintServerPolicy.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$personal_team\\.$#"
+			count: 3
+			path: app/Policies/PrintersPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type bool is incompatible with native type void\\.$#"
+			count: 2
+			path: app/Policies/PrintersPolicy.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type bool\\.$#"
+			count: 8
+			path: app/Policies/TeamPolicy.php
