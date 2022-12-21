@@ -31,6 +31,11 @@ parameters:
 			path: app/Http/Controllers/App/PrintServersController.php
 
 		-
+			message: "#^Parameter \\#3 \\$parameters of static method Illuminate\\\\Routing\\\\UrlGenerator\\:\\:temporarySignedRoute\\(\\) expects array, App\\\\Models\\\\PrintJob given\\.$#"
+			count: 1
+			path: app/Http/Controllers/PrintServiceApi/PrintJobsController.php
+
+		-
 			message: "#^PHPDoc tag @return with type Illuminate\\\\Http\\\\Response is incompatible with native type void\\.$#"
 			count: 3
 			path: app/Http/Controllers/WebPrintApi/PrintDialogsController.php
@@ -71,6 +76,11 @@ parameters:
 			path: app/Http/Controllers/WebPrintApi/PrintersController.php
 
 		-
+			message: "#^Parameter \\#2 \\$callback of method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<App\\\\Models\\\\Printer\\>\\:\\:when\\(\\) expects \\(callable\\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<App\\\\Models\\\\Printer\\>, mixed\\)\\: void\\)\\|null, Closure\\(Illuminate\\\\Database\\\\Eloquent\\\\Builder, mixed\\)\\: void given\\.$#"
+			count: 1
+			path: app/Http/Controllers/WebPrintApi/PrintersController.php
+
+		-
 			message: "#^Strict comparison using \\=\\=\\= between true and false will always evaluate to false\\.$#"
 			count: 1
 			path: app/Http/Controllers/WebPrintApi/PrintersController.php
@@ -107,6 +117,11 @@ parameters:
 
 		-
 			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintDialog\\.$#"
+			count: 1
+			path: app/Models/PrintDialog.php
+
+		-
+			message: "#^Parameter \\#3 \\$parameters of static method Illuminate\\\\Routing\\\\UrlGenerator\\:\\:temporarySignedRoute\\(\\) expects array, \\$this\\(App\\\\Models\\\\PrintDialog\\) given\\.$#"
 			count: 1
 			path: app/Models/PrintDialog.php
 
