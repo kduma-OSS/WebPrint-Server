@@ -173,7 +173,7 @@ class PrintJobPromisesController extends Controller
         $promise->name = $validated['name'] ?? $promise->name;
         $promise->ppd_options = $validated['ppd_options'] ?? $promise->ppd_options;
         $promise->meta = $validated['meta'] ?? $promise->meta;
-        $promise->printer_id = optional($promise->AvailablePrinters()->where('ulid', $validated['printer'] ?? null)->first())->id ?? $promise->printer_id;
+        $promise->printer_id = $promise->AvailablePrinters()->where('ulid', $validated['printer'] ?? null)->first()?->id ?? $promise->printer_id;
 
         $promise->save();
 

@@ -40,7 +40,7 @@ class PrintDialog extends Component
                 $this->selected_printer = null;
                 $this->ppd_options = [];
             } else {
-                if ($this->selected_printer_ulid != optional($this->selected_printer)->ulid) {
+                if ($this->selected_printer_ulid != $this->selected_printer?->ulid) {
                     $this->ppd_options = $this->getDefaultForPrinter($printer);
                 }
 
