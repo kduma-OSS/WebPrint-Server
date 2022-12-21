@@ -51,9 +51,19 @@ parameters:
 			path: app/Http/Controllers/WebPrintApi/PrintersController.php
 
 		-
+			message: "#^Property App\\\\Models\\\\PrintDialog\\:\\:\\$status \\(App\\\\Models\\\\Enums\\\\PrintDialogStatusEnum\\) does not accept string\\.$#"
+			count: 2
+			path: app/Http/Livewire/PrintDialog.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Http\\\\Resources\\\\PrinterResource\\:\\:\\$ppd_options_layout\\.$#"
 			count: 1
 			path: app/Http/Resources/PrinterResource.php
+
+		-
+			message: "#^Method App\\\\Models\\\\ClientApplication\\:\\:getRememberTokenName\\(\\) should return string but returns null\\.$#"
+			count: 1
+			path: app/Models/ClientApplication.php
 
 		-
 			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperClientApplication\\.$#"
@@ -81,6 +91,11 @@ parameters:
 			path: app/Models/PrintJobPromise.php
 
 		-
+			message: "#^Method App\\\\Models\\\\PrintServer\\:\\:getRememberTokenName\\(\\) should return string but returns null\\.$#"
+			count: 1
+			path: app/Models/PrintServer.php
+
+		-
 			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperPrintServer\\.$#"
 			count: 1
 			path: app/Models/PrintServer.php
@@ -92,6 +107,11 @@ parameters:
 
 		-
 			message: "#^PHPDoc tag @mixin contains unknown class App\\\\Models\\\\IdeHelperTeam\\.$#"
+			count: 1
+			path: app/Models/Team.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\Team\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/Team.php
 
