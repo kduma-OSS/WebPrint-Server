@@ -39,7 +39,7 @@ trait EnableFortifyFeatures
             ]);
         }
 
-        app(FortifySettings::class)->fill([
+        \Illuminate\Support\Facades\App::get(FortifySettings::class)->fill([
             'registration_enabled' => true,
             'password_resets_enabled' => true,
             'update_passwords_enabled' => true,
