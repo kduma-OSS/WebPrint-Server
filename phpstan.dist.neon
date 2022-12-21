@@ -7,9 +7,6 @@ parameters:
 
     paths:
         - app
-        - config
-        - database
-        - tests
     ignoreErrors:
         - '#Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9\\_()]+ should return [a-zA-Z0-9\\_]+ but return statement is missing#'
 
