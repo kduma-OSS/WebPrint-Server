@@ -28,7 +28,7 @@ class PrintJobPromiseSeeder extends Seeder
 
         $promise->AvailablePrinters()->sync($client->Printers);
 
-        $client = ClientApplication::firstWhere(['name' => 'Test Working Client']);
+        $client = ClientApplication::firstWhere(['name' => 'Test Local Client']);
 
         $promise = new PrintJobPromise;
         $promise->client_application_id = $client->id;
