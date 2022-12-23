@@ -112,8 +112,6 @@ class ListsAvailablePrintersTest extends TestCase
                         'location' => $printer->location,
                         'name' => $printer->name,
                         'ppd_support' => $printer->ppd_support,
-                        'ppd_options' => $printer->ppd_options,
-                        'ppd_options_layout' => $printer->ppd_options_layout,
                         'raw_languages_supported' => $printer->raw_languages_supported,
                         'server' => [
                             'name' => $server->name,
