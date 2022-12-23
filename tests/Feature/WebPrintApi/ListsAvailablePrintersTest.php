@@ -171,6 +171,8 @@ class ListsAvailablePrintersTest extends TestCase
 
     public function test_lists_printers_of_raw_type(): void
     {
+        $this->skipIfUsingInSQLiteDatabase();
+
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
             guard: 'web_print_api'

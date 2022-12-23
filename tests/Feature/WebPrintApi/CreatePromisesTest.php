@@ -94,6 +94,10 @@ class CreatePromisesTest extends TestCase
 
         $client->Printers()->attach($printers_ppd);
 
+        if ($additional) {
+            $additional($this);
+        }
+
         $response = $this
             ->postJson(
                 '/api/web-print/promises', $post($printers, $printers_ppd, $this)
@@ -105,10 +109,6 @@ class CreatePromisesTest extends TestCase
         $response->assertExactJson([
             'data' => $expected($promise, $response, $printers, $printers_ppd, $this),
         ]);
-
-        if ($additional) {
-            $additional($promise, $response, $printers, $printers_ppd, $this);
-        }
     }
 
     public function providesDataForCreate()
@@ -213,6 +213,8 @@ class CreatePromisesTest extends TestCase
                 'created_at' => $promise->created_at,
                 'updated_at' => $promise->updated_at,
             ],
+            fn(CreatePromisesTest $test) =>
+                $test->skipIfUsingInSQLiteDatabase(),
         ];
 
         yield 'meta' => [
