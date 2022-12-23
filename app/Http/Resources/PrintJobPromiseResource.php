@@ -27,7 +27,7 @@ class PrintJobPromiseResource extends JsonResource
             'meta' => $this->meta,
 
             'available_printers' => PrinterResource::collection($this->whenLoaded('AvailablePrinters')),
-            'selected_printer' => new PrinterResource($this->whenLoaded('Printer'), false),
+            'selected_printer' => new PrinterResource($this->whenLoaded('Printer')),
             'job' => new PrintJobResource($this->whenLoaded('PrintJob')),
 
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'timestamps']), [

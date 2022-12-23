@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PrinterDetailsResource;
 use App\Http\Resources\PrinterResource;
 use App\Models\ClientApplication;
 use App\Models\Printer;
@@ -56,10 +57,10 @@ class PrintersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Printer $printer): PrinterResource
+    public function show(Printer $printer): PrinterDetailsResource
     {
         $printer->load('Server');
 
-        return new PrinterResource($printer);
+        return new PrinterDetailsResource($printer);
     }
 }
