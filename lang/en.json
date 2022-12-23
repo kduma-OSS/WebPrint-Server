@@ -190,5 +190,13 @@
     "You may delete any of your existing tokens if they are no longer needed.": "You may delete any of your existing tokens if they are no longer needed.",
     "You may not delete your personal team.": "You may not delete your personal team.",
     "You may not leave a team that you created.": "You may not leave a team that you created.",
-    "Your email address is unverified.": "Your email address is unverified."
+    "Your email address is unverified.": "Your email address is unverified.",
+    "Client": "Client",
+    "Cancelled": "Cancelled",
+    "App Settings": "App Settings",
+    "Client \/ Promise": "Client \/ Promise",
+    "Client Apps": "Client Apps",
+    "Authentication Settings": "Authentication Settings",
+    "2FA Enabled": "2FA Enabled",
+    "Application Active": "Application Active"
 }
