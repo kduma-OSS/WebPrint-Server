@@ -76,7 +76,8 @@ class CreateJobFromPromisesTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/jobs', [
+                '/api/web-print/jobs',
+                [
                     'promise' => $promise->ulid
                 ]
             )
@@ -108,7 +109,8 @@ class CreateJobFromPromisesTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/jobs', [
+                '/api/web-print/jobs',
+                [
                     'promise' => $promise->ulid
                 ]
             )
