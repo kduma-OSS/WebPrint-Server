@@ -21,9 +21,15 @@ class GeneralSettingsUpdateForm extends Component
      */
     public $active;
 
+    /**
+     * @var string
+     */
+    public $language;
+
     protected $rules = [
         'site_name' => 'nullable|string',
         'active' => 'boolean',
+        'language' => ['required', 'string', 'in:en,pl'],
     ];
 
     /**
@@ -36,6 +42,7 @@ class GeneralSettingsUpdateForm extends Component
 
         $this->site_name = $user->can('view', [GeneralSettings::class, 'site_name']) ? $settings->site_name : '';
         $this->active = $user->can('view', [GeneralSettings::class, 'active']) && $settings->active;
+        $this->language = $user->can('view', [GeneralSettings::class, 'language']) ? $settings->language : config('app.locale');
     }
 
     public function updateGeneralSettings(GeneralSettings $settings): void
