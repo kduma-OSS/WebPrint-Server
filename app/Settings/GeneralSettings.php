@@ -8,6 +8,8 @@ class GeneralSettings extends \Spatie\LaravelSettings\Settings
 
     public bool $active;
 
+    public string $language;
+
     public static function group(): string
     {
         return 'general';

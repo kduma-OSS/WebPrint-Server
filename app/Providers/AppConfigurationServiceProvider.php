@@ -36,6 +36,10 @@ class AppConfigurationServiceProvider extends ServiceProvider
         if ($settings->site_name) {
             config(['app.name' => $settings->site_name]);
         }
+
+        if ($settings->language) {
+            config(['app.locale' => $settings->language]);
+        }
     }
 
     protected function bootFortifySettings(): void
