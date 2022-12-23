@@ -6,11 +6,14 @@ use App\Models\ClientApplication;
 use App\Models\Printer;
 use App\Models\PrintServer;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class GetPrintersTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_cannot_access_without_token(): void
     {
 
