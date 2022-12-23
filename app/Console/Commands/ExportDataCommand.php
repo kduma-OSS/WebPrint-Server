@@ -51,7 +51,7 @@ class ExportDataCommand extends Command
 
         $storage->delete($storage->allFiles());
 
-        $this->exportTable('client_applications', $storage, fn($client) => [
+        $this->exportTable('client_applications', $storage, fn ($client) => [
             'id'         => $client->id,
             '_uuid'      => $client->uuid,
             'ulid'       => (string)Ulid::fromTimestamp(strtotime($client->created_at)),
@@ -61,21 +61,21 @@ class ExportDataCommand extends Command
             'updated_at' => $client->updated_at,
         ]);
 
-        $this->exportTable('pivot_print_job_printer', $storage, fn($pivot) => [
+        $this->exportTable('pivot_print_job_printer', $storage, fn ($pivot) => [
             'id'                   => $pivot->id,
 
             'print_job_promise_id' => $pivot->print_job_promise_id,
             'printer_id'           => $pivot->printer_id,
         ]);
 
-        $this->exportTable('pivot_client_application_printer', $storage, fn($pivot) => [
+        $this->exportTable('pivot_client_application_printer', $storage, fn ($pivot) => [
             'id'                    => $pivot->id,
 
             'client_application_id' => $pivot->client_application_id,
             'printer_id'            => $pivot->printer_id,
         ]);
 
-        $this->exportTable('printers', $storage, fn($printer) => [
+        $this->exportTable('printers', $storage, fn ($printer) => [
             'id'                      => $printer->id,
             '_uuid'                   => $printer->uuid,
             'ulid'                    => (string)Ulid::fromTimestamp(strtotime($printer->created_at)),
@@ -92,7 +92,7 @@ class ExportDataCommand extends Command
             'updated_at'              => $printer->updated_at,
         ]);
 
-        $this->exportTable('print_servers', $storage, fn($server) => [
+        $this->exportTable('print_servers', $storage, fn ($server) => [
             'id'    => $server->id,
             '_uuid' => $server->uuid,
             'ulid'  => (string)Ulid::fromTimestamp(strtotime($server->created_at)),
@@ -128,7 +128,7 @@ class ExportDataCommand extends Command
             ];
         });
 
-        $this->exportTable('print_dialogs', $storage, fn($dialog) => [
+        $this->exportTable('print_dialogs', $storage, fn ($dialog) => [
             'id'    => $dialog->id,
             '_uuid' => $dialog->uuid,
             'ulid'  => (string)Ulid::fromTimestamp(strtotime($dialog->created_at)),
@@ -142,7 +142,7 @@ class ExportDataCommand extends Command
             'updated_at'           => $dialog->updated_at,
         ]);
 
-        $this->exportTable('personal_access_tokens', $storage, fn($token) => [
+        $this->exportTable('personal_access_tokens', $storage, fn ($token) => [
             'id' => $token->id,
 
             'tokenable_type' => match ($token->tokenable_type) {

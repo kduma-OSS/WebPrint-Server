@@ -17,7 +17,7 @@ class PrintJobPromiseSeeder extends Seeder
     {
         $client = ClientApplication::firstWhere(['name' => 'Test Debug Client']);
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
         $promise->status = 'new';
@@ -30,7 +30,7 @@ class PrintJobPromiseSeeder extends Seeder
 
         $client = ClientApplication::firstWhere(['name' => 'Test Local Client']);
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client->id;
         $promise->printer_id = $client->Printers->first()->id;
         $promise->status = 'new';
