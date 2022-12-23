@@ -22,6 +22,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
+        "barryvdh/laravel-translation-manager": "^0.6.3",
         "driftingly/rector-laravel": "^0.14.1",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/attributes": "^2.0",
