@@ -54,6 +54,24 @@ class GetPromiseContentsTest extends TestCase
         $this->assertEquals($promise->content, $response->getContent());
     }
 
+    public function test_cant_access_when_no_content_is_available(): void
+    {
+        Sanctum::actingAs(
+            $client = ClientApplication::factory()->create(),
+            guard: 'web_print_api'
+        );
+
+        $promise = PrintJobPromise::factory()
+            ->withoutContent()
+            ->for($client)
+            ->create();
+
+        $response = $this->get('/api/web-print/promises/'.$promise->ulid.'/content')
+            ->assertNotFound();
+
+        $this->assertEquals($promise->content, $response->getContent());
+    }
+
     public function test_cannot_access_others_promises(): void
     {
         Sanctum::actingAs(
