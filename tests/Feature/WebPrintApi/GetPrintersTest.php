@@ -16,7 +16,6 @@ class GetPrintersTest extends TestCase
 
     public function test_cannot_access_without_token(): void
     {
-
         $printer = Printer::factory()
              ->create();
 
