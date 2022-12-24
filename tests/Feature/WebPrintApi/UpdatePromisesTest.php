@@ -87,7 +87,7 @@ class UpdatePromisesTest extends TestCase
 
         $client->Printers()->attach($printers_ppd);
 
-        if($withContent) {
+        if ($withContent) {
             $promise = PrintJobPromise::factory()
                 ->withContent()
                 ->for($client)
@@ -98,7 +98,6 @@ class UpdatePromisesTest extends TestCase
                 ->for($client)
                 ->create();
         }
-
 
         $promise->Printer()->associate($printers_ppd->first());
         $promise->AvailablePrinters()->attach($printers_ppd);
@@ -117,7 +116,7 @@ class UpdatePromisesTest extends TestCase
     public function providesDataForUpdate()
     {
         yield 'updates name' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'name' => 'Updated Test Print',
             ],
             function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
@@ -125,7 +124,7 @@ class UpdatePromisesTest extends TestCase
             },
         ];
         yield 'updates printer' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'printer' => $printers_ppd->last()->ulid,
             ],
             function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
@@ -133,7 +132,7 @@ class UpdatePromisesTest extends TestCase
             },
         ];
         yield 'updates ppd options' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'ppd_options' => [
                     'Duplex' => 'True',
                 ],
@@ -145,7 +144,7 @@ class UpdatePromisesTest extends TestCase
             },
         ];
         yield 'updates meta' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'meta' => [
                     'Pages' => '64',
                 ],
@@ -157,7 +156,7 @@ class UpdatePromisesTest extends TestCase
             },
         ];
         yield 'updates status' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'status' => 'ready',
             ],
             function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
@@ -165,7 +164,7 @@ class UpdatePromisesTest extends TestCase
             },
         ];
         yield 'updates status without content' => [
-            fn(Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
                 'status' => 'ready',
             ],
             function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {

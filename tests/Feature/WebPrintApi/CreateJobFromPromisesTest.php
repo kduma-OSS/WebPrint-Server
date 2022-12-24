@@ -4,8 +4,6 @@ namespace Tests\Feature\WebPrintApi;
 
 use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
-use App\Models\PrintDialog;
-use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
 use App\Models\User;
@@ -24,7 +22,7 @@ class CreateJobFromPromisesTest extends TestCase
 
         $this
             ->postJson('/api/web-print/jobs', [
-                'promise' => $promise->ulid
+                'promise' => $promise->ulid,
             ])
             ->assertUnauthorized();
     }
@@ -41,7 +39,7 @@ class CreateJobFromPromisesTest extends TestCase
 
         $this
             ->postJson('/api/web-print/jobs', [
-                'promise' => $promise->ulid
+                'promise' => $promise->ulid,
             ])
             ->assertForbidden();
     }
@@ -58,7 +56,7 @@ class CreateJobFromPromisesTest extends TestCase
 
         $this
             ->postJson('/api/web-print/jobs', [
-                'promise' => $promise->ulid
+                'promise' => $promise->ulid,
             ])
             ->assertForbidden();
     }
@@ -77,7 +75,7 @@ class CreateJobFromPromisesTest extends TestCase
         $response = $this
             ->postJson(
                 '/api/web-print/jobs', [
-                    'promise' => $promise->ulid
+                    'promise' => $promise->ulid,
                 ]
             )
             ->assertNoContent();
@@ -109,7 +107,7 @@ class CreateJobFromPromisesTest extends TestCase
         $response = $this
             ->postJson(
                 '/api/web-print/jobs', [
-                    'promise' => $promise->ulid
+                    'promise' => $promise->ulid,
                 ]
             )
             ->assertStatus(412);

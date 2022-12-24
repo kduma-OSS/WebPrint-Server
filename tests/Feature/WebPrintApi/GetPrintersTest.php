@@ -16,7 +16,6 @@ class GetPrintersTest extends TestCase
 
     public function test_cannot_access_without_token(): void
     {
-
         $printer = Printer::factory()
              ->create();
 
@@ -59,7 +58,7 @@ class GetPrintersTest extends TestCase
         $this->getJson('/api/web-print/printers/'.$printer->ulid)
             ->assertOk()
             ->assertExactJson([
-                'data' =>                     [
+                'data' => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,

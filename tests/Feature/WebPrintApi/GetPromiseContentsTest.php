@@ -3,7 +3,6 @@
 namespace Tests\Feature\WebPrintApi;
 
 use App\Models\ClientApplication;
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
 use App\Models\User;

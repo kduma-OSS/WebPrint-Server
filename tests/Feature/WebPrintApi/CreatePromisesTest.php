@@ -3,7 +3,6 @@
 namespace Tests\Feature\WebPrintApi;
 
 use App\Models\ClientApplication;
-use App\Models\PrintDialog;
 use App\Models\Printer;
 use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
@@ -99,11 +98,11 @@ class CreatePromisesTest extends TestCase
     public function providesDataForCreate()
     {
         yield 'minimal' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -130,13 +129,13 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'with content' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'content' => 'test',
                 'file_name' => 'test.txt',
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -164,11 +163,11 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'raw' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'escpos',
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'escpos',
                 'name' => 'Test Print',
                 'available_printers' => $printers->map(fn (Printer $printer) => [
@@ -198,19 +197,18 @@ class CreatePromisesTest extends TestCase
                 'created_at' => $promise->created_at,
                 'updated_at' => $promise->updated_at,
             ],
-            fn(CreatePromisesTest $test) =>
-                $test->skipIfUsingInSQLiteDatabase(),
+            fn (CreatePromisesTest $test) => $test->skipIfUsingInSQLiteDatabase(),
         ];
 
         yield 'meta' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'meta' => [
                     'Pages' => '64',
                 ],
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -239,14 +237,14 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'ppd options' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'ppd_options' => [
                     'Duplex' => 'true',
                 ],
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -275,12 +273,12 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'selected printer' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'printer' => $printers_ppd->first()->ulid,
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -313,12 +311,12 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'limited printers' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'available_printers' => $printers_ppd->take(1)->pluck('ulid')->toArray(),
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -351,13 +349,13 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'headless without content' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'headless' => true,
                 'printer' => $printers_ppd->first()->ulid,
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
@@ -390,7 +388,7 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'headless with content' => [
-            fn(Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'headless' => true,
@@ -398,7 +396,7 @@ class CreatePromisesTest extends TestCase
                 'content' => 'test',
                 'file_name' => 'test.txt',
             ],
-            fn(PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
                 'available_printers' => $printers_ppd->map(fn (Printer $printer) => [

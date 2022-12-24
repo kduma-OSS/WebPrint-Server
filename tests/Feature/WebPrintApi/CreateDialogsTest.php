@@ -87,17 +87,17 @@ class CreateDialogsTest extends TestCase
         $dialog = $promise->fresh()->PrintDialog;
 
         $response->assertExactJson([
-                'data' => [
-                    'auto_print' => $dialog->auto_print,
-                    'created_at' => $dialog->created_at,
-                    'redirect_url' => $dialog->redirect_url,
-                    'restricted_ip' => $dialog->restricted_ip,
-                    'status' => $dialog->status,
-                    'ulid' => $dialog->ulid,
-                    'updated_at' => $dialog->updated_at,
-                    'link' => $dialog->link,
-                ],
-            ]);
+            'data' => [
+                'auto_print' => $dialog->auto_print,
+                'created_at' => $dialog->created_at,
+                'redirect_url' => $dialog->redirect_url,
+                'restricted_ip' => $dialog->restricted_ip,
+                'status' => $dialog->status,
+                'ulid' => $dialog->ulid,
+                'updated_at' => $dialog->updated_at,
+                'link' => $dialog->link,
+            ],
+        ]);
     }
 
     public function test_can_set_with_correct_token_and_removes_old(): void
@@ -131,17 +131,17 @@ class CreateDialogsTest extends TestCase
         $dialog = $promise->fresh()->PrintDialog;
 
         $response->assertExactJson([
-                'data' => [
-                    'auto_print' => $dialog->auto_print,
-                    'created_at' => $dialog->created_at,
-                    'redirect_url' => $dialog->redirect_url,
-                    'restricted_ip' => $dialog->restricted_ip,
-                    'status' => $dialog->status,
-                    'ulid' => $dialog->ulid,
-                    'updated_at' => $dialog->updated_at,
-                    'link' => $dialog->link,
-                ],
-            ]);
+            'data' => [
+                'auto_print' => $dialog->auto_print,
+                'created_at' => $dialog->created_at,
+                'redirect_url' => $dialog->redirect_url,
+                'restricted_ip' => $dialog->restricted_ip,
+                'status' => $dialog->status,
+                'ulid' => $dialog->ulid,
+                'updated_at' => $dialog->updated_at,
+                'link' => $dialog->link,
+            ],
+        ]);
     }
 
     /** @dataProvider correctValues */
