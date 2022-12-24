@@ -39,4 +39,31 @@ class PrinterFactory extends Factory
             ];
         });
     }
+
+    public function ppd(): self
+    {
+        return $this->state(function (array $attributes): array {
+            return [
+                'ppd_support' => true,
+            ];
+        });
+    }
+
+    public function noPpd(): self
+    {
+        return $this->state(function (array $attributes): array {
+            return [
+                'ppd_support' => false,
+            ];
+        });
+    }
+
+    public function type(array $types = ['escpos']): self
+    {
+        return $this->state(function (array $attributes) use ($types): array {
+            return [
+                'raw_languages_supported' => $types,
+            ];
+        });
+    }
 }

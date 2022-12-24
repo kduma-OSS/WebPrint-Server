@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
         Http::preventStrayRequests();
     }
 
-    protected function skipIfUsingInMemoryDatabase()
+    protected function skipIfUsingInSQLiteDatabase()
     {
         $default = config('database.default');
 

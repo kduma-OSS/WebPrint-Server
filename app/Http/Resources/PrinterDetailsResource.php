@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
 /** @mixin \App\Models\Printer */
-class PrinterResource extends JsonResource
+class PrinterDetailsResource extends JsonResource
 {
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -24,6 +24,10 @@ class PrinterResource extends JsonResource
             ]),
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'ppd']), [
                 'ppd_support' => $this->ppd_support,
+            ]),
+            $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'ppd']), [
+                'ppd_options' => $this->ppd_options,
+                'ppd_options_layout' => $this->ppd_options_layout,
             ]),
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'raw_languages_supported']), [
                 'raw_languages_supported' => $this->raw_languages_supported,
