@@ -5,11 +5,11 @@
                 <div class="px-4 py-5 sm:p-6">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         @switch($dialog->status)
-                            @case('canceled')
                                 Print job is Canceled
+                            @case(\App\Models\Enums\PrintDialogStatusEnum::Cancelled)
                             @break
-                            @case('sent')
                                 Print job is already sent for printing
+                            @case(\App\Models\Enums\PrintDialogStatusEnum::Sent)
                             @break
                             @default
                                 Print job not active
