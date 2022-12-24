@@ -43,21 +43,6 @@ class CreatePromisesTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_cannot_create_others_dialog(): void
-    {
-        Sanctum::actingAs(
-            PrintServer::factory()->create(),
-            guard: 'web_print_api'
-        );
-
-        $this
-            ->postJson('/api/web-print/promises', [
-                'name' => 'Test Print',
-                'type' => 'ppd',
-            ])
-            ->assertForbidden();
-    }
-
     /**
      * @dataProvider providesDataForCreate
      */
