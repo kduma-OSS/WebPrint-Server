@@ -38,7 +38,7 @@
         @canany(['view', 'update'], [\App\Settings\GeneralSettings::class, 'language'])
             <!-- Application Language -->
             <div class="col-span-6 sm:col-span-4">
-                <x-jet-label for="language" value="{{ __('Application Language') }}" />
+                <x-jet-label for="language" value="{{ __('settings.general.language') }}" />
                 @can('update', [\App\Settings\GeneralSettings::class, 'language'])
                     <x-jet-input id="language" type="text" class="mt-1 block w-full" wire:model.defer="language" />
                 @else

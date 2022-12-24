@@ -15,5 +15,6 @@ return [
         'description' => 'Update application general settings',
         'site-name' => 'Site Name',
         'application-active' => 'Application Active',
+        'language' => 'Application Language',
     ],
 ];
