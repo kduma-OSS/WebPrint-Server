@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Enums\PrintDialogStatusEnum;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintDialog as PrintDialogModel;
 use App\Models\Printer;
 use Illuminate\Support\Str;
@@ -78,13 +80,13 @@ class PrintDialog extends Component
     {
         $reason = $this->dialog->is_active ? 'cancelled' : 'inactive';
 
-        if ($this->dialog->status == 'new') {
-            $this->dialog->status = 'canceled';
+        if ($this->dialog->status == PrintDialogStatusEnum::New) {
+            $this->dialog->status = PrintDialogStatusEnum::Cancelled;
             $this->dialog->save();
         }
 
-        if ($this->dialog->JobPromise->status == 'new') {
-            $this->dialog->JobPromise->status = 'canceled';
+        if ($this->dialog->JobPromise->status == PrintJobPromiseStatusEnum::New) {
+            $this->dialog->JobPromise->status = PrintJobPromiseStatusEnum::Cancelled;
             $this->dialog->JobPromise->save();
         }
 

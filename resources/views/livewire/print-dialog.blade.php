@@ -18,7 +18,7 @@
                     <div class="mt-2 max-w-xl text-sm text-gray-500">
                         <p>
                             @switch($dialog->status)
-                                @case(\App\Models\Enums\PrintDialogStatusEnum::Canceled)
+                                @case(\App\Models\Enums\PrintDialogStatusEnum::Cancelled)
                                     This print job was cancelled.
                                     @break
                                 @case(\App\Models\Enums\PrintDialogStatusEnum::Sent)
