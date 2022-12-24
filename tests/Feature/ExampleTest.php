@@ -10,7 +10,6 @@ use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Laravel\Sanctum\Sanctum;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -18,7 +17,9 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     private Collection $printers;
+
     private PrintServer $server;
+
     private ClientApplication $client;
 
     protected function setUp(): void
@@ -63,7 +64,7 @@ class ExampleTest extends TestCase
             ->assertJson([
                 'data' => [
                     'status' => 'sent_to_printer',
-                ]
+                ],
             ]);
 
         Sanctum::actingAs($this->server, guard: 'print_service_api');
@@ -76,7 +77,7 @@ class ExampleTest extends TestCase
                 $job_ulid,
             ]);
 
-        $this->getJson('/api/print-service/jobs/'. $job_ulid)
+        $this->getJson('/api/print-service/jobs/'.$job_ulid)
             ->assertOk()
             ->assertJson([
                 'content_type' => 'plain',
@@ -100,7 +101,7 @@ class ExampleTest extends TestCase
                         'status' => 'failed',
                         'status_message' => 'Something went wrong',
                     ],
-                ]
+                ],
             ]);
     }
 
@@ -122,20 +123,20 @@ class ExampleTest extends TestCase
             ->assertJson([
                 'data' => [
                     'status' => 'ready',
-                ]
+                ],
             ]);
 
         $promise_ulid = $create_response->json('data.ulid');
 
         $this->postJson(
-            '/api/web-print/promises/'. $promise_ulid .'/content',
+            '/api/web-print/promises/'.$promise_ulid.'/content',
             [
                 'content' => 'test',
                 'name' => 'test.txt',
             ]
         )->assertNoContent();
 
-        $promise_response = $this->getJson('/api/web-print/promises/'. $promise_ulid)
+        $promise_response = $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [
@@ -143,7 +144,7 @@ class ExampleTest extends TestCase
                     'job' => [
                         'status' => 'new',
                     ],
-                ]
+                ],
             ]);
 
         Sanctum::actingAs($this->server, guard: 'print_service_api');
@@ -156,7 +157,7 @@ class ExampleTest extends TestCase
                 $job_ulid,
             ]);
 
-        $this->getJson('/api/print-service/jobs/'. $job_ulid)
+        $this->getJson('/api/print-service/jobs/'.$job_ulid)
             ->assertOk()
             ->assertJson([
                 'content_type' => 'plain',
@@ -172,7 +173,7 @@ class ExampleTest extends TestCase
 
         Sanctum::actingAs($this->client, guard: 'web_print_api');
 
-        $this->getJson('/api/web-print/promises/'. $promise_ulid)
+        $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [
@@ -180,7 +181,7 @@ class ExampleTest extends TestCase
                         'status' => 'failed',
                         'status_message' => 'Something went wrong',
                     ],
-                ]
+                ],
             ]);
     }
 
@@ -201,13 +202,13 @@ class ExampleTest extends TestCase
                 'data' => [
                     'status' => 'new',
                     'content_available' => false,
-                ]
+                ],
             ]);
 
         $promise_ulid = $create_response->json('data.ulid');
 
         $this->postJson(
-            '/api/web-print/promises/'. $promise_ulid .'/content',
+            '/api/web-print/promises/'.$promise_ulid.'/content',
             [
                 'content' => 'test',
                 'name' => 'test.txt',
@@ -227,7 +228,7 @@ class ExampleTest extends TestCase
             ->fill(['selected_printer_ulid' => $promise_model->AvailablePrinters->first()->ulid])
             ->call('sendToPrint');
 
-        $promise_response = $this->getJson('/api/web-print/promises/'. $promise_ulid)
+        $promise_response = $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [
@@ -235,7 +236,7 @@ class ExampleTest extends TestCase
                     'job' => [
                         'status' => 'new',
                     ],
-                ]
+                ],
             ]);
 
         Sanctum::actingAs($this->server, guard: 'print_service_api');
@@ -248,7 +249,7 @@ class ExampleTest extends TestCase
                 $job_ulid,
             ]);
 
-        $this->getJson('/api/print-service/jobs/'. $job_ulid)
+        $this->getJson('/api/print-service/jobs/'.$job_ulid)
             ->assertOk()
             ->assertJson([
                 'content_type' => 'plain',
@@ -264,7 +265,7 @@ class ExampleTest extends TestCase
 
         Sanctum::actingAs($this->client, guard: 'web_print_api');
 
-        $this->getJson('/api/web-print/promises/'. $promise_ulid)
+        $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [
@@ -272,7 +273,7 @@ class ExampleTest extends TestCase
                         'status' => 'failed',
                         'status_message' => 'Something went wrong',
                     ],
-                ]
+                ],
             ]);
     }
 
@@ -293,13 +294,13 @@ class ExampleTest extends TestCase
                 'data' => [
                     'status' => 'new',
                     'content_available' => false,
-                ]
+                ],
             ]);
 
         $promise_ulid = $create_response->json('data.ulid');
 
         $this->postJson(
-            '/api/web-print/promises/'. $promise_ulid .'/content',
+            '/api/web-print/promises/'.$promise_ulid.'/content',
             [
                 'content' => 'test',
                 'name' => 'test.txt',
@@ -318,21 +319,21 @@ class ExampleTest extends TestCase
         Livewire::test(PrintDialog::class, ['dialog' => $promise_model->PrintDialog])
             ->call('cancel');
 
-        $dialog_response = $this->getJson('/api/web-print/promises/'. $promise_ulid .'/dialog')
+        $dialog_response = $this->getJson('/api/web-print/promises/'.$promise_ulid.'/dialog')
             ->assertOk()
             ->assertJson([
                 'data' => [
                     'status' => 'cancelled',
-                ]
+                ],
             ]);
 
-        $promise_response = $this->getJson('/api/web-print/promises/'. $promise_ulid)
+        $promise_response = $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [
                     'status' => 'cancelled',
                     'job' => null,
-                ]
+                ],
             ]);
 
         Sanctum::actingAs($this->server, guard: 'print_service_api');
