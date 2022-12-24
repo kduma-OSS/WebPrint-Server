@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <x-layout.header>
-            {{ __('Client Apps') }}
+            {{ __('navigation.client-apps') }}
             <x-slot:buttons>
                 @can('create', \App\Models\ClientApplication::class)
                     <x-layout.header.button href="{{ route('web-print.apps.create') }}">
-                        {{ __('New') }}
+                        {{ __('common.buttons.new') }}
                     </x-layout.header.button>
                 @endcan
             </x-slot>
@@ -40,7 +40,7 @@
 {{--                                        @endif--}}
                                     </div>
                                     <p class="mt-1 truncate text-sm text-gray-500">
-                                        {{ $app->location ?? __('No Location') }}
+                                        {{ $app->location ?? __('client-applications.no-location-label') }}
                                     </p>
                                 </div>
                                 {{--                            <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">--}}
@@ -55,7 +55,7 @@
                                                     <path d="M16.555 5.412a8.028 8.028 0 00-3.503-2.81 14.899 14.899 0 011.663 4.472 8.547 8.547 0 001.84-1.662zM13.326 7.825a13.43 13.43 0 00-2.413-5.773 8.087 8.087 0 00-1.826 0 13.43 13.43 0 00-2.413 5.773A8.473 8.473 0 0010 8.5c1.18 0 2.304-.24 3.326-.675zM6.514 9.376A9.98 9.98 0 0010 10c1.226 0 2.4-.22 3.486-.624a13.54 13.54 0 01-.351 3.759A13.54 13.54 0 0110 13.5c-1.079 0-2.128-.127-3.134-.366a13.538 13.538 0 01-.352-3.758zM5.285 7.074a14.9 14.9 0 011.663-4.471 8.028 8.028 0 00-3.503 2.81c.529.638 1.149 1.199 1.84 1.66zM17.334 6.798a7.973 7.973 0 01.614 4.115 13.47 13.47 0 01-3.178 1.72 15.093 15.093 0 00.174-3.939 10.043 10.043 0 002.39-1.896zM2.666 6.798a10.042 10.042 0 002.39 1.896 15.196 15.196 0 00.174 3.94 13.472 13.472 0 01-3.178-1.72 7.973 7.973 0 01.615-4.115zM10 15c.898 0 1.778-.079 2.633-.23a13.473 13.473 0 01-1.72 3.178 8.099 8.099 0 01-1.826 0 13.47 13.47 0 01-1.72-3.178c.855.151 1.735.23 2.633.23zM14.357 14.357a14.912 14.912 0 01-1.305 3.04 8.027 8.027 0 004.345-4.345c-.953.542-1.971.981-3.04 1.305zM6.948 17.397a8.027 8.027 0 01-4.345-4.345c.953.542 1.971.981 3.04 1.305a14.912 14.912 0 001.305 3.04z" />
                                                 </svg>
 
-                                                <span class="ml-3">{{ __('View App') }}</span>
+                                                <span class="ml-3">{{ __('common.buttons.view-app') }}</span>
                                             </a>
                                         </div>
                                     @endcan
@@ -68,7 +68,7 @@
                                                     <path d="M16.5 6.5h-1v8.75a1.25 1.25 0 102.5 0V8a1.5 1.5 0 00-1.5-1.5z" />
                                                 </svg>
 
-                                                <span class="ml-3">{{ __('Jobs') }} ({{ $app->jobs_count }})</span>
+                                                <span class="ml-3">{{ __('common.buttons.jobs') }} ({{ $app->jobs_count }})</span>
                                             </a>
                                         </div>
                                     @endcan
@@ -83,15 +83,15 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="mx-auto h-12 w-12 text-gray-400"  aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                         </svg>
-                        <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('Create a new client application') }}</span>
+                        <span class="mt-2 block text-sm font-medium text-gray-900">{{ __('client-applications.create-new-client-application-label') }}</span>
                     </a>
                 @else
                     <div class="text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="mx-auto h-12 w-12 text-gray-400"  aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('No client applications') }}</h3>
-                        <p class="mt-1 text-sm text-gray-500">{{ __('You don\'t have permission to create new client applications.') }}</p>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">{{ __('client-applications.no-client-applications-label') }}</h3>
+                        <p class="mt-1 text-sm text-gray-500">{{ __('client-applications.no-permissions-to-create-application-label') }}</p>
                         {{--                <div class="mt-6">--}}
                         {{--                    <button type="button" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">--}}
                         {{--                        <!-- Heroicon name: mini/plus -->--}}

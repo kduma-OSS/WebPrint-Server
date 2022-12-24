@@ -5,51 +5,51 @@
                 <div class="px-4 py-5 sm:p-6">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         @switch($dialog->status)
-                                Print job is Canceled
                             @case(\App\Models\Enums\PrintDialogStatusEnum::Cancelled)
+                                {{ __('print-dialog.dialog-status.cancelled.title') }}
                             @break
-                                Print job is already sent for printing
                             @case(\App\Models\Enums\PrintDialogStatusEnum::Sent)
+                                {{ __('print-dialog.dialog-status.sent.title') }}
                             @break
                             @default
-                                Print job not active
+                                {{ __('print-dialog.dialog-status.new.title') }}
                         @endswitch
                     </h3>
                     <div class="mt-2 max-w-xl text-sm text-gray-500">
                         <p>
                             @switch($dialog->status)
                                 @case(\App\Models\Enums\PrintDialogStatusEnum::Cancelled)
-                                    This print job was cancelled.
+                                    {{ __('print-dialog.dialog-status.cancelled.description') }}
                                     @break
                                 @case(\App\Models\Enums\PrintDialogStatusEnum::Sent)
-                                    This print job has already been sent to printer.
+                                    {{ __('print-dialog.dialog-status.sent.description') }}
                                     @break
                                 @default
-                                    This print job is not active for printing. It has already been sent to printer or cancelled.
+                                    {{ __('print-dialog.dialog-status.new.description') }}
                             @endswitch
                         </p>
                         @if($dialog->JobPromise->PrintJob)
                             <p class="pt-3" wire:poll>
-                                Status:
+                                {{ __('print-dialog.print-job-status-label') }}
                                 @switch($dialog->JobPromise->PrintJob->status)
                                     @case(\App\Models\Enums\PrintJobStatusEnum::New)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                      Waiting in print queue
+                                      {{ __('print-dialog.job-status.new') }}
                                     </span>
                                     @break
                                     @case(\App\Models\Enums\PrintJobStatusEnum::Printing)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                      Currently processing
+                                      {{ __('print-dialog.job-status.printing') }}
                                     </span>
                                     @break
                                     @case(\App\Models\Enums\PrintJobStatusEnum::Finished)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                      Job sent to printer
+                                      {{ __('print-dialog.job-status.finished') }}
                                     </span>
                                     @break
                                     @case(\App\Models\Enums\PrintJobStatusEnum::Failed)
                                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                      Printing Failed{{ $dialog->JobPromise->PrintJob->status_message ? ': ' : '' }} <i>{{ $dialog->JobPromise->PrintJob->status_message }}</i>
+                                      {{ __('print-dialog.job-status.failed') }}{{ $dialog->JobPromise->PrintJob->status_message ? ': ' : '' }} <i>{{ $dialog->JobPromise->PrintJob->status_message }}</i>
                                     </span>
                                     @break
                                 @endswitch
@@ -59,7 +59,7 @@
                     @if($dialog->redirect_url)
                         <div class="mt-5">
                             <button type="button" wire:click="cancel" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
-                                Go Back
+                                {{ __('print-dialog.go-back-button') }}
                             </button>
                         </div>
                     @endif
@@ -85,13 +85,13 @@
                                 <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                         <label for="printer" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                            Printer
+                                            {{ __('print-dialog.printer-label') }}
                                         </label>
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             @if($selected_printer == null || $view == 'set_printer')
                                                 <fieldset>
                                                     <legend class="sr-only">
-                                                        Select Printer
+                                                        {{ __('print-dialog.select-printer-placeholder') }}
                                                     </legend>
 
                                                     <div class="bg-white rounded-md -space-y-px">
@@ -112,7 +112,7 @@
                                                                 </label>
                                                             </div>
                                                         @empty
-                                                            No printers available
+                                                            {{ __('print-dialog.no-printers-available-message') }}
                                                         @endforelse
                                                     </div>
                                                 </fieldset>
@@ -144,7 +144,7 @@
                                     <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label for="options" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Job Metadata
+                                                {{ __('print-dialog.job-metadate-label') }}
                                             </label>
                                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -156,10 +156,10 @@
                                                                         <thead class="bg-gray-50">
                                                                         <tr>
                                                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                                Key
+                                                                                {{ __('print-dialog.job-metadata-key-label') }}
                                                                             </th>
                                                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                                Value
+                                                                                {{ __('print-dialog.job-metadata-value-label') }}
                                                                             </th>
                                                                         </tr>
                                                                         </thead>
@@ -189,7 +189,7 @@
                                     <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                             <label for="options" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                Printer Settings
+                                                {{ __('print-dialog.printer-settings-label') }}
                                             </label>
                                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                 <fieldset>
@@ -197,10 +197,10 @@
                                                         <div class="relative border rounded-tl-md rounded-tr-md rounded-bl-md rounded-br-md p-4 flex border-gray-200">
                                                             <a wire:click="goToSetOptionsView" class="ml-3 flex flex-col cursor-pointer">
                                                                 <span class="block text-sm font-medium text-gray-900">
-                                                                    Customize Print Options
+                                                                    {{ __('print-dialog.customize-print-options-button') }}
                                                                 </span>
                                                                 <span class="block text-sm text-gray-500">
-                                                                    {{ !$this->non_defaults->count() ? 'Printer Defaults' : $this->non_defaults->map(fn($value, $name) => sprintf("%s: %s",$name,$value))->implode('; ') }}
+                                                                    {{ !$this->non_defaults->count() ? __('print-dialog.printer-defaults-placeholder') : $this->non_defaults->map(fn($value, $name) => sprintf("%s: %s",$name,$value))->implode('; ') }}
                                                                 </span>
                                                             </a>
                                                         </div>
@@ -345,10 +345,10 @@
                         <div class="pt-5">
                             <div class="flex justify-end">
                                 <button type="button" wire:click="cancel" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Cancel
+                                    {{ __('print-dialog.cancel-button') }}
                                 </button>
                                 <button type="button" wire:click="sendToPrint" class="{{ $selected_printer == null || !$dialog->is_active ? 'cursor-not-allowed bg-gray-600' : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' }} ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ">
-                                    Print
+                                    {{ __('print-dialog.print-button') }}
                                 </button>
                             </div>
                         </div>

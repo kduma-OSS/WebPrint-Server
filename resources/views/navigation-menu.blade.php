@@ -13,30 +13,30 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('navigation.dashboard') }}
                     </x-jet-nav-link>
 
                     @can('viewAny', \App\Models\PrintJob::class)
                         <x-jet-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
-                            {{ __('Print Jobs') }}
+                            {{ __('navigation.print-jobs') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintJobPromise::class)
                         <x-jet-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
-                            {{ __('Print Promises') }}
+                            {{ __('navigation.print-promises') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintServer::class)
                         <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
-                            {{ __('Print Servers & Printers') }}
+                            {{ __('navigation.print-servers-and-printers') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\ClientApplication::class)
                         <x-jet-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
-                            {{ __('Client Apps') }}
+                            {{ __('navigation.client-apps') }}
                         </x-jet-nav-link>
                     @endcan
                 </div>
@@ -63,19 +63,19 @@
                                 <div class="w-60">
                                     <!-- Team Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Team') }}
+                                        {{ __('navigation.manage-team') }}
                                     </div>
 
                                     @can('view', Auth::user()->currentTeam)
                                         <!-- Team Settings -->
                                         <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                            {{ __('Team Settings') }}
+                                            {{ __('navigation.team-settings') }}
                                         </x-jet-dropdown-link>
                                     @endcan
 
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                         <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
+                                            {{ __('navigation.create-team') }}
                                         </x-jet-dropdown-link>
                                     @endcan
 
@@ -84,7 +84,7 @@
 
                                         <!-- Team Switcher -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Switch Teams') }}
+                                            {{ __('navigation.switch-teams') }}
                                         </div>
 
                                         @foreach ($teams as $team)
@@ -121,16 +121,16 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('navigation.manage-account') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('navigation.profile') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
+                                    {{ __('navigation.api-tokens') }}
                                 </x-jet-dropdown-link>
                             @endif
 
@@ -139,7 +139,7 @@
                                 || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
                             )
                                 <x-jet-dropdown-link href="{{ route('app.settings') }}">
-                                    {{ __('App Settings') }}
+                                    {{ __('navigation.app-settings') }}
                                 </x-jet-dropdown-link>
                             @endif
 
@@ -150,8 +150,8 @@
                                 @csrf
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                                     @click.prevent="$root.submit();">
+                                    {{ __('navigation.log-out') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -175,30 +175,30 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden lg:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('navigation.dashboard') }}
             </x-jet-responsive-nav-link>
 
             @can('viewAny', \App\Models\PrintJob::class)
                 <x-jet-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
-                    {{ __('Print Jobs') }}
+                    {{ __('navigation.print-jobs') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintJobPromise::class)
                 <x-jet-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
-                    {{ __('Print Promises') }}
+                    {{ __('navigation.print-promises') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintServer::class)
                 <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
-                    {{ __('Print Servers & Printers') }}
+                    {{ __('navigation.print-servers-and-printers') }}
                 </x-jet-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\ClientApplication::class)
                 <x-jet-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
-                    {{ __('Client Apps') }}
+                    {{ __('navigation.client-apps') }}
                 </x-jet-responsive-nav-link>
             @endcan
         </div>
@@ -221,12 +221,12 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('navigation.profile') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
+                        {{ __('navigation.api-tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
 
@@ -235,7 +235,7 @@
                     || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
                 )
                     <x-jet-responsive-nav-link href="{{ route('app.settings') }}" :active="request()->routeIs('app.settings')">
-                        {{ __('App Settings') }}
+                        {{ __('navigation.app-settings') }}
                     </x-jet-responsive-nav-link>
                 @endif
 
@@ -244,8 +244,8 @@
                     @csrf
 
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                                               @click.prevent="$root.submit();">
+                        {{ __('navigation.log-out') }}
                     </x-jet-responsive-nav-link>
                 </form>
 
@@ -254,19 +254,19 @@
                     <div class="border-t border-gray-200"></div>
 
                     <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage Team') }}
+                        {{ __('navigation.manage-team') }}
                     </div>
 
                     <!-- Team Settings -->
                     @can('view', Auth::user()->currentTeam)
                         <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                            {{ __('Team Settings') }}
+                            {{ __('navigation.team-settings') }}
                         </x-jet-responsive-nav-link>
                     @endcan
 
                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                         <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
+                            {{ __('navigation.create-team') }}
                         </x-jet-responsive-nav-link>
                     @endcan
 
@@ -275,7 +275,7 @@
 
                         <!-- Team Switcher -->
                         <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Switch Teams') }}
+                            {{ __('navigation.switch-teams') }}
                         </div>
 
                         @foreach ($teams as $team)

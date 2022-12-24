@@ -1,18 +1,18 @@
 <x-jet-form-section submit="updateGeneralSettings">
 
     <x-slot name="title">
-        {{ __('General Settings') }}
+        {{ __('settings.general.title') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update application general settings') }}
+        {{ __('settings.general.description') }}
     </x-slot>
 
     <x-slot name="form">
         @canany(['view', 'update'], [\App\Settings\GeneralSettings::class, 'site_name'])
             <!-- Site Name -->
             <div class="col-span-6 sm:col-span-4">
-                <x-jet-label for="site_name" value="{{ __('Site Name') }}" />
+                <x-jet-label for="site_name" value="{{ __('settings.general.site-name') }}" />
                 @can('update', [\App\Settings\GeneralSettings::class, 'site_name'])
                     <x-jet-input id="site_name" type="text" class="mt-1 block w-full" wire:model.defer="site_name" />
                 @else
@@ -25,7 +25,7 @@
         @canany(['view', 'update'], [\App\Settings\GeneralSettings::class, 'active'])
             <!-- Application Active -->
             <div class="col-span-6 sm:col-span-4">
-                <x-jet-label for="active" value="{{ __('Application Active') }}" />
+                <x-jet-label for="active" value="{{ __('settings.general.application-active') }}" />
                 @can('update', [\App\Settings\GeneralSettings::class, 'active'])
                     <x-jet-checkbox id="active" class="mt-3" wire:model.defer="active" />
                 @else
