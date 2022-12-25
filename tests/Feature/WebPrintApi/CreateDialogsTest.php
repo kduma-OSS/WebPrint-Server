@@ -170,7 +170,7 @@ class CreateDialogsTest extends TestCase
         ]);
     }
 
-    public function correctValues()
+    public function correctValues(): \Generator
     {
         yield 'auto_print' => [
             [

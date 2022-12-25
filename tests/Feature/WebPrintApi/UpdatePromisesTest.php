@@ -113,7 +113,7 @@ class UpdatePromisesTest extends TestCase
         $asserts($promise, $response, $printers_ppd, $this);
     }
 
-    public function providesDataForUpdate()
+    public function providesDataForUpdate(): \Generator
     {
         yield 'updates name' => [
             fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [

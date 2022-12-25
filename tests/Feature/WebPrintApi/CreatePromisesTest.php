@@ -95,7 +95,7 @@ class CreatePromisesTest extends TestCase
         ]);
     }
 
-    public function providesDataForCreate()
+    public function providesDataForCreate(): \Generator
     {
         yield 'minimal' => [
             fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
