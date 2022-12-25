@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
 use App\Http\Controllers\Controller;
 use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
@@ -44,7 +46,10 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(
+        Request $request,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction)
     {
         $validated = $request->validate([
             'promise' => ['required', Rule::exists('print_job_promises', 'ulid')
@@ -53,13 +58,13 @@ class PrintJobsController extends Controller
 
         $promise = PrintJobPromise::where('ulid', $validated['promise'])->firstOrFail();
 
-        abort_unless($promise->isPossibleToPrint(), 412);
+        abort_unless($checkPromiseAbilityToBePrintedAction->handle($promise), 412);
         if ($promise->status != PrintJobPromiseStatusEnum::Ready) {
             $promise->status = PrintJobPromiseStatusEnum::Ready;
             $promise->save();
         }
 
-        $promise->sendForPrinting();
+        $convertPromiseToJobAction->handle($promise);
 
         return response()->noContent();
     }

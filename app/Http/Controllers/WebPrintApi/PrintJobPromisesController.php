@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Actions\Promises\CancelPromiseAction;
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
 use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrintJobPromiseResource;
@@ -56,8 +58,12 @@ class PrintJobPromisesController extends Controller
      *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function store(Request $request, SetPromiseContentAction $setPromiseContentAction): PrintJobPromiseResource
-    {
+    public function store(
+        Request $request,
+        SetPromiseContentAction $setPromiseContentAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ): PrintJobPromiseResource {
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
 
@@ -123,8 +129,8 @@ class PrintJobPromisesController extends Controller
             $promise->save();
         }
 
-        if ($promise->isReadyToPrint()) {
-            $promise->sendForPrinting();
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
         }
 
         $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
@@ -149,8 +155,12 @@ class PrintJobPromisesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrintJobPromise $promise)
-    {
+    public function update(
+        Request $request,
+        PrintJobPromise $promise,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ) {
         $available_printers = $promise->AvailablePrinters()->pluck('ulid');
         $validated = $request->validate([
             'status' => ['nullable', 'in:ready'],
@@ -170,8 +180,8 @@ class PrintJobPromisesController extends Controller
 
         $promise->save();
 
-        if ($promise->isReadyToPrint()) {
-            $promise->sendForPrinting();
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
         }
 
         return response()->noContent();

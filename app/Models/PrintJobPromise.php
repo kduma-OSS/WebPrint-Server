@@ -47,41 +47,4 @@ class PrintJobPromise extends Model
     {
         return $this->belongsToMany(Printer::class, 'pivot_print_job_printer');
     }
-
-    public function isReadyToPrint(): bool
-    {
-        return $this->status == PrintJobPromiseStatusEnum::Ready && $this->isPossibleToPrint();
-    }
-
-    public function isPossibleToPrint(): bool
-    {
-        return in_array($this->status, [
-            PrintJobPromiseStatusEnum::Ready, PrintJobPromiseStatusEnum::New,
-        ]) && ($this->content || $this->content_file) && $this->printer_id;
-    }
-
-    public function sendForPrinting(): ?PrintJob
-    {
-        if (! $this->isReadyToPrint()) {
-            return null;
-        }
-
-        $job = new PrintJob();
-        $job->client_application_id = $this->client_application_id;
-        $job->printer_id = $this->printer_id;
-        $job->name = $this->name;
-        $job->ppd = $this->type == 'ppd';
-        $job->ppd_options = $this->ppd_options;
-        $job->content = $this->content;
-        $job->content_file = $this->content_file;
-        $job->file_name = $this->file_name;
-        $job->size = $this->size;
-        $job->save();
-
-        $this->print_job_id = $job->id;
-        $this->status = PrintJobPromiseStatusEnum::SentToPrinter;
-        $this->save();
-
-        return $job;
-    }
 }

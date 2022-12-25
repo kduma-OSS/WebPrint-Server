@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
 use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
 use App\Models\ClientApplication;
@@ -61,8 +63,13 @@ class PrintJobPromisesContentController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise, SetPromiseContentAction $setPromiseContentAction)
-    {
+    public function store(
+        Request $request,
+        PrintJobPromise $promise,
+        SetPromiseContentAction $setPromiseContentAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ) {
         $this->authorize('update', $promise);
 
         if ($request->hasFile('content')) {
@@ -90,8 +97,8 @@ class PrintJobPromisesContentController extends Controller
 
         $promise->save();
 
-        if ($promise->isReadyToPrint()) {
-            $promise->sendForPrinting();
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
         }
 
         return response()->noContent();
