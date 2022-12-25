@@ -78,11 +78,11 @@ class DeletePromisesTest extends TestCase
             ->for($client)
             ->create();
 
-        $dialog = PrintDialog::factory()
+        PrintDialog::factory()
             ->for($promise, 'JobPromise')
             ->create();
 
-        $response = $this
+        $this
             ->deleteJson(
                 '/api/web-print/promises/'.$promise->ulid
             )

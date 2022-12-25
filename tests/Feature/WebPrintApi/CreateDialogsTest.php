@@ -163,7 +163,7 @@ class CreateDialogsTest extends TestCase
             )
             ->assertOk();
 
-        $dialog = $promise->fresh()->PrintDialog;
+        $promise->fresh()->PrintDialog;
 
         $response->assertJson([
             'data' => $expected,

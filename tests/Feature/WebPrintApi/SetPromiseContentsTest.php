@@ -168,7 +168,7 @@ class SetPromiseContentsTest extends TestCase
         $this->assertEquals(null, $promise->content);
         $this->assertEquals(null, $promise->file_name);
 
-        $file = UploadedFile::fake()->create('test.txt', 'test');
+        UploadedFile::fake()->create('test.txt', 'test');
         Storage::fake();
 
         $response = $this->call(

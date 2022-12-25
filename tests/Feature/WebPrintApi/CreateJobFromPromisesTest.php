@@ -72,7 +72,7 @@ class CreateJobFromPromisesTest extends TestCase
             ->for($client)
             ->create();
 
-        $response = $this
+        $this
             ->postJson(
                 '/api/web-print/jobs', [
                     'promise' => $promise->ulid,
@@ -104,7 +104,7 @@ class CreateJobFromPromisesTest extends TestCase
                 'status' => PrintJobPromiseStatusEnum::SentToPrinter,
             ]);
 
-        $response = $this
+        $this
             ->postJson(
                 '/api/web-print/jobs', [
                     'promise' => $promise->ulid,

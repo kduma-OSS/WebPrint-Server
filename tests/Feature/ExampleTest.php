@@ -221,7 +221,7 @@ class ExampleTest extends TestCase
             )
             ->assertOk();
 
-        $link = $dialog_response->json('data.link');
+        $dialog_response->json('data.link');
 
         $promise_model = PrintJobPromise::where('ulid', $promise_ulid)->first();
         Livewire::test(PrintDialog::class, ['dialog' => $promise_model->PrintDialog])
@@ -313,7 +313,7 @@ class ExampleTest extends TestCase
             )
             ->assertOk();
 
-        $link = $dialog_response->json('data.link');
+        $dialog_response->json('data.link');
 
         $promise_model = PrintJobPromise::where('ulid', $promise_ulid)->first();
         Livewire::test(PrintDialog::class, ['dialog' => $promise_model->PrintDialog])
@@ -327,7 +327,7 @@ class ExampleTest extends TestCase
                 ],
             ]);
 
-        $promise_response = $this->getJson('/api/web-print/promises/'.$promise_ulid)
+        $this->getJson('/api/web-print/promises/'.$promise_ulid)
             ->assertOk()
             ->assertJson([
                 'data' => [

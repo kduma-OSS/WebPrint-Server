@@ -116,58 +116,58 @@ class UpdatePromisesTest extends TestCase
     public function providesDataForUpdate()
     {
         yield 'updates name' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'name' => 'Updated Test Print',
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals('Updated Test Print', $promise->name);
             },
         ];
         yield 'updates printer' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'printer' => $printers_ppd->last()->ulid,
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals($printers_ppd->last()->ulid, $promise->Printer->ulid);
             },
         ];
         yield 'updates ppd options' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'ppd_options' => [
                     'Duplex' => 'True',
                 ],
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals([
                     'Duplex' => 'True',
                 ], $promise->ppd_options);
             },
         ];
         yield 'updates meta' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'meta' => [
                     'Pages' => '64',
                 ],
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals([
                     'Pages' => '64',
                 ], $promise->meta);
             },
         ];
         yield 'updates status' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'status' => 'ready',
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals(PrintJobPromiseStatusEnum::SentToPrinter, $promise->status);
             },
         ];
         yield 'updates status without content' => [
-            fn (Collection $printers_ppd, UpdatePromisesTest $test) => [
+            fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [
                 'status' => 'ready',
             ],
-            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test) {
+            function (PrintJobPromise $promise, TestResponse $response, Collection $printers_ppd, UpdatePromisesTest $test): void {
                 $test->assertEquals(PrintJobPromiseStatusEnum::Ready, $promise->status);
             },
             false,

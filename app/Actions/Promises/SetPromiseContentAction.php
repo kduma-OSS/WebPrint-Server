@@ -65,6 +65,7 @@ class SetPromiseContentAction
         if ($name) {
             $promise->file_name = $name;
         }
+
         $promise->size = strlen($content);
         $promise->save();
     }

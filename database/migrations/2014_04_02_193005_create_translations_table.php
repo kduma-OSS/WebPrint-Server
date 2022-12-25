@@ -3,16 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTranslationsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('ltm_translations', function (Blueprint $table) {
+        Schema::create('ltm_translations', function (Blueprint $table): void {
             $table->collation = 'utf8mb4_bin';
             $table->bigIncrements('id');
             $table->integer('status')->default(0);
@@ -23,14 +21,11 @@ class CreateTranslationsTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('ltm_translations');
     }
-}
+};

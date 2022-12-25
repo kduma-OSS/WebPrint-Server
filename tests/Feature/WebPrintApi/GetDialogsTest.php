@@ -21,7 +21,7 @@ class GetDialogsTest extends TestCase
             ->withoutContent()
             ->create();
 
-        $dialog = PrintDialog::factory()
+        PrintDialog::factory()
             ->for($promise, 'JobPromise')
             ->create();
 
@@ -41,7 +41,7 @@ class GetDialogsTest extends TestCase
             ->withoutContent()
             ->create();
 
-        $dialog = PrintDialog::factory()
+        PrintDialog::factory()
             ->for($promise, 'JobPromise')
             ->create();
 
@@ -61,7 +61,7 @@ class GetDialogsTest extends TestCase
             ->withoutContent()
             ->create();
 
-        $dialog = PrintDialog::factory()
+        PrintDialog::factory()
             ->for($promise, 'JobPromise')
             ->create();
 
@@ -82,7 +82,7 @@ class GetDialogsTest extends TestCase
             ->for($client)
             ->create();
 
-        $response = $this->getJson(
+        $this->getJson(
             '/api/web-print/promises/'.$promise->ulid.'/dialog'
         )->assertNotFound();
     }
@@ -103,7 +103,7 @@ class GetDialogsTest extends TestCase
             ->for($promise, 'JobPromise')
             ->create();
 
-        $response = $this
+        $this
             ->getJson(
                 '/api/web-print/promises/'.$promise->ulid.'/dialog'
             )

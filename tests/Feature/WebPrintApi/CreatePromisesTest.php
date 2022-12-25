@@ -78,7 +78,7 @@ class CreatePromisesTest extends TestCase
 
         $client->Printers()->attach($printers_ppd);
 
-        if ($additional) {
+        if ($additional !== null) {
             $additional($this);
         }
 
@@ -98,14 +98,14 @@ class CreatePromisesTest extends TestCase
     public function providesDataForCreate()
     {
         yield 'minimal' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -129,16 +129,16 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'with content' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'content' => 'test',
                 'file_name' => 'test.txt',
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -163,21 +163,21 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'raw' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'escpos',
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'escpos',
                 'name' => 'Test Print',
-                'available_printers' => $printers->map(fn (Printer $printer) => [
+                'available_printers' => $printers->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
                     'raw_languages_supported' => $printer->raw_languages_supported,
                     'ulid' => $printer->ulid,
                 ])->skip(1)->values()->toArray(),
-                'selected_printer' => $printers->map(fn (Printer $printer) => [
+                'selected_printer' => $printers->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -201,17 +201,17 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'meta' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'meta' => [
                     'Pages' => '64',
                 ],
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -237,17 +237,17 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'ppd options' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'ppd_options' => [
                     'Duplex' => 'true',
                 ],
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -273,22 +273,22 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'selected printer' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'printer' => $printers_ppd->first()->ulid,
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
                     'raw_languages_supported' => $printer->raw_languages_supported,
                     'ulid' => $printer->ulid,
                 ])->toArray(),
-                'selected_printer' => $printers_ppd->map(fn (Printer $printer) => [
+                'selected_printer' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -311,22 +311,22 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'limited printers' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'available_printers' => $printers_ppd->take(1)->pluck('ulid')->toArray(),
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
                     'raw_languages_supported' => $printer->raw_languages_supported,
                     'ulid' => $printer->ulid,
                 ])->take(1)->toArray(),
-                'selected_printer' => $printers_ppd->map(fn (Printer $printer) => [
+                'selected_printer' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -349,23 +349,23 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'headless without content' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'headless' => true,
                 'printer' => $printers_ppd->first()->ulid,
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
                     'raw_languages_supported' => $printer->raw_languages_supported,
                     'ulid' => $printer->ulid,
                 ])->toArray(),
-                'selected_printer' => $printers_ppd->map(fn (Printer $printer) => [
+                'selected_printer' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
@@ -388,7 +388,7 @@ class CreatePromisesTest extends TestCase
         ];
 
         yield 'headless with content' => [
-            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'name' => 'Test Print',
                 'type' => 'ppd',
                 'headless' => true,
@@ -396,17 +396,17 @@ class CreatePromisesTest extends TestCase
                 'content' => 'test',
                 'file_name' => 'test.txt',
             ],
-            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test) => [
+            fn (PrintJobPromise $promise, TestResponse $response, Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [
                 'type' => 'ppd',
                 'name' => 'Test Print',
-                'available_printers' => $printers_ppd->map(fn (Printer $printer) => [
+                'available_printers' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,
                     'raw_languages_supported' => $printer->raw_languages_supported,
                     'ulid' => $printer->ulid,
                 ])->toArray(),
-                'selected_printer' => $printers_ppd->map(fn (Printer $printer) => [
+                'selected_printer' => $printers_ppd->map(fn (Printer $printer): array => [
                     'location' => $printer->location,
                     'name' => $printer->name,
                     'ppd_support' => $printer->ppd_support,

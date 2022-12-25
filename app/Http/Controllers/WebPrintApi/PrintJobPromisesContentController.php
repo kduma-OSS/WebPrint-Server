@@ -87,6 +87,7 @@ class PrintJobPromisesContentController extends Controller
                 name: $request->hasHeader('X-File-Name') && $request->header('X-File-Name') ? $request->header('X-File-Name') : null,
             );
         }
+
         $promise->save();
 
         if ($promise->isReadyToPrint()) {
