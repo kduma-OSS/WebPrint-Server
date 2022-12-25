@@ -29,9 +29,13 @@ class PrintServerPrintersController extends Controller
         ]);
     }
 
-    public function create(PrintServer $server): void
+    public function create(PrintServer $server)
     {
         $this->authorize('create', [Printer::class, $server]);
+
+        return view('app.print-servers.printers.create', [
+            'server' => $server,
+        ]);
     }
 
     public function store(Request $request, PrintServer $server): void
@@ -39,9 +43,12 @@ class PrintServerPrintersController extends Controller
         //
     }
 
-    public function show(Printer $printer): void
+    public function show(Printer $printer)
     {
-        //
+        return view('app.print-servers.printers.show', [
+            'server' => $printer->Server,
+            'printer' => $printer,
+        ]);
     }
 
     public function edit(Printer $printer): void

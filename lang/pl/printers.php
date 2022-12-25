@@ -6,4 +6,6 @@ return [
     'no-location-label' => 'Brak Lokalizacji',
     'no-permissions-to-create' => 'Nie masz uprawnień aby dodawać nowe drukarki.',
     'no-printers-label' => 'Brak drukarek',
+    'heading_create' => 'Dodaj Drukarkę',
+    'heading_show' => 'Drukarka',
 ];

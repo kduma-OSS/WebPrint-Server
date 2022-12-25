@@ -6,4 +6,6 @@ return [
     'create-new-printer-label' => 'Create a new printer',
     'no-printers-label' => 'No printers',
     'no-permissions-to-create' => 'You don\'t have permission to create new printers.',
+    'heading_create' => 'Create Printer',
+    'heading_show' => 'Printer',
 ];

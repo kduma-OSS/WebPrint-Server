@@ -8,4 +8,6 @@ return [
     'no-print-servers-label' => 'Brak serwerów druku',
     'online-status' => 'Podłączony',
     'seen_online_status' => 'Ostatnio widziany :diff_for_humans',
+    'heading_create' => 'Utwórz Serwer Druku',
+    'heading_show' => 'Serwer Druku',
 ];

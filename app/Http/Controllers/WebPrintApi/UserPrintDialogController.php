@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
-use App\Models\ClientApplication;
 use App\Models\PrintDialog;
 use Illuminate\Http\Request;
 
