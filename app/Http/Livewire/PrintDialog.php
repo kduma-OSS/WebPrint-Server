@@ -8,7 +8,6 @@ use App\Models\Enums\PrintDialogStatusEnum;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintDialog as PrintDialogModel;
 use App\Models\Printer;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use League\Uri\Uri;
 use Livewire\Component;
@@ -24,7 +23,6 @@ class PrintDialog extends Component
     public array $ppd_options = [];
 
     public string $view = 'main';
-
 
     public function mount(PrintDialogModel $dialog): void
     {
@@ -113,8 +111,7 @@ class PrintDialog extends Component
     public function sendToPrint(
         CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction,
         ConvertPromiseToJobAction $convertPromiseToJobAction,
-    )
-    {
+    ) {
         if (! $this->dialog->is_active) {
             return null;
         }
