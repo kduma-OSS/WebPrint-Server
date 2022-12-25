@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
 use App\Models\ClientApplication;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 
@@ -61,64 +61,33 @@ class PrintJobPromisesContentController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise)
+    public function store(Request $request, PrintJobPromise $promise, SetPromiseContentAction $setPromiseContentAction)
     {
         $this->authorize('update', $promise);
 
         if ($request->hasFile('content')) {
             $file = $request->file('content');
-            $promise->content = null;
-            if ($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
 
-            $promise->save();
-            $promise->content_file = $file->store('jobs');
-            $promise->file_name ??= $file->getClientOriginalName();
-            $promise->size = $file->getSize();
-            $promise->save();
+            $setPromiseContentAction->handle($promise, $file);
         } elseif ($request->has('content')) {
             $validated = $request->validate([
                 'content' => 'required',
                 'name' => $promise->file_name ? 'nullable' : 'required',
             ]);
 
-            $promise->content = null;
-            if ($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
-
-            $promise->save();
-            if (strlen($validated['content']) < 1024) {
-                $promise->content = $validated['content'];
-            } else {
-                Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
-            }
-
-            $promise->file_name = $validated['name'] ?? $promise->file_name;
-            $promise->size = strlen($validated['content']);
-            $promise->save();
+            $setPromiseContentAction->handle(
+                promise: $promise,
+                content: $validated['content'],
+                name: $validated['name'] ?? $promise->file_name
+            );
         } else {
-            $promise->content = null;
-            if ($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
-
-            $promise->save();
-            $name = Str::random(40).'.dat';
-            Storage::writeStream($promise->content_file = 'jobs/'.$name, $request->getContent(true));
-
-            $promise->file_name ??= $name;
-            if ($request->hasHeader('X-File-Name') && $request->header('X-File-Name')) {
-                $promise->file_name = $request->header('X-File-Name');
-            }
-
-            $promise->size = Storage::size($promise->content_file);
-            $promise->save();
+            $setPromiseContentAction->handle(
+                promise: $promise,
+                content: $request->getContent(true),
+                name: $request->hasHeader('X-File-Name') && $request->header('X-File-Name') ? $request->header('X-File-Name') : null,
+            );
         }
+        $promise->save();
 
         if ($promise->isReadyToPrint()) {
             $promise->sendForPrinting();

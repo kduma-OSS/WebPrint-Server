@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrintJobPromiseResource;
 use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class PrintJobPromisesController extends Controller
@@ -56,7 +55,7 @@ class PrintJobPromisesController extends Controller
      *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function store(Request $request): PrintJobPromiseResource
+    public function store(Request $request, SetPromiseContentAction $setPromiseContentAction): PrintJobPromiseResource
     {
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
@@ -93,14 +92,7 @@ class PrintJobPromisesController extends Controller
         $promise->save();
 
         if ($validated['content'] ?? null) {
-            if (strlen($validated['content']) < 1024 && ! preg_match('#[^\x20-\x7e\n]#', $validated['content'])) {
-                $promise->content = $validated['content'];
-            } else {
-                Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
-            }
-
-            $promise->size = strlen($validated['content']);
-            $promise->save();
+            $setPromiseContentAction->handle($promise, $validated['content']);
         }
 
         if ($validated['available_printers'] ?? null) {
