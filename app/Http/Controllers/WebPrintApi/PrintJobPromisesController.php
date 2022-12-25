@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CancelPromiseAction;
 use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrintJobPromiseResource;
@@ -181,10 +182,9 @@ class PrintJobPromisesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrintJobPromise $promise)
+    public function destroy(PrintJobPromise $promise, CancelPromiseAction $cancelPromiseAction)
     {
-        $promise->status = PrintJobPromiseStatusEnum::Cancelled;
-        $promise->save();
+        $cancelPromiseAction->handle($promise);
 
         return response()->noContent();
     }
