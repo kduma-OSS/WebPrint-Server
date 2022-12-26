@@ -3,8 +3,13 @@
         <x-layout.header>
             {{ __('printers.heading') }} @ {{ $server->name }}
             <x-slot:buttons>
+                @can('view', $server)
+                    <x-layout.header.button href="{{ route('web-print.servers.show', $server) }}">
+                        {{ __('common.buttons.view-server') }}
+                    </x-layout.header.button>
+                @endcan
                 @can('create', [\App\Models\Printer::class, $server])
-                    <x-layout.header.button href="{{ route('web-print.servers.printers.create', $server) }}">
+                    <x-layout.header.button href="{{ route('web-print.servers.printers.create', $server) }}" multiple="true">
                         {{ __('common.buttons.new') }}
                     </x-layout.header.button>
                 @endcan

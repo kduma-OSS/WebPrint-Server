@@ -4,8 +4,13 @@
             {{ __('print-servers.heading_show') }}: {{ $server->name }}
 
             <x-slot:buttons>
+                @can('viewAny', [\App\Models\Printer::class, $server])
+                    <x-layout.header.button href="{{ route('web-print.servers.printers.index', $server) }}">
+                        {{ __('common.buttons.printers') }}
+                    </x-layout.header.button>
+                @endcan
                 @can('viewAny', \App\Models\PrintServer::class)
-                    <x-layout.header.button href="{{ route('web-print.servers.index') }}">
+                    <x-layout.header.button href="{{ route('web-print.servers.index') }}" multiple="true">
                         {{ __('common.buttons.back-to-list') }}
                     </x-layout.header.button>
                 @endcan
