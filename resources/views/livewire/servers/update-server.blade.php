@@ -12,18 +12,24 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="{{ __('print-servers.name_label') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" />
+            @can('update', $server)
+                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" />
+            @else
+                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" disabled readonly/>
+            @endcan
             <x-jet-input-error for="name" class="mt-2" />
         </div>
     </x-slot>
 
-    <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
+    @can('update', $server)
+        <x-slot name="actions">
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __('Saved.') }}
+            </x-jet-action-message>
 
-        <x-jet-button>
-            {{ __('Save') }}
-        </x-jet-button>
-    </x-slot>
+            <x-jet-button>
+                {{ __('Save') }}
+            </x-jet-button>
+        </x-slot>
+    @endcan
 </x-jet-form-section>
