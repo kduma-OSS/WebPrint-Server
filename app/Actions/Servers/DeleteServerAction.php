@@ -18,6 +18,8 @@ class DeleteServerAction
             throw new RuntimeException('Server cannot be deleted');
         }
 
+        $server->tokens->each->delete();
+
         $server->delete();
     }
 }
