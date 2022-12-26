@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Jetstream;
 
+use App\Models\ClientApplication;
+use App\Models\Printer;
+use App\Models\PrintServer;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,22 +30,55 @@ class DeleteTeamTest extends TestCase
         );
 
         Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
-                                ->call('deleteTeam');
+            ->call('deleteTeam');
 
         $this->assertNull($team->fresh());
         $this->assertCount(0, $otherUser->fresh()->teams);
-
-        $this->addWarning('This test is not checking if it works with apps, printers, etc.');
     }
 
-    public function test_personal_teams_cant_be_deleted(): void
+    public function test_teams_with_related_records_can_be_deleted(): void
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        // $component = Livewire::test(DeleteTeamForm::class, ['team' => $user->currentTeam])
-        //                         ->call('deleteTeam')
-        //                         ->assertHasErrors(['team']);
+        $user->ownedTeams()->save($team = Team::factory()->make([
+            'personal_team' => false,
+        ]));
 
-        $this->assertNotNull($user->currentTeam->fresh());
+        $team->users()->attach(
+            $otherUser = User::factory()->create(),
+            ['role' => 'test-role']
+        );
+
+        $client = ClientApplication::factory()
+            ->recycle($team)
+            ->create();
+
+        $server = PrintServer::factory()
+            ->recycle($team)
+            ->create();
+
+        $printer = Printer::factory()
+            ->active()
+            ->for($server, 'Server')
+            ->create();
+
+        $client->Printers()->attach($printer);
+
+        Livewire::test(DeleteTeamForm::class, ['team' => $team->fresh()])
+            ->call('deleteTeam');
+
+        $this->assertNull($team->fresh());
+        $this->assertCount(0, $otherUser->fresh()->teams);
     }
+
+    // public function test_personal_teams_cant_be_deleted(): void
+    // {
+    //     $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+    //
+    //     $component = Livewire::test(DeleteTeamForm::class, ['team' => $user->currentTeam])
+    //         ->call('deleteTeam')
+    //         ->assertHasErrors(['team']);
+    //
+    //     $this->assertNotNull($user->currentTeam->fresh());
+    // }
 }

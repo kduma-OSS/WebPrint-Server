@@ -15,9 +15,9 @@ class DeleteServerAction
     ) {
     }
 
-    public function handle(PrintServer $server): void
+    public function handle(PrintServer $server, bool $force = false): void
     {
-        if (! $this->serverCanBeDeletedAction->handle($server)) {
+        if (! $force && ! $this->serverCanBeDeletedAction->handle($server)) {
             throw new RuntimeException('Server cannot be deleted');
         }
 
