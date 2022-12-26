@@ -12,6 +12,7 @@ return [
         'description' => 'Podaj dane tworzonego aplikacji klienckiej',
     ],
     'name_label' => 'Nazwa',
+    'printers_label' => 'Dozwolone Drukarki',
     'update' => [
         'title' => 'Aplikacja Kliencka',
         'description' => 'Zaktualizuj dane aplikacji klienckiej',

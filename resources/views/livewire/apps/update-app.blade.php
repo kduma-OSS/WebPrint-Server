@@ -19,6 +19,23 @@
             @endcan
             <x-jet-input-error for="name" class="mt-2" />
         </div>
+
+        <div class="col-span-6">
+            <x-jet-label for="printers" value="{{ __('client-applications.printers_label') }}" />
+
+            <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach ($this->available_printers as $printer)
+                    <label class="flex items-center">
+                        @can('update', $app)
+                            <x-jet-checkbox wire:model.defer="printers" :value="$printer->ulid"/>
+                        @else
+                            <x-jet-checkbox wire:model.defer="printers" :value="$printer->ulid" disabled/>
+                        @endcan
+                        <span class="ml-2 text-sm text-gray-600">{{ $printer->name }} @ {{ $printer->Server->name }}</span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
     </x-slot>
 
     @can('update', $app)

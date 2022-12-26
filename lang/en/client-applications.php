@@ -8,6 +8,7 @@ return [
     'heading_show' => 'Client Application',
     'heading_create' => 'Create Client Application',
     'name_label' => 'Name',
+    'printers_label' => 'Permitted Printers',
     'create' => [
         'title' => 'Client Application',
         'description' => 'Provide client application details',
