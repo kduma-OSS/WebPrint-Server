@@ -7,6 +7,7 @@ use App\Actions\Apps\UpdateAppPrintersAction;
 use App\Models\ClientApplication;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class UpdateApp extends Component
@@ -33,12 +34,15 @@ class UpdateApp extends Component
      */
     public $printers;
 
-    protected $rules = [
-        'name' => ['required', 'string', 'min:1', 'max:255'],
-        'url' => ['required', 'url', 'min:1', 'max:255'],
-        'printers' => ['array'],
-        'printers.*' => ['required', 'string'], //todo: validate that these are valid printers
-    ];
+    protected function rules()
+    {
+        return [
+            'name'       => ['required', 'string', 'min:1', 'max:255'],
+            'url'        => ['required', 'url', 'min:1', 'max:255'],
+            'printers'   => ['array'],
+            'printers.*' => ['required', 'string', Rule::in($this->app->Team->Printers()->pluck('ulid')->toArray())],
+        ];
+    }
 
     public function mount(ClientApplication $app)
     {
