@@ -9,6 +9,10 @@ use Illuminate\Support\Str;
 
 class SetPromiseContentAction
 {
+    public function __construct(
+        protected ClearPromiseContentAction $clearPromiseContentAction,
+    ){}
+
     /**
      * @param  string|null  $name
      * @param  string|UploadedFile|resource  $content
@@ -24,19 +28,9 @@ class SetPromiseContentAction
         }
     }
 
-    protected function deleteExistingFile(PrintJobPromise $promise): void
-    {
-        if ($promise->content_file) {
-            Storage::delete($promise->content_file);
-            $promise->content_file = null;
-            $promise->size = null;
-            $promise->save();
-        }
-    }
-
     protected function handleUploadedFile(PrintJobPromise $promise, UploadedFile $content, string $name = null): void
     {
-        $this->deleteExistingFile($promise);
+        $this->clearPromiseContentAction->handle($promise);
 
         $promise->content_file = $content->store('jobs');
         $promise->size = $content->getSize();
@@ -51,7 +45,7 @@ class SetPromiseContentAction
 
     protected function handleString(PrintJobPromise $promise, string $content, string $name = null): void
     {
-        $this->deleteExistingFile($promise);
+        $this->clearPromiseContentAction->handle($promise);
 
         if (strlen($content) < 1024 && ! preg_match('#[^\x20-\x7e\n]#', $content)) {
             $promise->content = $content;
@@ -75,7 +69,7 @@ class SetPromiseContentAction
      */
     protected function handleResource(PrintJobPromise $promise, mixed $content, string $name = null): void
     {
-        $this->deleteExistingFile($promise);
+        $this->clearPromiseContentAction->handle($promise);
 
         $tmp_file = Str::random(40).'.dat';
 
