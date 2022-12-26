@@ -29,7 +29,7 @@
                     @endcan
 
                     @can('viewAny', \App\Models\PrintServer::class)
-                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
+                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
                             {{ __('navigation.print-servers-and-printers') }}
                         </x-jet-nav-link>
                     @endcan
@@ -191,7 +191,7 @@
             @endcan
 
             @can('viewAny', \App\Models\PrintServer::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*')">
+                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
                     {{ __('navigation.print-servers-and-printers') }}
                 </x-jet-responsive-nav-link>
             @endcan

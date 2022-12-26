@@ -67,8 +67,6 @@ class CreatePrinter extends Component
 
         $this->emit('saved');
 
-        $this->emit('refresh-navigation-menu');
-
         return redirect()->route('web-print.printers.show', $printer);
     }
 

@@ -51,8 +51,6 @@ class UpdateServer extends Component
         $action->handle($this->server, $this->name, $this->location);
 
         $this->emit('saved');
-
-        $this->emit('refresh-navigation-menu');
     }
 
     public function render()

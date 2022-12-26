@@ -74,8 +74,6 @@ class UpdateApp extends Component
         $printersAction->handle($this->app, $this->printers);
 
         $this->emit('saved');
-
-        $this->emit('refresh-navigation-menu');
     }
 
     public function render()

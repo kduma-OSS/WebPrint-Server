@@ -45,8 +45,6 @@ class CreateServer extends Component
 
         $this->emit('saved');
 
-        $this->emit('refresh-navigation-menu');
-
         return redirect()->route('web-print.servers.show', $server);
     }
 

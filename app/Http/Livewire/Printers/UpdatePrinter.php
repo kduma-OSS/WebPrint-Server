@@ -110,8 +110,6 @@ class UpdatePrinter extends Component
             : '';
 
         $this->emit('saved');
-
-        $this->emit('refresh-navigation-menu');
     }
 
     public function render()
