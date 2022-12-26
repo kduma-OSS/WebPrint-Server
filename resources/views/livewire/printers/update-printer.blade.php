@@ -29,6 +29,26 @@
             @endcan
             <x-jet-input-error for="location" class="mt-2" />
         </div>
+        <!-- URI -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="uri" value="{{ __('printers.uri_label') }}" />
+            @can('update', $printer)
+                <x-jet-input id="uri" type="text" class="mt-1 block w-full" wire:model.defer="uri" />
+            @else
+                <x-jet-input id="uri" type="text" class="mt-1 block w-full" wire:model.defer="uri" disabled readonly/>
+            @endcan
+            <x-jet-input-error for="uri" class="mt-2" />
+        </div>
+        <!-- Languages -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="languages" value="{{ __('printers.languages_label') }}" />
+            @can('update', $printer)
+                <x-jet-input id="languages" type="text" class="mt-1 block w-full" wire:model.defer="languages" />
+            @else
+                <x-jet-input id="languages" type="text" class="mt-1 block w-full" wire:model.defer="languages" disabled readonly/>
+            @endcan
+            <x-jet-input-error for="languages" class="mt-2" />
+        </div>
     </x-slot>
 
     @can('update', $printer)

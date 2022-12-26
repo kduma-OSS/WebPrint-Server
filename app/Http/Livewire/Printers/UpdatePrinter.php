@@ -6,6 +6,7 @@ use App\Actions\Printers\UpdatePrinterAction;
 use App\Models\Printer;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use Spatie\ValidationRules\Rules\Delimited;
 
 class UpdatePrinter extends Component
 {
@@ -22,20 +23,37 @@ class UpdatePrinter extends Component
     public $name;
 
     /**
+     * @var string
+     */
+    public $uri;
+
+    /**
+     * @var string
+     */
+    public $languages;
+
+    /**
      * @var ?string
      */
     public $location;
 
-    protected $rules = [
-        'name' => ['required', 'string', 'min:1', 'max:255'],
-        'location' => ['nullable', 'string', 'min:1', 'max:255'],
-    ];
+    protected function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'uri' => ['required', 'url', 'min:1', 'max:255'],
+            'languages' => [(new Delimited('string|max:25'))->max(10)],
+            'location' => ['nullable', 'string', 'min:1', 'max:255'],
+        ];
+    }
 
     public function mount(Printer $printer)
     {
         $this->printer = $printer;
         $this->name = $printer->name;
         $this->location = $printer->location;
+        $this->uri = $printer->uri;
+        $this->languages = implode(', ', $printer->raw_languages_supported);
     }
 
     public function updated($propertyName)
@@ -48,7 +66,13 @@ class UpdatePrinter extends Component
         $this->authorize('update', $this->printer);
         $this->validate();
 
-        $action->handle($this->printer, $this->name, $this->location);
+        $languages = collect(explode(',', $this->languages))
+            ->map(fn ($language) => trim($language))
+            ->map(fn ($language) => strtolower($language))
+            ->filter()
+            ->toArray();
+
+        $action->handle($this->printer, $this->name, $this->uri, $languages, $this->location);
 
         $this->emit('saved');
 

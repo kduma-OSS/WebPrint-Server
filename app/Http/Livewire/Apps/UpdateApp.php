@@ -37,9 +37,9 @@ class UpdateApp extends Component
     protected function rules()
     {
         return [
-            'name'       => ['required', 'string', 'min:1', 'max:255'],
-            'url'        => ['required', 'url', 'min:1', 'max:255'],
-            'printers'   => ['array'],
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'url' => ['required', 'url', 'min:1', 'max:255'],
+            'printers' => ['array'],
             'printers.*' => ['required', 'string', Rule::in($this->app->Team->Printers()->pluck('ulid')->toArray())],
         ];
     }

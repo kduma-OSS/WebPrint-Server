@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Printers;
 use App\Actions\Printers\CreatePrinterAction;
 use App\Models\Printer;
 use App\Models\PrintServer;
-use App\Models\Team;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use Spatie\ValidationRules\Rules\Delimited;
 
 class CreatePrinter extends Component
 {
@@ -23,9 +23,24 @@ class CreatePrinter extends Component
      */
     public $name;
 
-    protected $rules = [
-        'name' => ['required', 'string', 'min:1', 'max:255'],
-    ];
+    /**
+     * @var string
+     */
+    public $uri;
+
+    /**
+     * @var string
+     */
+    public $languages;
+
+    protected function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'min:1', 'max:255'],
+            'uri' => ['required', 'url', 'min:1', 'max:255'],
+            'languages' => [(new Delimited('string|max:25'))->max(10)],
+        ];
+    }
 
     public function mount(PrintServer $server)
     {
@@ -42,7 +57,13 @@ class CreatePrinter extends Component
         $this->authorize('create', [Printer::class, $this->server]);
         $this->validate();
 
-        $printer = $action->handle($this->server, $this->name);
+        $languages = collect(explode(',', $this->languages))
+            ->map(fn ($language) => trim($language))
+            ->map(fn ($language) => strtolower($language))
+            ->filter()
+            ->toArray();
+
+        $printer = $action->handle($this->server, $this->name, $this->uri, $languages);
 
         $this->emit('saved');
 

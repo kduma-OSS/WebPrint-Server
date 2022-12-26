@@ -4,7 +4,6 @@ namespace App\Actions\Printers;
 
 use App\Models\Printer;
 use App\Models\PrintServer;
-use App\Models\Team;
 
 class CreatePrinterAction
 {

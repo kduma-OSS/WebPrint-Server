@@ -26,7 +26,7 @@ return [
             'title' => 'Delete Application',
             'content' => 'Are you sure you want to delete this app? Once a app is deleted, all of its resources and data will be permanently deleted.',
         ],
-        'message_disabled' => 'Application can\'t be deleted at this moment. Please related resources first.',
+        'message_disabled' => 'Application can\'t be deleted at this moment. Please delete related resources first.',
     ],
     'token' => [
         'button' => 'Generate new Access Token',
