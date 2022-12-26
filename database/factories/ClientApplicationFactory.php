@@ -11,6 +11,7 @@ class ClientApplicationFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'url' => $this->faker->url(),
             'last_active_at' => null,
 
             'team_id' => Team::factory(),

@@ -21,14 +21,21 @@ class UpdateServer extends Component
      */
     public $name;
 
+    /**
+     * @var ?string
+     */
+    public $location;
+
     protected $rules = [
         'name' => ['required', 'string', 'min:1', 'max:255'],
+        'location' => ['nullable', 'string', 'min:1', 'max:255'],
     ];
 
     public function mount(PrintServer $server)
     {
         $this->server = $server;
         $this->name = $server->name;
+        $this->location = $server->location;
     }
 
     public function updated($propertyName)
@@ -41,7 +48,7 @@ class UpdateServer extends Component
         $this->authorize('update', $this->server);
         $this->validate();
 
-        $action->handle($this->server, $this->name);
+        $action->handle($this->server, $this->name, $this->location);
 
         $this->emit('saved');
 

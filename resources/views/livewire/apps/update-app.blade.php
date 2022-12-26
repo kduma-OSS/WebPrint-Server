@@ -20,6 +20,17 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
+        <!-- URL -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="url" value="{{ __('client-applications.url_label') }}" />
+            @can('update', $app)
+                <x-jet-input id="url" type="text" class="mt-1 block w-full" wire:model.defer="url" />
+            @else
+                <x-jet-input id="url" type="text" class="mt-1 block w-full" wire:model.defer="url" disabled readonly/>
+            @endcan
+            <x-jet-input-error for="url" class="mt-2" />
+        </div>
+
         <div class="col-span-6">
             <x-jet-label for="printers" value="{{ __('client-applications.printers_label') }}" />
 

@@ -25,12 +25,18 @@ class UpdateApp extends Component
     public $name;
 
     /**
+     * @var ?string
+     */
+    public $url;
+
+    /**
      * @var string[]
      */
     public $printers;
 
     protected $rules = [
         'name' => ['required', 'string', 'min:1', 'max:255'],
+        'url' => ['required', 'url', 'min:1', 'max:255'],
         'printers' => ['array'],
         'printers.*' => ['required', 'string'], //todo: validate that these are valid printers
     ];
@@ -39,12 +45,16 @@ class UpdateApp extends Component
     {
         $this->app = $app;
         $this->name = $app->name;
+        $this->url = $app->url;
         $this->printers = $app->Printers()->pluck('ulid')->toArray();
     }
 
     public function getAvailablePrintersProperty(): Collection
     {
-        return $this->app->Team->Printers()->with('Server')->get();
+        return $this->app->Team->Printers()
+            ->with('Server')
+            ->orderBy('name')
+            ->get();
     }
 
     public function updated($propertyName)
@@ -57,7 +67,7 @@ class UpdateApp extends Component
         $this->authorize('update', $this->app);
         $this->validate();
 
-        $action->handle($this->app, $this->name);
+        $action->handle($this->app, $this->name, $this->url);
         $printersAction->handle($this->app, $this->printers);
 
         $this->emit('saved');

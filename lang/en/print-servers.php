@@ -10,6 +10,7 @@ return [
     'no-permissions-to-create-print-server-label' => 'You don\'t have permission to create new print servers.',
     'heading_create' => 'Create Print Server',
     'heading_show' => 'Print Server',
+    'no-location-label' => 'No Location',
     'name_label' => 'Name',
     'create' => [
         'title' => 'Print Server',

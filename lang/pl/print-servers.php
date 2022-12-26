@@ -10,6 +10,7 @@ return [
     'seen_online_status' => 'Ostatnio widziany :diff_for_humans',
     'heading_create' => 'Utwórz Serwer Druku',
     'heading_show' => 'Serwer Druku',
+    'no-location-label' => 'Brak Lokalizacji',
     'create' => [
         'title' => 'Serwer Druku',
         'description' => 'Podaj dane tworzonego serwera druku',

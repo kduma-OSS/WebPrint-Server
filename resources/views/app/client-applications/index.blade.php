@@ -40,7 +40,13 @@
 {{--                                        @endif--}}
                                     </div>
                                     <p class="mt-1 truncate text-sm text-gray-500">
-                                        {{ $app->location ?? __('client-applications.no-location-label') }}
+                                        @if($app->url)
+                                            <a href="{{ $app->url }}" class="text-gray-500 hover:text-gray-900" target="_blank">
+                                                {{ $app->url_domain }}
+                                            </a>
+                                        @else
+                                            {{ __('client-applications.no-url-label') }}
+                                        @endif
                                     </p>
                                 </div>
                                 {{--                            <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">--}}
