@@ -8,6 +8,7 @@ return [
         'view-app' => 'Zobacz Aplikację',
         'view-printer' => 'Zobacz Drukarkę',
         'view-server' => 'Zobacz Serwer',
+        'back-to-list' => 'Wróć do listy',
     ],
     'disabled' => 'Wyłączona',
     'enum' => [
