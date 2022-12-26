@@ -25,9 +25,9 @@ class PrintServersController extends Controller
         ]);
     }
 
-    public function create(): void
+    public function create()
     {
-        //
+        return view('app.print-servers.create');
     }
 
     public function store(Request $request): void
@@ -35,9 +35,11 @@ class PrintServersController extends Controller
         //
     }
 
-    public function show(PrintServer $server): void
+    public function show(PrintServer $server)
     {
-        //
+        return view('app.print-servers.show', [
+            'server' => $server,
+        ]);
     }
 
     public function edit(PrintServer $server): void

@@ -36,6 +36,9 @@ Route::name('api.')
 
                 Route::middleware(['auth:print_service_api'])
                     ->group(function (): void {
+                        Route::get('/', \App\Http\Controllers\PrintServiceApi\IndexController::class)
+                            ->name('index');
+
                         Route::apiResource(
                             '/jobs',
                             \App\Http\Controllers\PrintServiceApi\PrintJobsController::class,
@@ -51,6 +54,9 @@ Route::name('api.')
             ->group(function (): void {
                 Route::middleware(['auth:web_print_api'])
                     ->group(function (): void {
+                        Route::get('/', \App\Http\Controllers\WebPrintApi\IndexController::class)
+                            ->name('index');
+
                         Route::apiResource(
                             '/printers',
                             \App\Http\Controllers\WebPrintApi\PrintersController::class,

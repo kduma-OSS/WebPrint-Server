@@ -26,9 +26,9 @@ class ClientApplicationsController extends Controller
         ]);
     }
 
-    public function create(): void
+    public function create()
     {
-        //
+        return view('app.client-applications.create');
     }
 
     public function store(Request $request): void
@@ -36,9 +36,11 @@ class ClientApplicationsController extends Controller
         //
     }
 
-    public function show(ClientApplication $app): void
+    public function show(ClientApplication $app)
     {
-        //
+        return view('app.client-applications.show', [
+            'app' => $app,
+        ]);
     }
 
     public function edit(ClientApplication $app): void

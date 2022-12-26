@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,5 +52,14 @@ class ClientApplication extends Model implements AuthorizableContract, Authentic
     public function Jobs(): HasMany
     {
         return $this->hasMany(PrintJob::class, 'client_application_id');
+    }
+
+    protected function urlDomain(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => $attributes['url']
+                ? parse_url($attributes['url'], PHP_URL_HOST)
+                : null,
+        );
     }
 }

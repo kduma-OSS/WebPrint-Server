@@ -8,6 +8,8 @@ return [
         'view-printer' => 'View Printer',
         'jobs' => 'Jobs',
         'view-app' => 'View App',
+        'back-to-list' => 'Back to List',
+        'cancel' => 'Cancel',
     ],
     'disabled' => 'Disabled',
     'enum' => [

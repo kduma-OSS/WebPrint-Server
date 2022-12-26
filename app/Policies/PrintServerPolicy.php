@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\ClientApplication;
 use App\Models\PrintServer;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -21,11 +22,13 @@ class PrintServerPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'server:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:read')
                 && $user->tokenCan('server:read');
         }
     }
@@ -72,11 +75,13 @@ class PrintServerPolicy
      *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'server:create')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:create')
                 && $user->tokenCan('server:create');
         }
     }
@@ -92,6 +97,20 @@ class PrintServerPolicy
             return $user->belongsToTeam($printServer->Team)
                 && $user->hasTeamPermission($printServer->Team, 'server:update')
                 && $user->tokenCan('server:update');
+        }
+    }
+
+    /**
+     * Determine whether the user can generate token for the print server.
+     *
+     * @return bool
+     */
+    public function generateToken(mixed $user, PrintServer $printServer)
+    {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:token')
+                && $user->tokenCan('server:token');
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\ClientApplication;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,11 +21,13 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'server:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:read')
                 && $user->tokenCan('server:read');
         }
     }
@@ -60,11 +63,13 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'client:create')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'client:create')
                 && $user->tokenCan('client:create');
         }
     }
@@ -80,6 +85,20 @@ class ClientApplicationPolicy
             return $user->belongsToTeam($client->Team)
                 && $user->hasTeamPermission($client->Team, 'client:update')
                 && $user->tokenCan('client:update');
+        }
+    }
+
+    /**
+     * Determine whether the user can generate token for the client application.
+     *
+     * @return bool
+     */
+    public function generateToken(mixed $user, ClientApplication $client)
+    {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($client->Team)
+                && $user->hasTeamPermission($client->Team, 'client:token')
+                && $user->tokenCan('client:token');
         }
     }
 

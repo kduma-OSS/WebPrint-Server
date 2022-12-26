@@ -41,7 +41,9 @@
                                             </span>
                                         @endif
                                     </div>
-    {{--                                <p class="mt-1 truncate text-sm text-gray-500">Regional Paradigm Technician</p>--}}
+                                    <p class="mt-1 truncate text-sm text-gray-500">
+                                        {{ $server->location ?? __('print-servers.no-location-label') }}
+                                    </p>
                                 </div>
     {{--                            <img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">--}}
                             </div>

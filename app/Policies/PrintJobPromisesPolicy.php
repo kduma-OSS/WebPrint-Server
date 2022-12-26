@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -22,15 +23,17 @@ class PrintJobPromisesPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof ClientApplication) {
             return true;
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'promise:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'promise:read')
                 && $user->tokenCan('promise:read');
         }
     }
@@ -77,15 +80,17 @@ class PrintJobPromisesPolicy
      *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof ClientApplication) {
             return true;
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'promise:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'promise:read')
                 && $user->tokenCan('promise:read');
         }
     }

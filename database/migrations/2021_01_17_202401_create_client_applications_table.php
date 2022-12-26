@@ -16,6 +16,7 @@ return new class() extends Migration
             $table->ulid('ulid')->unique();
 
             $table->string('name');
+            $table->string('url')->nullable();
             $table->timestamp('last_active_at')->nullable();
 
             $table->timestamps();

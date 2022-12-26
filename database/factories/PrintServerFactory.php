@@ -14,6 +14,7 @@ class PrintServerFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'location' => $this->faker->word(),
             'last_active_at' => null,
 
             'team_id' => Team::factory(),

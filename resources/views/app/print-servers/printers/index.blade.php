@@ -3,8 +3,13 @@
         <x-layout.header>
             {{ __('printers.heading') }} @ {{ $server->name }}
             <x-slot:buttons>
+                @can('view', $server)
+                    <x-layout.header.button href="{{ route('web-print.servers.show', $server) }}">
+                        {{ __('common.buttons.view-server') }}
+                    </x-layout.header.button>
+                @endcan
                 @can('create', [\App\Models\Printer::class, $server])
-                    <x-layout.header.button href="{{ route('web-print.servers.printers.create', $server) }}">
+                    <x-layout.header.button href="{{ route('web-print.servers.printers.create', $server) }}" multiple="true">
                         {{ __('common.buttons.new') }}
                     </x-layout.header.button>
                 @endcan
@@ -33,7 +38,7 @@
                                             <span class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 truncate">
                                                 {{ strtoupper(implode(', ', array_merge($printer->ppd_support ? ['ppd'] : [],$printer->raw_languages_supported))) }}
                                             </span>
-                                        @elseif($printer->last_active_at->diffInMinutes() > 3)
+                                        @else
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 {{ __('common.disabled') }}
                                             </span>
