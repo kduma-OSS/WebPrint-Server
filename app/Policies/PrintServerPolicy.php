@@ -97,6 +97,20 @@ class PrintServerPolicy
     }
 
     /**
+     * Determine whether the user can generate token for the print server.
+     *
+     * @return bool
+     */
+    public function generateToken(mixed $user, PrintServer $printServer)
+    {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:token')
+                && $user->tokenCan('server:token');
+        }
+    }
+
+    /**
      * Determine whether the user can delete the print server.
      *
      * @return bool

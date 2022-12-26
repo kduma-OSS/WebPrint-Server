@@ -7,6 +7,7 @@ use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
             'client' => ClientApplication::class,
             'user' => User::class,
         ]);
+
+        Str::macro('linesCount', function (string $string): int {
+            return substr_count($string, "\n") + 1;
+        });
     }
 }

@@ -30,4 +30,20 @@ return [
         ],
         'message_disabled' => 'Server can\'t be deleted at this moment. Please delete printers first.',
     ],
+    'token' => [
+        'button' => 'Generate new Access Token',
+        'modal-title' => 'Print Server Token',
+        'modal-token' => 'Please copy your new API token. For your security, it won\'t be shown again.',
+        'modal-env' => 'If you need environmental variables for setting in WebPrint Service, use following:',
+        'modal-docker' => 'If you need a command to create docker instance with WebPrint Service, use following:',
+        'title' => 'Generate API Token',
+        'description' => 'Token will allow to connect WebPrint Service to this server',
+        'overwrite_modal' => [
+            'button' => 'Regenerate API Token',
+            'title' => 'This Print Server already has generated API Token',
+            'content' => 'If you regenerate API Token, the old token will stop working.',
+            'content_last_used' => 'Old token was last used :last_used.',
+        ],
+        'message' => 'For WebPrint Service installation, you will need API Token. To begin, press following button.',
+    ],
 ];

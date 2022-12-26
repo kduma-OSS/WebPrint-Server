@@ -85,6 +85,20 @@ class ClientApplicationPolicy
     }
 
     /**
+     * Determine whether the user can generate token for the client application.
+     *
+     * @return bool
+     */
+    public function generateToken(mixed $user, ClientApplication $client)
+    {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($client->Team)
+                && $user->hasTeamPermission($client->Team, 'client:token')
+                && $user->tokenCan('client:token');
+        }
+    }
+
+    /**
      * Determine whether the user can delete the client application.
      *
      * @return bool

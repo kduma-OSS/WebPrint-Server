@@ -30,4 +30,20 @@ return [
             'content' => 'Czy na pewno chcesz usunąć ten serwer? Po usunięciu serwera wszystkie jego zasoby i dane zostaną trwale usunięte.',
         ],
     ],
+    'token' => [
+        'title' => 'Generuj Token API',
+        'description' => 'Token umożliwi podłączenie WebPrint Service do tego serwera',
+        'message' => 'Do instalacji WebPrint Service, będziesz potrzebować token dostępowy. Aby go wygenerować, kliknij poniższy przycisk.',
+        'button' => 'Generuj nowy Token Dostępowy',
+        'modal-title' => 'Token Serwera Druku',
+        'modal-token' => 'Skopiuj nowy token API. Ze względów bezpieczeństwa nie zostanie ponownie wyświetlony.',
+        'modal-env' => 'Jeśli potrzebujesz zmienne środowiskowe do skonfigurowania WebPrint Service, użyj następujących:',
+        'modal-docker' => 'Jeśli potrzebujesz komendy tworzącej instancję WebPrint Service w dokerze, użyj tej:',
+        'overwrite_modal' => [
+            'title' => 'Ten Serwer Druku posiada już wygenerowany Token Dostępowy',
+            'content' => 'Jeśli zregenerujesz token dostępowy, stary przestanie działać.',
+            'button' => 'Regeneruj Token Dostępowy',
+            'content_last_used' => 'Poprzedni token był ostatnio używany :last_used.',
+        ],
+    ],
 ];
