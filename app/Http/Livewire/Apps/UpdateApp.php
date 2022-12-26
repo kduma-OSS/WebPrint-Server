@@ -38,9 +38,9 @@ class UpdateApp extends Component
     {
         return [
             'name' => ['required', 'string', 'min:1', 'max:255'],
-            'url' => ['required', 'url', 'min:1', 'max:255'],
+            'url' => ['nullable', 'url', 'min:1', 'max:255'],
             'printers' => ['array'],
-            'printers.*' => ['required', 'string', Rule::in($this->app->Team->Printers()->pluck('ulid')->toArray())],
+            'printers.*' => ['required', 'string', Rule::in($this->app->Team->Printers()->pluck('printers.ulid')->toArray())],
         ];
     }
 

@@ -37,7 +37,7 @@ class CreatePrinter extends Component
     {
         return [
             'name' => ['required', 'string', 'min:1', 'max:255'],
-            'uri' => ['required', 'url', 'min:1', 'max:255'],
+            'uri' => ['required', 'string', 'min:1', 'max:255'],
             'languages' => [(new Delimited('string|max:25'))->max(10)],
         ];
     }
