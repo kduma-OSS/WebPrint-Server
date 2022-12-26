@@ -31,4 +31,7 @@ return [
     'uri_label' => 'URI konfiguracyjne',
     'languages_label' => 'Kompatybilne języki druku RAW',
     'location_label' => 'Lokalizacja',
+    'enabled_label' => 'Włączona',
+    'ppd_label' => 'Wsparcie PPD',
+    'options_label' => 'Konfiguracja dostępnych opcji PPD',
 ];

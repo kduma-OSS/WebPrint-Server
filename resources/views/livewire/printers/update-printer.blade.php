@@ -49,6 +49,38 @@
             @endcan
             <x-jet-input-error for="languages" class="mt-2" />
         </div>
+        <!-- Enabled -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="enabled" value="{{ __('printers.enabled_label') }}" />
+            @can('update', $printer)
+                <x-jet-checkbox id="enabled" type="text" class="mt-1 block" wire:model.defer="enabled" />
+            @else
+                <x-jet-checkbox id="enabled" type="text" class="mt-1 block" wire:model.defer="enabled" disabled readonly/>
+            @endcan
+            <x-jet-input-error for="enabled" class="mt-2" />
+        </div>
+        <!-- PPD -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="ppd" value="{{ __('printers.ppd_label') }}" />
+            @can('update', $printer)
+                <x-jet-checkbox id="ppd" type="text" class="mt-1 block" wire:model="ppd" />
+            @else
+                <x-jet-checkbox id="ppd" type="text" class="mt-1 block" wire:model="ppd" disabled readonly/>
+            @endcan
+            <x-jet-input-error for="ppd" class="mt-2" />
+        </div>
+        @if($ppd)
+            <!-- PPD Options -->
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="options" value="{{ __('printers.options_label') }}" />
+                @can('update', $printer)
+                    <x-jet-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model.defer="options" />
+                @else
+                    <x-jet-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model.defer="options" disabled readonly/>
+                @endcan
+                <x-jet-input-error for="options" class="mt-2" />
+            </div>
+        @endif
     </x-slot>
 
     @can('update', $printer)

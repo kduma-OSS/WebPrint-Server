@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Printers;
 
 use App\Actions\Printers\UpdatePrinterAction;
 use App\Models\Printer;
+use App\Rules\ValidPpdJson;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Spatie\ValidationRules\Rules\Delimited;
@@ -37,11 +38,29 @@ class UpdatePrinter extends Component
      */
     public $location;
 
+    /**
+     * @var bool
+     */
+    public $enabled;
+
+    /**
+     * @var bool
+     */
+    public $ppd;
+
+    /**
+     * @var ?string
+     */
+    public $options;
+
     protected function rules()
     {
         return [
             'name' => ['required', 'string', 'min:1', 'max:255'],
-            'uri' => ['required', 'string', 'min:1', 'max:255', 'regex:/^[a-z]+:\/\/.*/'],
+            'enabled' => ['bool'],
+            'ppd' => ['bool'],
+            'options' => ['string', 'nullable', 'json', new ValidPpdJson()],
+            'uri' => ['required', 'string', 'min:1', 'max:255', 'regex:/^[a-z]+:\/\/.+/'],
             'languages' => [(new Delimited('string|max:25'))->max(10)],
             'location' => ['nullable', 'string', 'min:1', 'max:255'],
         ];
@@ -53,6 +72,9 @@ class UpdatePrinter extends Component
         $this->name = $printer->name;
         $this->location = $printer->location;
         $this->uri = $printer->uri;
+        $this->enabled = $printer->enabled;
+        $this->ppd = $printer->ppd_support;
+        $this->options = $printer->ppd_options ? json_encode($printer->ppd_options, JSON_PRETTY_PRINT) : '';
         $this->languages = implode(', ', $printer->raw_languages_supported);
     }
 
@@ -72,7 +94,20 @@ class UpdatePrinter extends Component
             ->filter()
             ->toArray();
 
-        $action->handle($this->printer, $this->name, $this->uri, $languages, $this->location);
+        $action->handle(
+            printer: $this->printer,
+            name: $this->name,
+            uri: $this->uri,
+            languages: $languages,
+            location: $this->location,
+            enabled: $this->enabled,
+            ppd_support: $this->ppd,
+            ppd_options: $this->options ? json_decode($this->options, true) : null,
+        );
+
+        $this->options = $this->printer->ppd_options
+            ? json_encode($this->printer->ppd_options, JSON_PRETTY_PRINT)
+            : '';
 
         $this->emit('saved');
 

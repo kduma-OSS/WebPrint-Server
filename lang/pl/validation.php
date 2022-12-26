@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'json_ppd' => 'Pole :attribute musi być prawidłowym opisem JSON PPD. (:opt)',
     'accepted' => 'Pole :attribute musi zostać zaakceptowane.',
     'accepted_if' => 'Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.',
     'active_url' => 'Pole :attribute jest nieprawidłowym adresem URL.',

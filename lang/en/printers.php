@@ -31,4 +31,7 @@ return [
     'location_label' => 'Location',
     'name_label' => 'Name',
     'uri_label' => 'Configuration URI',
+    'enabled_label' => 'Enabled',
+    'ppd_label' => 'PPD Support',
+    'options_label' => 'PPD options configuration',
 ];
