@@ -6,6 +6,7 @@ use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -23,7 +24,7 @@ class PrintJobsPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof PrintServer) {
             return true;
@@ -31,7 +32,7 @@ class PrintJobsPolicy
 
         if ($user instanceof User) {
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'job:read')
+                && $user->hasTeamPermission($team ?? $user->currentTeam, 'job:read')
                 && $user->tokenCan('job:read');
         }
 
@@ -86,7 +87,7 @@ class PrintJobsPolicy
      *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof ClientApplication) {
             return true;
@@ -94,7 +95,7 @@ class PrintJobsPolicy
 
         if ($user instanceof User) {
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'job:read')
+                && $user->hasTeamPermission($team ?? $user->currentTeam, 'job:read')
                 && $user->tokenCan('job:read');
         }
     }

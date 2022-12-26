@@ -30,15 +30,8 @@ class PrintersPolicy
         }
 
         if ($user instanceof User) {
-            if (
-                $server !== null
-                && ! $user->belongsToTeam($server->Team)
-            ) {
-                return false;
-            }
-
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'printers:read')
+                && $user->hasTeamPermission($server !== null ? $server->Team : $user->currentTeam, 'printers:read')
                 && $user->tokenCan('printers:read');
         }
     }
@@ -89,15 +82,8 @@ class PrintersPolicy
     public function create(mixed $user, PrintServer $server = null)
     {
         if ($user instanceof User) {
-            if (
-                $server !== null
-                && ! $user->belongsToTeam($server->Team)
-            ) {
-                return false;
-            }
-
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'printers:read')
+                && $user->hasTeamPermission($server !== null ? $server->Team : $user->currentTeam, 'printers:read')
                 && $user->tokenCan('printers:read');
         }
     }

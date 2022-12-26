@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\ClientApplication;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,11 +21,11 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'server:read')
+                && $user->hasTeamPermission($team ?? $user->currentTeam, 'server:read')
                 && $user->tokenCan('server:read');
         }
     }
@@ -60,11 +61,11 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
             return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($user->currentTeam, 'client:create')
+                && $user->hasTeamPermission($team ?? $user->currentTeam, 'client:create')
                 && $user->tokenCan('client:create');
         }
     }
