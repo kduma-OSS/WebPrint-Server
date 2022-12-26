@@ -15,7 +15,7 @@
                 <x-jet-section-border />
 
                 <div class="mt-10 sm:mt-0">
-                    @livewire('teams.delete-team-form', ['team' => $team])
+                    @livewire('teams.delete-team-form-with-confirmation', ['team' => $team])
                 </div>
             @endif
         </div>
