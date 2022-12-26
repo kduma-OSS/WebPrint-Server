@@ -43,4 +43,5 @@ return [
         ],
         'message' => 'For WebPrint API connection, you will need API Token. To begin, press following button.',
     ],
+    'url_label' => 'URL',
 ];

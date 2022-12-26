@@ -47,4 +47,5 @@ return [
         ],
         'message' => 'For WebPrint Service installation, you will need API Token. To begin, press following button.',
     ],
+    'location_label' => 'Location',
 ];

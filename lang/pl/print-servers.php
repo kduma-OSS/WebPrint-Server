@@ -47,4 +47,5 @@ return [
             'content_last_used' => 'Poprzedni token był ostatnio używany :last_used.',
         ],
     ],
+    'location_label' => 'Lokalizacja',
 ];
