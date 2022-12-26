@@ -23,7 +23,7 @@ class DeleteServerAction
 
         $server->tokens->each->delete();
 
-        $server->Printers->each(fn(Printer $printer) => $this->deletePrinterAction->handle($printer));
+        $server->Printers->each(fn (Printer $printer) => $this->deletePrinterAction->handle($printer));
 
         $server->delete();
     }

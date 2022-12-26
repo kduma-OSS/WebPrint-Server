@@ -3,7 +3,6 @@
 namespace App\Actions\Apps;
 
 use App\Models\ClientApplication;
-use App\Models\PrintServer;
 use App\Models\Team;
 
 class CreateAppAction

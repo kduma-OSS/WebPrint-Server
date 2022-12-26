@@ -11,7 +11,8 @@ class SetPromiseContentAction
 {
     public function __construct(
         protected ClearPromiseContentAction $clearPromiseContentAction,
-    ){}
+    ) {
+    }
 
     /**
      * @param  string|null  $name

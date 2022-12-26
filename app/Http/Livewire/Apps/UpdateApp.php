@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Apps;
 
 use App\Actions\Apps\UpdateAppAction;
 use App\Actions\Apps\UpdateAppPrintersAction;
-use App\Actions\Servers\UpdateServerAction;
 use App\Models\ClientApplication;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

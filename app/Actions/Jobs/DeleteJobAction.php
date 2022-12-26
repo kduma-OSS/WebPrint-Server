@@ -3,7 +3,6 @@
 namespace App\Actions\Jobs;
 
 use App\Actions\Promises\DeletePromiseAction;
-use App\Models\Printer;
 use App\Models\PrintJob;
 
 class DeleteJobAction
@@ -16,8 +15,9 @@ class DeleteJobAction
 
     public function handle(PrintJob $job): void
     {
-        if($job->JobPromise)
+        if ($job->JobPromise) {
             $this->deletePromiseAction->handle($job->JobPromise);
+        }
 
         $this->clearJobContentAction->handle($job);
 

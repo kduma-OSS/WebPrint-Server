@@ -2,7 +2,6 @@
 
 namespace App\Actions\Promises;
 
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
 
 class DeletePromiseAction
@@ -14,8 +13,9 @@ class DeletePromiseAction
 
     public function handle(PrintJobPromise $printer): void
     {
-        if($printer->PrintDialog)
+        if ($printer->PrintDialog) {
             $printer->PrintDialog->delete();
+        }
 
         $printer->AvailablePrinters()->detach();
 

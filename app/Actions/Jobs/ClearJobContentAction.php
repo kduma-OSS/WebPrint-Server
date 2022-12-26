@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ClearJobContentAction
 {
-
     public function handle(PrintJob $job)
     {
         if ($job->content_file && Storage::exists($job->content_file)) {

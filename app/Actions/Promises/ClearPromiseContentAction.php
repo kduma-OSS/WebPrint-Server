@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ClearPromiseContentAction
 {
-
     public function handle(PrintJobPromise $promise)
     {
         if ($promise->content_file && Storage::exists($promise->content_file)) {
