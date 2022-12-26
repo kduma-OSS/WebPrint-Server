@@ -19,4 +19,15 @@ return [
         'title' => 'Serwer Druku',
         'description' => 'Zaktualizuj dane serwera druku',
     ],
+    'delete' => [
+        'title' => 'Skasuj Serwer Druku',
+        'description' => 'Trwale usuń ten serwer druku',
+        'message_disabled' => 'Serwer nie może zostać w tej chwili skasowany. Wpierw skasuj drukarki powiązane z tym serwerem.',
+        'button' => 'Skasuj Serwer',
+        'message' => 'Po usunięciu serwera wszystkie jego zasoby i dane zostaną trwale usunięte. Przed usunięciem tego serwera pobierz wszelkie dane lub informacje dotyczące tego serwera, które chcesz zachować.',
+        'modal' => [
+            'title' => 'Skasuj Serwer',
+            'content' => 'Czy na pewno chcesz usunąć ten serwer? Po usunięciu serwera wszystkie jego zasoby i dane zostaną trwale usunięte.',
+        ],
+    ],
 ];

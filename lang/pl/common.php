@@ -9,6 +9,7 @@ return [
         'view-printer' => 'Zobacz Drukarkę',
         'view-server' => 'Zobacz Serwer',
         'back-to-list' => 'Wróć do listy',
+        'cancel' => 'Anuluj',
     ],
     'disabled' => 'Wyłączona',
     'enum' => [

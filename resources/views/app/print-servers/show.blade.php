@@ -22,6 +22,12 @@
 
             <x-jet-section-border />
 
+            <div class="mt-10 sm:mt-0">
+                <livewire:servers.delete-server :server="$server" />
+            </div>
+
+            <x-jet-section-border />
+
         </div>
     </div>
 </x-app-layout>

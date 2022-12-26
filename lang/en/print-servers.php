@@ -19,4 +19,15 @@ return [
         'title' => 'Print Server',
         'description' => 'Update print server details',
     ],
+    'delete' => [
+        'button' => 'Delete Server',
+        'title' => 'Delete Print Server',
+        'description' => 'Permanently delete this Print Server',
+        'message' => 'Once a server is deleted, all of its resources and data will be permanently deleted. Before deleting this server, please download any data or information regarding this server that you wish to retain.',
+        'modal' => [
+            'title' => 'Delete Server',
+            'content' => 'Are you sure you want to delete this server? Once a server is deleted, all of its resources and data will be permanently deleted.',
+        ],
+        'message_disabled' => 'Server can\'t be deleted at this moment. Please delete printers first.',
+    ],
 ];
