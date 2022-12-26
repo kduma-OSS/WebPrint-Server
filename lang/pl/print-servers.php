@@ -15,4 +15,8 @@ return [
         'description' => 'Podaj dane tworzonego serwera druku',
     ],
     'name_label' => 'Nazwa',
+    'update' => [
+        'title' => 'Serwer Druku',
+        'description' => 'Zaktualizuj dane serwera druku',
+    ],
 ];

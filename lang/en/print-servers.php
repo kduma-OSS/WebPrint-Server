@@ -15,4 +15,8 @@ return [
         'title' => 'Print Server',
         'description' => 'Provide print server details',
     ],
+    'update' => [
+        'title' => 'Print Server',
+        'description' => 'Update print server details',
+    ],
 ];
