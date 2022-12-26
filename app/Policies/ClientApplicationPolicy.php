@@ -24,8 +24,10 @@ class ClientApplicationPolicy
     public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'server:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:read')
                 && $user->tokenCan('server:read');
         }
     }
@@ -64,8 +66,10 @@ class ClientApplicationPolicy
     public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'client:create')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'client:create')
                 && $user->tokenCan('client:create');
         }
     }

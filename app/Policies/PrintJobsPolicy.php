@@ -31,8 +31,10 @@ class PrintJobsPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'job:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'job:read')
                 && $user->tokenCan('job:read');
         }
 
@@ -94,8 +96,10 @@ class PrintJobsPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'job:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'job:read')
                 && $user->tokenCan('job:read');
         }
     }

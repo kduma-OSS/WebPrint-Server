@@ -25,8 +25,10 @@ class PrintServerPolicy
     public function viewAny(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'server:read')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:read')
                 && $user->tokenCan('server:read');
         }
     }
@@ -76,8 +78,10 @@ class PrintServerPolicy
     public function create(mixed $user, Team $team = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($team ?? $user->currentTeam, 'server:create')
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:create')
                 && $user->tokenCan('server:create');
         }
     }

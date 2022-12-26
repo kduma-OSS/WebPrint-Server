@@ -30,9 +30,11 @@ class PrintersPolicy
         }
 
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($server !== null ? $server->Team : $user->currentTeam, 'printers:read')
-                && $user->tokenCan('printers:read');
+            $team = $server !== null ? $server->Team : $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'printer:read')
+                && $user->tokenCan('printer:read');
         }
     }
 
@@ -49,8 +51,8 @@ class PrintersPolicy
 
         if ($user instanceof User) {
             return $user->belongsToTeam($printer->Server->Team)
-                && $user->hasTeamPermission($printer->Server->Team, 'printers:read')
-                && $user->tokenCan('printers:read');
+                && $user->hasTeamPermission($printer->Server->Team, 'printer:read')
+                && $user->tokenCan('printer:read');
         }
     }
 
@@ -82,9 +84,11 @@ class PrintersPolicy
     public function create(mixed $user, PrintServer $server = null)
     {
         if ($user instanceof User) {
-            return ! $user->currentTeam->personal_team
-                && $user->hasTeamPermission($server !== null ? $server->Team : $user->currentTeam, 'printers:read')
-                && $user->tokenCan('printers:read');
+            $team = $server !== null ? $server->Team : $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'printer:create')
+                && $user->tokenCan('printer:create');
         }
     }
 
@@ -97,8 +101,8 @@ class PrintersPolicy
     {
         if ($user instanceof User) {
             return $user->belongsToTeam($printer->Server->Team)
-                && $user->hasTeamPermission($printer->Server->Team, 'printers:update')
-                && $user->tokenCan('printers:update');
+                && $user->hasTeamPermission($printer->Server->Team, 'printer:update')
+                && $user->tokenCan('printer:update');
         }
     }
 
@@ -111,8 +115,8 @@ class PrintersPolicy
     {
         if ($user instanceof User) {
             return $user->belongsToTeam($printer->Server->Team)
-                && $user->hasTeamPermission($printer->Server->Team, 'printers:delete')
-                && $user->tokenCan('printers:delete');
+                && $user->hasTeamPermission($printer->Server->Team, 'printer:delete')
+                && $user->tokenCan('printer:delete');
         }
     }
 
