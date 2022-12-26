@@ -49,7 +49,8 @@ class PrintJobsController extends Controller
     public function store(
         Request $request,
         CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction,
-        ConvertPromiseToJobAction $convertPromiseToJobAction)
+        ConvertPromiseToJobAction $convertPromiseToJobAction
+    )
     {
         $validated = $request->validate([
             'promise' => ['required', Rule::exists('print_job_promises', 'ulid')
