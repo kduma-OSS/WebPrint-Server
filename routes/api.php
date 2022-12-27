@@ -14,20 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::name('api.')
-    ->group(function (){
-
+    ->group(function (): void {
         Route::prefix('/print-service')
             ->name('print-service.')
-            ->group(function (){
-
+            ->group(function (): void {
                 Route::middleware(['signed'])
-                    ->group(function (){
-
+                    ->group(function (): void {
                         Route::name('jobs')->apiResource(
                             '/jobs/{job}/content',
                             \App\Http\Controllers\PrintServiceApi\PrintJobContentController::class,
@@ -35,11 +32,12 @@ Route::name('api.')
                                 'only' => ['index'],
                             ],
                         );
-
                     }); // Route::middleware(['signed'])
 
                 Route::middleware(['auth:print_service_api'])
-                    ->group(function (){
+                    ->group(function (): void {
+                        Route::get('/', \App\Http\Controllers\PrintServiceApi\IndexController::class)
+                            ->name('index');
 
                         Route::apiResource(
                             '/jobs',
@@ -48,17 +46,16 @@ Route::name('api.')
                                 'only' => ['update', 'show', 'index'],
                             ],
                         );
-
                     }); // Route::middleware(['auth:print_service_api'])
-
             }); // Route::prefix('/print-service')->name('print-service.')
 
         Route::prefix('/web-print')
             ->name('web-print.')
-            ->group(function (){
-
+            ->group(function (): void {
                 Route::middleware(['auth:web_print_api'])
-                    ->group(function (){
+                    ->group(function (): void {
+                        Route::get('/', \App\Http\Controllers\WebPrintApi\IndexController::class)
+                            ->name('index');
 
                         Route::apiResource(
                             '/printers',
@@ -99,9 +96,6 @@ Route::name('api.')
                                 'only' => ['store'],
                             ],
                         );
-
                     }); // Route::middleware(['auth:web_print_api'])
-
             }); // Route::middleware(['auth:web_print_api'])->prefix('/web-print')->name('web-print.')
-
     }); // Route::name('api.')

@@ -2,53 +2,46 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use KDuma\Eloquent\Uuidable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * App\Models\ClientApplication
- *
- * @property int $id
- * @property string $uuid
- * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PrintJobPromise[] $JobPromises
- * @property-read int|null $job_promises_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PrintJob[] $Jobs
- * @property-read int|null $jobs_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Printer[] $Printers
- * @property-read int|null $printers_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
- * @property-read int|null $tokens_count
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication query()
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereGuid($guid)
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClientApplication whereUuid($value)
- * @mixin \Eloquent
+ * @mixin IdeHelperClientApplication
  */
-class ClientApplication extends Model implements AuthorizableContract
+class ClientApplication extends Model implements AuthorizableContract, AuthenticatableContract
 {
-    use HasApiTokens, Authorizable, Uuidable;
+    use HasFactory;
+    use HasApiTokens;
+    use Authorizable;
+    use HasUlidField;
+    use Authenticatable;
 
-    public function getRouteKeyName()
+    public function getRememberTokenName()
     {
-        return 'uuid';
+        return null;
     }
+
+    protected $casts = [
+        'last_active_at' => 'datetime',
+    ];
 
     public function Printers(): BelongsToMany
     {
         return $this->belongsToMany(Printer::class, 'pivot_client_application_printer');
+    }
+
+    public function Team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function JobPromises(): HasMany
@@ -59,5 +52,14 @@ class ClientApplication extends Model implements AuthorizableContract
     public function Jobs(): HasMany
     {
         return $this->hasMany(PrintJob::class, 'client_application_id');
+    }
+
+    protected function urlDomain(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => $attributes['url']
+                ? parse_url($attributes['url'], PHP_URL_HOST)
+                : null,
+        );
     }
 }

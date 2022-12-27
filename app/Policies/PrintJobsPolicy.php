@@ -3,9 +3,10 @@
 namespace App\Policies;
 
 use App\Models\ClientApplication;
-use App\Models\Printer;
+use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -21,88 +22,132 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can view any print jobs.
      *
-     * @param mixed $user
-     *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
-        if($user instanceof PrintServer)
+        if ($user instanceof PrintServer) {
             return true;
+        }
 
-        if($user instanceof User)
-            return true;
+        if ($user instanceof User) {
+            $team ??= $user->currentTeam;
 
-        if($user instanceof ClientApplication)
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'job:read')
+                && $user->tokenCan('job:read');
+        }
+
+        if ($user instanceof ClientApplication) {
             return true;
+        }
     }
 
     /**
      * Determine whether the user can view the print job.
      *
-     * @param mixed     $user
-     * @param PrintJob $printJob
-     *
      * @return bool
      */
     public function view(mixed $user, PrintJob $printJob)
     {
-        if($user instanceof PrintServer)
+        if ($user instanceof PrintServer) {
             return $printJob->Printer->Server->is($user);
+        }
 
-        if($user instanceof ClientApplication)
-            return optional($printJob->ClientApplication)->is($user);
+        if ($user instanceof ClientApplication) {
+            return $printJob->ClientApplication?->is($user);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:read')
+                && $user->tokenCan('job:read');
+        }
+    }
+
+    /**
+     * @return bool
+     *
+     * @throws \Exception
+     */
+    public function viewField(mixed $user, PrintJob $printJob, string $field)
+    {
+        // fields = 'timestamps'
+
+        if ($user instanceof ClientApplication) {
+            return $this->view($user, $printJob)
+                && in_array($field, ['timestamps']);
+        }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
      * Determine whether the user can create print jobs.
      *
-     * @param mixed        $user
-     *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
-        if($user instanceof ClientApplication)
+        if ($user instanceof ClientApplication) {
             return true;
+        }
+
+        if ($user instanceof User) {
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'job:read')
+                && $user->tokenCan('job:read');
+        }
     }
 
     /**
      * Determine whether the user can update the print job.
      *
-     * @param mixed     $user
-     * @param PrintJob $printJob
-     *
      * @return bool
      */
     public function update(mixed $user, PrintJob $printJob)
     {
-        if($user instanceof PrintServer)
+        if ($user instanceof PrintServer) {
             return $printJob->Printer->Server->is($user);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:update')
+                && $user->tokenCan('job:update')
+                && in_array($printJob->status, [
+                    PrintJobStatusEnum::New,
+                ]);
+        }
     }
 
     /**
      * Determine whether the user can delete the print job.
      *
-     * @param mixed     $user
-     * @param PrintJob $printJob
-     *
      * @return bool
      */
     public function delete(mixed $user, PrintJob $printJob)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printJob->Printer->Server->Team)
+                && $user->hasTeamPermission($printJob->Printer->Server->Team, 'job:delete')
+                && $user->tokenCan('job:delete')
+                && in_array($printJob->status, [
+                    PrintJobStatusEnum::New,
+                ]);
+        }
     }
 
     /**
      * Determine whether the user can restore the print job.
      *
-     * @param mixed     $user
-     * @param PrintJob $printJob
-     *
      * @return bool
      */
-    public function restore(mixed $user, PrintJob $printJob)
+    public function restore(mixed $user, PrintJob $printJob): void
     {
         //
     }
@@ -110,12 +155,9 @@ class PrintJobsPolicy
     /**
      * Determine whether the user can permanently delete the print job.
      *
-     * @param mixed     $user
-     * @param PrintJob $printJob
-     *
      * @return bool
      */
-    public function forceDelete(mixed $user, PrintJob $printJob)
+    public function forceDelete(mixed $user, PrintJob $printJob): void
     {
         //
     }

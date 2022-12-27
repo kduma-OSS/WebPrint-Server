@@ -1,18 +1,20 @@
 <?php
 
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrintJobPromisesTable extends Migration
+return new class() extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('print_job_promises', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->unique();
+        Schema::create('print_job_promises', function (Blueprint $table): void {
+            $table->id();
+            $table->ulid('ulid')->unique();
 
-            $table->enum('status', ['draft', 'new', 'canceled', 'ready', 'failed', 'sent_to_printer'])->default('draft');
+            $table->enum('status', collect(PrintJobPromiseStatusEnum::cases())->map->value->toArray())
+                ->default(PrintJobPromiseStatusEnum::Draft->value);
 
             $table->foreignId('client_application_id')->constrained('client_applications');
             $table->foreignId('print_job_id')->nullable()->constrained('print_jobs');
@@ -35,8 +37,8 @@ class CreatePrintJobPromisesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('print_job_promises');
     }
-}
+};

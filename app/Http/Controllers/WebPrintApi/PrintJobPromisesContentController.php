@@ -2,113 +2,104 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
+use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PrinterResource;
-use App\Http\Resources\PrintJobPromiseResource;
 use App\Models\ClientApplication;
-use App\Models\Printer;
 use App\Models\PrintJobPromise;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 
 class PrintJobPromisesContentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param PrintJobPromise $promise
-     *
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\StreamedResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(PrintJobPromise $promise)
     {
         $this->authorize('view', $promise);
 
-        if(!$promise->content && !$promise->content_file) {
+        if (! $promise->content && ! $promise->content_file) {
             return response(status: 404);
         }
 
-        if(is_null($promise->content)) {
+        if (is_null($promise->content)) {
             return \Storage::download($promise->content_file, $promise->file_name, [
-                'Content-Type' => 'application/octet-stream'
-            ]);
-        } else {
-            return response($promise->content, 200, [
                 'Content-Type' => 'application/octet-stream',
-                'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $promise->file_name, Str::slug($promise->file_name, '.')),
             ]);
         }
+
+        return response($promise->content, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => HeaderUtils::makeDisposition('attachment', $promise->file_name, Str::slug($promise->file_name, '.')),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request         $request
-     * @param PrintJobPromise $promise
-     *
      * @return \Illuminate\Http\Response
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise)
-    {
+    public function store(
+        Request $request,
+        PrintJobPromise $promise,
+        SetPromiseContentAction $setPromiseContentAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ) {
         $this->authorize('update', $promise);
 
-        if($request->hasFile('content')){
-
+        if ($request->hasFile('content')) {
             $file = $request->file('content');
-            $promise->content = null;
-            if($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
-            $promise->save();
-            $promise->content_file = $file->store('jobs');
-            $promise->file_name ??= $file->getClientOriginalName();
-            $promise->size = $file->getSize();
-            $promise->save();
-        } else if ($request->has('content')) {
+
+            $setPromiseContentAction->handle($promise, $file);
+        } elseif ($request->has('content')) {
             $validated = $request->validate([
                 'content' => 'required',
                 'name' => $promise->file_name ? 'nullable' : 'required',
             ]);
 
-            $promise->content = null;
-            if($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
-            $promise->save();
-            if(strlen($validated['content']) < 1024){
-                $promise->content = $validated['content'];
-            } else {
-                Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
-            }
-            $promise->file_name = $validated['name'] ?? $promise->file_name;
-            $promise->size = strlen($validated['content']);
-            $promise->save();
-        }else {
-            $promise->content = null;
-            if($promise->content_file) {
-                Storage::delete($promise->content_file);
-                $promise->content_file = null;
-            }
-            $promise->save();
-            $name = Str::random(40) . '.dat';
-            Storage::writeStream($promise->content_file = 'jobs/' . $name, $request->getContent(true));
-
-            $promise->file_name ??= $name;
-            if($request->hasHeader('X-File-Name') && $request->header('X-File-Name'))
-                $promise->file_name = $request->header('X-File-Name');
-            $promise->size = Storage::size($promise->content_file);
-            $promise->save();
+            $setPromiseContentAction->handle(
+                promise: $promise,
+                content: $validated['content'],
+                name: $validated['name'] ?? $promise->file_name
+            );
+        } else {
+            $setPromiseContentAction->handle(
+                promise: $promise,
+                content: $request->getContent(true),
+                name: $request->hasHeader('X-File-Name') && $request->header('X-File-Name') ? $request->header('X-File-Name') : null,
+            );
         }
 
-        if($promise->isReadyToPrint())
-            $promise->sendForPrinting();
+        $promise->save();
+
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
+        }
 
         return response()->noContent();
     }

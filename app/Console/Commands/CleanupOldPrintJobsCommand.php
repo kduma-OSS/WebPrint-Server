@@ -24,36 +24,25 @@ class CleanupOldPrintJobsCommand extends Command
     protected $description = 'Cleanup Old Print Jobs';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return int
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ([
-                     [['draft', 'new', 'canceled'], now()->subHours(12), now()->subHours(24)],
-                     [['sent_to_printer', 'finished'], now()->subDays(1), now()->subDays(90)],
-                     [['failed'], now()->subDays(30), now()->subDays(90)],
-//                     [['ready', 'printing'], now()->subDays(90), now()->subDays(90)],
-                 ] as [$keys, $strip_contents, $delete]) {
-
+            [['draft', 'new', 'canceled'], now()->subHours(12), now()->subHours(24)],
+            [['sent_to_printer', 'finished'], now()->subDays(1), now()->subDays(90)],
+            [['failed'], now()->subDays(30), now()->subDays(90)],
+            //                     [['ready', 'printing'], now()->subDays(90), now()->subDays(90)],
+        ] as [$keys, $strip_contents, $delete]) {
             PrintJobPromise::where('updated_at', '<', $strip_contents)
                 ->whereIn('status', $keys)
-                ->each(function (PrintJobPromise $promise) {
-                    if($promise->content_file) {
+                ->each(function (PrintJobPromise $promise): void {
+                    if ($promise->content_file) {
                         Storage::delete($promise->content_file);
                         PrintJob::where('content_file', $promise->content_file)
-                            ->each(function (PrintJob $job) {
+                            ->each(function (PrintJob $job): void {
                                 $job->content_file = null;
                                 $job->timestamps = false;
                                 $job->save();
@@ -63,7 +52,7 @@ class CleanupOldPrintJobsCommand extends Command
                         $promise->save();
                     }
 
-                    if($promise->content) {
+                    if ($promise->content) {
                         $promise->content = null;
                         $promise->timestamps = false;
                         $promise->save();
@@ -72,8 +61,8 @@ class CleanupOldPrintJobsCommand extends Command
 
             PrintJobPromise::where('updated_at', '<', $delete)
                 ->whereIn('status', $keys)
-                ->each(function (PrintJobPromise $promise) {
-                    if($promise->PrintDialog) {
+                ->each(function (PrintJobPromise $promise): void {
+                    if ($promise->PrintDialog) {
                         $promise->PrintDialog->delete();
                     }
 
@@ -83,15 +72,15 @@ class CleanupOldPrintJobsCommand extends Command
 
             PrintJob::where('updated_at', '<', $strip_contents)
                 ->whereIn('status', $keys)
-                ->each(function (PrintJob $job) {
-                    if($job->content_file) {
+                ->each(function (PrintJob $job): void {
+                    if ($job->content_file) {
                         Storage::delete($job->content_file);
                         $job->content_file = null;
                         $job->timestamps = false;
                         $job->save();
                     }
 
-                    if($job->content) {
+                    if ($job->content) {
                         $job->content = null;
                         $job->timestamps = false;
                         $job->save();
@@ -100,10 +89,9 @@ class CleanupOldPrintJobsCommand extends Command
 
             PrintJob::where('updated_at', '<', $delete)
                 ->whereIn('status', $keys)
-                ->each(function (PrintJob $job) {
+                ->each(function (PrintJob $job): void {
                     $job->delete();
                 });
-
         }
     }
 }

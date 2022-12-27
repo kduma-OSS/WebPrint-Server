@@ -10,19 +10,17 @@ class PrintJobSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $content = "To jest test!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
             'name' => 'OKI-ML3320 (RAW)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test Print';
         $job->ppd = false;
         $job->content = $content;
@@ -31,15 +29,14 @@ class PrintJobSeeder extends Seeder
         $job->size = strlen($content);
         $printer->Jobs()->save($job);
 
-
-        $content = "To jest test CUPS PPD!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test CUPS PPD!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
             'name' => 'OKI-ML3320 (CUPS)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test PPD Print';
         $job->ppd = true;
         $job->content = $content;
@@ -48,15 +45,14 @@ class PrintJobSeeder extends Seeder
         $job->size = strlen($content);
         $printer->Jobs()->save($job);
 
-
-        $content = "To jest test Epson TM-T88V!!! - " . date('Y-m-d H:i:s') . "\n";
+        $content = 'To jest test Epson TM-T88V!!! - '.date('Y-m-d H:i:s')."\n";
 
         /** @var Printer $printer */
         $printer = Printer::query()->firstWhere([
             'name' => 'Epson TM-T88V (CUPS)',
         ]);
 
-        $job = new PrintJob;
+        $job = new PrintJob();
         $job->name = 'Test PPD 2 Print';
         $job->ppd = true;
         $job->ppd_options = [
@@ -72,6 +68,5 @@ class PrintJobSeeder extends Seeder
         $printer->Jobs()->save($job);
 
         PrintJob::query()->update(['printer_id' => 1]);
-
     }
 }

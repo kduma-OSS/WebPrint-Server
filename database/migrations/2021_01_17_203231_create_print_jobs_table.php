@@ -1,18 +1,21 @@
 <?php
 
+use App\Models\Enums\PrintJobStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrintJobsTable extends Migration
+return new class() extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('print_jobs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->uuid('uuid')->unique();
+        Schema::create('print_jobs', function (Blueprint $table): void {
+            $table->id();
+            $table->ulid('ulid')->unique();
 
-            $table->enum('status', ['new', 'printing', 'finished', 'failed'])->default('new');
+            $table->enum('status', collect(PrintJobStatusEnum::cases())->map->value->toArray())
+                ->default(PrintJobStatusEnum::New->value);
+
             $table->string('status_message')->nullable();
 
             $table->foreignId('printer_id')->constrained('printers');
@@ -34,8 +37,8 @@ class CreatePrintJobsTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('print_jobs');
     }
-}
+};

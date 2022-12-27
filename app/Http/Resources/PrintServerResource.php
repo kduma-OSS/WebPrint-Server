@@ -9,14 +9,12 @@ use Illuminate\Support\Facades\Auth;
 class PrintServerResource extends JsonResource
 {
     /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array
+     * @param  \Illuminate\Http\Request  $request
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
-            'uuid' => $this->uuid,
+            'ulid' => $this->ulid,
             'name' => $this->name,
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'timestamps']), [
                 'created_at' => $this->created_at,

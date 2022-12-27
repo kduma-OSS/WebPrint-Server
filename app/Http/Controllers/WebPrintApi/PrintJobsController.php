@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
 use App\Http\Controllers\Controller;
+use App\Models\ClientApplication;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
@@ -13,6 +17,18 @@ class PrintJobsController extends Controller
     public function __construct()
     {
         $this->authorizeResource(PrintJob::class, 'job');
+
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
     }
 
     /**
@@ -20,7 +36,7 @@ class PrintJobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): void
     {
         //
     }
@@ -28,38 +44,37 @@ class PrintJobsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(
+        Request $request,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction)
     {
         $validated = $request->validate([
-            'promise' => ['required', Rule::exists('print_job_promises', 'uuid')
-                ->where('client_application_id', $request->user()->id)]
+            'promise' => ['required', Rule::exists('print_job_promises', 'ulid')
+                ->where('client_application_id', $request->user()->id), ],
         ]);
 
-        $promise = PrintJobPromise::where('uuid', $validated['promise'])->firstOrFail();
+        $promise = PrintJobPromise::where('ulid', $validated['promise'])->firstOrFail();
 
-        abort_unless($promise->isPossibleToPrint(), 412);
-        if($promise->status != 'ready') {
-            $promise->status = 'ready';
+        abort_unless($checkPromiseAbilityToBePrintedAction->handle($promise), 412);
+        if ($promise->status != PrintJobPromiseStatusEnum::Ready) {
+            $promise->status = PrintJobPromiseStatusEnum::Ready;
             $promise->save();
         }
 
-        $job = $promise->sendForPrinting();
+        $convertPromiseToJobAction->handle($promise);
 
-        dd($promise, $job);
+        return response()->noContent();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param PrintJob $job
-     *
      * @return \Illuminate\Http\Response
      */
-    public function show(PrintJob $job)
+    public function show(PrintJob $job): void
     {
         //
     }
@@ -67,12 +82,9 @@ class PrintJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
-     * @param PrintJob $job
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrintJob $job)
+    public function update(Request $request, PrintJob $job): void
     {
         //
     }
@@ -80,11 +92,9 @@ class PrintJobsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintJob $job
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrintJob $job)
+    public function destroy(PrintJob $job): void
     {
         //
     }

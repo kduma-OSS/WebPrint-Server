@@ -8,24 +8,13 @@ use Illuminate\Support\Facades\Auth;
 /** @mixin \App\Models\Printer */
 class PrinterResource extends JsonResource
 {
-
-    protected ?bool $with_ppd_options = null;
-
-    public function __construct($resource, ?bool $with_ppd_options = null)
-    {
-        $this->with_ppd_options = $with_ppd_options ?? true;
-        parent::__construct($resource);
-    }
-
     /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array
+     * @param  \Illuminate\Http\Request  $request
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
-            'uuid' => $this->uuid,
+            'ulid' => $this->ulid,
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'server']), [
                 'server' => new PrintServerResource($this->whenLoaded('Server')),
             ]),
@@ -35,10 +24,6 @@ class PrinterResource extends JsonResource
             ]),
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'ppd']), [
                 'ppd_support' => $this->ppd_support,
-            ]),
-            $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'ppd']) && $this->with_ppd_options, [
-                'ppd_options' => $this->ppd_options,
-                'ppd_options_layout' => $this->ppd_options_layout,
             ]),
             $this->mergeWhen(Auth::user()->can('viewField', [$this->resource, 'raw_languages_supported']), [
                 'raw_languages_supported' => $this->raw_languages_supported,

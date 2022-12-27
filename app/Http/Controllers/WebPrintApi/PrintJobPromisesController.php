@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\WebPrintApi;
 
+use App\Actions\Promises\CancelPromiseAction;
+use App\Actions\Promises\CheckPromiseAbilityToBePrintedAction;
+use App\Actions\Promises\ConvertPromiseToJobAction;
+use App\Actions\Promises\SetPromiseContentAction;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PrinterResource;
 use App\Http\Resources\PrintJobPromiseResource;
 use App\Models\ClientApplication;
-use App\Models\Printer;
+use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class PrintJobPromisesController extends Controller
@@ -19,6 +19,18 @@ class PrintJobPromisesController extends Controller
     public function __construct()
     {
         $this->authorizeResource(PrintJobPromise::class, 'promise');
+
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
     }
 
     /**
@@ -44,21 +56,27 @@ class PrintJobPromisesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(
+        Request $request,
+        SetPromiseContentAction $setPromiseContentAction,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ): PrintJobPromiseResource {
         /** @var ClientApplication $client_application */
         $client_application = $request->user();
 
-        $client_printers_uuids = $client_application->Printers()->pluck('uuid');
+        $client_printers_ulids = $client_application
+            ->Printers()
+            ->where('enabled', true)
+            ->pluck('ulid');
+
         $validated = $request->validate([
             'name' => ['required', 'string'],
-            'printer' => ['nullable', Rule::in($client_printers_uuids)],
+            'printer' => ['nullable', Rule::in($client_printers_ulids)],
             'available_printers' => ['nullable', 'array'],
-            'available_printers.*' => ['string', Rule::in($client_printers_uuids)],
+            'available_printers.*' => ['string', Rule::in($client_printers_ulids)],
             'type' => 'required',
             'ppd_options' => ['nullable', 'array'],
             'ppd_options.*' => ['required', 'string'],
@@ -69,9 +87,9 @@ class PrintJobPromisesController extends Controller
             'headless' => ['nullable', 'boolean'],
         ]);
 
-        $promise = new PrintJobPromise;
+        $promise = new PrintJobPromise();
         $promise->client_application_id = $client_application->id;
-        $promise->status = $validated['headless'] ?? false ? 'ready' : 'new';
+        $promise->status = $validated['headless'] ?? false ? PrintJobPromiseStatusEnum::Ready : PrintJobPromiseStatusEnum::New;
         $promise->name = $validated['name'];
         $promise->type = $validated['type'];
         $promise->ppd_options = $validated['ppd_options'] ?? null;
@@ -80,69 +98,70 @@ class PrintJobPromisesController extends Controller
 
         $promise->save();
 
-        if ($validated['content'] ?? null){
-            if(strlen($validated['content']) < 1024 && !preg_match('/[^\x20-\x7e\n]/', $validated['content'])){
-                $promise->content = $validated['content'];
-            } else {
-                Storage::put($promise->content_file = 'jobs/'.Str::random(40).'.dat', $validated['content']);
-            }
-            $promise->size = strlen($validated['content']);
-            $promise->save();
+        if ($validated['content'] ?? null) {
+            $setPromiseContentAction->handle($promise, $validated['content']);
         }
 
-        if($validated['available_printers'] ?? null){
-            $uuids = $validated['available_printers'];
+        if ($validated['available_printers'] ?? null) {
+            $ulids = $validated['available_printers'];
         } else {
-            $uuids = $client_application->Printers()->forType($promise->type)->pluck('uuid');
+            $ulids = $client_application
+                ->Printers()
+                ->where('enabled', true)
+                ->forType($promise->type)
+                ->pluck('ulid');
         }
 
-        $selected_printer = $client_application->Printers()->where('uuid', $validated['printer'] ?? null)->first();
-        if($selected_printer) {
+        $selected_printer = $client_application->Printers()->where('ulid', $validated['printer'] ?? null)->first();
+        if ($selected_printer) {
             $promise->printer_id = $selected_printer->id;
-            $uuids[] = $selected_printer->uuid;
+            $ulids[] = $selected_printer->ulid;
         }
+
         $promise->save();
 
-        $available_printers = $client_application->Printers()->whereIn('uuid', $uuids)->get();
+        $available_printers = $client_application->Printers()->whereIn('ulid', $ulids)->get();
 
         $promise->AvailablePrinters()->sync($available_printers);
 
-        if(!$promise->printer_id && $available_printers->count() == 1) {
+        if (! $promise->printer_id && $available_printers->count() == 1) {
             $promise->printer_id = $available_printers->first()->id;
             $promise->save();
         }
 
-        if($promise->isReadyToPrint())
-            $promise->sendForPrinting();
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
+        }
 
-        $promise->load(['AvailablePrinters','Printer']);
+        $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
+
         return new PrintJobPromiseResource($promise);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param PrintJobPromise $promise
-     *
      * @return PrintJobPromiseResource|\Illuminate\Http\Response
      */
-    public function show(PrintJobPromise $promise)
+    public function show(PrintJobPromise $promise): PrintJobPromiseResource
     {
-        $promise->load(['AvailablePrinters','Printer']);
+        $promise->load(['AvailablePrinters', 'Printer', 'PrintJob']);
+
         return new PrintJobPromiseResource($promise);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request         $request
-     * @param PrintJobPromise $promise
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrintJobPromise $promise)
-    {
-        $available_printers = $promise->AvailablePrinters()->pluck('uuid');
+    public function update(
+        Request $request,
+        PrintJobPromise $promise,
+        ConvertPromiseToJobAction $convertPromiseToJobAction,
+        CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction
+    ) {
+        $available_printers = $promise->AvailablePrinters()->pluck('ulid');
         $validated = $request->validate([
             'status' => ['nullable', 'in:ready'],
             'name' => ['nullable', 'string'],
@@ -157,12 +176,13 @@ class PrintJobPromisesController extends Controller
         $promise->name = $validated['name'] ?? $promise->name;
         $promise->ppd_options = $validated['ppd_options'] ?? $promise->ppd_options;
         $promise->meta = $validated['meta'] ?? $promise->meta;
-        $promise->printer_id = optional($promise->AvailablePrinters()->where('uuid', $validated['printer'] ?? null)->first())->id ?? $promise->printer_id;
+        $promise->printer_id = $promise->AvailablePrinters()->where('ulid', $validated['printer'] ?? null)->first()?->id ?? $promise->printer_id;
 
         $promise->save();
 
-        if($promise->isReadyToPrint())
-            $promise->sendForPrinting();
+        if ($checkPromiseAbilityToBePrintedAction->handle($promise, true)) {
+            $convertPromiseToJobAction->handle($promise);
+        }
 
         return response()->noContent();
     }
@@ -170,14 +190,11 @@ class PrintJobPromisesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintJobPromise $promise
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrintJobPromise $promise)
+    public function destroy(PrintJobPromise $promise, CancelPromiseAction $cancelPromiseAction)
     {
-        $promise->status = 'canceled';
-        $promise->save();
+        $cancelPromiseAction->handle($promise);
 
         return response()->noContent();
     }

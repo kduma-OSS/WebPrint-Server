@@ -4,6 +4,8 @@ namespace App\Policies;
 
 use App\Models\ClientApplication;
 use App\Models\PrintServer;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PrintServerPolicy
@@ -18,94 +20,120 @@ class PrintServerPolicy
     /**
      * Determine whether the user can view any print servers.
      *
-     * @param mixed $user
-     *
      * @return bool
      */
-    public function viewAny(mixed $user)
+    public function viewAny(mixed $user, Team $team = null)
     {
-        //
+        if ($user instanceof User) {
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:read')
+                && $user->tokenCan('server:read');
+        }
     }
 
     /**
      * Determine whether the user can view the print server.
      *
-     * @param mixed        $user
-     * @param PrintServer $printServer
-     *
      * @return bool
      */
     public function view(mixed $user, PrintServer $printServer)
     {
-        if($user instanceof ClientApplication)
+        if ($user instanceof ClientApplication) {
             return $user->Printers->pluck('print_server_id')->contains($printServer->id);
+        }
+
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:read')
+                && $user->tokenCan('server:read');
+        }
     }
 
-
     /**
-     * @param mixed    $user
-     * @param PrintServer $printServer
-     * @param string   $field
-     *
      * @return bool
+     *
      * @throws \Exception
      */
     public function viewField(mixed $user, PrintServer $printServer, string $field)
     {
         // fields = 'timestamps'
 
-        if($user instanceof ClientApplication)
+        if ($user instanceof ClientApplication) {
             return $this->view($user, $printServer)
                 && in_array($field, []);
+        }
+
+        if ($user instanceof User) {
+            return ! $user->currentTeam->personal_team;
+        }
     }
 
     /**
      * Determine whether the user can create print servers.
      *
-     * @param mixed $user
-     *
      * @return bool
      */
-    public function create(mixed $user)
+    public function create(mixed $user, Team $team = null)
     {
-        //
+        if ($user instanceof User) {
+            $team ??= $user->currentTeam;
+
+            return ! $team->personal_team
+                && $user->hasTeamPermission($team, 'server:create')
+                && $user->tokenCan('server:create');
+        }
     }
 
     /**
      * Determine whether the user can update the print server.
      *
-     * @param mixed        $user
-     * @param PrintServer $printServer
-     *
      * @return bool
      */
     public function update(mixed $user, PrintServer $printServer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:update')
+                && $user->tokenCan('server:update');
+        }
+    }
+
+    /**
+     * Determine whether the user can generate token for the print server.
+     *
+     * @return bool
+     */
+    public function generateToken(mixed $user, PrintServer $printServer)
+    {
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:token')
+                && $user->tokenCan('server:token');
+        }
     }
 
     /**
      * Determine whether the user can delete the print server.
      *
-     * @param mixed        $user
-     * @param PrintServer $printServer
-     *
      * @return bool
      */
     public function delete(mixed $user, PrintServer $printServer)
     {
-        //
+        if ($user instanceof User) {
+            return $user->belongsToTeam($printServer->Team)
+                && $user->hasTeamPermission($printServer->Team, 'server:delete')
+                && $user->tokenCan('server:delete');
+        }
     }
 
     /**
      * Determine whether the user can restore the print server.
      *
-     * @param mixed        $user
-     * @param PrintServer $printServer
-     *
      * @return bool
      */
-    public function restore(mixed $user, PrintServer $printServer)
+    public function restore(mixed $user, PrintServer $printServer): void
     {
         //
     }
@@ -113,12 +141,9 @@ class PrintServerPolicy
     /**
      * Determine whether the user can permanently delete the print server.
      *
-     * @param mixed        $user
-     * @param PrintServer $printServer
-     *
      * @return bool
      */
-    public function forceDelete(mixed $user, PrintServer $printServer)
+    public function forceDelete(mixed $user, PrintServer $printServer): void
     {
         //
     }

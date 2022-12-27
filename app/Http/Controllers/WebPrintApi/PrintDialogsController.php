@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebPrintApi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrintDialogResource;
+use App\Models\ClientApplication;
 use App\Models\PrintDialog;
 use App\Models\PrintJobPromise;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -12,20 +13,35 @@ use Illuminate\Http\Response;
 
 class PrintDialogsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function (Request $request, $next) {
+            /** @var ClientApplication $client_application */
+            $client_application = $request->user();
+
+            abort_if($client_application instanceof ClientApplication === false, 403);
+
+            $client_application->last_active_at = now();
+            $client_application->save();
+
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @param PrintJobPromise $promise
-     *
      * @return PrintDialogResource|Response
+     *
      * @throws AuthorizationException
      */
     public function index(PrintJobPromise $promise)
     {
         $this->authorize('view', $promise);
 
-        if($promise->PrintDialog === null)
+        if ($promise->PrintDialog === null) {
             return response(status: 404);
+        }
 
         return new PrintDialogResource($promise->PrintDialog);
     }
@@ -33,13 +49,10 @@ class PrintDialogsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request         $request
-     * @param PrintJobPromise $promise
      *
-     * @return PrintDialogResource
      * @throws AuthorizationException
      */
-    public function store(Request $request, PrintJobPromise $promise)
+    public function store(Request $request, PrintJobPromise $promise): PrintDialogResource
     {
         $this->authorize('update', $promise);
 
@@ -49,8 +62,9 @@ class PrintDialogsController extends Controller
             'auto_print' => ['nullable', 'boolean'],
         ]);
 
-        if($promise->PrintDialog !== null)
+        if ($promise->PrintDialog !== null) {
             $promise->PrintDialog->delete();
+        }
 
         $dialog = new PrintDialog();
         $dialog->auto_print = $validated['auto_print'] ?? true;
@@ -64,11 +78,9 @@ class PrintDialogsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param PrintDialog $printDialog
-     *
      * @return Response
      */
-    public function show(PrintDialog $printDialog)
+    public function show(PrintDialog $printDialog): void
     {
         //
     }
@@ -76,12 +88,9 @@ class PrintDialogsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request     $request
-     * @param PrintDialog $printDialog
-     *
      * @return Response
      */
-    public function update(Request $request, PrintDialog $printDialog)
+    public function update(Request $request, PrintDialog $printDialog): void
     {
         //
     }
@@ -89,11 +98,9 @@ class PrintDialogsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintDialog $printDialog
-     *
      * @return Response
      */
-    public function destroy(PrintDialog $printDialog)
+    public function destroy(PrintDialog $printDialog): void
     {
         //
     }
