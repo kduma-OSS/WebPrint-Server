@@ -81,8 +81,9 @@ class ValidPpdJson implements InvokableRule
             }
 
             foreach ($option['values'] as $value_key => $o) {
-                $fail('validation.json_ppd')->translate(['opt' => 'VALUE_KEY']);
                 if (! is_string($value_key) && ! is_int($value_key)) {
+                    $fail('validation.json_ppd')->translate(['opt' => 'VALUE_KEY - '.$value_key]);
+
                     return;
                 }
 
