@@ -18,6 +18,11 @@
             @can('viewDashboard', [auth()->user()->currentTeam, 'servers'])
                 <livewire:dashboard.print-servers :team="auth()->user()->currentTeam" />
             @endif
+
+            @can('viewDashboard', [auth()->user()->currentTeam, 'jobs'])
+                <livewire:dashboard.pending-jobs :team="auth()->user()->currentTeam" />
+                <livewire:dashboard.failed-jobs :team="auth()->user()->currentTeam" />
+            @endif
         </div>
     </div>
 </x-app-layout>

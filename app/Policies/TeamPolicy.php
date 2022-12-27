@@ -32,10 +32,11 @@ class TeamPolicy
 
     public function viewDashboard(User $user, Team $team, string $widget): bool
     {
-        if(!$user->belongsToTeam($team))
+        if (! $user->belongsToTeam($team)) {
             return false;
+        }
 
-        if($team->personal_team) {
+        if ($team->personal_team) {
             return in_array($widget, [
                 'teams',
             ]);
@@ -44,6 +45,7 @@ class TeamPolicy
         return in_array($widget, [
             'stats',
             'servers',
+            'jobs',
         ]);
     }
 

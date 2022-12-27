@@ -13,4 +13,14 @@ return [
     'teams' => [
         'heading' => 'Teams Selector',
     ],
+    'jobs' => [
+        'pending' => [
+            'heading' => 'Pending Print Jobs',
+            'no_pending_jobs' => 'No pending Print Jobs!',
+        ],
+        'failed' => [
+            'heading' => 'Failed Print Jobs',
+            'no_pending_jobs' => 'No failed Print Jobs!',
+        ],
+    ],
 ];
