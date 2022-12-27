@@ -36,7 +36,7 @@ class PendingJobs extends Component
         $this->authorize('viewDashboard', [$this->team, 'jobs']);
 
         return view('livewire.dashboard.jobs', [
-            'type' => 'failed',
+            'type' => 'pending',
             'jobs' => $this->readyToLoad ? $this->getData() : null,
         ]);
     }
