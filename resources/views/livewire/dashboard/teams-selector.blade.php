@@ -1,4 +1,4 @@
-<div wire:poll.visible="refresh" wire:init="refresh">
+<div wire:init="refresh">
     <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('dashboard.teams.heading') }}</h3>
     @if($teams !== null)
         <x-card-collection class="mt-5" grid="4">
