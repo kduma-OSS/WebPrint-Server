@@ -10,4 +10,7 @@ return [
     'servers' => [
         'heading' => 'Print Servers',
     ],
+    'teams' => [
+        'heading' => 'Teams Selector',
+    ],
 ];
