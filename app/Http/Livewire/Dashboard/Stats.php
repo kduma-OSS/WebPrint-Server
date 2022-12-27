@@ -30,7 +30,7 @@ class Stats extends Component
 
     public function refresh()
     {
-        $this->authorize('view', $this->team);
+        $this->authorize('viewDashboard', [$this->team, 'stats']);
 
         $printers = $this
             ->team

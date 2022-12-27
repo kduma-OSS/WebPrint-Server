@@ -30,6 +30,23 @@ class TeamPolicy
         return $user->belongsToTeam($team) && ! $team->personal_team;
     }
 
+    public function viewDashboard(User $user, Team $team, string $widget): bool
+    {
+        if(!$user->belongsToTeam($team))
+            return false;
+
+        if($team->personal_team) {
+            return in_array($widget, [
+                'teams',
+            ]);
+        }
+
+        return in_array($widget, [
+            'stats',
+            'servers',
+        ]);
+    }
+
     /**
      * Determine whether the user can create models.
      *
