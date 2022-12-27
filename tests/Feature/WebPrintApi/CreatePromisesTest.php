@@ -84,7 +84,8 @@ class CreatePromisesTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/promises', $post($printers, $printers_ppd, $this)
+                '/api/web-print/promises',
+                $post($printers, $printers_ppd, $this)
             )
             ->assertCreated();
 

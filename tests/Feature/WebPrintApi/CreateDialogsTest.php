@@ -78,7 +78,8 @@ class CreateDialogsTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/promises/'.$promise->ulid.'/dialog', [
+                '/api/web-print/promises/'.$promise->ulid.'/dialog',
+                [
                     'auto_print' => true,
                 ]
             )
@@ -118,7 +119,8 @@ class CreateDialogsTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/promises/'.$promise->ulid.'/dialog', [
+                '/api/web-print/promises/'.$promise->ulid.'/dialog',
+                [
                     'auto_print' => true,
                 ]
             )
@@ -159,7 +161,8 @@ class CreateDialogsTest extends TestCase
 
         $response = $this
             ->postJson(
-                '/api/web-print/promises/'.$promise->ulid.'/dialog', $post
+                '/api/web-print/promises/'.$promise->ulid.'/dialog',
+                $post
             )
             ->assertOk();
 
