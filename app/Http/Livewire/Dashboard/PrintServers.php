@@ -29,7 +29,7 @@ class PrintServers extends Component
             ->team
             ->PrintServers()
             ->orderByRaw('ISNULL(last_active_at) DESC, last_active_at DESC')
-            ->limit(4)
+            ->limit(6)
             ->get();
     }
 
