@@ -79,7 +79,7 @@
                                         </x-jet-dropdown-link>
                                     @endcan
 
-                                    @if(($teams = Auth::user()->allTeams()->where('personal_team', false))->count())
+                                    @if(($teams = Auth::user()->allTeams())->count())
                                         <div class="border-t border-gray-100"></div>
 
                                         <!-- Team Switcher -->
@@ -270,7 +270,7 @@
                         </x-jet-responsive-nav-link>
                     @endcan
 
-                    @if(($teams = Auth::user()->allTeams()->where('personal_team', false))->count())
+                    @if(($teams = Auth::user()->allTeams())->count())
                         <div class="border-t border-gray-200"></div>
 
                         <!-- Team Switcher -->
