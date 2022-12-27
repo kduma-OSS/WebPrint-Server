@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Models\User;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
@@ -36,7 +36,7 @@ class TeamsSelector extends Component
     {
         $this->authorize('viewDashboard', [$this->team, 'teams']);
 
-        $this->teams = $this->user->allTeams()->filter(fn($team) => ! $team->personal_team);
+        $this->teams = $this->user->allTeams()->filter(fn ($team) => ! $team->personal_team);
     }
 
     public function render()
