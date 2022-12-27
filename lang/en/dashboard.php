@@ -7,4 +7,7 @@ return [
         'pending-jobs' => 'Pending Jobs',
         'heading' => 'Jobs',
     ],
+    'servers' => [
+        'heading' => 'Print Servers',
+    ],
 ];

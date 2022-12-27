@@ -10,6 +10,10 @@
             @can('viewDashboard', [auth()->user()->currentTeam, 'stats'])
                 <livewire:dashboard.stats :team="auth()->user()->currentTeam" />
             @endif
+
+            @can('viewDashboard', [auth()->user()->currentTeam, 'servers'])
+                <livewire:dashboard.print-servers :team="auth()->user()->currentTeam" />
+            @endif
         </div>
     </div>
 </x-app-layout>

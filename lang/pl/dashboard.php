@@ -7,4 +7,7 @@ return [
         'pending-jobs' => 'Oczekujące',
         'heading' => 'Zadania Druku',
     ],
+    'servers' => [
+        'heading' => 'Serwery Druku',
+    ],
 ];
