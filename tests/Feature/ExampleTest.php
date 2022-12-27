@@ -16,6 +16,7 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
     private Collection $printers;
 
     private PrintServer $server;
@@ -41,8 +42,6 @@ class ExampleTest extends TestCase
 
         $this->client->Printers()->attach($this->printers);
     }
-
-    use RefreshDatabase;
 
     public function test_simple_one_step_headless_print(): void
     {

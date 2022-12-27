@@ -104,7 +104,8 @@ class UpdatePromisesTest extends TestCase
 
         $response = $this
             ->putJson(
-                '/api/web-print/promises/'.$promise->ulid, $post($printers_ppd, $this)
+                '/api/web-print/promises/'.$promise->ulid,
+                $post($printers_ppd, $this)
             )
             ->assertNoContent();
 
