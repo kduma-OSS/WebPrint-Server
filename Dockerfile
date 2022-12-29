@@ -67,3 +67,5 @@ RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
 
 ENV APP_ENV=production
 ENV APP_DEBUG=false
+
+VOLUME /var/www/html/storage/app/jobs
