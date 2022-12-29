@@ -3,7 +3,8 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ngnix.Dockerfile
+      dockerfile: Dockerfile
+      target: ngnix
     image: ghcr.io/kduma-oss/webprint-server/nginx
     restart: always
     ports:
@@ -16,7 +17,8 @@ services:
   php:
     build:
       context: .
-      dockerfile: php.Dockerfile
+      dockerfile: Dockerfile
+      target: fpm
     image: ghcr.io/kduma-oss/webprint-server/fpm
     restart: always
     networks:
@@ -31,6 +33,8 @@ services:
       - DB_USERNAME=webprint_server
       - DB_PASSWORD=${DB_PASSWORD}
 
+      - APP_DEBUG=true
+      - LOG_LEVEL=errorlog
       - APP_KEY=${APP_KEY}
 
   db:

@@ -1,18 +1,3 @@
-FROM node:19-alpine AS vite_stage
-
-WORKDIR /var/www/html
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY postcss.config.js tailwind.config.js vite.config.js ./
-COPY resources ./resources
-RUN npm run build
-
-
-
-
-
 FROM php:8.1-cli-alpine AS composer_stage
 
 WORKDIR /var/www/html
@@ -24,10 +9,41 @@ RUN composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-prog
 
 COPY . ./
 RUN composer dump-autoload --optimize --apcu --no-dev
+RUN php artisan view:cache
+
+
+FROM node:19-alpine AS vite_stage
+
+WORKDIR /var/www/html
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY --from=composer_stage /var/www/html/vendor /var/www/html/vendor
+COPY --from=composer_stage /var/www/html/storage/framework/views/ /var/www/html/storage/framework/views/
+COPY postcss.config.js tailwind.config.js vite.config.js ./
+COPY resources ./resources
+RUN npm run build
 
 
 
-FROM php:8.1-fpm-alpine
+
+FROM nginx:alpine AS ngnix
+
+WORKDIR /var/www/html
+
+COPY docker/nginx/default.conf /etc/nginx/conf.d
+
+COPY --from=vite_stage /var/www/html/public/build /var/www/html/public/build
+
+COPY ./ /var/www/html/
+
+
+
+
+
+
+FROM php:8.1-fpm-alpine AS fpm
 
 WORKDIR /var/www/html
 
