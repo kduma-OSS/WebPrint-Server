@@ -26,18 +26,6 @@ env:
 
 jobs:
   build-and-push-image:
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        include:
-          - dockerfile: ./Dockerfile
-            target: nginx
-            image: ghcr.io/kduma-oss/webprint-server/nginx
-          - dockerfile: ./Dockerfile
-            target: fpm
-            image: ghcr.io/kduma-oss/webprint-server/fpm
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -66,14 +54,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Prepare source code
+        run: docker/build.sh
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
-        id: meta
+        id: nginx-meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ matrix.image }}
+          images: ghcr.io/kduma-oss/webprint-server/nginx
           tags: |
                   type=ref,event=branch
                   type=ref,event=pr
@@ -86,14 +76,46 @@ jobs:
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
-        id: build-and-push
+        id: nginx-build-and-push
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
-          context: ${{ matrix.context }}
-          file: ${{ matrix.dockerfile }}
-          target: ${{ matrix.target }}
+          context: .
+          file: ./Dockerfile
+          target: nginx
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.nginx-meta.outputs.tags }}
+          labels: ${{ steps.nginx-meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+
+      # Extract metadata (tags, labels) for Docker
+      # https://github.com/docker/metadata-action
+      - name: Extract Docker metadata
+        id: fpm-meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ghcr.io/kduma-oss/webprint-server/fpm
+          tags: |
+                  type=ref,event=branch
+                  type=ref,event=pr
+                  type=ref,event=tag
+                  type=semver,pattern=v{{version}}
+                  type=semver,pattern=v{{major}}.{{minor}}
+                  type=semver,pattern=v{{major}}
+
+
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        id: fpm-build-and-push
+        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+        with:
+          context: .
+          file: ./Dockerfile
+          target: fpm
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.fpm-meta.outputs.tags }}
+          labels: ${{ steps.fpm-meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
