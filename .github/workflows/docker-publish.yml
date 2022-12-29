@@ -55,7 +55,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare source code
-        run: docker/build.sh
+        run: /bin/sh docker/build.sh
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
