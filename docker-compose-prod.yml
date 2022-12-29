@@ -1,0 +1,54 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ngnix.Dockerfile
+    image: ghcr.io/kduma-oss/webprint-server/nginx
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    networks:
+      - internal
+
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    image: ghcr.io/kduma-oss/webprint-server/fpm
+    restart: always
+    networks:
+      - internal
+    depends_on:
+      - db
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=webprint_server
+      - DB_USERNAME=webprint_server
+      - DB_PASSWORD=${DB_PASSWORD}
+
+      - APP_KEY=${APP_KEY}
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=webprint_server
+      - MYSQL_USER=webprint_server
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    networks:
+      - internal
+    volumes:
+      - db_data:/var/lib/mysql
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+    db_data: {}
