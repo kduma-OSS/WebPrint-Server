@@ -46,6 +46,7 @@ COPY --from=composer_stage /var/www/html/bootstrap/cache /var/www/html/bootstrap
 COPY . /var/www/html/
 
 RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
 
 
 ENV APP_ENV=production
