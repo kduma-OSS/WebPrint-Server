@@ -28,7 +28,7 @@ RUN npm run build
 
 
 
-FROM nginx:alpine AS ngnix
+FROM nginx:alpine AS nginx
 
 WORKDIR /var/www/html
 

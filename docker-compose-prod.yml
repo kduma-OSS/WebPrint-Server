@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: ngnix
+      target: nginx
     image: ghcr.io/kduma-oss/webprint-server/nginx
     restart: always
     ports:
