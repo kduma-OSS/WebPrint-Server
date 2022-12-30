@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: fpm
-          path: build/fpm/
+          path: build/php/
           if-no-files-found: error
           retention-days: 3
 
