@@ -37,17 +37,22 @@ jobs:
       - name: Prepare source code
         run: /bin/bash docker/build.sh
 
+      - name: Compress source code directories
+        run: |
+             tar --create --gzip --verbose --file=build/php.tgz --directory=build/php .
+             tar --create --gzip --verbose --file=build/nginx.tgz --directory=build/nginx .
+
       - uses: actions/upload-artifact@v3
         with:
-          name: fpm
-          path: build/php/
+          name: php
+          path: build/php.tgz
           if-no-files-found: error
           retention-days: 3
 
       - uses: actions/upload-artifact@v3
         with:
           name: nginx
-          path: build/nginx/
+          path: build/nginx.tgz
           if-no-files-found: error
           retention-days: 3
 
@@ -65,8 +70,11 @@ jobs:
         target:
           - image: ghcr.io/kduma-oss/webprint-server/fpm
             name: fpm
+            artifact: php
+
           - image: ghcr.io/kduma-oss/webprint-server/nginx
             name: nginx
+            artifact: nginx
 
     steps:
       - name: Checkout repository
@@ -74,8 +82,13 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: ${{ matrix.target.name }}
-          path: build/${{ matrix.target.name }}/
+          name: ${{ matrix.target.artifact }}
+          path: build/${{ matrix.target.artifact }}.tgz
+
+      - name: Decompress source code artifact
+        run: |
+              mkdir -p build/${{ matrix.target.artifact }}
+              tar --extract --gunzip --verbose --file=build/${{ matrix.target.artifact }}.tgz --directory=build/${{ matrix.target.artifact }}
 
       - name: Display structure of downloaded files
         run: ls -R
