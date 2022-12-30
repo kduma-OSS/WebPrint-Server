@@ -42,7 +42,7 @@ jobs:
           retention-days: 3
 
   build-and-push-image:
-    needs: build
+    needs: build-source
 
     runs-on: ubuntu-latest
 
