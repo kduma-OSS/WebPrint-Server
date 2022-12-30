@@ -31,6 +31,9 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
       - name: Prepare source code
         run: /bin/bash docker/build.sh
 
