@@ -72,6 +72,10 @@ jobs:
             name: fpm
             artifact: php
 
+          - image: ghcr.io/kduma-oss/webprint-server/cron
+            name: cron
+            artifact: php
+
           - image: ghcr.io/kduma-oss/webprint-server/nginx
             name: nginx
             artifact: nginx
