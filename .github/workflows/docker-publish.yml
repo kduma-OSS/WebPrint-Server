@@ -83,7 +83,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.target.artifact }}
-          path: build/${{ matrix.target.artifact }}.tgz
+          path: build/
 
       - name: Decompress source code artifact
         run: |
