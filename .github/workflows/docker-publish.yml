@@ -42,14 +42,14 @@ jobs:
              tar --create --gzip --verbose --file=build/php.tgz --directory=build/php .
              tar --create --gzip --verbose --file=build/nginx.tgz --directory=build/nginx .
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: php
           path: build/php.tgz
           if-no-files-found: error
           retention-days: 3
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: nginx
           path: build/nginx.tgz
@@ -84,7 +84,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - uses: actions/download-artifact@v4.1.7
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.target.artifact }}
           path: build/
