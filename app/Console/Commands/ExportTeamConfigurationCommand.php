@@ -16,8 +16,7 @@ class ExportTeamConfigurationCommand extends Command
      */
     protected $signature = 'team:export-configuration
                             {team_ulid : The ULID of the team to export}
-                            {--output= : Output file path (optional)}
-                            {--pretty : Format JSON with pretty print (default: true)}';
+                            {--output= : Output file path (optional)}';
 
     /**
      * The console command description.
