@@ -1,0 +1,278 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://webprint-server.example.com/schemas/team-configuration-export-v1.0.0.json",
+  "title": "WebPrint Server Team Configuration Export",
+  "description": "Schema for exporting and importing team print infrastructure configuration",
+  "type": "object",
+  "required": ["version", "schema_version", "export_date", "export_type", "print_servers", "client_applications"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Export format version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0"]
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema identifier",
+      "const": "webprint-server-1.0"
+    },
+    "export_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime when export was created"
+    },
+    "export_type": {
+      "type": "string",
+      "description": "Type of export",
+      "const": "team_infrastructure"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata about the export",
+      "properties": {
+        "source_version": {
+          "type": "string",
+          "description": "WebPrint Server version that created this export"
+        },
+        "exporter_ulid": {
+          "type": "string",
+          "description": "ULID of the user who performed the export",
+          "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form notes about this export"
+        }
+      }
+    },
+    "print_servers": {
+      "type": "array",
+      "description": "Array of print servers and their printers",
+      "items": {
+        "$ref": "#/definitions/printServer"
+      }
+    },
+    "client_applications": {
+      "type": "array",
+      "description": "Array of client applications and their printer access",
+      "items": {
+        "$ref": "#/definitions/clientApplication"
+      }
+    }
+  },
+  "definitions": {
+    "printServer": {
+      "type": "object",
+      "description": "Print server configuration",
+      "required": ["ulid", "name", "printers"],
+      "properties": {
+        "ulid": {
+          "type": "string",
+          "description": "Unique ULID identifier for the print server",
+          "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the print server",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "location": {
+          "type": ["string", "null"],
+          "description": "Physical location of the print server (nullable)",
+          "maxLength": 255
+        },
+        "api_token": {
+          "type": ["string", "null"],
+          "description": "Hashed API token for print server authentication (nullable). If null, no token will be created on import.",
+          "pattern": "^[a-f0-9]{64}$|^$"
+        },
+        "printers": {
+          "type": "array",
+          "description": "Printers managed by this print server",
+          "items": {
+            "$ref": "#/definitions/printer"
+          }
+        }
+      }
+    },
+    "printer": {
+      "type": "object",
+      "description": "Printer configuration",
+      "required": ["ulid", "name", "enabled", "uri", "ppd_support", "raw_languages_supported"],
+      "properties": {
+        "ulid": {
+          "type": "string",
+          "description": "Unique ULID identifier for the printer",
+          "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the printer",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "location": {
+          "type": ["string", "null"],
+          "description": "Physical location of the printer (nullable)",
+          "maxLength": 255
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the printer is enabled and available for use"
+        },
+        "uri": {
+          "type": "string",
+          "description": "CUPS printer URI (e.g., ipp://192.168.1.100:631/printers/hp4050)",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "ppd_support": {
+          "type": "boolean",
+          "description": "Whether PostScript Printer Definition (PPD) support is enabled"
+        },
+        "ppd_options": {
+          "type": ["array", "null"],
+          "description": "PPD configuration options (nullable, typically null when ppd_support is false)",
+          "items": {
+            "$ref": "#/definitions/ppdOption"
+          }
+        },
+        "ppd_options_layout": {
+          "type": ["object", "null"],
+          "description": "PPD options UI layout configuration (nullable)",
+          "properties": {
+            "groups": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["key", "name", "order"],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Group identifier"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Display name of the group"
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "Display order of the group",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "raw_languages_supported": {
+          "type": "array",
+          "description": "Array of supported print languages (e.g., ['PCL', 'PostScript', '*'])",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "ppdOption": {
+      "type": "object",
+      "description": "PostScript Printer Definition option configuration",
+      "required": ["key", "name", "values", "default", "enabled", "order"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "PPD option key (e.g., 'PageSize', 'ColorModel')",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the option",
+          "minLength": 1
+        },
+        "values": {
+          "type": "array",
+          "description": "Available values for this option",
+          "items": {
+            "type": "object",
+            "required": ["key", "name"],
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Value key identifier",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name of the value",
+                "minLength": 1
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "default": {
+          "type": "string",
+          "description": "Default value key for this option",
+          "minLength": 1
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether this option is enabled"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display order of this option",
+          "minimum": 0
+        },
+        "group_key": {
+          "type": "string",
+          "description": "Group identifier this option belongs to"
+        },
+        "group_name": {
+          "type": "string",
+          "description": "Display name of the group"
+        }
+      }
+    },
+    "clientApplication": {
+      "type": "object",
+      "description": "Client application configuration",
+      "required": ["ulid", "name", "printer_access"],
+      "properties": {
+        "ulid": {
+          "type": "string",
+          "description": "Unique ULID identifier for the client application",
+          "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the client application",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "url": {
+          "type": ["string", "null"],
+          "description": "Application URL (nullable)",
+          "maxLength": 255
+        },
+        "api_token": {
+          "type": ["string", "null"],
+          "description": "Hashed API token for client application authentication (nullable). If null, no token will be created on import.",
+          "pattern": "^[a-f0-9]{64}$|^$"
+        },
+        "printer_access": {
+          "type": "array",
+          "description": "Array of printer ULIDs this application can access (can be empty)",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+          }
+        }
+      }
+    }
+  }
+}

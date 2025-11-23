@@ -108,4 +108,14 @@ class TeamPolicy
     {
         return $user->ownsTeam($team) && ! $team->personal_team;
     }
+
+    /**
+     * Determine whether the user can export team configuration.
+     *
+     * @return mixed
+     */
+    public function export(User $user, Team $team): bool
+    {
+        return $user->ownsTeam($team) && ! $team->personal_team;
+    }
 }
