@@ -59,7 +59,7 @@ class ExportTeamConfigurationCommand extends Command
         $outputPath = $this->option('output');
 
         if (! $outputPath) {
-            $outputPath = storage_path('app/' . $exporter->generateFilename($team));
+            $outputPath = storage_path('app/'.$exporter->generateFilename($team));
         }
 
         // Ensure directory exists
@@ -77,9 +77,9 @@ class ExportTeamConfigurationCommand extends Command
         $data = json_decode($json, true);
         $this->newLine();
         $this->line('<fg=cyan>Export Statistics:</>');
-        $this->line("  Print Servers: " . count($data['print_servers'] ?? []));
-        $this->line("  Printers: " . collect($data['print_servers'] ?? [])->sum(fn ($server) => count($server['printers'] ?? [])));
-        $this->line("  Client Applications: " . count($data['client_applications'] ?? []));
+        $this->line('  Print Servers: '.count($data['print_servers'] ?? []));
+        $this->line('  Printers: '.collect($data['print_servers'] ?? [])->sum(fn ($server) => count($server['printers'] ?? [])));
+        $this->line('  Client Applications: '.count($data['client_applications'] ?? []));
 
         return self::SUCCESS;
     }

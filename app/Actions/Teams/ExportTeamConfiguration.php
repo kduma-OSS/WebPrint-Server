@@ -3,7 +3,6 @@
 namespace App\Actions\Teams;
 
 use App\Models\Team;
-use Illuminate\Support\Facades\DB;
 
 class ExportTeamConfiguration
 {
