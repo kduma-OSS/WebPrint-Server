@@ -42,6 +42,72 @@ class CreatePromisesTest extends TestCase
             ->assertForbidden();
     }
 
+    public function test_cannot_create_with_name_exceeding_255_characters(): void
+    {
+        Sanctum::actingAs(
+            $client = ClientApplication::factory()->create(),
+            guard: 'web_print_api'
+        );
+
+        $server = PrintServer::factory()
+            ->recycle($client->Team)
+            ->create();
+
+        $printers_ppd = Printer::factory()
+            ->active()
+            ->ppd()
+            ->for($server, 'Server')
+            ->count(2)
+            ->create();
+
+        $client->Printers()->attach($printers_ppd);
+
+        // Create a name with 256 characters (exceeds limit)
+        $longName = str_repeat('a', 256);
+
+        $this
+            ->postJson('/api/web-print/promises', [
+                'name' => $longName,
+                'type' => 'ppd',
+            ])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
+    }
+
+    public function test_can_create_with_name_at_255_character_limit(): void
+    {
+        Sanctum::actingAs(
+            $client = ClientApplication::factory()->create(),
+            guard: 'web_print_api'
+        );
+
+        $server = PrintServer::factory()
+            ->recycle($client->Team)
+            ->create();
+
+        $printers_ppd = Printer::factory()
+            ->active()
+            ->ppd()
+            ->for($server, 'Server')
+            ->count(2)
+            ->create();
+
+        $client->Printers()->attach($printers_ppd);
+
+        // Create a name with exactly 255 characters (at the limit)
+        $maxLengthName = str_repeat('a', 255);
+
+        $response = $this
+            ->postJson('/api/web-print/promises', [
+                'name' => $maxLengthName,
+                'type' => 'ppd',
+            ])
+            ->assertCreated();
+
+        $promise = PrintJobPromise::where('ulid', $response->json('data.ulid'))->firstOrFail();
+        $this->assertEquals($maxLengthName, $promise->name);
+    }
+
     /**
      * @dataProvider providesDataForCreate
      */

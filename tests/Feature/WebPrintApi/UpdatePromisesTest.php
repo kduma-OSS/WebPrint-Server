@@ -64,6 +64,86 @@ class UpdatePromisesTest extends TestCase
             ->assertForbidden();
     }
 
+    public function test_cannot_update_with_name_exceeding_255_characters(): void
+    {
+        Sanctum::actingAs(
+            $client = ClientApplication::factory()->create(),
+            guard: 'web_print_api'
+        );
+
+        $server = PrintServer::factory()
+            ->recycle($client->Team)
+            ->create();
+
+        $printers_ppd = Printer::factory()
+            ->active()
+            ->ppd()
+            ->for($server, 'Server')
+            ->count(2)
+            ->create();
+
+        $client->Printers()->attach($printers_ppd);
+
+        $promise = PrintJobPromise::factory()
+            ->withContent()
+            ->for($client)
+            ->create();
+
+        $promise->Printer()->associate($printers_ppd->first());
+        $promise->AvailablePrinters()->attach($printers_ppd);
+
+        // Create a name with 256 characters (exceeds limit)
+        $longName = str_repeat('a', 256);
+
+        $this
+            ->putJson('/api/web-print/promises/'.$promise->ulid, [
+                'name' => $longName,
+            ])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
+    }
+
+    public function test_can_update_with_name_at_255_character_limit(): void
+    {
+        Sanctum::actingAs(
+            $client = ClientApplication::factory()->create(),
+            guard: 'web_print_api'
+        );
+
+        $server = PrintServer::factory()
+            ->recycle($client->Team)
+            ->create();
+
+        $printers_ppd = Printer::factory()
+            ->active()
+            ->ppd()
+            ->for($server, 'Server')
+            ->count(2)
+            ->create();
+
+        $client->Printers()->attach($printers_ppd);
+
+        $promise = PrintJobPromise::factory()
+            ->withContent()
+            ->for($client)
+            ->create();
+
+        $promise->Printer()->associate($printers_ppd->first());
+        $promise->AvailablePrinters()->attach($printers_ppd);
+
+        // Create a name with exactly 255 characters (at the limit)
+        $maxLengthName = str_repeat('a', 255);
+
+        $this
+            ->putJson('/api/web-print/promises/'.$promise->ulid, [
+                'name' => $maxLengthName,
+            ])
+            ->assertNoContent();
+
+        $promise = $promise->fresh();
+        $this->assertEquals($maxLengthName, $promise->name);
+    }
+
     /**
      * @dataProvider providesDataForUpdate
      */
