@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Teams;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Laravel\Jetstream\Actions\ValidateTeamDeletion;
 use Laravel\Jetstream\ConfirmsPasswords;
 use Laravel\Jetstream\Contracts\DeletesTeams;
@@ -11,8 +12,8 @@ use Livewire\Component;
 
 class DeleteTeamFormWithConfirmation extends Component
 {
-    use RedirectsActions;
     use ConfirmsPasswords;
+    use RedirectsActions;
 
     /**
      * The team instance.
@@ -42,8 +43,6 @@ class DeleteTeamFormWithConfirmation extends Component
     /**
      * Delete the team.
      *
-     * @param  \Laravel\Jetstream\Actions\ValidateTeamDeletion  $validator
-     * @param  \Laravel\Jetstream\Contracts\DeletesTeams  $deleter
      * @return void
      */
     public function deleteTeam(ValidateTeamDeletion $validator, DeletesTeams $deleter)
@@ -60,7 +59,7 @@ class DeleteTeamFormWithConfirmation extends Component
     /**
      * Render the component.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function render()
     {

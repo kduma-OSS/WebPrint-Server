@@ -17,13 +17,13 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @mixin IdeHelperClientApplication
  */
-class ClientApplication extends Model implements AuthorizableContract, AuthenticatableContract
+class ClientApplication extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use HasFactory;
-    use HasApiTokens;
-    use Authorizable;
-    use HasUlidField;
     use Authenticatable;
+    use Authorizable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasUlidField;
 
     public function getRememberTokenName()
     {

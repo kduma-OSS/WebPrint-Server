@@ -4,17 +4,20 @@ namespace App\Http\Controllers\PrintServiceApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\PrintJob;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PrintJobContentController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\StreamedResponse
+     * @return Response|StreamedResponse
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function index(PrintJob $job)
     {

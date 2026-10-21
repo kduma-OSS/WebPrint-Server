@@ -20,7 +20,6 @@ class PrintersPolicy
     /**
      * Determine whether the user can view any printers.
      *
-     * @param  PrintServer|null  $server
      * @return bool
      */
     public function viewAny(mixed $user, PrintServer $server = null)
@@ -78,7 +77,6 @@ class PrintersPolicy
     /**
      * Determine whether the user can create printers.
      *
-     * @param  PrintServer|null  $server
      * @return bool
      */
     public function create(mixed $user, PrintServer $server = null)

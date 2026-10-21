@@ -7,6 +7,8 @@ use App\Models\Enums\PrintJobStatusEnum;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
 
@@ -20,7 +22,7 @@ class PrintJobsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response|\Illuminate\Support\Collection
+     * @return Response|Collection
      */
     public function index(Request $request)
     {
@@ -50,7 +52,7 @@ class PrintJobsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return array|\Illuminate\Http\Response
+     * @return array|Response
      */
     public function show(PrintJob $job)
     {
@@ -108,7 +110,7 @@ class PrintJobsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, PrintJob $job)
     {

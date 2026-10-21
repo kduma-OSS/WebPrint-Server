@@ -25,9 +25,6 @@ class GenerateTokenForServer extends Component
 
     public $dockerCommand;
 
-    /**
-     * @var PrintServer
-     */
     public PrintServer $server;
 
     public function generateToken(

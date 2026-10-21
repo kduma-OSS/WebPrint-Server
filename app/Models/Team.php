@@ -15,8 +15,8 @@ use Laravel\Jetstream\Team as JetstreamTeam;
  */
 class Team extends JetstreamTeam
 {
-    use HasUlidField;
     use HasFactory;
+    use HasUlidField;
 
     /**
      * The attributes that should be cast.

@@ -11,9 +11,6 @@ class DeleteApp extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var ClientApplication
-     */
     public ClientApplication $app;
 
     public $confirmingAppDeletion = false;

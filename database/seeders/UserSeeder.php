@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = \App\Models\User::factory()->withPersonalTeam()->create([
+        $user = User::factory()->withPersonalTeam()->create([
             'name' => 'Administrator',
             'email' => 'admin@localhost',
             'password' => Hash::make('P@ssw0rd'),

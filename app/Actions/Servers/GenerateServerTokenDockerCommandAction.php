@@ -6,8 +6,7 @@ class GenerateServerTokenDockerCommandAction
 {
     public function __construct(
         protected GenerateServerTokenEnvironmentalVariablesAction $generateServerTokenEnvironmentalVariablesAction
-    ) {
-    }
+    ) {}
 
     public function handle(string $token)
     {

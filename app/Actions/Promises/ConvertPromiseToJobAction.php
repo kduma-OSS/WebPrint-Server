@@ -10,8 +10,7 @@ class ConvertPromiseToJobAction
 {
     public function __construct(
         protected CheckPromiseAbilityToBePrintedAction $checkPromiseAbilityToBePrintedAction,
-    ) {
-    }
+    ) {}
 
     public function handle(PrintJobPromise $promise): ?PrintJob
     {
@@ -19,7 +18,7 @@ class ConvertPromiseToJobAction
             return null;
         }
 
-        $job = new PrintJob();
+        $job = new PrintJob;
         $job->client_application_id = $promise->client_application_id;
         $job->printer_id = $promise->printer_id;
         $job->name = $promise->name;

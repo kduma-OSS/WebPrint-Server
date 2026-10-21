@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\PrintServiceApi;
 
+use App\Http\Middleware\ValidateSignature;
 use App\Models\Printer;
 use App\Models\PrintJob;
 use App\Models\PrintServer;
@@ -76,7 +77,7 @@ class GetJobContentsTest extends TestCase
             ->create();
 
         $response = $this
-            ->withoutMiddleware(\App\Http\Middleware\ValidateSignature::class)
+            ->withoutMiddleware(ValidateSignature::class)
             ->getJson('/api/print-service/jobs/'.$job->ulid.'/content')
             ->assertOk();
 

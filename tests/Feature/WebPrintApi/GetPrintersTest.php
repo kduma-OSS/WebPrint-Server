@@ -17,7 +17,7 @@ class GetPrintersTest extends TestCase
     public function test_cannot_access_without_token(): void
     {
         $printer = Printer::factory()
-             ->create();
+            ->create();
 
         $this->getJson('/api/web-print/printers/'.$printer->ulid)
             ->assertUnauthorized();
@@ -31,7 +31,7 @@ class GetPrintersTest extends TestCase
         );
 
         $printer = Printer::factory()
-             ->create();
+            ->create();
 
         $this->getJson('/api/web-print/printers/'.$printer->ulid)
             ->assertForbidden();
@@ -82,7 +82,7 @@ class GetPrintersTest extends TestCase
         );
 
         $printer = Printer::factory()
-             ->create();
+            ->create();
 
         $this->getJson('/api/web-print/printers/'.$printer->ulid)
             ->assertForbidden();

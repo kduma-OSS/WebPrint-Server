@@ -11,11 +11,9 @@ class SetPromiseContentAction
 {
     public function __construct(
         protected ClearPromiseContentAction $clearPromiseContentAction,
-    ) {
-    }
+    ) {}
 
     /**
-     * @param  string|null  $name
      * @param  string|UploadedFile|resource  $content
      */
     public function handle(PrintJobPromise $promise, mixed $content, string $name = null): void

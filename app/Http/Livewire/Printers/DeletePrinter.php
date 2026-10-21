@@ -11,9 +11,6 @@ class DeletePrinter extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var Printer
-     */
     public Printer $printer;
 
     public $confirmingPrinterDeletion = false;

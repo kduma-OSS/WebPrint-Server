@@ -229,7 +229,7 @@ class ListsAvailablePrintersTest extends TestCase
             ->create();
 
         $my_printers = Printer::factory()
-        ->active()
+            ->active()
             ->for($my_server, 'Server')
             ->count(2)
             ->create();
@@ -238,7 +238,7 @@ class ListsAvailablePrintersTest extends TestCase
             ->create();
 
         $others_printers = Printer::factory()
-        ->active()
+            ->active()
             ->for($others_server, 'Server')
             ->count(2)
             ->create();
@@ -276,7 +276,7 @@ class ListsAvailablePrintersTest extends TestCase
             ->create();
 
         $others_printers = Printer::factory()
-        ->active()
+            ->active()
             ->for($server, 'Server')
             ->count(2)
             ->create();

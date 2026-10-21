@@ -22,9 +22,6 @@ class GenerateTokenForApp extends Component
 
     public $envVariables;
 
-    /**
-     * @var ClientApplication
-     */
     public ClientApplication $app;
 
     public function generateToken(

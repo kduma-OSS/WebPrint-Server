@@ -14,9 +14,6 @@ class UpdateApp extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var ClientApplication
-     */
     public ClientApplication $app;
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Translation\PotentiallyTranslatedString;
 
 class ValidPpdJson implements InvokableRule
 {
@@ -11,7 +12,7 @@ class ValidPpdJson implements InvokableRule
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  \Closure(string): PotentiallyTranslatedString  $fail
      * @return void
      */
     public function __invoke($attribute, $value, $fail)

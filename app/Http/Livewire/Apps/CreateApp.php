@@ -12,9 +12,6 @@ class CreateApp extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var Team
-     */
     public Team $team;
 
     /**

@@ -9,7 +9,7 @@ class CreateAppAction
 {
     public function handle(Team $team, string $name): ClientApplication
     {
-        $app = new ClientApplication();
+        $app = new ClientApplication;
         $app->name = $name;
         $app->team_id = $team->id;
         $app->save();

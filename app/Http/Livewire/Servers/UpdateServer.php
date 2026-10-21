@@ -11,9 +11,6 @@ class UpdateServer extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var PrintServer
-     */
     public PrintServer $server;
 
     /**

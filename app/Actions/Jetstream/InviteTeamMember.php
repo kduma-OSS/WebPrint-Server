@@ -19,7 +19,6 @@ class InviteTeamMember implements InvitesTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string|null  $role
      */
     public function invite($user, $team, string $email, string $role = null): void
     {
@@ -64,7 +63,7 @@ class InviteTeamMember implements InvitesTeamMembers
                 $query->where('team_id', $team->id);
             })],
             'role' => Jetstream::hasRoles()
-                            ? ['required', 'string', new Role()]
+                            ? ['required', 'string', new Role]
                             : null,
         ]);
     }

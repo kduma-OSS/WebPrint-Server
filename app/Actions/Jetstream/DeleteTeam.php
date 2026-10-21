@@ -12,8 +12,7 @@ class DeleteTeam implements DeletesTeams
     public function __construct(
         protected DeleteServerAction $deleteServerAction,
         protected DeleteAppAction $deleteAppAction,
-    ) {
-    }
+    ) {}
 
     /**
      * Delete the given team.

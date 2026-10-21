@@ -8,8 +8,7 @@ class DeletePromiseAction
 {
     public function __construct(
         protected ClearPromiseContentAction $clearPromiseContentAction,
-    ) {
-    }
+    ) {}
 
     public function handle(PrintJobPromise $printer): void
     {

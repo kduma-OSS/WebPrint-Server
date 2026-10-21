@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class PrintJobPromise extends Model
 {
-    use HasUlidField;
     use HasFactory;
+    use HasUlidField;
 
     protected $casts = [
         'ppd_options' => 'json',

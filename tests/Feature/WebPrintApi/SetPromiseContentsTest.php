@@ -132,17 +132,17 @@ class SetPromiseContentsTest extends TestCase
             ]
         )->assertNoContent();
 
-//        $response = $this->call(
-//            'post',
-//            '/api/web-print/promises/'.$promise->ulid.'/content',
-//            parameters: [
-//                'content' => 'test',
-//                'name' => 'test.txt',
-//            ],
-//            files: [
-//                'content' => 'test',
-//            ]
-//        )->assertNoContent();
+        //        $response = $this->call(
+        //            'post',
+        //            '/api/web-print/promises/'.$promise->ulid.'/content',
+        //            parameters: [
+        //                'content' => 'test',
+        //                'name' => 'test.txt',
+        //            ],
+        //            files: [
+        //                'content' => 'test',
+        //            ]
+        //        )->assertNoContent();
 
         $this->assertEquals($promise->content, $response->getContent());
 
@@ -177,7 +177,7 @@ class SetPromiseContentsTest extends TestCase
             server: [
                 'HTTP_X-FILE-NAME' => 'test.txt',
             ],
-            content:'test'
+            content: 'test'
         )->assertNoContent();
 
         $this->assertEquals($promise->content, $response->getContent());
