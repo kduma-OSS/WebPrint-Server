@@ -117,7 +117,7 @@ class PrintJobsController extends Controller
     {
         $fields = $request->validate([
             'status' => ['required', Rule::in(['printing', 'finished', 'failed'])],
-            'status_message' => ['required_if:status,failed'],
+            'status_message' => ['required_if:status,failed', 'nullable', 'string', 'max:255'],
         ]);
 
         $job->status = $fields['status'];
