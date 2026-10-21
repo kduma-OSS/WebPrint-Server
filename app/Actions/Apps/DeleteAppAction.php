@@ -13,8 +13,7 @@ class DeleteAppAction
     public function __construct(
         protected DeleteJobAction $deleteJobAction,
         protected DeletePromiseAction $deletePromiseAction,
-    ) {
-    }
+    ) {}
 
     public function handle(ClientApplication $app): void
     {

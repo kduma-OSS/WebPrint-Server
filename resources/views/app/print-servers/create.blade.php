@@ -20,7 +20,7 @@
                 <livewire:servers.create-server />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
         </div>
     </div>

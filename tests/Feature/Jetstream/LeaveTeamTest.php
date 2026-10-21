@@ -24,7 +24,7 @@ class LeaveTeamTest extends TestCase
         $this->actingAs($otherUser);
 
         Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->call('leaveTeam');
+            ->call('leaveTeam');
 
         $this->assertCount(0, $user->currentTeam->fresh()->users);
     }
@@ -34,8 +34,8 @@ class LeaveTeamTest extends TestCase
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
         Livewire::test(TeamMemberManager::class, ['team' => $user->currentTeam])
-                        ->call('leaveTeam')
-                        ->assertHasErrors(['team']);
+            ->call('leaveTeam')
+            ->assertHasErrors(['team']);
 
         $this->assertNotNull($user->currentTeam->fresh());
     }

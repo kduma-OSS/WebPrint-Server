@@ -16,13 +16,13 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @mixin IdeHelperPrintServer
  */
-class PrintServer extends Model implements AuthorizableContract, AuthenticatableContract
+class PrintServer extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use HasApiTokens;
+    use Authenticatable;
     use Authorizable;
+    use HasApiTokens;
     use HasFactory;
     use HasUlidField;
-    use Authenticatable;
 
     public function getRememberTokenName()
     {

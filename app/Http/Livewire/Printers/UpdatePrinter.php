@@ -13,9 +13,6 @@ class UpdatePrinter extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var Printer
-     */
     public Printer $printer;
 
     /**
@@ -59,7 +56,7 @@ class UpdatePrinter extends Component
             'name' => ['required', 'string', 'min:1', 'max:255'],
             'enabled' => ['bool'],
             'ppd' => ['bool'],
-            'options' => ['string', 'nullable', 'json', new ValidPpdJson()],
+            'options' => ['string', 'nullable', 'json', new ValidPpdJson],
             'uri' => ['required', 'string', 'min:1', 'max:255', 'regex:/^[a-z]+:\/\/.+/'],
             'languages' => [(new Delimited('string|max:25'))->max(10)],
             'location' => ['nullable', 'string', 'min:1', 'max:255'],
@@ -109,7 +106,7 @@ class UpdatePrinter extends Component
             ? json_encode($this->printer->ppd_options, JSON_PRETTY_PRINT)
             : '';
 
-        $this->emit('saved');
+        $this->dispatch('saved');
     }
 
     public function render()

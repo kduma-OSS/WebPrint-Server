@@ -17,9 +17,8 @@ class AddTeamMember implements AddsTeamMembers
      *
      * @param  mixed  $user
      * @param  mixed  $team
-     * @param  string|null  $role
      */
-    public function add($user, $team, string $email, string $role = null): void
+    public function add($user, $team, string $email, ?string $role = null): void
     {
         Gate::forUser($user)->authorize('addTeamMember', $team);
 
@@ -62,7 +61,7 @@ class AddTeamMember implements AddsTeamMembers
         return array_filter([
             'email' => ['required', 'email', 'exists:users'],
             'role' => Jetstream::hasRoles()
-                            ? ['required', 'string', new Role()]
+                            ? ['required', 'string', new Role]
                             : null,
         ]);
     }

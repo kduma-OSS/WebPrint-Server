@@ -12,9 +12,6 @@ class CreateServer extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var Team
-     */
     public Team $team;
 
     /**
@@ -43,7 +40,7 @@ class CreateServer extends Component
 
         $server = $action->handle($this->team, $this->name);
 
-        $this->emit('saved');
+        $this->dispatch('saved');
 
         return redirect()->route('web-print.servers.show', $server);
     }

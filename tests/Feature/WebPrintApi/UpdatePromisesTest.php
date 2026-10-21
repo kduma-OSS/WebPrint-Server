@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class UpdatePromisesTest extends TestCase
@@ -64,9 +65,7 @@ class UpdatePromisesTest extends TestCase
             ->assertForbidden();
     }
 
-    /**
-     * @dataProvider providesDataForUpdate
-     */
+    #[DataProvider('providesDataForUpdate')]
     public function test_can_update_with_correct_token(callable $post, callable $asserts, bool $withContent = true): void
     {
         Sanctum::actingAs(
@@ -113,7 +112,7 @@ class UpdatePromisesTest extends TestCase
         $asserts($promise, $response, $printers_ppd, $this);
     }
 
-    public function providesDataForUpdate(): \Generator
+    public static function providesDataForUpdate(): \Generator
     {
         yield 'updates name' => [
             fn (Collection $printers_ppd, UpdatePromisesTest $test): array => [

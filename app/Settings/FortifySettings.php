@@ -2,7 +2,9 @@
 
 namespace App\Settings;
 
-class FortifySettings extends \Spatie\LaravelSettings\Settings
+use Spatie\LaravelSettings\Settings;
+
+class FortifySettings extends Settings
 {
     /** Features::registration() */
     public bool $registration_enabled;

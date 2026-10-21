@@ -21,7 +21,7 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user, Team $team = null)
+    public function viewAny(mixed $user, ?Team $team = null)
     {
         if ($user instanceof User) {
             $team ??= $user->currentTeam;
@@ -63,7 +63,7 @@ class ClientApplicationPolicy
      *
      * @return bool
      */
-    public function create(mixed $user, Team $team = null)
+    public function create(mixed $user, ?Team $team = null)
     {
         if ($user instanceof User) {
             $team ??= $user->currentTeam;

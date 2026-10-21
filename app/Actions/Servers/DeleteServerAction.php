@@ -12,8 +12,7 @@ class DeleteServerAction
     public function __construct(
         protected ServerCanBeDeletedAction $serverCanBeDeletedAction,
         protected DeletePrinterAction $deletePrinterAction,
-    ) {
-    }
+    ) {}
 
     public function handle(PrintServer $server, bool $force = false): void
     {

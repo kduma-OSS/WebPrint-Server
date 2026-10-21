@@ -6,38 +6,38 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('navigation.dashboard') }}
-                    </x-jet-nav-link>
+                    </x-nav-link>
 
                     @can('viewAny', \App\Models\PrintJob::class)
-                        <x-jet-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
+                        <x-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
                             {{ __('navigation.print-jobs') }}
-                        </x-jet-nav-link>
+                        </x-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintJobPromise::class)
-                        <x-jet-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
+                        <x-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
                             {{ __('navigation.print-promises') }}
-                        </x-jet-nav-link>
+                        </x-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\PrintServer::class)
-                        <x-jet-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
+                        <x-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
                             {{ __('navigation.print-servers-and-printers') }}
-                        </x-jet-nav-link>
+                        </x-nav-link>
                     @endcan
 
                     @can('viewAny', \App\Models\ClientApplication::class)
-                        <x-jet-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
+                        <x-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
                             {{ __('navigation.client-apps') }}
-                        </x-jet-nav-link>
+                        </x-nav-link>
                     @endcan
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
-                        <x-jet-dropdown align="right" width="60">
+                        <x-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
@@ -68,15 +68,15 @@
 
                                     @can('view', Auth::user()->currentTeam)
                                         <!-- Team Settings -->
-                                        <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                        <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                             {{ __('navigation.team-settings') }}
-                                        </x-jet-dropdown-link>
+                                        </x-dropdown-link>
                                     @endcan
 
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
+                                        <x-dropdown-link href="{{ route('teams.create') }}">
                                             {{ __('navigation.create-team') }}
-                                        </x-jet-dropdown-link>
+                                        </x-dropdown-link>
                                     @endcan
 
                                     @if(($teams = Auth::user()->allTeams())->count())
@@ -88,18 +88,18 @@
                                         </div>
 
                                         @foreach ($teams as $team)
-                                            <x-jet-switchable-team :team="$team" />
+                                            <x-switchable-team :team="$team" />
                                         @endforeach
                                     @endif
                                 </div>
                             </x-slot>
-                        </x-jet-dropdown>
+                        </x-dropdown>
                     </div>
                 @endif
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="48">
+                    <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -124,23 +124,23 @@
                                 {{ __('navigation.manage-account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('navigation.profile') }}
-                            </x-jet-dropdown-link>
+                            </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('navigation.api-tokens') }}
-                                </x-jet-dropdown-link>
+                                </x-dropdown-link>
                             @endif
 
                             @if (
                                 Auth::user()->can('viewAny', \App\Settings\FortifySettings::class)
                                 || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
                             )
-                                <x-jet-dropdown-link href="{{ route('app.settings') }}">
+                                <x-dropdown-link href="{{ route('app.settings') }}">
                                     {{ __('navigation.app-settings') }}
-                                </x-jet-dropdown-link>
+                                </x-dropdown-link>
                             @endif
 
                             <div class="border-t border-gray-100"></div>
@@ -149,13 +149,13 @@
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                <x-dropdown-link href="{{ route('logout') }}"
                                                      @click.prevent="$root.submit();">
                                     {{ __('navigation.log-out') }}
-                                </x-jet-dropdown-link>
+                                </x-dropdown-link>
                             </form>
                         </x-slot>
-                    </x-jet-dropdown>
+                    </x-dropdown>
                 </div>
             </div>
 
@@ -174,32 +174,32 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden lg:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('navigation.dashboard') }}
-            </x-jet-responsive-nav-link>
+            </x-responsive-nav-link>
 
             @can('viewAny', \App\Models\PrintJob::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
+                <x-responsive-nav-link href="{{ route('web-print.jobs.index') }}" :active="request()->routeIs('web-print.jobs.*')">
                     {{ __('navigation.print-jobs') }}
-                </x-jet-responsive-nav-link>
+                </x-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintJobPromise::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
+                <x-responsive-nav-link href="{{ route('web-print.promises.index') }}" :active="request()->routeIs('web-print.promises.*')">
                     {{ __('navigation.print-promises') }}
-                </x-jet-responsive-nav-link>
+                </x-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\PrintServer::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
+                <x-responsive-nav-link href="{{ route('web-print.servers.index') }}" :active="request()->routeIs('web-print.servers.*') || request()->routeIs('web-print.printers.*')">
                     {{ __('navigation.print-servers-and-printers') }}
-                </x-jet-responsive-nav-link>
+                </x-responsive-nav-link>
             @endcan
 
             @can('viewAny', \App\Models\ClientApplication::class)
-                <x-jet-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
+                <x-responsive-nav-link href="{{ route('web-print.apps.index') }}" :active="request()->routeIs('web-print.apps.*')">
                     {{ __('navigation.client-apps') }}
-                </x-jet-responsive-nav-link>
+                </x-responsive-nav-link>
             @endcan
         </div>
 
@@ -220,33 +220,33 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('navigation.profile') }}
-                </x-jet-responsive-nav-link>
+                </x-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                    <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
+                    <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('navigation.api-tokens') }}
-                    </x-jet-responsive-nav-link>
+                    </x-responsive-nav-link>
                 @endif
 
                 @if (
                     Auth::user()->can('viewAny', \App\Settings\FortifySettings::class)
                     || Auth::user()->can('viewAny', \App\Settings\GeneralSettings::class)
                 )
-                    <x-jet-responsive-nav-link href="{{ route('app.settings') }}" :active="request()->routeIs('app.settings')">
+                    <x-responsive-nav-link href="{{ route('app.settings') }}" :active="request()->routeIs('app.settings')">
                         {{ __('navigation.app-settings') }}
-                    </x-jet-responsive-nav-link>
+                    </x-responsive-nav-link>
                 @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                    <x-responsive-nav-link href="{{ route('logout') }}"
                                                @click.prevent="$root.submit();">
                         {{ __('navigation.log-out') }}
-                    </x-jet-responsive-nav-link>
+                    </x-responsive-nav-link>
                 </form>
 
                 <!-- Team Management -->
@@ -259,15 +259,15 @@
 
                     <!-- Team Settings -->
                     @can('view', Auth::user()->currentTeam)
-                        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
+                        <x-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
                             {{ __('navigation.team-settings') }}
-                        </x-jet-responsive-nav-link>
+                        </x-responsive-nav-link>
                     @endcan
 
                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
+                        <x-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
                             {{ __('navigation.create-team') }}
-                        </x-jet-responsive-nav-link>
+                        </x-responsive-nav-link>
                     @endcan
 
                     @if(($teams = Auth::user()->allTeams())->count())
@@ -279,7 +279,7 @@
                         </div>
 
                         @foreach ($teams as $team)
-                            <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
+                            <x-switchable-team :team="$team" component="responsive-nav-link" />
                         @endforeach
                     @endif
                 @endif

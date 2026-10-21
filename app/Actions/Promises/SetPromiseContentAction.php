@@ -11,14 +11,12 @@ class SetPromiseContentAction
 {
     public function __construct(
         protected ClearPromiseContentAction $clearPromiseContentAction,
-    ) {
-    }
+    ) {}
 
     /**
-     * @param  string|null  $name
      * @param  string|UploadedFile|resource  $content
      */
-    public function handle(PrintJobPromise $promise, mixed $content, string $name = null): void
+    public function handle(PrintJobPromise $promise, mixed $content, ?string $name = null): void
     {
         if ($content instanceof UploadedFile) {
             $this->handleUploadedFile($promise, $content, $name);
@@ -29,7 +27,7 @@ class SetPromiseContentAction
         }
     }
 
-    protected function handleUploadedFile(PrintJobPromise $promise, UploadedFile $content, string $name = null): void
+    protected function handleUploadedFile(PrintJobPromise $promise, UploadedFile $content, ?string $name = null): void
     {
         $this->clearPromiseContentAction->handle($promise);
 
@@ -44,7 +42,7 @@ class SetPromiseContentAction
         $promise->save();
     }
 
-    protected function handleString(PrintJobPromise $promise, string $content, string $name = null): void
+    protected function handleString(PrintJobPromise $promise, string $content, ?string $name = null): void
     {
         $this->clearPromiseContentAction->handle($promise);
 
@@ -68,7 +66,7 @@ class SetPromiseContentAction
     /**
      * @param  resource  $content
      */
-    protected function handleResource(PrintJobPromise $promise, mixed $content, string $name = null): void
+    protected function handleResource(PrintJobPromise $promise, mixed $content, ?string $name = null): void
     {
         $this->clearPromiseContentAction->handle($promise);
 

@@ -2,14 +2,16 @@
 
 namespace App\Http\Resources;
 
+use App\Models\PrintJobPromise;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
-/** @mixin \App\Models\PrintJobPromise */
+/** @mixin PrintJobPromise */
 class PrintJobPromiseResource extends JsonResource
 {
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      */
     public function toArray($request): array
     {

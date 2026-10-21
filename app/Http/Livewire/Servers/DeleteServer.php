@@ -12,9 +12,6 @@ class DeleteServer extends Component
 {
     use AuthorizesRequests;
 
-    /**
-     * @var PrintServer
-     */
     public PrintServer $server;
 
     public $confirmingServerDeletion = false;

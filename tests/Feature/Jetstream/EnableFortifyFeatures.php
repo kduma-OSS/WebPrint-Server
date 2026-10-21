@@ -3,6 +3,7 @@
 namespace Tests\Feature\Jetstream;
 
 use App\Settings\FortifySettings;
+use Illuminate\Support\Facades\App;
 use Laravel\Fortify\Features;
 
 trait EnableFortifyFeatures
@@ -39,7 +40,7 @@ trait EnableFortifyFeatures
             ]);
         }
 
-        \Illuminate\Support\Facades\App::get(FortifySettings::class)->fill([
+        App::get(FortifySettings::class)->fill([
             'registration_enabled' => true,
             'password_resets_enabled' => true,
             'update_passwords_enabled' => true,

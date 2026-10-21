@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\ClientApplication;
+use App\Models\PrintServer;
+use App\Models\User;
+
 return [
 
     /*
@@ -72,17 +76,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
         'print_servers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\PrintServer::class,
+            'model' => PrintServer::class,
         ],
 
         'client_applications' => [
             'driver' => 'eloquent',
-            'model' => App\Models\ClientApplication::class,
+            'model' => ClientApplication::class,
         ],
 
         // 'users' => [

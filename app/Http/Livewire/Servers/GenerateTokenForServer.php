@@ -25,9 +25,6 @@ class GenerateTokenForServer extends Component
 
     public $dockerCommand;
 
-    /**
-     * @var PrintServer
-     */
     public PrintServer $server;
 
     public function generateToken(
@@ -53,7 +50,7 @@ class GenerateTokenForServer extends Component
 
         $this->displayingToken = true;
 
-        $this->dispatchBrowserEvent('showing-token-modal');
+        $this->dispatch('showing-token-modal');
     }
 
     public function mount(PrintServer $server)

@@ -9,6 +9,7 @@ use App\Models\ClientApplication;
 use App\Models\Printer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PrintersController extends Controller
 {
@@ -32,7 +33,7 @@ class PrintersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index(Request $request)
     {
@@ -47,7 +48,7 @@ class PrintersController extends Controller
                 $query->forType($type);
             })
             ->get()
-            ->map(fn (Printer $printer): \App\Http\Resources\PrinterResource => new PrinterResource($printer, $request->get('ppd_options', false)));
+            ->map(fn (Printer $printer): PrinterResource => new PrinterResource($printer, $request->get('ppd_options', false)));
 
         return PrinterResource::collection(
             $printers

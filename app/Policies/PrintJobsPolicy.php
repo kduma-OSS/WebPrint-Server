@@ -24,7 +24,7 @@ class PrintJobsPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user, Team $team = null)
+    public function viewAny(mixed $user, ?Team $team = null)
     {
         if ($user instanceof PrintServer) {
             return true;
@@ -89,7 +89,7 @@ class PrintJobsPolicy
      *
      * @return bool
      */
-    public function create(mixed $user, Team $team = null)
+    public function create(mixed $user, ?Team $team = null)
     {
         if ($user instanceof ClientApplication) {
             return true;

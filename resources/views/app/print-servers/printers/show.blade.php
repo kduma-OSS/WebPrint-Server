@@ -20,14 +20,14 @@
                 <livewire:printers.update-printer :printer="$printer" />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
             @can('delete', $printer)
                 <div class="mt-10 sm:mt-0">
                     <livewire:printers.delete-printer :printer="$printer" />
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
 
         </div>

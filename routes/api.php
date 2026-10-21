@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\PrintServiceApi\IndexController;
+use App\Http\Controllers\PrintServiceApi\PrintJobContentController;
+use App\Http\Controllers\PrintServiceApi\PrintJobsController;
+use App\Http\Controllers\WebPrintApi\PrintDialogsController;
+use App\Http\Controllers\WebPrintApi\PrintersController;
+use App\Http\Controllers\WebPrintApi\PrintJobPromisesContentController;
+use App\Http\Controllers\WebPrintApi\PrintJobPromisesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +34,7 @@ Route::name('api.')
                     ->group(function (): void {
                         Route::name('jobs')->apiResource(
                             '/jobs/{job}/content',
-                            \App\Http\Controllers\PrintServiceApi\PrintJobContentController::class,
+                            PrintJobContentController::class,
                             [
                                 'only' => ['index'],
                             ],
@@ -36,12 +43,12 @@ Route::name('api.')
 
                 Route::middleware(['auth:print_service_api'])
                     ->group(function (): void {
-                        Route::get('/', \App\Http\Controllers\PrintServiceApi\IndexController::class)
+                        Route::get('/', IndexController::class)
                             ->name('index');
 
                         Route::apiResource(
                             '/jobs',
-                            \App\Http\Controllers\PrintServiceApi\PrintJobsController::class,
+                            PrintJobsController::class,
                             [
                                 'only' => ['update', 'show', 'index'],
                             ],
@@ -54,12 +61,12 @@ Route::name('api.')
             ->group(function (): void {
                 Route::middleware(['auth:web_print_api'])
                     ->group(function (): void {
-                        Route::get('/', \App\Http\Controllers\WebPrintApi\IndexController::class)
+                        Route::get('/', App\Http\Controllers\WebPrintApi\IndexController::class)
                             ->name('index');
 
                         Route::apiResource(
                             '/printers',
-                            \App\Http\Controllers\WebPrintApi\PrintersController::class,
+                            PrintersController::class,
                             [
                                 'only' => ['show', 'index'],
                             ],
@@ -67,7 +74,7 @@ Route::name('api.')
 
                         Route::name('promises')->apiResource(
                             '/promises/{promise}/content',
-                            \App\Http\Controllers\WebPrintApi\PrintJobPromisesContentController::class,
+                            PrintJobPromisesContentController::class,
                             [
                                 'only' => ['index', 'store'],
                             ],
@@ -75,7 +82,7 @@ Route::name('api.')
 
                         Route::apiResource(
                             '/promises',
-                            \App\Http\Controllers\WebPrintApi\PrintJobPromisesController::class,
+                            PrintJobPromisesController::class,
                             [
                                 'only' => ['destroy', 'update', 'show', 'store', 'index'],
                             ],
@@ -83,7 +90,7 @@ Route::name('api.')
 
                         Route::apiResource(
                             '/promises.dialog',
-                            \App\Http\Controllers\WebPrintApi\PrintDialogsController::class,
+                            PrintDialogsController::class,
                             [
                                 'only' => ['store', 'index'],
                             ],
@@ -91,7 +98,7 @@ Route::name('api.')
 
                         Route::apiResource(
                             '/jobs',
-                            \App\Http\Controllers\WebPrintApi\PrintJobsController::class,
+                            App\Http\Controllers\WebPrintApi\PrintJobsController::class,
                             [
                                 'only' => ['store'],
                             ],

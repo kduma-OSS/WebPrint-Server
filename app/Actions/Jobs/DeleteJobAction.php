@@ -10,8 +10,7 @@ class DeleteJobAction
     public function __construct(
         protected DeletePromiseAction $deletePromiseAction,
         protected ClearJobContentAction $clearJobContentAction,
-    ) {
-    }
+    ) {}
 
     public function handle(PrintJob $job): void
     {

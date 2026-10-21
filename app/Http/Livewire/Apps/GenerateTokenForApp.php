@@ -22,9 +22,6 @@ class GenerateTokenForApp extends Component
 
     public $envVariables;
 
-    /**
-     * @var ClientApplication
-     */
     public ClientApplication $app;
 
     public function generateToken(
@@ -48,7 +45,7 @@ class GenerateTokenForApp extends Component
 
         $this->displayingToken = true;
 
-        $this->dispatchBrowserEvent('showing-token-modal');
+        $this->dispatch('showing-token-modal');
     }
 
     public function mount(ClientApplication $app)

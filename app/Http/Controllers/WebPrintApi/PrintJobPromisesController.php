@@ -12,6 +12,8 @@ use App\Models\ClientApplication;
 use App\Models\Enums\PrintJobPromiseStatusEnum;
 use App\Models\PrintJobPromise;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 class PrintJobPromisesController extends Controller
@@ -36,7 +38,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index(Request $request)
     {
@@ -56,7 +58,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return PrintJobPromiseResource|\Illuminate\Http\Response
+     * @return PrintJobPromiseResource|Response
      */
     public function store(
         Request $request,
@@ -87,7 +89,7 @@ class PrintJobPromisesController extends Controller
             'headless' => ['nullable', 'boolean'],
         ]);
 
-        $promise = new PrintJobPromise();
+        $promise = new PrintJobPromise;
         $promise->client_application_id = $client_application->id;
         $promise->status = $validated['headless'] ?? false ? PrintJobPromiseStatusEnum::Ready : PrintJobPromiseStatusEnum::New;
         $promise->name = $validated['name'];
@@ -141,7 +143,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return PrintJobPromiseResource|\Illuminate\Http\Response
+     * @return PrintJobPromiseResource|Response
      */
     public function show(PrintJobPromise $promise): PrintJobPromiseResource
     {
@@ -153,7 +155,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(
         Request $request,
@@ -190,7 +192,7 @@ class PrintJobPromisesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(PrintJobPromise $promise, CancelPromiseAction $cancelPromiseAction)
     {

@@ -20,7 +20,7 @@
                 <livewire:apps.create-app />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
         </div>
     </div>

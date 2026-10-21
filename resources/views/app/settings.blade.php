@@ -12,14 +12,14 @@
                     @livewire('settings.general-settings-update-form')
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
             @can('viewAny', \App\Settings\FortifySettings::class)
                 <div class="mt-10 sm:mt-0">
                     @livewire('settings.fortify-settings-update-form')
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
         </div>
     </div>
