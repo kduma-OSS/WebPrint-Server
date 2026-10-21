@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Settings\GeneralSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\Sanctum;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -64,12 +65,29 @@ class RuntimeUpgradeTest extends TestCase
         $this->assertSame('pl', app(GeneralSettings::class)->language);
     }
 
+    public function test_user_can_update_a_printer_owned_by_their_team(): void
+    {
+        $user = User::factory()->withNonPersonalTeam()->create();
+        $server = PrintServer::factory()->recycle($user->currentTeam)->create();
+        $printer = Printer::factory()->for($server, 'Server')->create(['name' => 'Original printer']);
+
+        Sanctum::actingAs($user, ['*']);
+
+        Livewire::test(UpdatePrinter::class, ['printer' => $printer])
+            ->set('name', 'Updated printer')
+            ->call('save')
+            ->assertHasNoErrors()
+            ->assertDispatched('saved');
+
+        $this->assertSame('Updated printer', $printer->fresh()->name);
+    }
+
     public function test_user_cannot_mount_another_teams_printer_editor_and_save_changes(): void
     {
         $user = User::factory()->withNonPersonalTeam()->create();
         $printer = Printer::factory()->create(['name' => 'Original printer']);
 
-        $this->actingAs($user);
+        Sanctum::actingAs($user, ['*']);
 
         Livewire::test(UpdatePrinter::class, ['printer' => $printer])
             ->set('name', 'Unauthorized change')
