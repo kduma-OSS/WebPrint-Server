@@ -11,6 +11,7 @@ use App\Models\PrintJobPromise;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -78,11 +79,15 @@ class PrintJobPromisesContentController extends Controller
         if ($request->hasFile('content')) {
             $file = $request->file('content');
 
+            Validator::make(['name' => $file->getClientOriginalName()], [
+                'name' => ['required', 'string', 'max:255'],
+            ])->validate();
+
             $setPromiseContentAction->handle($promise, $file);
         } elseif ($request->has('content')) {
             $validated = $request->validate([
-                'content' => 'required',
-                'name' => $promise->file_name ? 'nullable' : 'required',
+                'content' => ['required', 'string'],
+                'name' => [$promise->file_name ? 'nullable' : 'required', 'string', 'max:255'],
             ]);
 
             $setPromiseContentAction->handle(
@@ -91,10 +96,14 @@ class PrintJobPromisesContentController extends Controller
                 name: $validated['name'] ?? $promise->file_name
             );
         } else {
+            $validated = Validator::make(['name' => $request->header('X-File-Name')], [
+                'name' => ['nullable', 'string', 'max:255'],
+            ])->validate();
+
             $setPromiseContentAction->handle(
                 promise: $promise,
                 content: $request->getContent(true),
-                name: $request->hasHeader('X-File-Name') && $request->header('X-File-Name') ? $request->header('X-File-Name') : null,
+                name: $validated['name'],
             );
         }
 

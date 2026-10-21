@@ -79,13 +79,13 @@ class PrintJobPromisesController extends Controller
             'printer' => ['nullable', Rule::in($client_printers_ulids)],
             'available_printers' => ['nullable', 'array'],
             'available_printers.*' => ['string', Rule::in($client_printers_ulids)],
-            'type' => 'required',
+            'type' => ['required', 'string', 'max:255'],
             'ppd_options' => ['nullable', 'array'],
             'ppd_options.*' => ['required', 'string'],
             'meta' => ['nullable', 'array'],
             'meta.*' => ['required', 'string'],
-            'content' => 'nullable',
-            'file_name' => 'required_with:content',
+            'content' => ['nullable', $request->hasFile('content') ? 'file' : 'string'],
+            'file_name' => ['required_with:content', 'nullable', 'string', 'max:255'],
             'headless' => ['nullable', 'boolean'],
         ]);
 
