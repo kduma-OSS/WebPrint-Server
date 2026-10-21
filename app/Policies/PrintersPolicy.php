@@ -22,7 +22,7 @@ class PrintersPolicy
      *
      * @return bool
      */
-    public function viewAny(mixed $user, PrintServer $server = null)
+    public function viewAny(mixed $user, ?PrintServer $server = null)
     {
         if ($user instanceof ClientApplication) {
             return true;
@@ -79,7 +79,7 @@ class PrintersPolicy
      *
      * @return bool
      */
-    public function create(mixed $user, PrintServer $server = null)
+    public function create(mixed $user, ?PrintServer $server = null)
     {
         if ($user instanceof User) {
             $team = $server !== null ? $server->Team : $user->currentTeam;

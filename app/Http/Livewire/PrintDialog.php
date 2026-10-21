@@ -93,7 +93,7 @@ class PrintDialog extends Component
         }
 
         if ($this->dialog->redirect_url) {
-            $uri = Uri::createFromString($this->dialog->redirect_url);
+            $uri = Uri::new($this->dialog->redirect_url);
 
             if ($uri->getQuery() === null) {
                 $uri = $uri->withQuery(http_build_query([
@@ -136,7 +136,7 @@ class PrintDialog extends Component
         }
 
         if ($this->dialog->redirect_url) {
-            $uri = Uri::createFromString($this->dialog->redirect_url);
+            $uri = Uri::new($this->dialog->redirect_url);
 
             if ($uri->getQuery() === null) {
                 $uri = $uri->withQuery(http_build_query([

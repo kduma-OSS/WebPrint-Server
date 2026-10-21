@@ -21,3 +21,5 @@ yarn-error.log
 /.phpstorm.meta.php
 /build
 .DS_Store
+
+.phpunit.cache/

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CreatePromisesTest extends TestCase
@@ -42,10 +43,8 @@ class CreatePromisesTest extends TestCase
             ->assertForbidden();
     }
 
-    /**
-     * @dataProvider providesDataForCreate
-     */
-    public function test_can_create_with_correct_token(callable $post, callable $expected, callable $additional = null): void
+    #[DataProvider('providesDataForCreate')]
+    public function test_can_create_with_correct_token(callable $post, callable $expected, ?callable $additional = null): void
     {
         Sanctum::actingAs(
             $client = ClientApplication::factory()->create(),
@@ -95,7 +94,7 @@ class CreatePromisesTest extends TestCase
         ]);
     }
 
-    public function providesDataForCreate(): \Generator
+    public static function providesDataForCreate(): \Generator
     {
         yield 'minimal' => [
             fn (Collection $printers, Collection $printers_ppd, CreatePromisesTest $test): array => [

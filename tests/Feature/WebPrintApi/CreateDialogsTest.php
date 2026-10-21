@@ -9,6 +9,7 @@ use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CreateDialogsTest extends TestCase
@@ -144,7 +145,7 @@ class CreateDialogsTest extends TestCase
         ]);
     }
 
-    /** @dataProvider correctValues */
+    #[DataProvider('correctValues')]
     public function test_sets_correct_values(array $post, array $expected): void
     {
         Sanctum::actingAs(
@@ -170,7 +171,7 @@ class CreateDialogsTest extends TestCase
         ]);
     }
 
-    public function correctValues(): \Generator
+    public static function correctValues(): \Generator
     {
         yield 'auto_print' => [
             [
