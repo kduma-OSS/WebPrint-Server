@@ -25,14 +25,14 @@
                 <livewire:servers.update-server :server="$server" />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
             @can('generateToken', $server)
                 <div class="mt-10 sm:mt-0">
                     <livewire:servers.generate-token-for-server :server="$server" />
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
 
             @can('delete', $server)
@@ -40,7 +40,7 @@
                     <livewire:servers.delete-server :server="$server" />
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
 
         </div>

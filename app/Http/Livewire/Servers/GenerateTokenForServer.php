@@ -50,7 +50,7 @@ class GenerateTokenForServer extends Component
 
         $this->displayingToken = true;
 
-        $this->dispatchBrowserEvent('showing-token-modal');
+        $this->dispatch('showing-token-modal');
     }
 
     public function mount(PrintServer $server)

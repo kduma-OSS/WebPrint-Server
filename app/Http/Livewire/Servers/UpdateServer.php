@@ -47,7 +47,7 @@ class UpdateServer extends Component
 
         $action->handle($this->server, $this->name, $this->location);
 
-        $this->emit('saved');
+        $this->dispatch('saved');
     }
 
     public function render()

@@ -70,7 +70,7 @@ class UpdateApp extends Component
         $action->handle($this->app, $this->name, $this->url);
         $printersAction->handle($this->app, $this->printers);
 
-        $this->emit('saved');
+        $this->dispatch('saved');
     }
 
     public function render()

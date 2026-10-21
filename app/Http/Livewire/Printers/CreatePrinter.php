@@ -62,7 +62,7 @@ class CreatePrinter extends Component
 
         $printer = $action->handle($this->server, $this->name, $this->uri, $languages);
 
-        $this->emit('saved');
+        $this->dispatch('saved');
 
         return redirect()->route('web-print.printers.show', $printer);
     }

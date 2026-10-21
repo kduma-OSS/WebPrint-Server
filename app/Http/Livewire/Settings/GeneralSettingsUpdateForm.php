@@ -62,9 +62,9 @@ class GeneralSettingsUpdateForm extends Component
 
         $settings->save();
 
-        $this->emit('saved');
+        $this->dispatch('saved');
 
-        $this->emit('refresh-navigation-menu');
+        $this->dispatch('refresh-navigation-menu');
     }
 
     public function render()

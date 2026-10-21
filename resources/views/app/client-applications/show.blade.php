@@ -21,14 +21,14 @@
                 <livewire:apps.update-app :app="$app" />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
             @can('generateToken', $app)
                 <div class="mt-10 sm:mt-0">
                     <livewire:apps.generate-token-for-app :app="$app" />
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
 
             @can('delete', $app)
@@ -36,7 +36,7 @@
                     <livewire:apps.delete-app :app="$app" />
                 </div>
 
-                <x-jet-section-border />
+                <x-section-border />
             @endcan
 
         </div>

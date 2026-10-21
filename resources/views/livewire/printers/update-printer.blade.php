@@ -1,4 +1,4 @@
-<x-jet-form-section submit="save">
+<x-form-section submit="save">
 
     <x-slot name="title">
         {{ __('printers.update.title') }}
@@ -11,87 +11,87 @@
     <x-slot name="form">
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('printers.name_label') }}" />
+            <x-label for="name" value="{{ __('printers.name_label') }}" />
             @can('update', $printer)
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" />
+                <x-input id="name" type="text" class="mt-1 block w-full" wire:model="name" />
             @else
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" disabled readonly/>
+                <x-input id="name" type="text" class="mt-1 block w-full" wire:model="name" disabled readonly/>
             @endcan
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-input-error for="name" class="mt-2" />
         </div>
         <!-- Location -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="location" value="{{ __('printers.location_label') }}" />
+            <x-label for="location" value="{{ __('printers.location_label') }}" />
             @can('update', $printer)
-                <x-jet-input id="location" type="text" class="mt-1 block w-full" wire:model.defer="location" />
+                <x-input id="location" type="text" class="mt-1 block w-full" wire:model="location" />
             @else
-                <x-jet-input id="location" type="text" class="mt-1 block w-full" wire:model.defer="location" disabled readonly/>
+                <x-input id="location" type="text" class="mt-1 block w-full" wire:model="location" disabled readonly/>
             @endcan
-            <x-jet-input-error for="location" class="mt-2" />
+            <x-input-error for="location" class="mt-2" />
         </div>
         <!-- URI -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="uri" value="{{ __('printers.uri_label') }}" />
+            <x-label for="uri" value="{{ __('printers.uri_label') }}" />
             @can('update', $printer)
-                <x-jet-input id="uri" type="text" class="mt-1 block w-full" wire:model.defer="uri" />
+                <x-input id="uri" type="text" class="mt-1 block w-full" wire:model="uri" />
             @else
-                <x-jet-input id="uri" type="text" class="mt-1 block w-full" wire:model.defer="uri" disabled readonly/>
+                <x-input id="uri" type="text" class="mt-1 block w-full" wire:model="uri" disabled readonly/>
             @endcan
-            <x-jet-input-error for="uri" class="mt-2" />
+            <x-input-error for="uri" class="mt-2" />
         </div>
         <!-- Languages -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="languages" value="{{ __('printers.languages_label') }}" />
+            <x-label for="languages" value="{{ __('printers.languages_label') }}" />
             @can('update', $printer)
-                <x-jet-input id="languages" type="text" class="mt-1 block w-full" wire:model.defer="languages" />
+                <x-input id="languages" type="text" class="mt-1 block w-full" wire:model="languages" />
             @else
-                <x-jet-input id="languages" type="text" class="mt-1 block w-full" wire:model.defer="languages" disabled readonly/>
+                <x-input id="languages" type="text" class="mt-1 block w-full" wire:model="languages" disabled readonly/>
             @endcan
-            <x-jet-input-error for="languages" class="mt-2" />
+            <x-input-error for="languages" class="mt-2" />
         </div>
         <!-- Enabled -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="enabled" value="{{ __('printers.enabled_label') }}" />
+            <x-label for="enabled" value="{{ __('printers.enabled_label') }}" />
             @can('update', $printer)
-                <x-jet-checkbox id="enabled" type="text" class="mt-1 block" wire:model.defer="enabled" />
+                <x-checkbox id="enabled" type="text" class="mt-1 block" wire:model="enabled" />
             @else
-                <x-jet-checkbox id="enabled" type="text" class="mt-1 block" wire:model.defer="enabled" disabled readonly/>
+                <x-checkbox id="enabled" type="text" class="mt-1 block" wire:model="enabled" disabled readonly/>
             @endcan
-            <x-jet-input-error for="enabled" class="mt-2" />
+            <x-input-error for="enabled" class="mt-2" />
         </div>
         <!-- PPD -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="ppd" value="{{ __('printers.ppd_label') }}" />
+            <x-label for="ppd" value="{{ __('printers.ppd_label') }}" />
             @can('update', $printer)
-                <x-jet-checkbox id="ppd" type="text" class="mt-1 block" wire:model="ppd" />
+                <x-checkbox id="ppd" type="text" class="mt-1 block" wire:model.live="ppd" />
             @else
-                <x-jet-checkbox id="ppd" type="text" class="mt-1 block" wire:model="ppd" disabled readonly/>
+                <x-checkbox id="ppd" type="text" class="mt-1 block" wire:model.live="ppd" disabled readonly/>
             @endcan
-            <x-jet-input-error for="ppd" class="mt-2" />
+            <x-input-error for="ppd" class="mt-2" />
         </div>
         @if($ppd)
             <!-- PPD Options -->
             <div class="col-span-6 sm:col-span-4">
-                <x-jet-label for="options" value="{{ __('printers.options_label') }}" />
+                <x-label for="options" value="{{ __('printers.options_label') }}" />
                 @can('update', $printer)
-                    <x-jet-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model.defer="options" />
+                    <x-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model="options" />
                 @else
-                    <x-jet-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model.defer="options" disabled readonly/>
+                    <x-textarea id="options" rows="{{ min(10, \Illuminate\Support\Str::linesCount($options ?? '') + 1) }}" class="mt-1 block w-full" wire:model="options" disabled readonly/>
                 @endcan
-                <x-jet-input-error for="options" class="mt-2" />
+                <x-input-error for="options" class="mt-2" />
             </div>
         @endif
     </x-slot>
 
     @can('update', $printer)
         <x-slot name="actions">
-            <x-jet-action-message class="mr-3" on="saved">
+            <x-action-message class="mr-3" on="saved">
                 {{ __('Saved.') }}
-            </x-jet-action-message>
+            </x-action-message>
 
-            <x-jet-button>
+            <x-button>
                 {{ __('Save') }}
-            </x-jet-button>
+            </x-button>
         </x-slot>
     @endcan
-</x-jet-form-section>
+</x-form-section>

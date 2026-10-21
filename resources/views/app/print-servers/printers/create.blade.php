@@ -20,7 +20,7 @@
                 <livewire:printers.create-printer :server="$server" />
             </div>
 
-            <x-jet-section-border />
+            <x-section-border />
 
         </div>
     </div>

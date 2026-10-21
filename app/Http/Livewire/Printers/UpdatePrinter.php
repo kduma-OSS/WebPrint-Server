@@ -106,7 +106,7 @@ class UpdatePrinter extends Component
             ? json_encode($this->printer->ppd_options, JSON_PRETTY_PRINT)
             : '';
 
-        $this->emit('saved');
+        $this->dispatch('saved');
     }
 
     public function render()

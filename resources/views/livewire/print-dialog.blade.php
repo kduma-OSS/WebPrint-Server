@@ -98,7 +98,7 @@
                                                         @forelse($dialog->JobPromise->AvailablePrinters as $printer)
                                                             <div class="relative border {{ $loop->first ? 'rounded-tl-md rounded-tr-md' : '' }} {{ $loop->last ? 'rounded-bl-md rounded-br-md' : '' }} p-4 flex {{ $printer->ulid == $selected_printer_ulid ? 'bg-indigo-50 border-indigo-200 z-10' : 'border-gray-200' }}">
                                                                 <div class="flex items-center h-5">
-                                                                    <input id="printer-{{ $printer->ulid }}" name="printer" wire:model="selected_printer_ulid" wire:click="goToMainView" value="{{ $printer->ulid }}" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" {{ $printer->ulid == $selected_printer_ulid ? 'checked' : '' }}>
+                                                                    <input id="printer-{{ $printer->ulid }}" name="printer" wire:model.live="selected_printer_ulid" wire:click="goToMainView" value="{{ $printer->ulid }}" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" {{ $printer->ulid == $selected_printer_ulid ? 'checked' : '' }}>
                                                                 </div>
                                                                 <label for="printer-{{ $printer->ulid }}" class="ml-3 flex flex-col cursor-pointer">
                                                                     <span class="block text-sm font-medium {{ $printer->ulid == $selected_printer_ulid ? 'text-indigo-900' : 'text-gray-900' }}">
@@ -232,7 +232,7 @@
                                                         {{ $option['name'] }}
                                                     </label>
                                                     <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                                        <select id="{{ $option['key'] }}" name="{{ $option['key'] }}" wire:model="ppd_options.{{ $option['key'] }}" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                                        <select id="{{ $option['key'] }}" name="{{ $option['key'] }}" wire:model.live="ppd_options.{{ $option['key'] }}" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                                                             @foreach($option['values'] as $value)
                                                                 <option value="{{ $value['key'] }}">{{ $value['name'] }}</option>
                                                             @endforeach

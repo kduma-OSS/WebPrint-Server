@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-action-section>
     <x-slot name="title">
         {{ __('print-servers.delete.title') }}
     </x-slot>
@@ -14,9 +14,9 @@
             </div>
 
             <div class="mt-5">
-                <x-jet-danger-button disabled>
+                <x-danger-button disabled>
                     {{ __('print-servers.delete.button') }}
-                </x-jet-danger-button>
+                </x-danger-button>
             </div>
         @else
             <div class="max-w-xl text-sm text-gray-600">
@@ -24,13 +24,13 @@
             </div>
 
             <div class="mt-5">
-                <x-jet-danger-button wire:click="$toggle('confirmingServerDeletion')" wire:loading.attr="disabled">
+                <x-danger-button wire:click="$toggle('confirmingServerDeletion')" wire:loading.attr="disabled">
                     {{ __('print-servers.delete.button') }}
-                </x-jet-danger-button>
+                </x-danger-button>
             </div>
 
             <!-- Delete Team Confirmation Modal -->
-            <x-jet-confirmation-modal wire:model="confirmingServerDeletion">
+            <x-confirmation-modal wire:model="confirmingServerDeletion">
                 <x-slot name="title">
                     {{ __('print-servers.delete.modal.title') }}
                 </x-slot>
@@ -40,15 +40,15 @@
                 </x-slot>
 
                 <x-slot name="footer">
-                    <x-jet-secondary-button wire:click="$toggle('confirmingServerDeletion')" wire:loading.attr="disabled">
+                    <x-secondary-button wire:click="$toggle('confirmingServerDeletion')" wire:loading.attr="disabled">
                         {{ __('common.buttons.cancel') }}
-                    </x-jet-secondary-button>
+                    </x-secondary-button>
 
-                    <x-jet-danger-button class="ml-3" wire:click="deleteServer" wire:loading.attr="disabled">
+                    <x-danger-button class="ml-3" wire:click="deleteServer" wire:loading.attr="disabled">
                         {{ __('print-servers.delete.button') }}
-                    </x-jet-danger-button>
+                    </x-danger-button>
                 </x-slot>
-            </x-jet-confirmation-modal>
+            </x-confirmation-modal>
         @endif
     </x-slot>
-</x-jet-action-section>
+</x-action-section>

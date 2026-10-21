@@ -1,4 +1,4 @@
-<x-jet-form-section submit="save">
+<x-form-section submit="save">
 
     <x-slot name="title">
         {{ __('client-applications.update.title') }}
@@ -11,36 +11,36 @@
     <x-slot name="form">
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('client-applications.name_label') }}" />
+            <x-label for="name" value="{{ __('client-applications.name_label') }}" />
             @can('update', $app)
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" />
+                <x-input id="name" type="text" class="mt-1 block w-full" wire:model="name" />
             @else
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" disabled readonly/>
+                <x-input id="name" type="text" class="mt-1 block w-full" wire:model="name" disabled readonly/>
             @endcan
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-input-error for="name" class="mt-2" />
         </div>
 
         <!-- URL -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="url" value="{{ __('client-applications.url_label') }}" />
+            <x-label for="url" value="{{ __('client-applications.url_label') }}" />
             @can('update', $app)
-                <x-jet-input id="url" type="text" class="mt-1 block w-full" wire:model.defer="url" />
+                <x-input id="url" type="text" class="mt-1 block w-full" wire:model="url" />
             @else
-                <x-jet-input id="url" type="text" class="mt-1 block w-full" wire:model.defer="url" disabled readonly/>
+                <x-input id="url" type="text" class="mt-1 block w-full" wire:model="url" disabled readonly/>
             @endcan
-            <x-jet-input-error for="url" class="mt-2" />
+            <x-input-error for="url" class="mt-2" />
         </div>
 
         <div class="col-span-6">
-            <x-jet-label for="printers" value="{{ __('client-applications.printers_label') }}" />
+            <x-label for="printers" value="{{ __('client-applications.printers_label') }}" />
 
             <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach ($this->available_printers as $printer)
                     <label class="flex items-center">
                         @can('update', $app)
-                            <x-jet-checkbox wire:model.defer="printers" :value="$printer->ulid"/>
+                            <x-checkbox wire:model="printers" :value="$printer->ulid"/>
                         @else
-                            <x-jet-checkbox wire:model.defer="printers" :value="$printer->ulid" disabled/>
+                            <x-checkbox wire:model="printers" :value="$printer->ulid" disabled/>
                         @endcan
                         <span class="ml-2 text-sm text-gray-600">{{ $printer->name }} @ {{ $printer->Server->name }}</span>
                     </label>
@@ -51,13 +51,13 @@
 
     @can('update', $app)
         <x-slot name="actions">
-            <x-jet-action-message class="mr-3" on="saved">
+            <x-action-message class="mr-3" on="saved">
                 {{ __('Saved.') }}
-            </x-jet-action-message>
+            </x-action-message>
 
-            <x-jet-button>
+            <x-button>
                 {{ __('Save') }}
-            </x-jet-button>
+            </x-button>
         </x-slot>
     @endcan
-</x-jet-form-section>
+</x-form-section>
