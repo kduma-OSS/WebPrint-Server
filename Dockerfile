@@ -1,22 +1,21 @@
-FROM php:8.1-cli-alpine AS composer_base
-WORKDIR /var/www/html
-
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-
-
-FROM node:19-alpine AS vite_base
+FROM node:22-alpine AS vite_base
 WORKDIR /var/www/html
 
 
 
-FROM php:8.1-fpm-alpine AS php_base
+FROM php:8.5-fpm-alpine AS php_base
 WORKDIR /var/www/html
 
-RUN docker-php-ext-install pdo pdo_mysql
-RUN docker-php-ext-install opcache
+RUN apk add --no-cache icu-libs libzip oniguruma
+RUN apk add --no-cache --virtual .php-build-deps icu-dev libzip-dev oniguruma-dev \
+    && docker-php-ext-install pdo_mysql intl mbstring zip \
+    && apk del .php-build-deps
 
 COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+FROM php_base AS composer_base
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 
 
 

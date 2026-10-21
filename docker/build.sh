@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Get directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -30,7 +32,7 @@ COMPOSER_BASE_IMAGE=$(docker build --target composer_base --file "$DIR/../Docker
 VITE_BASE_IMAGE=$(docker build --target vite_base --file "$DIR/../Dockerfile" "$DIR/../build/src" --quiet)
 
 # Run composer install on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
+docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
 
 # Run composer dump-autoload on composer_base image
 docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" composer dump-autoload --optimize --apcu --no-dev
@@ -43,9 +45,6 @@ docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE
 
 # Run settings:discover artisan command on composer_base image
 docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" php artisan settings:discover
-
-# Run livewire:discover artisan command on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" php artisan livewire:discover
 
 # Run npm ci on vite_base image
 docker run --rm --volume "$DIR/../build/src:/var/www/html" "$VITE_BASE_IMAGE" npm ci
