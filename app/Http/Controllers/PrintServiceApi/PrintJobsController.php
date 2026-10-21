@@ -43,6 +43,7 @@ class PrintJobsController extends Controller
 
             $jobs_list = $print_server->Jobs()->where('status', 'new')
                 ->oldest('print_jobs.created_at')
+                ->oldest('print_jobs.id')
                 ->pluck('print_jobs.ulid');
         } while ($long_polling && ! count($jobs_list) && $attempts <= 10);
 
