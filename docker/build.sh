@@ -5,6 +5,16 @@ set -euo pipefail
 # Get directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Keep generated files owned by the user running the build.
+BUILD_USER="$(id -u):$(id -g)"
+
+run_in_build_container() {
+    docker run --rm --user "$BUILD_USER" \
+        --env COMPOSER_HOME=/tmp/composer \
+        --env npm_config_cache=/tmp/npm \
+        --volume "$DIR/../build/src:/var/www/html" "$@"
+}
+
 # Delete build directory if it exists
 if [ -d "$DIR/../build" ]; then
     rm -rf "$DIR/../build"
@@ -32,25 +42,25 @@ COMPOSER_BASE_IMAGE=$(docker build --target composer_base --file "$DIR/../Docker
 VITE_BASE_IMAGE=$(docker build --target vite_base --file "$DIR/../Dockerfile" "$DIR/../build/src" --quiet)
 
 # Run composer install on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
+run_in_build_container "$COMPOSER_BASE_IMAGE" composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
 
 # Run composer dump-autoload on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" composer dump-autoload --optimize --apcu --no-dev
+run_in_build_container "$COMPOSER_BASE_IMAGE" composer dump-autoload --optimize --apcu --no-dev
 
 # Run view:cache artisan command on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" php artisan view:cache
+run_in_build_container "$COMPOSER_BASE_IMAGE" php artisan view:cache
 
 # Run event:cache artisan command on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" php artisan event:cache
+run_in_build_container "$COMPOSER_BASE_IMAGE" php artisan event:cache
 
 # Run settings:discover artisan command on composer_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$COMPOSER_BASE_IMAGE" php artisan settings:discover
+run_in_build_container "$COMPOSER_BASE_IMAGE" php artisan settings:discover
 
 # Run npm ci on vite_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$VITE_BASE_IMAGE" npm ci
+run_in_build_container "$VITE_BASE_IMAGE" npm ci
 
 # Run npm run build on vite_base image
-docker run --rm --volume "$DIR/../build/src:/var/www/html" "$VITE_BASE_IMAGE" npm run build
+run_in_build_container "$VITE_BASE_IMAGE" npm run build
 
 # remove node_modules
 rm -rf "$DIR/../build/src/node_modules"
