@@ -8,8 +8,10 @@ use App\Models\PrintJobPromise;
 use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\DataProvider;
+use RuntimeException;
 use Tests\TestCase;
 
 class CreateDialogsTest extends TestCase
@@ -169,6 +171,70 @@ class CreateDialogsTest extends TestCase
         $response->assertJson([
             'data' => $expected,
         ]);
+    }
+
+    #[DataProvider('invalidRedirects')]
+    public function test_invalid_redirect_keeps_the_existing_dialog(mixed $redirect): void
+    {
+        Sanctum::actingAs($client = ClientApplication::factory()->create(), guard: 'web_print_api');
+        $promise = PrintJobPromise::factory()->for($client)->withoutContent()->create();
+        $dialog = PrintDialog::factory()->for($promise, 'JobPromise')->create();
+        $original = $dialog->getAttributes();
+
+        $this->postJson('/api/web-print/promises/'.$promise->ulid.'/dialog', [
+            'redirect_url' => $redirect,
+        ])->assertUnprocessable()->assertJsonValidationErrors('redirect_url');
+
+        $this->assertEquals($original, $dialog->fresh()->getAttributes());
+        $this->assertDatabaseCount('print_dialogs', 1);
+    }
+
+    public static function invalidRedirects(): array
+    {
+        return [
+            ['https://example.com/?q='.str_repeat('a', 233)],
+            ['https://example.com/?q='.str_repeat('ą', 233)],
+            [['https://example.com/']],
+        ];
+    }
+
+    public function test_redirect_accepts_255_characters(): void
+    {
+        Sanctum::actingAs($client = ClientApplication::factory()->create(), guard: 'web_print_api');
+        $promise = PrintJobPromise::factory()->for($client)->withoutContent()->create();
+        $url = 'https://example.com/?q='.str_repeat('a', 232);
+        $this->assertSame(255, strlen($url));
+
+        $this->postJson('/api/web-print/promises/'.$promise->ulid.'/dialog', [
+            'redirect_url' => $url,
+        ])->assertOk()->assertJsonPath('data.redirect_url', $url);
+    }
+
+    public function test_database_failure_rolls_back_dialog_replacement(): void
+    {
+        Sanctum::actingAs($client = ClientApplication::factory()->create(), guard: 'web_print_api');
+        $promise = PrintJobPromise::factory()->for($client)->withoutContent()->create();
+        $dialog = PrintDialog::factory()->for($promise, 'JobPromise')->create();
+        $original = $dialog->getAttributes();
+        $this->withoutExceptionHandling();
+
+        Event::listen('eloquent.creating: '.PrintDialog::class, function (): void {
+            throw new RuntimeException('Simulated database failure');
+        });
+
+        try {
+            $this->postJson('/api/web-print/promises/'.$promise->ulid.'/dialog', [
+                'redirect_url' => 'https://example.com/',
+            ]);
+            $this->fail('Expected the database failure to propagate.');
+        } catch (RuntimeException $exception) {
+            $this->assertSame('Simulated database failure', $exception->getMessage());
+        } finally {
+            Event::forget('eloquent.creating: '.PrintDialog::class);
+        }
+
+        $this->assertEquals($original, $dialog->fresh()?->getAttributes());
+        $this->assertDatabaseCount('print_dialogs', 1);
     }
 
     public static function correctValues(): \Generator

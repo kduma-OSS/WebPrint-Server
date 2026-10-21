@@ -9,6 +9,7 @@ use App\Models\PrintServer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class SetJobsStatusTest extends TestCase
@@ -126,6 +127,52 @@ class SetJobsStatusTest extends TestCase
         $this->putJson('/api/print-service/jobs/'.$job->ulid, [
             'status' => PrintJobStatusEnum::Failed,
         ])->assertJsonValidationErrorFor('status_message');
+    }
+
+    #[DataProvider('invalidMessages')]
+    public function test_invalid_message_does_not_change_the_job(string $status, mixed $message): void
+    {
+        Sanctum::actingAs($server = PrintServer::factory()->create(), guard: 'print_service_api');
+        $printer = Printer::factory()->for($server, 'Server')->create();
+        $job = PrintJob::factory()->recycle($printer)->create();
+
+        $this->putJson('/api/print-service/jobs/'.$job->ulid, [
+            'status' => $status,
+            'status_message' => $message,
+        ])->assertUnprocessable()->assertJsonValidationErrors('status_message');
+
+        $this->assertSame(PrintJobStatusEnum::New, $job->fresh()->status);
+        $this->assertNull($job->fresh()->status_message);
+    }
+
+    public static function invalidMessages(): \Generator
+    {
+        foreach (['failed', 'printing'] as $status) {
+            yield $status.' ASCII' => [$status, str_repeat('a', 256)];
+            yield $status.' multibyte' => [$status, str_repeat('ą', 256)];
+            yield $status.' array' => [$status, ['invalid']];
+        }
+    }
+
+    #[DataProvider('boundaryMessages')]
+    public function test_message_accepts_255_characters(string $message): void
+    {
+        Sanctum::actingAs($server = PrintServer::factory()->create(), guard: 'print_service_api');
+        $printer = Printer::factory()->for($server, 'Server')->create();
+        $job = PrintJob::factory()->recycle($printer)->create();
+
+        $this->putJson('/api/print-service/jobs/'.$job->ulid, [
+            'status' => 'failed',
+            'status_message' => $message,
+        ])->assertNoContent();
+
+        $this->assertSame(PrintJobStatusEnum::Failed, $job->fresh()->status);
+        $this->assertSame($message, $job->fresh()->status_message);
+    }
+
+    public static function boundaryMessages(): array
+    {
+        return [[str_repeat('a', 255)], [str_repeat('ą', 255)]];
     }
 
     public function test_cannot_update_others_jobs(): void
