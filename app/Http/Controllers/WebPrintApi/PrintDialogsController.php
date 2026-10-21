@@ -10,6 +10,7 @@ use App\Models\PrintJobPromise;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RuntimeException;
 
 class PrintDialogsController extends Controller
 {
@@ -58,19 +59,25 @@ class PrintDialogsController extends Controller
 
         $validated = $request->validate([
             'restricted_ip' => ['nullable', 'ip'],
-            'redirect_url' => ['nullable', 'url'],
+            'redirect_url' => ['nullable', 'string', 'url', 'max:255'],
             'auto_print' => ['nullable', 'boolean'],
         ]);
 
-        if ($promise->PrintDialog !== null) {
-            $promise->PrintDialog->delete();
-        }
+        $dialog = $promise->getConnection()->transaction(function () use ($promise, $validated): PrintDialog {
+            if ($promise->PrintDialog !== null) {
+                $promise->PrintDialog->delete();
+            }
 
-        $dialog = new PrintDialog;
-        $dialog->auto_print = $validated['auto_print'] ?? true;
-        $dialog->redirect_url = $validated['redirect_url'] ?? null;
-        $dialog->restricted_ip = $validated['restricted_ip'] ?? null;
-        $promise->PrintDialog()->save($dialog);
+            $dialog = new PrintDialog;
+            $dialog->auto_print = $validated['auto_print'] ?? true;
+            $dialog->redirect_url = $validated['redirect_url'] ?? null;
+            $dialog->restricted_ip = $validated['restricted_ip'] ?? null;
+            if (! $promise->PrintDialog()->save($dialog)) {
+                throw new RuntimeException('Unable to save print dialog.');
+            }
+
+            return $dialog;
+        });
 
         return new PrintDialogResource($dialog->fresh());
     }
