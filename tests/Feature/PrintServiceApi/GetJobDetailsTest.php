@@ -161,6 +161,38 @@ class GetJobDetailsTest extends TestCase
         );
     }
 
+    public function test_ppd_choice_values_are_preserved_and_only_booleans_are_converted(): void
+    {
+        Sanctum::actingAs(
+            $server = PrintServer::factory()->create(),
+            guard: 'print_service_api'
+        );
+
+        $printer = Printer::factory()->for($server, 'Server')->ppd()->create([
+            'ppd_options' => [
+                ['key' => 'PageSize', 'type' => 'PickOne', 'default' => 'Letter'],
+                ['key' => 'Duplex', 'type' => 'PickOne', 'default' => 'None'],
+                ['key' => 'Resolution', 'default' => '300dpi'],
+                ['key' => 'fit-to-page', 'type' => 'Boolean', 'default' => 'True'],
+                ['key' => 'MirrorPrint', 'type' => 'Boolean', 'default' => 'True'],
+            ],
+        ]);
+        $job = PrintJob::factory()->for($printer, 'Printer')->create([
+            'ppd' => true,
+            'ppd_options' => ['PageSize' => 'A4', 'fit-to-page' => 'False'],
+        ]);
+
+        $this->getJson('/api/print-service/jobs/'.$job->ulid)
+            ->assertOk()
+            ->assertJsonPath('options', [
+                'PageSize' => 'A4',
+                'Duplex' => 'None',
+                'Resolution' => '300dpi',
+                'fit-to-page' => false,
+                'MirrorPrint' => true,
+            ]);
+    }
+
     public function test_cannot_access_others_jobs(): void
     {
         Sanctum::actingAs(
