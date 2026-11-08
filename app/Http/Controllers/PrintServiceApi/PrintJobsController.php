@@ -84,7 +84,7 @@ class PrintJobsController extends Controller
                 ->mapWithKeys(function ($option, $key) use ($options): array {
                     $value = isset($options[$option['key']]) ? ($options[$option['key']] ?? $option['default']) : $option['default'];
 
-                    if ($option['type'] ?? 'select' == 'Boolean') {
+                    if (($option['type'] ?? 'select') === 'Boolean') {
                         return [$option['key'] => $value == 'True'];
                     }
 
